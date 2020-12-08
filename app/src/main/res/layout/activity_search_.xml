@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:background="#F2F2F2"
+    android:layout_height="match_parent">
+    <ImageView
+        android:layout_width="9dp"
+        android:src="@mipmap/returnbutton"
+        android:layout_marginTop="20dp"
+        android:onClick="decote"
+        android:layout_marginLeft="15dp"
+        android:layout_height="17dp" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="-25dp"
+            android:gravity="center"
+            android:layout_gravity="center_horizontal">
+
+            <EditText
+                android:id="@+id/username"
+                android:layout_width="287dp"
+                android:layout_height="34dp"
+
+                android:textSize="12sp"
+                android:textColorHint="#fff"
+                android:scrollbarSize="12sp"
+                android:background="@drawable/rounded_edittext1"
+                android:hint="搜索年级、课程、训练计划"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:paddingRight="10dp"
+                android:paddingEnd="10dp"
+                android:paddingLeft="60dp"
+                android:paddingStart="60dp"
+                />
+
+            <ImageView
+                android:id="@+id/username_image"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_alignStart="@id/username"
+                android:layout_alignLeft="@id/username"
+                android:layout_alignTop="@id/username"
+                android:layout_alignBottom="@id/username"
+                android:layout_marginStart="0dp"
+                android:layout_marginLeft="0dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginBottom="0dp"
+                android:padding="12dp"
+                android:src="@mipmap/icon_home_top_search" />
+        </RelativeLayout>
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+</LinearLayout>
+</LinearLayout>

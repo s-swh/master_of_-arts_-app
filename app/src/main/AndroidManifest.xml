@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.wd.master_of_arts_app">
+
+
+    <!-- 在SD卡中创建与删除文件权限 -->
+    <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS"
+        tools:ignore="ProtectedPermissions" />
+    <!-- 向SD卡写入数据权限 -->
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.INTERNET" /> <!-- 网络权限 -->
+    <uses-permission android:name="android.permission.CAMERA" /> <!-- 相机权限 -->
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission
+        android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS"
+        tools:ignore="ProtectedPermissions" />
+    <uses-permission android:name="android.permission.RECORD_AUDIO" /> <!-- 录音 -->
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" /> <!-- 播音 -->
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+
+    <application
+        android:name=".base.App"
+        android:allowBackup="true"
+        android:icon="@mipmap/icncn"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.AppCompat.Light.NoActionBar">
+
+        <activity android:name=".activity.Privacy_policy" /> <!-- 隐私协议 -->
+        <activity android:name=".activity.User_agreement" /> <!-- 用户协议 -->
+        <activity android:name=".activity.Booking_experience" />
+        <activity android:name=".activity.modify_password" /> <!-- 修改密码 -->
+        <activity android:name=".activity.Add_Address" /> <!-- 收获地址 -->
+        <activity android:name=".activity.Calendar_Activity" />
+        <activity android:name=".activity.myactivity.SetUp" /> <!-- 设置 -->
+        <activity android:name=".activity.myactivity.Notice" /> <!-- 通知 -->
+        <activity android:name=".activity.myactivity.Customer_Service_Center" /> <!-- 客服中心 -->
+        <activity android:name=".activity.myactivity.Harvest_Address" /> <!-- 收获地址 -->
+        <activity android:name=".activity.myactivity.Express_Inquiry" /> <!-- 快递查询 -->
+        <activity android:name=".activity.myactivity.My_Course" /> <!-- 我的课程 -->
+        <activity android:name=".activity.myactivity.My_Continuation" /> <!-- 我的续报 -->
+        <activity android:name=".activity.myactivity.My_Collection_of_works" /> <!-- 我的作品集 -->
+        <activity android:name=".activity.myactivity.My_order" /> <!-- 我的订单 -->
+        <activity android:name=".activity.Publishing_works_Activity" /> <!-- 闪屏界面 -->
+        <activity android:name=".activity.Flash_page_Activity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity> <!-- 首页搜索界面 -->
+        <activity android:name=".activity.Search_Activity" /> <!-- 项目主框架 -->
+        <activity android:name=".activity.MainActivity" />
+    </application>
+
+</manifest>

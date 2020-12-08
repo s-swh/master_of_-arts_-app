@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:focusable="true"
+    android:focusableInTouchMode="true"
+    tools:context=".fragment.myorderfragment.Cancelled">
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="25dp">
+        <EditText
+            android:id="@+id/username"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:textSize="14sp"
+            android:textColorHint="#A09494"
+            android:scrollbarSize="12sp"
+            android:gravity="center"
+            android:background="@drawable/rounded_edittext3"
+            android:hint="订单号/课程名称/订单备注"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            android:paddingRight="10dp"
+            android:paddingEnd="10dp"
+            android:paddingLeft="60dp"
+            android:paddingStart="60dp"
+            />
+
+        <ImageView
+            android:id="@+id/username_image"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="12dp"
+            android:layout_alignBottom="@id/username"
+            android:layout_alignLeft="@id/username"
+            android:layout_alignStart="@id/username"
+            android:layout_alignTop="@id/username"
+            android:layout_marginEnd="10dp"
+            android:layout_marginRight="10dp"
+            android:src="@mipmap/icon_home_top_search" />
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="12dp"
+            android:id="@+id/cloat"
+            android:layout_alignBottom="@id/username"
+            android:layout_alignRight="@id/username"
+            android:layout_alignEnd="@id/username"
+            android:layout_alignTop="@id/username"
+            android:layout_marginEnd="10dp"
+            android:layout_marginRight="10dp"
+            android:src="@mipmap/icon_cloed" />
+
+    </RelativeLayout>
+    <TextView
+        android:layout_width="match_parent"
+        android:text="已取消"
+        android:layout_height="match_parent" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:background="#F2F2F2"
+        android:layout_height="match_parent">
+    </LinearLayout>
+</LinearLayout>

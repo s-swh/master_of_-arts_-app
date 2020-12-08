@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/fillet1"
+    android:orientation="vertical">
+    <ScrollView
+        android:layout_width="match_parent"
+        android:scrollbars="none"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:orientation="vertical"
+            android:layout_height="match_parent">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+
+        android:orientation="vertical">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_150"
+            android:scaleType="fitXY"
+            android:src="@mipmap/office" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_150"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="50dp"
+                    android:text="拍照点评流程"
+                    android:textColor="#fff"
+                    android:textSize="19sp" />
+
+                <ImageView
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_marginLeft="50dp"
+                    android:layout_marginTop="@dimen/dp_5"
+                    android:src="@mipmap/log" />
+            </LinearLayout>
+<View
+    android:layout_width="1dp"
+    android:layout_marginTop="@dimen/dp_15"
+    android:background="#000"
+    android:layout_height="@dimen/dp_300"/>
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_20"
+                android:layout_weight="2"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dp_120"
+
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="①"
+                        android:textColor="#fff"
+                        android:textSize="35sp" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="上传作品"
+                            android:textColor="#fff"
+                            android:textSize="24sp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="点击“发布作品”按钮j进入作品发布界面,上传图片,添加文字描述"
+                            android:textColor="#fff" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dp_120"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="②"
+                        android:textColor="#fff"
+                        android:textSize="35sp" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/dp_70"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="发布作品"
+                            android:textColor="#fff"
+                            android:textSize="24sp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="提交作品，等待老师点评"
+                            android:textColor="#fff" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dp_100"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="③"
+                        android:textColor="#fff"
+                        android:textSize="35sp" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="查看点评"
+                            android:textColor="#fff"
+                            android:textSize="24sp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="在个人中心页查看点评"
+                            android:textColor="#fff" />
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+        <LinearLayout
+            android:id="@+id/photograph"
+            android:layout_width="@dimen/dp_180"
+            android:layout_height="@dimen/dp_30"
+            android:layout_gravity="center"
+            android:layout_marginTop="-20dp"
+            android:background="@drawable/fillet2">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginLeft="@dimen/dp_15"
+                android:src="@mipmap/icon_nav_photo_nomal_selected" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginLeft="20dp"
+                android:text="发布作品"
+                android:textColor="#32AEA7"
+                android:textSize="23sp" />
+
+
+    </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

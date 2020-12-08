@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:scaleType="fitXY"
+                    android:src="@mipmap/bg_home_top" />
+
+                <include
+                    android:id="@+id/search"
+                    layout="@layout/introduce" />
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dp_120"
+                    android:layout_marginTop="@dimen/dp_65"
+                    android:scaleType="fitXY"
+
+                    android:src="@mipmap/banner" />
+
+                <com.stx.xhb.xbanner.XBanner
+                    android:id="@+id/xbn"
+                    android:layout_width="match_parent"
+                    android:layout_height="150dp"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="70dp"
+                    android:scaleType="fitXY"
+                    android:visibility="gone"
+                    app:AutoPlayTime="3000"
+                    app:isClipChildrenMode="true"
+                    app:isShowNumberIndicator="true"
+                    app:pointTopBottomPadding="@dimen/dp_10"
+                    app:pointsPosition="RIGHT"
+                    app:tipTextColor="#ccf"></com.stx.xhb.xbanner.XBanner>
+            </RelativeLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/dp_150"
+                    android:layout_weight="1"></androidx.recyclerview.widget.RecyclerView>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/dp_150"
+                    android:layout_weight="1"></androidx.recyclerview.widget.RecyclerView>
+            </LinearLayout>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp_350"
+                android:background="@mipmap/icon_garden"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentTop="true"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="@dimen/dp_85"
+                    android:src="@mipmap/icon_jiantou2" />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:text="预约体验"
+                    android:id="@+id/tt_appointment"
+                    android:textColor="#ffffff"
+                    android:textSize="@dimen/sp_36"
+                    android:layout_centerVertical="true"
+                    android:gravity="center_horizontal"
+                    android:layout_height="wrap_content" />
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="@dimen/dp_240"
+                    android:src="@mipmap/icon_jiantou" />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="-40dp"
+                        android:src="@mipmap/icon_left" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="-40dp"
+                        android:src="@mipmap/icon_right" />
+                </RelativeLayout>
+            </RelativeLayout>
+
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>
