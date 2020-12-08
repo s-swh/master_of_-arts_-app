@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_height="match_parent"
+    tools:context=".activity.Login_interface">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:layout_height="match_parent">
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_height="wrap_content">
+    <ImageView
+        android:layout_width="@dimen/dp_50"
+        android:src="@mipmap/ico"
+        android:id="@+id/iv"
+        android:layout_marginTop="@dimen/dp_50"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true"
+        android:layout_height="@dimen/dp_50" />
+    <View
+        android:layout_width="match_parent"
+        android:layout_alignBottom="@id/iv"
+        android:layout_height="@dimen/dp_5"/>
+
+</RelativeLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:layout_width="wrap_content"
+            android:text="艺大家桃李"
+            android:textSize="@dimen/sp_24"
+            android:layout_centerHorizontal="true"
+            android:layout_height="wrap_content" />
+    </RelativeLayout>
+    <Button
+        android:layout_width="@dimen/dp_180"
+        android:text="登录/注册"
+        android:textSize="@dimen/sp_15"
+        android:textColor="#fff"
+        android:id="@+id/bt_login"
+        android:background="@drawable/fillet4"
+        android:layout_marginTop="@dimen/dp_40"
+        android:layout_gravity="center"
+        android:layout_height="wrap_content" />
+</LinearLayout>
+</RelativeLayout>
