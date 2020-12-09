@@ -10,30 +10,19 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.PopupWindow;
 import android.widget.TextView;
-import android.widget.Toast;
-
-
-import androidx.appcompat.app.AppCompatActivity;
-
 import com.bigkoo.pickerview.TimePickerView;
 import com.bumptech.glide.Glide;
 import com.wd.master_of_arts_app.R;
 import com.wd.master_of_arts_app.activity.Privacy_policy;
 import com.wd.master_of_arts_app.activity.User_agreement;
 import com.wd.master_of_arts_app.activity.modify_password;
-import com.wd.master_of_arts_app.base.App;
 import com.wd.master_of_arts_app.base.BaseActivity;
 import com.wd.master_of_arts_app.base.BasePreantert;
 import com.wd.master_of_arts_app.customview.SwitchButton;
 import com.wildma.pictureselector.PictureSelector;
-
-
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.Set;
-
-import butterknife.BindView;
 import butterknife.OnClick;
 
 /**
