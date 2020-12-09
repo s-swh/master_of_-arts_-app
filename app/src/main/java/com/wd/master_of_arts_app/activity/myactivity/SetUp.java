@@ -3,13 +3,18 @@ package com.wd.master_of_arts_app.activity.myactivity;
 
 import android.content.Intent;
 import android.graphics.Color;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.PopupWindow;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
+
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.bigkoo.pickerview.TimePickerView;
 import com.bumptech.glide.Glide;
 import com.wd.master_of_arts_app.R;
@@ -19,6 +24,7 @@ import com.wd.master_of_arts_app.activity.modify_password;
 import com.wd.master_of_arts_app.base.BaseActivity;
 import com.wd.master_of_arts_app.base.BasePreantert;
 import com.wd.master_of_arts_app.customview.SwitchButton;
+import com.wildma.pictureselector.PictureSelectUtils;
 import com.wildma.pictureselector.PictureSelector;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -38,6 +44,7 @@ public class SetUp extends BaseActivity implements View.OnClickListener {
     private TextView tv_userName;
     private EditText et;
     private ImageView vo;
+    private String picturePath;
 
     @Override
     protected int getLayoutId() {
@@ -52,13 +59,12 @@ public class SetUp extends BaseActivity implements View.OnClickListener {
     @Override
     protected void initView() {
         vo = findViewById(R.id.Upload_Avatar);
-        vo.setOnClickListener(new View.OnClickListener() {
+       RelativeLayout rc = findViewById(R.id.rc);
+        rc.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                PictureSelector
-                        .create(SetUp.this, PictureSelector.SELECT_REQUEST_CODE)
-                        .selectPicture(true, 200, 200, 1, 1);
-
+                PictureSelector.create(SetUp.this,PictureSelector.SELECT_REQUEST_CODE)
+                        .selectPicture(true,200,200,1,1);
 
             }
         });
@@ -77,13 +83,16 @@ public class SetUp extends BaseActivity implements View.OnClickListener {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         /*结果回调*/
-        if (requestCode == PictureSelector.SELECT_REQUEST_CODE) {
-            if (data != null) {
-                String picturePath = data.getStringExtra(PictureSelector.PICTURE_PATH);
-                Glide.with(SetUp.this).load(picturePath).into(vo);
+        if(resultCode==RESULT_OK&&requestCode==PictureSelector.SELECT_REQUEST_CODE){
+            if(data!=null){
+                String s = data.getStringExtra(PictureSelector.PICTURE_PATH);
+                Glide.with(getApplicationContext()).load(s).into(vo);
             }
         }
     }
+
+
+
     @OnClick(R.id.oncDestruction)
     public void onDestrution() {
         finish();

@@ -45,6 +45,7 @@
 
             <RelativeLayout
                 android:layout_width="match_parent"
+                android:id="@+id/rc"
                 android:layout_height="@dimen/dp_50">
 
                 <TextView
@@ -62,7 +63,7 @@
                     android:layout_alignParentRight="true"
                     android:id="@+id/Upload_Avatar"
                     android:layout_marginRight="@dimen/dp_50"
-                    android:src="@drawable/ic_launcher_background" />
+                      />
 
                 <ImageView
                     android:layout_width="@dimen/dp_10"

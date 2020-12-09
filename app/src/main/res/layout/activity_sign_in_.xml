@@ -87,13 +87,13 @@
                 android:layout_alignParentLeft="true"
                 android:layout_height="@dimen/dp_30" />
             <Button
-                android:layout_width="80dp"
-                android:text="获取验证码"
-                android:textSize="12sp"
-                android:textColor="#fff"
-                android:layout_marginRight="@dimen/dp_20"
-                android:background="@drawable/fillet8"
-                android:layout_height="26dp" />
+            android:layout_width="80dp"
+            android:text="获取验证码"
+            android:textSize="12sp"
+            android:textColor="#fff"
+            android:layout_marginRight="@dimen/dp_20"
+            android:background="@drawable/fillet8"
+            android:layout_height="26dp" />
         </LinearLayout>
         <View
             android:layout_width="match_parent"
