@@ -1,8 +1,15 @@
 package com.wd.master_of_arts_app.utils;
 
+import java.io.File;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
+import okhttp3.MediaType;
+import okhttp3.MultipartBody;
 import okhttp3.OkHttpClient;
+import okhttp3.RequestBody;
 import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
@@ -61,4 +68,16 @@ public class NetUtils {
             return chain.proceed(token1);
         }
     }*/
+    //图片上传
+    public RequestBody getRequestBody(List<File> files, HashMap<String,String> map){
+        MultipartBody.Builder builder = new MultipartBody.Builder().setType(MultipartBody.FORM);
+        for (Map.Entry<String,String>entry:map.entrySet()){
+            builder.addFormDataPart(entry.getKey(), entry.getValue() + "");
+        }
+        for (int i = 0; i < files.size(); i++) {
+            builder.addFormDataPart("image",files.get(i).getName(),
+                    RequestBody.create(MediaType.parse("image/jepg"),files.get(i)));
+        }
+        return builder.build();
+    }
 }

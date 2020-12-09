@@ -2,6 +2,7 @@ package com.wd.master_of_arts_app.activity;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ImageView;
@@ -89,4 +90,5 @@ public class Verification_code_login extends BaseActivity implements View.OnClic
                 break;
         }
     }
+
 }
