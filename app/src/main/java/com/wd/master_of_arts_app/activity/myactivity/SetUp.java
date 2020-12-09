@@ -198,8 +198,4 @@ public class SetUp extends BaseActivity implements View.OnClickListener {
     public void OnPrivacy_policy(){
         startActivity(new Intent(getApplicationContext(), Privacy_policy.class));
     }
-
-
-
-
 }
