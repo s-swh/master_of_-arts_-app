@@ -112,6 +112,7 @@ public class SwitchButton extends View {
                 }
                 invalidate();
                 break;
+                default:break;
         }
         return super.onTouchEvent(event);
     }

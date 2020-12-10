@@ -32,12 +32,10 @@ public class Completed_Comment extends BaseFragment {
         iv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                new Thread(new Runnable() {
-                    @Override
-                    public void run() {
+
                         us.setText("");
-                    }
-                }).start();
+
+
             }
         });
     }

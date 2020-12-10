@@ -168,6 +168,7 @@ public class Publishing_works_Activity extends BaseActivity implements View.OnCl
                             img_2.setImageURI(uri);
                         }
                         break;
+                        default:break;
                 }
                 break;
             case PHOTO_FROM_GALLERY2:
@@ -178,8 +179,10 @@ public class Publishing_works_Activity extends BaseActivity implements View.OnCl
                             img_3.setImageURI(uri);
                         }
                         break;
+                    default:break;
                 }
                 break;
+                default:break;
         }
     }
 }

@@ -90,6 +90,7 @@ public class Take_photos extends BaseFragment {
                 }
                 return;
             }
+            default:break;
         }
     }
 
