@@ -32,6 +32,7 @@
         android:networkSecurityConfig="@xml/network_security_config"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
+
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
         <activity android:name=".activity.Login_interface"></activity>
         <activity android:name=".activity.Verification_code_login"></activity> <!-- 登录 -->
@@ -51,7 +52,7 @@
         <activity android:name=".activity.myactivity.My_Collection_of_works" /> <!-- 我的作品集 -->
         <activity android:name=".activity.myactivity.My_order" /> <!-- 我的订单 -->
         <activity android:name=".activity.Publishing_works_Activity"></activity><!-- 闪屏界面 -->
-        <activity android:name=".activity.Flash_page_Activity">
+        <activity android:name=".activity.Flash_page_Activity" android:launchMode="singleTask">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
