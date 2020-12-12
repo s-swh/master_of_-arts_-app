@@ -2,15 +2,20 @@ package com.wd.master_of_arts_app.base;
 
 import android.app.Application;
 import android.content.Context;
+import android.os.Bundle;
+
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 
 /**
  * @author 时文豪
- * @description:  全局变量类
+ * @description: 全局变量类
  * @date :2020/12/3 11:49
  */
-public class App  extends Application {
+public class App extends Application {
 
-    private Context context;
+
+    private static Context context;
 
     @Override
     public void onCreate() {
@@ -18,7 +23,7 @@ public class App  extends Application {
         context = getApplicationContext();
     }
 
-    public Context getContext() {
+    public static Context getContext() {
         return context;
     }
 }

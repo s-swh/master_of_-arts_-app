@@ -34,7 +34,7 @@
         android:supportsRtl="true"
 
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
-        <activity android:name=".activity.Login_interface"></activity>
+        <activity android:name=".activity.Login_interface"></activity><!-- 选择界面 -->
         <activity android:name=".activity.Verification_code_login"></activity> <!-- 登录 -->
         <activity android:name=".activity.Privacy_policy" /> <!-- 隐私协议 -->
         <activity android:name=".activity.User_agreement" /> <!-- 用户协议 -->

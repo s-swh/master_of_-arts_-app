@@ -1,6 +1,7 @@
 package com.wd.master_of_arts_app.utils;
 
 import com.wd.master_of_arts_app.bean.Beanner_Bean;
+import com.wd.master_of_arts_app.bean.LogIn;
 import com.wd.master_of_arts_app.bean.Privacy_policyBean;
 import com.wd.master_of_arts_app.bean.User_agreement;
 
@@ -15,6 +16,11 @@ import retrofit2.http.POST;
  * @date :2020/12/3 10:22
  */
 public interface Api {
+    //登录
+    //http://app.54artist.com/index.php/wap/UserAccount/login
+    @POST("index.php/wap/UserAccount/login")
+    @FormUrlEncoded
+    Observable<LogIn>getlogin(@Field("account")String account,@Field("pwd")String pwd);
     //http://app.54artist.com/index.php/wap/Banner/getList    参数为 cat_id=2  field=*   轮播图
     @POST("index.php/wap/Banner/getList")
     @FormUrlEncoded
