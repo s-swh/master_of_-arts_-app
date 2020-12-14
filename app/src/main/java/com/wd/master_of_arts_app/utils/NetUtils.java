@@ -52,7 +52,7 @@ public class NetUtils {
                 .writeTimeout(30, TimeUnit.SECONDS)
                 .connectTimeout(30, TimeUnit.SECONDS)
                 .readTimeout(30, TimeUnit.SECONDS)
-             .addNetworkInterceptor(new ShunPreanter())
+                .addNetworkInterceptor(new Arouter())
                 .addNetworkInterceptor(httpLoggingInterceptor);
         OkHttpClient build = builder.build();
         Retrofit build1 = new Retrofit.Builder()
@@ -67,21 +67,6 @@ public class NetUtils {
     public Api getApi() {
         return api;
     }
-    //做处理 用来存放token
-    private class ShunPreanter implements Interceptor {
-        @Override
-        public Response intercept(Chain chain) throws IOException {
-            Request request = chain.request();
-            SharedPreferences sp = App.getContext().getSharedPreferences("into", Context.MODE_PRIVATE);
-            String token = sp.getString("token", "");
-            if(!TextUtils.isEmpty(token)){
-                return chain.proceed(request);
-            }
-            Request token1 = request.newBuilder().addHeader("token", token).build();
-            Log.i("xxx",token);
-            return chain.proceed(token1);
-        }
-    }
     //图片上传
     public RequestBody getRequestBody(List<File> files, HashMap<String,String> map){
         MultipartBody.Builder builder = new MultipartBody.Builder().setType(MultipartBody.FORM);
@@ -95,18 +80,19 @@ public class NetUtils {
         return builder.build();
     }
 
-  /*  private class ShunPreanter implements Interceptor {
+    private class Arouter implements Interceptor {
         @Override
         public Response intercept(Chain chain) throws IOException {
             Request request = chain.request();
-            SharedPreferences into = App.getContext().getSharedPreferences("into", Context.MODE_PRIVATE);
-            String token = into.getString("token", "");
-            if(!TextUtils.isEmpty(token)){
+            SharedPreferences sp = App.getContext().getSharedPreferences("into", Context.MODE_PRIVATE);
+            String token = sp.getString("token", "");
+            if(TextUtils.isEmpty(token)){
                 return chain.proceed(request);
             }
             Request token1 = request.newBuilder().addHeader("token", token).build();
-            Toast.makeText(App.getContext(), token, Toast.LENGTH_SHORT).show();
+            Log.i("xxx",token);
             return chain.proceed(token1);
         }
-    }*/
+    }
+
 }

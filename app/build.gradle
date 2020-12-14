@@ -88,4 +88,10 @@ dependencies {
     //图片上传
     implementation 'com.github.wildma:PictureSelector:1.1.1'
     implementation 'com.github.maning0303:MNUpdateAPK:V2.0.3'
+
+    //仿微信
+    implementation 'com.github.maning0303:MNUpdateAPK:V2.0.3'
+    implementation 'com.github.chrisbanes.photoview:library:+'
+    implementation 'com.github.bumptech.glide:glide:3.7.0'
+    implementation 'com.android.support:design:23.4.0'
 }

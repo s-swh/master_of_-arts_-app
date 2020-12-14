@@ -50,7 +50,7 @@ public class Task_page extends BaseFragment implements View.OnClickListener {
     //弹框
    @OnClick(R.id.tt_opo)
     public void popwindow(){
-       View view = getLayoutInflater().inflate(R.layout.activity_photo_preview, null);
+       View view = getLayoutInflater().inflate(R.layout.preview, null);
        lt1 = view.findViewById(R.id.o_1);
        lt2 =  view.findViewById(R.id.o_2);
        lt3 =   view.findViewById(R.id.o_3);

@@ -95,7 +95,7 @@ public class Verification_code_login extends BaseActivity implements View.OnClic
         but.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(Verification_code_login.this, "走", Toast.LENGTH_SHORT).show();
+
                 BasePreantert basePreantert = getmPreantert();
                 if (basePreantert instanceof LoginContract.IPreanter) {
                     String phone = etphone.getText().toString();
