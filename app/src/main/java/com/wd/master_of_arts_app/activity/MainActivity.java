@@ -1,6 +1,8 @@
 package com.wd.master_of_arts_app.activity;
 
 import android.Manifest;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
@@ -160,6 +162,33 @@ public class MainActivity extends BaseActivity {
             @Override
             public void onTabReselect(int position) {
 
+                if(position==1){
+                    SharedPreferences sp = getSharedPreferences("yijian", MODE_PRIVATE);
+                    int code = sp.getInt("code", 0);
+                    if(code!=1){
+                        Intent intent = new Intent(MainActivity.this,Login_interface.class);
+                        startActivity(intent);
+                        finish();
+                    }
+
+                }else if(position==2){
+                    SharedPreferences sp = getSharedPreferences("yijian", MODE_PRIVATE);
+                    int code = sp.getInt("code", 0);
+                    if(code!=1){
+                        Intent intent = new Intent(MainActivity.this,Login_interface.class);
+                        startActivity(intent);
+                        finish();
+                    }
+                }else if(position==4){
+                    SharedPreferences sp = getSharedPreferences("yijian", MODE_PRIVATE);
+                    int code = sp.getInt("code", 0);
+                    if(code!=1){
+                        Intent intent = new Intent(MainActivity.this,Login_interface.class);
+                        startActivity(intent);
+                        finish();
+                    }
+                }
+
             }
         });
         //viewPager 监听
@@ -172,6 +201,33 @@ public class MainActivity extends BaseActivity {
             @Override
             public void onPageSelected(int position) {
                 bottom_navigation.setCurrentTab(position);
+                if(position==1){
+                    SharedPreferences sp = getSharedPreferences("yijian", MODE_PRIVATE);
+                    int code = sp.getInt("code", 0);
+                    if(code!=1){
+                        Intent intent = new Intent(MainActivity.this,Login_interface.class);
+                        startActivity(intent);
+                        finish();
+                    }
+
+                }else if(position==2){
+                    SharedPreferences sp = getSharedPreferences("yijian", MODE_PRIVATE);
+                    int code = sp.getInt("code", 0);
+                    if(code!=1){
+                        Intent intent = new Intent(MainActivity.this,Login_interface.class);
+                        startActivity(intent);
+                        finish();
+                    }
+                }else if(position==4){
+                    SharedPreferences sp = getSharedPreferences("yijian", MODE_PRIVATE);
+                    int code = sp.getInt("code", 0);
+                    if(code!=1){
+                        Intent intent = new Intent(MainActivity.this,Login_interface.class);
+                        startActivity(intent);
+                        finish();
+                    }
+                }
+
             }
 
             @Override

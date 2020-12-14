@@ -59,7 +59,7 @@
         <activity android:name=".activity.myactivity.My_Collection_of_works" /> <!-- 我的作品集 -->
         <activity android:name=".activity.myactivity.My_order" /> <!-- 我的订单 -->
         <activity android:name=".activity.Publishing_works_Activity"></activity><!-- 闪屏界面 -->
-        <activity android:name=".activity.Flash_page_Activity" android:launchMode="singleTask">
+        <activity android:name=".activity.Flash_page_Activity" android:launchMode="singleTop">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
