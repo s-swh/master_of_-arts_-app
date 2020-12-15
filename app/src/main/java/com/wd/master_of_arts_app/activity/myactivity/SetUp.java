@@ -1,19 +1,21 @@
 package com.wd.master_of_arts_app.activity.myactivity;
 
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
-import androidx.recyclerview.widget.RecyclerView;
+import androidx.appcompat.app.AlertDialog;
 
 import com.bigkoo.pickerview.TimePickerView;
 import com.bumptech.glide.Glide;
@@ -24,7 +26,7 @@ import com.wd.master_of_arts_app.activity.modify_password;
 import com.wd.master_of_arts_app.base.BaseActivity;
 import com.wd.master_of_arts_app.base.BasePreantert;
 import com.wd.master_of_arts_app.customview.SwitchButton;
-import com.wildma.pictureselector.PictureSelectUtils;
+import com.wd.master_of_arts_app.utils.DataCleanManager;
 import com.wildma.pictureselector.PictureSelector;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -45,6 +47,7 @@ public class SetUp extends BaseActivity implements View.OnClickListener {
     private EditText et;
     private ImageView vo;
     private String picturePath;
+    private TextView hc;
 
     @Override
     protected int getLayoutId() {
@@ -55,9 +58,54 @@ public class SetUp extends BaseActivity implements View.OnClickListener {
     protected BasePreantert initModel() {
         return null;
     }
+    String totalCacheSize = null;
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        /**
+         * 获取缓存大小
+         */
+        String totalCacheSize =null;
+        try {
+              totalCacheSize = DataCleanManager.getTotalCacheSize(getApplicationContext());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        hc.setText(totalCacheSize);
+    }
 
     @Override
     protected void initView() {
+        hc = findViewById(R.id.hc);
+        try {
+             totalCacheSize = DataCleanManager.getTotalCacheSize(getApplicationContext());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        hc.setText(totalCacheSize);
+      Button bt= findViewById(R.id.cloet);
+        bt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                new AlertDialog.Builder(SetUp.this)
+                        .setTitle("清除缓存")
+                        .setMessage("是否确认清除缓存")
+                        .setPositiveButton("确定", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                //清除缓存的方法
+                                boolean b = DataCleanManager.clearAllCache(getApplicationContext());
+                                if(b){
+                                    hc.setText("0M");
+                                }
+                                Toast.makeText(getApplicationContext(), "清除成功", Toast.LENGTH_LONG).show();
+                            }
+                        })
+                        .setNegativeButton("取消", null)
+                        .show();
+            }
+        });
         vo = findViewById(R.id.Upload_Avatar);
        RelativeLayout rc = findViewById(R.id.rc);
         rc.setOnClickListener(new View.OnClickListener() {

@@ -49,7 +49,7 @@
         <activity android:name=".activity.modify_password" /> <!-- 修改密码 -->
         <activity android:name=".activity.Add_Address" /> <!-- 收获地址 -->
         <activity android:name=".activity.Calendar_Activity" />
-        <activity android:name=".activity.myactivity.SetUp" /> <!-- 设置 -->
+        <activity android:name=".activity.myactivity.SetUp" android:theme="@style/Theme.AppCompat.Light.NoActionBar"  android:configChanges="orientation|screenSize" /> <!-- 设置 -->
         <activity android:name=".activity.myactivity.Notice" /> <!-- 通知 -->
         <activity android:name=".activity.myactivity.Customer_Service_Center" /> <!-- 客服中心 -->
         <activity android:name=".activity.myactivity.Harvest_Address" /> <!-- 收获地址 -->

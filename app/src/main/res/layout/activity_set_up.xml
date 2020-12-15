@@ -335,9 +335,17 @@
                     android:layout_marginLeft="@dimen/dp_15"
                     android:gravity="center_vertical"
                     android:text="应用缓存"
+                    android:id="@+id/yyong"
                     android:textColor="#000"
                     android:textSize="@dimen/sp_12" />
-
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:text="0.0MB"
+                    android:gravity="center_vertical"
+                    android:id="@+id/hc"
+                    android:layout_marginLeft="@dimen/dp_20"
+                    android:layout_toRightOf="@id/yyong"
+                    android:layout_height="match_parent" />
                 <TextView
                     android:layout_width="@dimen/dp_45"
                     android:layout_height="match_parent"
@@ -363,6 +371,7 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
+                    android:id="@+id/cloet"
                     android:layout_marginRight="@dimen/dp_10"
                     android:text="清理缓存" />
             </RelativeLayout>
