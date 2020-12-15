@@ -71,7 +71,7 @@
             android:layout_centerVertical="true"
             android:layout_marginLeft="@dimen/dp_70"
             android:layout_marginTop="@dimen/dp_10"
-            android:text="（必填，限三张）" />
+            android:text="（最少三张）" />
     </RelativeLayout>
     <GridView
         android:id="@+id/gridView"

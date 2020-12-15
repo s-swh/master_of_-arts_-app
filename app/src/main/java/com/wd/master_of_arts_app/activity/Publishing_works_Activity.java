@@ -202,7 +202,7 @@ public class Publishing_works_Activity extends BaseActivity implements View.OnCl
         tb.setupWithViewPager(vp);
         MyViewPager myViewPager = new MyViewPager(getSupportFragmentManager());
         vp.setAdapter(myViewPager);
-        vp.setOffscreenPageLimit(2);
+        vp.setOffscreenPageLimit(1);
     }
     @OnClick(R.id.oncDestruction)
     public void onDestrution(){

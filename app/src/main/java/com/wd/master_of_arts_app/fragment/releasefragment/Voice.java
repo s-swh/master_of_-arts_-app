@@ -1,40 +1,28 @@
 package com.wd.master_of_arts_app.fragment.releasefragment;
 
 import android.Manifest;
-import android.annotation.SuppressLint;
 import android.app.Activity;
 
 import android.content.pm.PackageManager;
 
 
-import android.net.Uri;
-
-import android.os.Bundle;
-import android.os.Environment;
-import android.util.Log;
-import android.view.LayoutInflater;
+import android.media.MediaPlayer;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.ImageView;
-import android.widget.Toast;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.core.app.ActivityCompat;
 
-import com.czt.mp3recorder.MP3Recorder;
-import com.lqr.audio.AudioPlayManager;
-import com.lqr.audio.AudioRecordManager;
-import com.lqr.audio.IAudioPlayListener;
-import com.syw.audio.widget.AudioRecordButton;
 import com.wd.master_of_arts_app.R;
+import com.wd.master_of_arts_app.adapter.RecorderAdapter;
 import com.wd.master_of_arts_app.base.BaseFragment;
 import com.wd.master_of_arts_app.base.BasePreantert;
-import com.wd.master_of_arts_app.io.FileNameSelector;
+import com.wd.master_of_arts_app.customview.AudioRecorderButton;
+import com.wd.master_of_arts_app.voice.MediaManager;
 
-import java.io.File;
-import java.io.FileInputStream;
+import java.util.ArrayList;
+import java.util.List;
 
 
 /**
@@ -43,15 +31,12 @@ import java.io.FileInputStream;
  * @date :2020/12/5 10:00
  */
 public class Voice extends BaseFragment {
-    private final int i = 1;
-    //申请录音权限
-    private static final int GET_RECODE_AUDIO = 1;
+    private ListView mListView;
+    private ArrayAdapter<Recorder> mAdapter;
+    private List<Recorder> mDatas =new ArrayList<>();
 
-    private static String[] PERMISSION_AUDIO = {
-            Manifest.permission.RECORD_AUDIO
-    };
-    private ImageView iv;
-    private Button bt;
+    private AudioRecorderButton mAudioRecorderButton;
+    private View mAnimView;
 
 
     @Override
@@ -64,132 +49,109 @@ public class Voice extends BaseFragment {
         return null;
     }
 
-    @SuppressLint("ClickableViewAccessibility")
+
     @Override
     protected void initView(View inflate) {
-        verifyAudioPermissions(getActivity());
-        MP3Recorder mRecorder = new MP3Recorder(new File(Environment.getExternalStorageDirectory(), "艺大家.mp3"));
 
-        AudioRecordManager.getInstance(getActivity()).setMaxVoiceDuration(120);
-        File mAudioDir = new File(Environment.getExternalStorageDirectory(), "艺大家");
-        if (!mAudioDir.exists()) {
-            mAudioDir.mkdirs();
-        }
-        Log.i("xxx", mAudioDir + "");
-        AudioRecordManager.getInstance(getActivity()).setAudioSavePath(mAudioDir.getAbsolutePath());
+        mListView =inflate.findViewById(R.id.id_listview);
+        mAudioRecorderButton = inflate.findViewById(R.id.id_recorder_button);
 
-
-        AudioRecordButton arb = inflate.findViewById(R.id.arb);
-        bt = inflate.findViewById(R.id.bt);
-        String uri="/sdcard/艺大家/1607394525941temp.voice";
-
-            File file = Environment.getExternalStorageDirectory();
-            if(file != null){
-                try {
-                    File[] files = file.listFiles(new FileNameSelector("voice"));
-                    for(int i = 0; i < files.length; i++){
-                        Log.i("System.out", files[i].getName());
-                    }
-                }catch (Exception e){
-                    e.printStackTrace();
-                }
-            }
-
-
-            //播放录音
-        bt.setOnClickListener(new View.OnClickListener() {
+        mAudioRecorderButton.setAudioFinishRecorderListener(new AudioRecorderButton.AudioFinishRecorderListener() {
             @Override
-            public void onClick(View view) {
-                AudioPlayManager.getInstance().startPlay(getActivity(), Uri.parse(uri), new IAudioPlayListener() {
-                    @Override
-                    public void onStart(Uri var1) {
-                        //开播
-                        Log.i("syw_dl",var1+"");
-                        AudioRecordManager.getInstance(getActivity()).startRecord();
-                    }
+            public void onFinish(float seconds, String filePath) {
+                //每完成一次录音
+                Recorder recorder = new Recorder(seconds,filePath);
+                mDatas.add(recorder);
+                //更新adapter
+                mAdapter.notifyDataSetChanged();
+                //设置listview 位置
+                mListView.setSelection(mDatas.size()-1);
+            }
+        });
+    }
 
-                    @Override
-                    public void onStop(Uri var1) {
-                        //停播
-                    }
 
+
+
+
+
+    @Override
+    protected void initData() {
+        mAdapter = new RecorderAdapter(getActivity(), mDatas);
+        mListView.setAdapter(mAdapter);
+
+        mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                //如果第一个动画正在运行， 停止第一个播放其他的
+                if (mAnimView != null) {
+                    mAnimView.setBackgroundResource(R.drawable.ic_launcher_background);
+                    mAnimView = null;
+                }
+                //播放动画
+                //   mAnimView = view.findViewById(R.id.id_recorder_anim);
+                //   mAnimView.setBackgroundResource(R.drawable.icon);
+                //      AnimationDrawable animation = (AnimationDrawable) mAnimView.getBackground();
+                //    animation.start();
+
+                //播放音频  完成后改回原来的background
+                MediaManager.playSound(mDatas.get(position).filePath, new MediaPlayer.OnCompletionListener() {
                     @Override
-                    public void onComplete(Uri var1) {
-                        //播完
-                        AudioPlayManager.getInstance().stopPlay();
+                    public void onCompletion(MediaPlayer mp) {
+//                        mAnimView.setBackgroundResource(R.drawable.ic_launcher_background);
                     }
                 });
             }
         });
-        //开始录音
-        arb.setAudioFinishRecorderListener(new AudioRecordButton.AudioFinishRecorderListener() {
-
-            @Override
-            public void onFinished(float seconds, String filePath) {
-//停止录音
-                AudioRecordManager.getInstance(getActivity()).stopRecord();
-                Log.e("syw", "filePath:" + filePath);
-
-            }
-
-            @Override
-            public void onNormal() {
-//停止录音
-                AudioRecordManager.getInstance(getActivity()).stopRecord();
-
-                Log.e("syw", "onNormal:");
-
-            }
-
-            @Override
-            public void onRecord() {
-                //点击启动
-                //开始录音
-                AudioRecordManager.getInstance(getActivity()).startRecord();
-
-                Log.e("syw", "onRecord:");
-
-            }
-
-            @Override
-            public void onCancel() {
-                //上滑删除
-                //将要取消录音（参与微信手指上滑）
-                AudioRecordManager.getInstance(getActivity()).willCancelRecord();
-
-
-                Log.e("syw", "onCancel:");
-
-            }
-
-            @Override
-            public void onShort() {
-//停止录音
-                AudioRecordManager.getInstance(getActivity()).stopRecord();
-                Log.e("syw", "onShort:");
-
-            }
-        });
-
-
     }
 
-
-
-
-    /*
-     * 申请录音权限*/
-    public static void verifyAudioPermissions(Activity activity) {
-        int permission = ActivityCompat.checkSelfPermission(activity,
-                Manifest.permission.RECORD_AUDIO);
-        if (permission != PackageManager.PERMISSION_GRANTED) {
-            ActivityCompat.requestPermissions(activity, PERMISSION_AUDIO,
-                    GET_RECODE_AUDIO);
-        }
+    /**
+     * 根据生命周期 管理播放录音
+     */
+    @Override
+    public void onPause() {
+        super.onPause();
+        MediaManager.pause();
     }
 
     @Override
-    protected void initData() {
+    public void onResume() {
+        super.onResume();
+        MediaManager.resume();
+    }
 
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        MediaManager.release();
+    }
+
+    //数据类
+    public  class Recorder{
+
+      public   float time;
+        public String filePath;
+
+        public float getTime() {
+            return time;
+        }
+
+        public void setTime(float time) {
+            this.time = time;
+        }
+
+        public String getFilePath() {
+            return filePath;
+        }
+
+        public void setFilePath(String filePath) {
+            this.filePath = filePath;
+        }
+
+        public Recorder(float time, String filePath) {
+            super();
+            this.time = time;
+            this.filePath = filePath;
+        }
     }
 }

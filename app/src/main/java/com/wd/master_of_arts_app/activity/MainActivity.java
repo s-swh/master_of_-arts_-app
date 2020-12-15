@@ -1,6 +1,7 @@
 package com.wd.master_of_arts_app.activity;
 
 import android.Manifest;
+import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
@@ -15,6 +16,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
@@ -46,6 +48,12 @@ public class MainActivity extends BaseActivity {
     private static int REQUEST_PERMISSION_CODE = 1;
 
 
+    //申请录音权限
+    private static final int GET_RECODE_AUDIO = 1;
+
+    private static String[] PERMISSION_AUDIO = {
+            Manifest.permission.RECORD_AUDIO
+    };
 
 
 
@@ -91,7 +99,7 @@ public class MainActivity extends BaseActivity {
                 ActivityCompat.requestPermissions(this, PERMISSIONS_STORAGE, REQUEST_PERMISSION_CODE);
             }
         }
-        CommonAction.getInstance().addActivity(this);
+
     }
 
     ViewPager vp;
@@ -152,6 +160,13 @@ public class MainActivity extends BaseActivity {
 
     @Override
     protected void initData() {
+        requestPermission();
+        int permission = ActivityCompat.checkSelfPermission(this,
+                Manifest.permission.RECORD_AUDIO);
+        if (permission != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(this, PERMISSION_AUDIO,
+                    GET_RECODE_AUDIO);
+        }
         //底部导航栏监听
         bottom_navigation.setOnTabSelectListener(new OnTabSelectListener() {
             @Override
@@ -161,7 +176,7 @@ public class MainActivity extends BaseActivity {
 
             @Override
             public void onTabReselect(int position) {
-
+/*
                 if(position==1){
                     SharedPreferences sp = getSharedPreferences("yijian", MODE_PRIVATE);
                     int code = sp.getInt("code", 0);
@@ -187,7 +202,7 @@ public class MainActivity extends BaseActivity {
                         startActivity(intent);
                         finish();
                     }
-                }
+                }*/
 
             }
         });
@@ -201,7 +216,7 @@ public class MainActivity extends BaseActivity {
             @Override
             public void onPageSelected(int position) {
                 bottom_navigation.setCurrentTab(position);
-                if(position==1){
+              /*  if(position==1){
                     SharedPreferences sp = getSharedPreferences("yijian", MODE_PRIVATE);
                     int code = sp.getInt("code", 0);
                     if(code!=1){
@@ -226,7 +241,7 @@ public class MainActivity extends BaseActivity {
                         startActivity(intent);
                         finish();
                     }
-                }
+                }*/
 
             }
 
@@ -235,6 +250,27 @@ public class MainActivity extends BaseActivity {
 
             }
         });
+    }
+    public static final int CAMERA_REQ_CODE = 111;
+    private void requestPermission() {
+        // 判断当前Activity是否已经获得了该权限
+        if (ContextCompat.checkSelfPermission(this,
+                Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
+
+            // 如果App的权限申请曾经被用户拒绝过，就需要在这里跟用户做出解释
+            if (ActivityCompat.shouldShowRequestPermissionRationale(this,
+                    Manifest.permission.CAMERA)) {
+
+                Toast.makeText(this, "请进入设置-应用管理-打开相机权限", Toast.LENGTH_SHORT).show();
+            } else {
+                // 进行权限请求
+                ActivityCompat
+                        .requestPermissions(
+                                this,
+                                new String[]{Manifest.permission.CAMERA},
+                                CAMERA_REQ_CODE);
+            }
+        }
     }
 
     //创建内部类进行我们的数据转换

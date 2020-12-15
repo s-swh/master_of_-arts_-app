@@ -51,29 +51,10 @@ public class Take_photos extends BaseFragment {
 
         Intent intent = new Intent(getActivity(), Publishing_works_Activity.class);
         startActivity(intent);
-        requestPermission();
+
     }
 
-    private void requestPermission() {
-        // 判断当前Activity是否已经获得了该权限
-        if (ContextCompat.checkSelfPermission(getActivity(),
-                Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
 
-            // 如果App的权限申请曾经被用户拒绝过，就需要在这里跟用户做出解释
-            if (ActivityCompat.shouldShowRequestPermissionRationale(getActivity(),
-                    Manifest.permission.CAMERA)) {
-
-                Toast.makeText(getActivity(), "请进入设置-应用管理-打开相机权限", Toast.LENGTH_SHORT).show();
-            } else {
-                // 进行权限请求
-                ActivityCompat
-                        .requestPermissions(
-                                getActivity(),
-                                new String[]{Manifest.permission.CAMERA},
-                                CAMERA_REQ_CODE);
-            }
-        }
-    }
     @Override
     public void onRequestPermissionsResult(int requestCode,
                                            String permissions[], int[] grantResults) {
