@@ -25,6 +25,7 @@ public class Login_interface extends BaseActivity {
         if (code == 1) {
             Intent intent = new Intent(Login_interface.this, MainActivity.class);
             startActivity(intent);
+            finish();
         }
     }
 

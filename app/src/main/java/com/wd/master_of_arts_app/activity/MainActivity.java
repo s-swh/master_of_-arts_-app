@@ -1,6 +1,7 @@
 package com.wd.master_of_arts_app.activity;
 
 import android.Manifest;
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -60,6 +61,7 @@ public class MainActivity extends BaseActivity {
     // 定义一个变量，来标识是否退出
     private static boolean isExit = false;
 
+    @SuppressLint("HandlerLeak")
     Handler mHandler = new Handler() {
 
         @Override
@@ -85,9 +87,10 @@ public class MainActivity extends BaseActivity {
             // 利用handler延迟发送更改状态信息
             mHandler.sendEmptyMessageDelayed(0, 2000);
         } else {
-            finish();
+
             CommonAction.getInstance().OutSign();
             System.exit(0);
+            finish();
         }
     }
 
