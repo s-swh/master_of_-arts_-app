@@ -7,11 +7,13 @@ import android.content.pm.PackageManager;
 
 
 import android.media.MediaPlayer;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
+import androidx.annotation.NonNull;
 import androidx.core.app.ActivityCompat;
 
 import com.wd.master_of_arts_app.R;
@@ -38,7 +40,12 @@ public class Voice extends BaseFragment {
     private AudioRecorderButton mAudioRecorderButton;
     private View mAnimView;
 
-
+    //读写权限
+    private static String[] PERMISSIONS_STORAGE = {
+            Manifest.permission.READ_EXTERNAL_STORAGE,
+            Manifest.permission.WRITE_EXTERNAL_STORAGE};
+    //请求状态码
+    private static int REQUEST_PERMISSION_CODE = 1;
     @Override
     protected int getLayoutId() {
         return R.layout.voice;
@@ -48,7 +55,15 @@ public class Voice extends BaseFragment {
     protected BasePreantert initPreantert() {
         return null;
     }
-
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if (requestCode == REQUEST_PERMISSION_CODE) {
+            for (int i = 0; i < permissions.length; i++) {
+                Log.i("MainActivity", "申请的权限为：" + permissions[i] + ",申请结果：" + grantResults[i]);
+            }
+        }
+    }
 
     @Override
     protected void initView(View inflate) {

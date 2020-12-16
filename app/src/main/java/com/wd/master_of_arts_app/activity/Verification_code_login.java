@@ -3,9 +3,7 @@ package com.wd.master_of_arts_app.activity;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.os.AsyncTask;
 import android.os.Bundle;
-import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -17,14 +15,15 @@ import android.widget.Toast;
 import androidx.annotation.Nullable;
 
 import com.wd.master_of_arts_app.R;
-import com.wd.master_of_arts_app.activity.User_agreement;
 import com.wd.master_of_arts_app.base.BaseActivity;
 import com.wd.master_of_arts_app.base.BasePreantert;
-import com.wd.master_of_arts_app.bean.LogIn;
-import com.wd.master_of_arts_app.contreater.LoginContract;
+import com.wd.master_of_arts_app.bean.AccountLogin;
+import com.wd.master_of_arts_app.bean.CodeBean;
+import com.wd.master_of_arts_app.bean.SMSLogin;
+import com.wd.master_of_arts_app.contreater.LoginContreater;
 import com.wd.master_of_arts_app.preanter.LoginPreanter;
 
-public class Verification_code_login extends BaseActivity implements View.OnClickListener, LoginContract.IView {
+public class Verification_code_login extends BaseActivity implements View.OnClickListener, LoginContreater.IView {
 
     private TextView tv_swit, tv_swi1t, xy, ys;
     private LinearLayout let, let_2;
@@ -32,16 +31,13 @@ public class Verification_code_login extends BaseActivity implements View.OnClic
     private EditText et_phone1, code;
     private Button but_log, bt_code;
     private Button but;
+    private String etp;
+    private String code1;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        SharedPreferences yijian = getSharedPreferences("yijian", MODE_PRIVATE);
-        int code = yijian.getInt("code", 0);
-        if (code == 1) {
-            Intent intent = new Intent(Verification_code_login.this, MainActivity.class);
-            startActivity(intent);
-        }
+
     }
 
     @Override
@@ -51,6 +47,7 @@ public class Verification_code_login extends BaseActivity implements View.OnClic
 
     @Override
     protected BasePreantert initModel() {
+
         return new LoginPreanter(this);
     }
 
@@ -76,49 +73,51 @@ public class Verification_code_login extends BaseActivity implements View.OnClic
         ys.setOnClickListener(this);
         re1.setOnClickListener(this);
         re2.setOnClickListener(this);
+       EditText one= findViewById(R.id.et_phone);
+       EditText pwd= findViewById(R.id.pwd);
+      Button bt= findViewById(R.id.login_log);
+      //todo 账号密码登录
+        bt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String string = one.getText().toString();
+                String string1 = pwd.getText().toString();
+                BasePreantert basePreantert = getmPreantert();
+                if(basePreantert instanceof LoginContreater.IPreanter){
+                    ((LoginContreater.IPreanter) basePreantert).OnAccout(string,string1);
+                }
+            }
+        });
+        // todo 短信登录
+      bt_code.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                    BasePreantert basePreantert = getmPreantert();
+                    if (basePreantert instanceof LoginContreater.IPreanter) {
+                        String string = et_phone1.getText().toString();
+                        ((LoginContreater.IPreanter) basePreantert).OnCode(string);
+                    }
+            }
+        });
+        but_log.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+            BasePreantert basePreantert=getmPreantert();
+            if(basePreantert instanceof LoginContreater.IPreanter){
+                String string = et_phone1.getText().toString();
+                String string1 = code.getText().toString();
+                ((LoginContreater.IPreanter) basePreantert).OnLoginSuccess(string,string1);
+            }
+            }
+        });
         let_2 = findViewById(R.id.let_2);
     }
 
     @Override
     protected void initData() {
-        initCode();//短信登录
-        initPhone();//账号密码登录
-    }
-
-    private void initPhone() {
-        EditText etphone = findViewById(R.id.et_phone);
-        EditText pwd = findViewById(R.id.pwd);
-        but = findViewById(R.id.login_log);
-        SharedPreferences s = getSharedPreferences("phone", MODE_PRIVATE);
-        String phone = s.getString("phone", "");
-        etphone.setText(phone);
-        but.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                BasePreantert basePreantert = getmPreantert();
-                if (basePreantert instanceof LoginContract.IPreanter) {
-                    String phone = etphone.getText().toString();
-                    String pd = pwd.getText().toString();
-                    ((LoginContract.IPreanter) basePreantert).OnLogin(phone, pd);
-                    SharedPreferences p = getSharedPreferences("phone", MODE_PRIVATE);
-                    SharedPreferences.Editor edit = p.edit();
-                    edit.putString("phone", phone);
-                    edit.putString("pd", pd);
-                    edit.commit();
 
 
-                }
-            }
 
-
-        });
-
-    }
-
-    private void initCode() {
-        String phone = et_phone1.getText().toString();
-        String code = this.code.getText().toString();
     }
 
     @Override
@@ -151,53 +150,53 @@ public class Verification_code_login extends BaseActivity implements View.OnClic
                 startActivity(new Intent(getApplicationContext(), Privacy_policy.class));
             }
             break;
-            case R.id.et_ph1: {
-                //电话信息
-
-            }
-            break;
-            case R.id.code: {
-                //验证输入
-
-            }
-            break;
-            case R.id.bt_code: {
-                //验证码按钮
-
-            }
-            break;
-            case R.id.but_log: {
-                //登录
-
-            }
-            break;
             default:
                 break;
         }
     }
 
+
     @Override
-    public void OnSuccess(LogIn logIn) {
-        String msg = logIn.getMsg();
+    public void OnCodeSuccess(CodeBean codeBean) {
+
+        String msg = codeBean.getMsg();
         Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
-        LogIn.DataBean data = logIn.getData();
-        String token = data.getToken();
-        SharedPreferences sp = getSharedPreferences("into", MODE_PRIVATE);
-        SharedPreferences.Editor edit = sp.edit();
-        edit.putString("token", token);
-        edit.commit();
-        int code = logIn.getCode();
-        SharedPreferences yijian = getSharedPreferences("yijian", MODE_PRIVATE);
-        SharedPreferences.Editor edit1 = yijian.edit();
-        edit1.putInt("code", code);
-        edit1.commit();
-        if (code == 1) {
-            Intent intent = new Intent(this, MainActivity.class);
-            startActivity(intent);
-        } else {
-            Toast.makeText(this, "账号或密码输入错误", Toast.LENGTH_SHORT).show();
-        }
     }
 
-
+    @Override
+    public void OnCodeLogin(SMSLogin smsLogin) {
+        SMSLogin.DataBean data = smsLogin.getData();
+        String token = data.getToken();
+        SharedPreferences sp = getSharedPreferences("token", MODE_PRIVATE);
+        SharedPreferences.Editor edit = sp.edit();
+        edit.putString("token",token);
+        edit.commit();
+        String msg = smsLogin.getMsg();
+        Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
+        int code = smsLogin.getCode();
+        if(code==1){
+            startActivity(new Intent(Verification_code_login.this,MainActivity.class));
+            finish();
+        }else{
+            Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
+        }
+    }
+    //todo  账号密码登录
+    @Override
+    public void OnAccoutLogin(AccountLogin accountLogin) {
+        int code = accountLogin.getCode();
+        String msg = accountLogin.getMsg();
+        if(code==1){
+            startActivity(new Intent(Verification_code_login.this,MainActivity.class));
+            finish();
+        }else{
+            Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
+        }
+        AccountLogin.DataBean data = accountLogin.getData();
+        String token = data.getToken();
+        SharedPreferences sp = getSharedPreferences("token", MODE_PRIVATE);
+        SharedPreferences.Editor edit = sp.edit();
+        edit.putString("token",token);
+        edit.commit();
+    }
 }

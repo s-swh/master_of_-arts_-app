@@ -1,9 +1,8 @@
 package com.wd.master_of_arts_app.utils;
 
-import com.wd.master_of_arts_app.bean.Beanner_Bean;
-import com.wd.master_of_arts_app.bean.LogIn;
-import com.wd.master_of_arts_app.bean.Privacy_policyBean;
-import com.wd.master_of_arts_app.bean.User_agreement;
+import com.wd.master_of_arts_app.bean.AccountLogin;
+import com.wd.master_of_arts_app.bean.CodeBean;
+import com.wd.master_of_arts_app.bean.SMSLogin;
 
 import io.reactivex.Observable;
 import retrofit2.http.Field;
@@ -16,26 +15,16 @@ import retrofit2.http.POST;
  * @date :2020/12/3 10:22
  */
 public interface Api {
-    //登录
-    //http://app.54artist.com/index.php/wap/UserAccount/login
-    @POST("index.php/wap/UserAccount/login")
+    //todo 获取短信验证码  http://test.54artist.com/wap/Sms/send
+    @POST("wap/Sms/send")
     @FormUrlEncoded
-    Observable<LogIn>getlogin(@Field("account")String account,@Field("pwd")String pwd);
-    //http://app.54artist.com/index.php/wap/Banner/getList    参数为 cat_id=2  field=*   轮播图
-    @POST("index.php/wap/Banner/getList")
+    Observable<CodeBean>getCodeBean(@Field("phone")String phone);
+    //todo 短信验证码登录http://test.54artist.com/wap/UserAccount/loginByCode
+    @POST("wap/UserAccount/loginByCode")
     @FormUrlEncoded
-    Observable<Beanner_Bean> getBeanner(@Field("cat_id")int cat_id, @Field("field")String field);
-    /**
-     *     TODO: 设置页面用户协议网络请求
-     *     TODO:http://app.54artist.com/index.php/wap/Article/getMsg   参数 article_id  2为用户注册协议
-     */
-    @POST("index.php/wap/Article/getMsg")
+    Observable<SMSLogin>getSmsLogin(@Field("phone")String phone,@Field("code")String code);
+    //todo 账号密码登录 http://test.54artist.com/wap/UserAccount/login
+    @POST("wap/UserAccount/login")
     @FormUrlEncoded
-    Observable<User_agreement>getUser_agreement(@Field("article_id")int article_id);
-    /**
-     * TODo: 设置页面隐私政策
-     */
-    @POST("index.php/wap/Article/getMsg")
-    @FormUrlEncoded
-    Observable<Privacy_policyBean>getPolicyBean(@Field("article_id")int article_id);
+    Observable<AccountLogin>getAccount(@Field("account")String account,@Field("pwd")String pwd);
 }

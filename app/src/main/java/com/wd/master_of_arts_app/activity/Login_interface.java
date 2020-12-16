@@ -1,7 +1,6 @@
 package com.wd.master_of_arts_app.activity;
 
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -11,7 +10,6 @@ import androidx.annotation.Nullable;
 import com.wd.master_of_arts_app.R;
 import com.wd.master_of_arts_app.base.BaseActivity;
 import com.wd.master_of_arts_app.base.BasePreantert;
-import com.wd.master_of_arts_app.contreater.LoginContract;
 
 import butterknife.OnClick;
 
@@ -20,13 +18,7 @@ public class Login_interface extends BaseActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        SharedPreferences yijian = getSharedPreferences("yijian", MODE_PRIVATE);
-        int code = yijian.getInt("code", 0);
-        if (code == 1) {
-            Intent intent = new Intent(Login_interface.this, MainActivity.class);
-            startActivity(intent);
-            finish();
-        }
+
     }
 
     private Button bt;

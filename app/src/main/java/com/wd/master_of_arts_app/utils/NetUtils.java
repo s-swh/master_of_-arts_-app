@@ -56,7 +56,7 @@ public class NetUtils {
                 .addNetworkInterceptor(httpLoggingInterceptor);
         OkHttpClient build = builder.build();
         Retrofit build1 = new Retrofit.Builder()
-                .baseUrl("http://app.54artist.com/")
+                .baseUrl("http://test.54artist.com/")
                 .client(build)
                 .addConverterFactory(GsonConverterFactory.create())
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
@@ -84,7 +84,7 @@ public class NetUtils {
         @Override
         public Response intercept(Chain chain) throws IOException {
             Request request = chain.request();
-            SharedPreferences sp = App.getContext().getSharedPreferences("into", Context.MODE_PRIVATE);
+            SharedPreferences sp = App.getContext().getSharedPreferences("token", Context.MODE_PRIVATE);
             String token = sp.getString("token", "");
             if(TextUtils.isEmpty(token)){
                 return chain.proceed(request);

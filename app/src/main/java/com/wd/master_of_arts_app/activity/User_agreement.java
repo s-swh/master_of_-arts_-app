@@ -1,17 +1,11 @@
 package com.wd.master_of_arts_app.activity;
 
-import androidx.recyclerview.widget.LinearLayoutManager;
 
-
-import android.text.Html;
 import android.widget.TextView;
 
 import com.wd.master_of_arts_app.R;
 import com.wd.master_of_arts_app.base.BaseActivity;
 import com.wd.master_of_arts_app.base.BasePreantert;
-import com.wd.master_of_arts_app.bean.Privacy_policyBean;
-import com.wd.master_of_arts_app.contreater.My_Contract;
-import com.wd.master_of_arts_app.preanter.My_Preanter;
 
 import butterknife.OnClick;
 
@@ -19,7 +13,7 @@ import butterknife.OnClick;
  * TODO
  * 用户协议
  */
-public class User_agreement extends BaseActivity implements My_Contract.IView {
+public class User_agreement extends BaseActivity {
 
     private TextView tv,label,conte;
 
@@ -33,7 +27,8 @@ public class User_agreement extends BaseActivity implements My_Contract.IView {
     }
     @Override
     protected BasePreantert initModel() {
-        return new My_Preanter(this);
+        return null;
+
     }
 
     @Override
@@ -46,28 +41,8 @@ public class User_agreement extends BaseActivity implements My_Contract.IView {
 
     @Override
     protected void initData() {
-        BasePreantert basePreantert = getmPreantert();
-        if(basePreantert instanceof My_Contract.IPranter){
-            ((My_Contract.IPranter)basePreantert).OnUser_success(2);
-        }
 
     }
 
-    @Override
-    public void OnUser_agreement(com.wd.master_of_arts_app.bean.User_agreement user_agreement) {
-        com.wd.master_of_arts_app.bean.User_agreement.DataBean data = user_agreement.getData();
-        com.wd.master_of_arts_app.bean.User_agreement.DataBean.ArticleMsgBean articleMsg = data.getArticleMsg();
-        String title = articleMsg.getTitle();
-        String content = articleMsg.getContent();
-        String s = Html.fromHtml(content).toString();
-        String keywords = articleMsg.getKeywords();
-        tv.setText(title);
-        label.setText(keywords);
-        conte.setText(s);
-    }
 
-    @Override
-    public void Privacy_policy(Privacy_policyBean privacyPolicyBean) {
-
-    }
 }

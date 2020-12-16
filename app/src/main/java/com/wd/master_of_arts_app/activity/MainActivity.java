@@ -41,13 +41,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends BaseActivity {
+
+    private static final int REQUEST_EXTERNAL_STORAGE = 1;
     //读写权限
     private static String[] PERMISSIONS_STORAGE = {
             Manifest.permission.READ_EXTERNAL_STORAGE,
             Manifest.permission.WRITE_EXTERNAL_STORAGE};
     //请求状态码
     private static int REQUEST_PERMISSION_CODE = 1;
-
 
     //申请录音权限
     private static final int GET_RECODE_AUDIO = 1;
@@ -95,15 +96,29 @@ public class MainActivity extends BaseActivity {
     }
 
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (Build.VERSION.SDK_INT > Build.VERSION_CODES.LOLLIPOP) {
-            if (ActivityCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
-                ActivityCompat.requestPermissions(this, PERMISSIONS_STORAGE, REQUEST_PERMISSION_CODE);
+    protected void onResume() {
+        super.onResume();
+        if (Build.VERSION.SDK_INT >= 23) {
+            if (ContextCompat.checkSelfPermission(this, Manifest.permission.RECORD_AUDIO) != PackageManager.PERMISSION_GRANTED) {
+                ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.RECORD_AUDIO}, 1);
             }
         }
 
+        verifyStoragePermissions(this);
     }
+
+    private void verifyStoragePermissions(MainActivity mainActivity) {
+        // Check if we have write permission
+        int permission = ActivityCompat.checkSelfPermission(mainActivity,
+                Manifest.permission.WRITE_EXTERNAL_STORAGE);
+        if (permission != PackageManager.PERMISSION_GRANTED) {
+// We don't have permission so prompt the user
+            ActivityCompat.requestPermissions(mainActivity,PERMISSIONS_STORAGE,
+                    REQUEST_EXTERNAL_STORAGE);
+        }
+
+    }
+
 
     ViewPager vp;
     CommonTabLayout bottom_navigation;
@@ -120,15 +135,7 @@ public class MainActivity extends BaseActivity {
     protected BasePreantert initModel() {
         return null;
     }
-    @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        if (requestCode == REQUEST_PERMISSION_CODE) {
-            for (int i = 0; i < permissions.length; i++) {
-                Log.i("MainActivity", "申请的权限为：" + permissions[i] + ",申请结果：" + grantResults[i]);
-            }
-        }
-    }
+
     @Override
     protected void initView() {
         vp = findViewById(R.id.one_vp);
@@ -179,34 +186,6 @@ public class MainActivity extends BaseActivity {
 
             @Override
             public void onTabReselect(int position) {
-/*
-                if(position==1){
-                    SharedPreferences sp = getSharedPreferences("yijian", MODE_PRIVATE);
-                    int code = sp.getInt("code", 0);
-                    if(code!=1){
-                        Intent intent = new Intent(MainActivity.this,Login_interface.class);
-                        startActivity(intent);
-                        finish();
-                    }
-
-                }else if(position==2){
-                    SharedPreferences sp = getSharedPreferences("yijian", MODE_PRIVATE);
-                    int code = sp.getInt("code", 0);
-                    if(code!=1){
-                        Intent intent = new Intent(MainActivity.this,Login_interface.class);
-                        startActivity(intent);
-                        finish();
-                    }
-                }else if(position==4){
-                    SharedPreferences sp = getSharedPreferences("yijian", MODE_PRIVATE);
-                    int code = sp.getInt("code", 0);
-                    if(code!=1){
-                        Intent intent = new Intent(MainActivity.this,Login_interface.class);
-                        startActivity(intent);
-                        finish();
-                    }
-                }*/
-
             }
         });
         //viewPager 监听
@@ -219,32 +198,6 @@ public class MainActivity extends BaseActivity {
             @Override
             public void onPageSelected(int position) {
                 bottom_navigation.setCurrentTab(position);
-              /*  if(position==1){
-                    SharedPreferences sp = getSharedPreferences("yijian", MODE_PRIVATE);
-                    int code = sp.getInt("code", 0);
-                    if(code!=1){
-                        Intent intent = new Intent(MainActivity.this,Login_interface.class);
-                        startActivity(intent);
-                        finish();
-                    }
-
-                }else if(position==2){
-                    SharedPreferences sp = getSharedPreferences("yijian", MODE_PRIVATE);
-                    int code = sp.getInt("code", 0);
-                    if(code!=1){
-                        Intent intent = new Intent(MainActivity.this,Login_interface.class);
-                        startActivity(intent);
-                        finish();
-                    }
-                }else if(position==4){
-                    SharedPreferences sp = getSharedPreferences("yijian", MODE_PRIVATE);
-                    int code = sp.getInt("code", 0);
-                    if(code!=1){
-                        Intent intent = new Intent(MainActivity.this,Login_interface.class);
-                        startActivity(intent);
-                        finish();
-                    }
-                }*/
 
             }
 
