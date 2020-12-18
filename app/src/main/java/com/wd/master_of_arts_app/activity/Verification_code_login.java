@@ -3,7 +3,9 @@ package com.wd.master_of_arts_app.activity;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -33,12 +35,9 @@ public class Verification_code_login extends BaseActivity implements View.OnClic
     private Button but;
     private String etp;
     private String code1;
+    private TimeCount time;
 
-    @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
 
-    }
 
     @Override
     protected int getLayoutId() {
@@ -51,10 +50,29 @@ public class Verification_code_login extends BaseActivity implements View.OnClic
         return new LoginPreanter(this);
     }
 
+    class TimeCount extends CountDownTimer {
+        public TimeCount(long m,long n){
+            super(m,n);
+        }
 
+        @Override
+        public void onTick(long l) {
+            bt_code.setBackgroundColor(Color.parseColor("#B6B6D8"));
+            bt_code.setClickable(false);
+            bt_code.setText("("+l/1000+")秒后可重新发送");
+        }
+
+        @Override
+        public void onFinish() {
+            bt_code.setText("重新获取验证码");
+            bt_code.setClickable(true);
+            bt_code.setBackgroundColor(Color.parseColor("#4EB84A"));
+        }
+    }
     @SuppressLint("ClickableViewAccessibility")
     @Override
     protected void initView() {
+        time = new TimeCount(60000,1000);
         tv_swit = findViewById(R.id.s_switch);
         tv_swi1t = findViewById(R.id.s_switch1);
         et_phone1 = findViewById(R.id.et_ph1);
@@ -76,6 +94,8 @@ public class Verification_code_login extends BaseActivity implements View.OnClic
        EditText one= findViewById(R.id.et_phone);
        EditText pwd= findViewById(R.id.pwd);
       Button bt= findViewById(R.id.login_log);
+
+
       //todo 账号密码登录
         bt.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -88,10 +108,11 @@ public class Verification_code_login extends BaseActivity implements View.OnClic
                 }
             }
         });
-        // todo 短信登录
+        // todo 短信获取
       bt_code.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                time.start();
                     BasePreantert basePreantert = getmPreantert();
                     if (basePreantert instanceof LoginContreater.IPreanter) {
                         String string = et_phone1.getText().toString();
@@ -99,6 +120,7 @@ public class Verification_code_login extends BaseActivity implements View.OnClic
                     }
             }
         });
+      //todo 短信登录
         but_log.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -167,10 +189,15 @@ public class Verification_code_login extends BaseActivity implements View.OnClic
     public void OnCodeLogin(SMSLogin smsLogin) {
         SMSLogin.DataBean data = smsLogin.getData();
         String token = data.getToken();
+        int code2 = smsLogin.getCode();
         SharedPreferences sp = getSharedPreferences("token", MODE_PRIVATE);
         SharedPreferences.Editor edit = sp.edit();
         edit.putString("token",token);
         edit.commit();
+        SharedPreferences ssp = getSharedPreferences("code", MODE_PRIVATE);
+        SharedPreferences.Editor edit1 = ssp.edit();
+        edit1.putInt("code",code2);
+        edit1.commit();
         String msg = smsLogin.getMsg();
         Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
         int code = smsLogin.getCode();
@@ -180,12 +207,17 @@ public class Verification_code_login extends BaseActivity implements View.OnClic
         }else{
             Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
         }
+
     }
     //todo  账号密码登录
     @Override
     public void OnAccoutLogin(AccountLogin accountLogin) {
         int code = accountLogin.getCode();
         String msg = accountLogin.getMsg();
+        SharedPreferences sp = getSharedPreferences("code", MODE_PRIVATE);
+        SharedPreferences.Editor edit1 = sp.edit();
+        edit1.putInt("code",code);
+        edit1.commit();
         if(code==1){
             startActivity(new Intent(Verification_code_login.this,MainActivity.class));
             finish();
@@ -194,8 +226,8 @@ public class Verification_code_login extends BaseActivity implements View.OnClic
         }
         AccountLogin.DataBean data = accountLogin.getData();
         String token = data.getToken();
-        SharedPreferences sp = getSharedPreferences("token", MODE_PRIVATE);
-        SharedPreferences.Editor edit = sp.edit();
+        SharedPreferences spa = getSharedPreferences("token", MODE_PRIVATE);
+        SharedPreferences.Editor edit = spa.edit();
         edit.putString("token",token);
         edit.commit();
     }

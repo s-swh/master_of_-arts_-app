@@ -35,7 +35,7 @@
                     android:layout_height="@dimen/dp_120"
                     android:layout_marginTop="@dimen/dp_65"
                     android:scaleType="fitXY"
-
+                    android:visibility="gone"
                     android:src="@mipmap/banner" />
 
                 <com.stx.xhb.xbanner.XBanner
@@ -45,7 +45,7 @@
                     android:layout_centerHorizontal="true"
                     android:layout_marginTop="70dp"
                     android:scaleType="fitXY"
-                    android:visibility="gone"
+
                     app:AutoPlayTime="3000"
                     app:isClipChildrenMode="true"
                     app:isShowNumberIndicator="true"

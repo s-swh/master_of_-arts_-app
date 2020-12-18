@@ -29,27 +29,31 @@
         android:allowBackup="true"
         android:icon="@mipmap/ico"
         android:label="@string/app_name"
-        android:requestLegacyExternalStorage="true"
         android:networkSecurityConfig="@xml/network_security_config"
+        android:requestLegacyExternalStorage="true"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
+        <activity android:name=".activity.ForgetThePassword"></activity>
         <activity
             android:name=".wechatpictures.PhotoPickerActivity"
-            android:theme="@style/PhotoPickerTheme"
-            android:configChanges="orientation|screenSize"/>
-        <activity android:name=".wechatpictures.PhotoPreviewActivity"
-            android:theme="@style/PhotoPickerTheme"/>
-        <activity android:name=".activity.Login_interface"></activity><!-- 选择界面 -->
-        <activity android:name=".activity.Verification_code_login"></activity> <!-- 登录 -->
+            android:configChanges="orientation|screenSize"
+            android:theme="@style/PhotoPickerTheme" />
+        <activity
+            android:name=".wechatpictures.PhotoPreviewActivity"
+            android:theme="@style/PhotoPickerTheme" />
+        <activity android:name=".activity.Login_interface" /> <!-- 选择界面 -->
+        <activity android:name=".activity.Verification_code_login" /> <!-- 登录 -->
         <activity android:name=".activity.Privacy_policy" /> <!-- 隐私协议 -->
         <activity android:name=".activity.User_agreement" /> <!-- 用户协议 -->
         <activity android:name=".activity.Booking_experience" />
         <activity android:name=".activity.modify_password" /> <!-- 修改密码 -->
         <activity android:name=".activity.Add_Address" /> <!-- 收获地址 -->
         <activity android:name=".activity.Calendar_Activity" />
-        <activity android:name=".activity.myactivity.SetUp" android:theme="@style/Theme.AppCompat.Light.NoActionBar"  android:configChanges="orientation|screenSize" /> <!-- 设置 -->
+        <activity
+            android:name=".activity.myactivity.SetUp"
+            android:configChanges="orientation|screenSize"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" /> <!-- 设置 -->
         <activity android:name=".activity.myactivity.Notice" /> <!-- 通知 -->
         <activity android:name=".activity.myactivity.Customer_Service_Center" /> <!-- 客服中心 -->
         <activity android:name=".activity.myactivity.Harvest_Address" /> <!-- 收获地址 -->
@@ -58,8 +62,10 @@
         <activity android:name=".activity.myactivity.My_Continuation" /> <!-- 我的续报 -->
         <activity android:name=".activity.myactivity.My_Collection_of_works" /> <!-- 我的作品集 -->
         <activity android:name=".activity.myactivity.My_order" /> <!-- 我的订单 -->
-        <activity android:name=".activity.Publishing_works_Activity"></activity><!-- 闪屏界面 -->
-        <activity android:name=".activity.Flash_page_Activity" android:launchMode="singleTop">
+        <activity android:name=".activity.Publishing_works_Activity" /> <!-- 闪屏界面 -->
+        <activity
+            android:name=".activity.Flash_page_Activity"
+           >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

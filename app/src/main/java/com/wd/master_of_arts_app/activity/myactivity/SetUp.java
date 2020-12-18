@@ -3,7 +3,15 @@ package com.wd.master_of_arts_app.activity.myactivity;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.database.Cursor;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
+import android.net.Uri;
+import android.os.Environment;
+import android.provider.MediaStore;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,20 +26,55 @@ import android.widget.Toast;
 import androidx.appcompat.app.AlertDialog;
 
 import com.bigkoo.pickerview.TimePickerView;
-import com.bumptech.glide.Glide;
+
+
+import com.google.gson.Gson;
 import com.wd.master_of_arts_app.R;
 import com.wd.master_of_arts_app.activity.Privacy_policy;
 import com.wd.master_of_arts_app.activity.User_agreement;
 import com.wd.master_of_arts_app.activity.modify_password;
 import com.wd.master_of_arts_app.base.BaseActivity;
 import com.wd.master_of_arts_app.base.BasePreantert;
+
+import com.wd.master_of_arts_app.bean.UploadPictures;
 import com.wd.master_of_arts_app.customview.SwitchButton;
 import com.wd.master_of_arts_app.utils.DataCleanManager;
+
+import com.wd.master_of_arts_app.utils.NetUtils;
+import com.wildma.pictureselector.PictureBean;
 import com.wildma.pictureselector.PictureSelector;
+
+
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.net.HttpURLConnection;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.text.SimpleDateFormat;
+
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+
 import butterknife.OnClick;
+import io.reactivex.Observer;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.Disposable;
+import io.reactivex.schedulers.Schedulers;
+import okhttp3.MediaType;
+import okhttp3.MultipartBody;
+import okhttp3.RequestBody;
+import okhttp3.ResponseBody;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.http.Multipart;
+
 
 /**
  * 设置
@@ -46,8 +89,9 @@ public class SetUp extends BaseActivity implements View.OnClickListener {
     private TextView tv_userName;
     private EditText et;
     private ImageView vo;
-    private String picturePath;
+
     private TextView hc;
+
 
     @Override
     protected int getLayoutId() {
@@ -58,6 +102,7 @@ public class SetUp extends BaseActivity implements View.OnClickListener {
     protected BasePreantert initModel() {
         return null;
     }
+
     String totalCacheSize = null;
 
     @Override
@@ -66,9 +111,9 @@ public class SetUp extends BaseActivity implements View.OnClickListener {
         /**
          * 获取缓存大小
          */
-        String totalCacheSize =null;
+        String totalCacheSize = null;
         try {
-              totalCacheSize = DataCleanManager.getTotalCacheSize(getApplicationContext());
+            totalCacheSize = DataCleanManager.getTotalCacheSize(getApplicationContext());
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -79,12 +124,12 @@ public class SetUp extends BaseActivity implements View.OnClickListener {
     protected void initView() {
         hc = findViewById(R.id.hc);
         try {
-             totalCacheSize = DataCleanManager.getTotalCacheSize(getApplicationContext());
+            totalCacheSize = DataCleanManager.getTotalCacheSize(getApplicationContext());
         } catch (Exception e) {
             e.printStackTrace();
         }
         hc.setText(totalCacheSize);
-      Button bt= findViewById(R.id.cloet);
+        Button bt = findViewById(R.id.cloet);
         bt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -96,7 +141,7 @@ public class SetUp extends BaseActivity implements View.OnClickListener {
                             public void onClick(DialogInterface dialog, int which) {
                                 //清除缓存的方法
                                 boolean b = DataCleanManager.clearAllCache(getApplicationContext());
-                                if(b){
+                                if (b) {
                                     hc.setText("0M");
                                 }
                                 Toast.makeText(getApplicationContext(), "清除成功", Toast.LENGTH_LONG).show();
@@ -107,12 +152,14 @@ public class SetUp extends BaseActivity implements View.OnClickListener {
             }
         });
         vo = findViewById(R.id.Upload_Avatar);
-       RelativeLayout rc = findViewById(R.id.rc);
+        RelativeLayout rc = findViewById(R.id.rc);
         rc.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                PictureSelector.create(SetUp.this,PictureSelector.SELECT_REQUEST_CODE)
-                        .selectPicture(true,200,200,1,1);
+
+                PictureSelector
+                        .create(SetUp.this, PictureSelector.SELECT_REQUEST_CODE)
+                        .selectPicture(true, 200, 200, 1, 1);
 
             }
         });
@@ -127,18 +174,57 @@ public class SetUp extends BaseActivity implements View.OnClickListener {
             }
         });
     }
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        /*结果回调*/
-        if(resultCode==RESULT_OK&&requestCode==PictureSelector.SELECT_REQUEST_CODE){
-            if(data!=null){
-                String s = data.getStringExtra(PictureSelector.PICTURE_PATH);
-                Glide.with(getApplicationContext()).load(s).into(vo);
+        if (requestCode == PictureSelector.SELECT_REQUEST_CODE) {
+            if (data != null) {
+                PictureBean pictureBean = data.getParcelableExtra(PictureSelector.PICTURE_RESULT);
+                if (pictureBean.isCut()) {
+                    SharedPreferences sp = getSharedPreferences("token", MODE_PRIVATE);
+                    String token1 = sp.getString("token", "");
+                    Uri parse = Uri.parse(pictureBean.getPath());
+                    vo.setImageURI(parse);
+                    RequestBody funName = RequestBody.create(null, "ict_uploadpicture");
+                    RequestBody path = RequestBody.create(null, "/uploadNews");
+                    String path1 = pictureBean.getPath();
+                    RequestBody appfile = RequestBody.create(null, path1);
+                    RequestBody requestBody = RequestBody.create(MediaType.parse("multipart/form-data"), token1);
+                    String fileName = path1;
+                    File file = new File(path1);
+                    RequestBody requestFile = RequestBody.create(MediaType.parse("image/jpeg"), file);
+                    MultipartBody.Part body = MultipartBody.Part.createFormData("avatar", fileName, requestFile);
+                    NetUtils.getInstance().getApi().upImg(requestBody, funName, path, appfile, body)
+                            .subscribeOn(Schedulers.io())
+                            .observeOn(AndroidSchedulers.mainThread())
+                            .subscribe(new Observer<UploadPictures>() {
+                                @Override
+                                public void onSubscribe(Disposable d) {
+
+                                }
+
+                                @Override
+                                public void onNext(UploadPictures responseBody) {
+                                    String msg = responseBody.getMsg();
+                                    Toast.makeText(SetUp.this, msg, Toast.LENGTH_SHORT).show();
+                                }
+
+                                @Override
+                                public void onError(Throwable e) {
+                                    String message = e.getMessage();
+                                    Toast.makeText(SetUp.this, message, Toast.LENGTH_SHORT).show();
+                                }
+
+                                @Override
+                                public void onComplete() {
+
+                                }
+                            });
+                }
             }
         }
     }
-
 
 
     @OnClick(R.id.oncDestruction)
@@ -241,9 +327,10 @@ public class SetUp extends BaseActivity implements View.OnClickListener {
         Intent intent = new Intent(getApplicationContext(), User_agreement.class);
         startActivity(intent);
     }
+
     //隐私政策
     @OnClick(R.id.Privacy_policy)
-    public void OnPrivacy_policy(){
+    public void OnPrivacy_policy() {
         startActivity(new Intent(getApplicationContext(), Privacy_policy.class));
     }
 }

@@ -44,8 +44,8 @@
                 android:background="#F3F3F3" />
 
             <RelativeLayout
-                android:layout_width="match_parent"
                 android:id="@+id/rc"
+                android:layout_width="match_parent"
                 android:layout_height="@dimen/dp_50">
 
                 <TextView
@@ -58,12 +58,11 @@
                     android:textSize="@dimen/sp_12" />
 
                 <ImageView
+                    android:id="@+id/Upload_Avatar"
                     android:layout_width="@dimen/dp_45"
                     android:layout_height="match_parent"
                     android:layout_alignParentRight="true"
-                    android:id="@+id/Upload_Avatar"
-                    android:layout_marginRight="@dimen/dp_50"
-                      />
+                    android:layout_marginRight="@dimen/dp_50" />
 
                 <ImageView
                     android:layout_width="@dimen/dp_10"
@@ -95,6 +94,7 @@
                     android:textSize="@dimen/sp_12" />
 
                 <TextView
+                    android:id="@+id/suser_userName"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_alignParentRight="true"
@@ -102,7 +102,6 @@
                     android:layout_marginRight="@dimen/dp_50"
                     android:gravity="center_vertical"
                     android:text="未设置"
-                    android:id="@+id/suser_userName"
                     android:textColor="#F3AFA9A9"
                     android:textSize="@dimen/sp_12" />
 
@@ -122,8 +121,8 @@
                 android:background="#F3F3F3F3" />
 
             <RelativeLayout
-                android:layout_width="match_parent"
                 android:id="@+id/date"
+                android:layout_width="match_parent"
                 android:layout_height="@dimen/dp_50">
 
                 <TextView
@@ -136,6 +135,7 @@
                     android:textSize="@dimen/sp_12" />
 
                 <TextView
+                    android:id="@+id/tt_date"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_alignParentRight="true"
@@ -143,7 +143,6 @@
                     android:layout_marginRight="@dimen/dp_50"
                     android:gravity="center_vertical"
                     android:text="待完善"
-                    android:id="@+id/tt_date"
                     android:textColor="#F3AFA9A9"
                     android:textSize="@dimen/sp_12" />
 
@@ -205,8 +204,8 @@
                 android:background="#F3F3F3F3" />
 
             <RelativeLayout
-                android:layout_width="match_parent"
                 android:id="@+id/update_pwd"
+                android:layout_width="match_parent"
                 android:layout_height="@dimen/dp_50">
 
                 <TextView
@@ -330,22 +329,24 @@
                 android:layout_height="@dimen/dp_50">
 
                 <TextView
+                    android:id="@+id/yyong"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_marginLeft="@dimen/dp_15"
                     android:gravity="center_vertical"
                     android:text="应用缓存"
-                    android:id="@+id/yyong"
                     android:textColor="#000"
                     android:textSize="@dimen/sp_12" />
+
                 <TextView
-                    android:layout_width="wrap_content"
-                    android:text="0.0MB"
-                    android:gravity="center_vertical"
                     android:id="@+id/hc"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
                     android:layout_marginLeft="@dimen/dp_20"
                     android:layout_toRightOf="@id/yyong"
-                    android:layout_height="match_parent" />
+                    android:gravity="center_vertical"
+                    android:text="0.0MB" />
+
                 <TextView
                     android:layout_width="@dimen/dp_45"
                     android:layout_height="match_parent"
@@ -367,11 +368,11 @@
                     android:visibility="gone" />
 
                 <Button
+                    android:id="@+id/cloet"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
-                    android:id="@+id/cloet"
                     android:layout_marginRight="@dimen/dp_10"
                     android:text="清理缓存" />
             </RelativeLayout>
@@ -384,14 +385,14 @@
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/dp_15"
                 android:layout_gravity="center"
+                android:layout_marginTop="@dimen/dp_15"
                 android:orientation="horizontal">
 
                 <TextView
+                    android:id="@+id/User_agreement"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/User_agreement"
                     android:text="《用户协议》"
                     android:textColor="#02A9A1" />
 
@@ -400,9 +401,9 @@
                     android:layout_height="0dp" />
 
                 <TextView
+                    android:id="@+id/Privacy_policy"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:id="@+id/Privacy_policy"
                     android:text="《隐私政策》"
                     android:textColor="#02A9A1" />
 

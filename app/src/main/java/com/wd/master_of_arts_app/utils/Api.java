@@ -1,13 +1,34 @@
 package com.wd.master_of_arts_app.utils;
 
 import com.wd.master_of_arts_app.bean.AccountLogin;
+import com.wd.master_of_arts_app.bean.Beanner;
 import com.wd.master_of_arts_app.bean.CodeBean;
 import com.wd.master_of_arts_app.bean.SMSLogin;
+import com.wd.master_of_arts_app.bean.UploadPictures;
+import com.wd.master_of_arts_app.bean.UploadWorks;
+
+import java.io.File;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import io.reactivex.Observable;
+import okhttp3.Headers;
+import okhttp3.MultipartBody;
+import okhttp3.RequestBody;
+import okhttp3.ResponseBody;
+import retrofit2.Call;
+import retrofit2.adapter.rxjava2.Result;
+import retrofit2.http.Body;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
+import retrofit2.http.Multipart;
 import retrofit2.http.POST;
+import retrofit2.http.Part;
+import retrofit2.http.PartMap;
+import retrofit2.http.Query;
+import retrofit2.http.QueryMap;
+import retrofit2.http.Url;
 
 /**
  * @author 时文豪
@@ -27,4 +48,28 @@ public interface Api {
     @POST("wap/UserAccount/login")
     @FormUrlEncoded
     Observable<AccountLogin>getAccount(@Field("account")String account,@Field("pwd")String pwd);
+
+
+    //todo 编辑头像 http://test.54artist.com/wap/User/editAvatar
+
+
+    @Multipart
+    @POST("wap/User/editAvatar")
+    Observable<UploadPictures> upImg(
+                             @Part("token") RequestBody token,
+                             @Part("FunName") RequestBody funName,
+                             @Part("path") RequestBody path,
+                             @Part("appfile") RequestBody appfile,
+                             @Part MultipartBody.Part file);
+
+
+
+    //todo 作品上传 http://test.54artist.com/wap/HomeWork/add
+    @POST("wap/HomeWork/add")
+    Observable<UploadWorks>getUploadWorks(@Body RequestBody requestBody);
+    //todo 轮播图 http://test.54artist.com/wap/Banner/getList
+    @POST("wap/Banner/getList")
+    @FormUrlEncoded
+    Observable<Beanner>getBeanner(@Field("cat_id")int cat_id);
+
 }

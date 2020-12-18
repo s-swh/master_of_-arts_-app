@@ -67,18 +67,8 @@ public class NetUtils {
     public Api getApi() {
         return api;
     }
-    //图片上传
-    public RequestBody getRequestBody(List<File> files, HashMap<String,String> map){
-        MultipartBody.Builder builder = new MultipartBody.Builder().setType(MultipartBody.FORM);
-        for (Map.Entry<String,String>entry:map.entrySet()){
-            builder.addFormDataPart(entry.getKey(), entry.getValue() + "");
-        }
-        for (int i = 0; i < files.size(); i++) {
-            builder.addFormDataPart("image",files.get(i).getName(),
-                    RequestBody.create(MediaType.parse("image/jepg"),files.get(i)));
-        }
-        return builder.build();
-    }
+
+
 
     private class Arouter implements Interceptor {
         @Override
