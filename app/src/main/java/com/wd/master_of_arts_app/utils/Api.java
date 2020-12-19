@@ -12,6 +12,7 @@ import com.wd.master_of_arts_app.bean.SMSLogin;
 import com.wd.master_of_arts_app.bean.SignOut;
 import com.wd.master_of_arts_app.bean.UploadPictures;
 import com.wd.master_of_arts_app.bean.UploadWorks;
+import com.wd.master_of_arts_app.bean.UserInformation;
 import com.wd.master_of_arts_app.bean.ViewHarvestAddress;
 
 import java.io.File;
@@ -108,4 +109,8 @@ public interface Api {
     @FormUrlEncoded
     Observable<DeleteHarvestAddress>getDelete(@Field("token")String token,@Field("address_id")String address_id);
 
+    //获取用户信息接口  http://test.54artist.com/wap/User/getMsg
+    @POST("wap/User/getMsg")
+    @FormUrlEncoded
+    Observable<UserInformation>getUser(@Field("token")String token);
 }
