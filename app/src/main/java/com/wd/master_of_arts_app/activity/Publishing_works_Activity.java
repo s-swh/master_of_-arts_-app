@@ -49,14 +49,9 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import retrofit2.http.Url;
 
-public class Publishing_works_Activity extends BaseActivity implements View.OnClickListener {
+public class Publishing_works_Activity extends BaseActivity   {
 
 
-    private static final int PHOTO_FROM_GALLERY = 0;
-    private static final int PHOTO_FROM_GALLERY1 = 1;
-    private static final int PHOTO_FROM_GALLERY2= 2;
-    private LinearLayout lrou1,lrou2,lrou3;
-    private ImageView img_1,img_2,img_3;
     private TabLayout tb;
     private ViewPager vp;
     private List<Fragment> fragmentList=new ArrayList<>();
@@ -98,6 +93,7 @@ public class Publishing_works_Activity extends BaseActivity implements View.OnCl
                     ArrayList<String> ListExtra = data.getStringArrayListExtra(PhotoPreviewActivity.EXTRA_RESULT);
                     loadAdpater(ListExtra);
                     break;
+                    default:break;
             }
         }
     }
@@ -130,6 +126,7 @@ public class Publishing_works_Activity extends BaseActivity implements View.OnCl
             inflater = LayoutInflater.from(Publishing_works_Activity.this);
         }
 
+        @Override
         public int getCount(){
             return  listUrls.size();
         }
@@ -180,17 +177,10 @@ public class Publishing_works_Activity extends BaseActivity implements View.OnCl
 
     @Override
     protected void initView() {
-        lrou1 = findViewById(R.id.lrout1);
-        lrou2 = findViewById(R.id.lrout2);
-        lrou3 = findViewById(R.id.lrout3);
-        img_1 = findViewById(R.id.img_1);
-        img_2 = findViewById(R.id.img_2);
-        img_3 = findViewById(R.id.img_3);
+
         tb = findViewById(R.id.tb);
         vp = findViewById(R.id.vp);
-        lrou1.setOnClickListener(this);
-        lrou2.setOnClickListener(this);
-        lrou3.setOnClickListener(this);
+
         Voice voice = new Voice();
         Written_Words written_words = new Written_Words();
         fragmentList.add(voice);
@@ -240,11 +230,7 @@ public class Publishing_works_Activity extends BaseActivity implements View.OnCl
         imagePaths.add("paizhao");
         gridAdapter = new GridAdapter(imagePaths);
         gridView.setAdapter(gridAdapter);
-      /*  tv_click.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-            }
-        });*/
+
     }
     class MyViewPager extends FragmentPagerAdapter {
         public MyViewPager(@NonNull FragmentManager fm) {
@@ -269,76 +255,6 @@ public class Publishing_works_Activity extends BaseActivity implements View.OnCl
         }
     }
 
-    @Override
-    public void onClick(View view) {
-        int id = view.getId();
-        intent = new Intent();
-        switch (id){
-            case R.id.lrout1:
-                intent.setType("image/*");
-                intent.setAction(Intent.ACTION_GET_CONTENT);
-                startActivityForResult(intent, PHOTO_FROM_GALLERY);
 
-                lrou2.setVisibility(View.VISIBLE);
-               // Glide.with(getApplicationContext()).load(R.mipmap.ic_launcher_round).into(img_1);
-                break;
-            case R.id.lrout2:
 
-                intent.setType("image/*");
-                intent.setAction(Intent.ACTION_GET_CONTENT);
-                startActivityForResult(intent, PHOTO_FROM_GALLERY1);
-                lrou3.setVisibility(View.VISIBLE);
-             //   Glide.with(getApplicationContext()).load(R.mipmap.ic_launcher_round).into(img_2);
-                break;
-            case R.id.lrout3:
-                intent.setType("image/*");
-                intent.setAction(Intent.ACTION_GET_CONTENT);
-                startActivityForResult(intent, PHOTO_FROM_GALLERY2);
-            //    Glide.with(getApplicationContext()).load(R.mipmap.ic_launcher_round).into(img_3);
-                break;
-                default:break;
-        }
-    }
-  /*  @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        //第一层switch
-        switch (requestCode) {
-            case PHOTO_FROM_GALLERY:
-                //第二层switch
-                switch (resultCode) {
-                    case RESULT_OK:
-                        if (data != null) {
-                            Uri uri = data.getData();
-                            img_1.setImageURI(uri);
-                        }
-                        default:break;
-
-                }
-                break;
-            case  PHOTO_FROM_GALLERY1 :
-                switch (resultCode){
-                    case RESULT_OK:
-                        if(data!=null){
-                            Uri uri=data.getData();
-                            img_2.setImageURI(uri);
-                        }
-                        break;
-                        default:break;
-                }
-                break;
-            case PHOTO_FROM_GALLERY2:
-                switch (resultCode){
-                    case RESULT_OK:
-                        if(data!=null){
-                            Uri uri=data.getData();
-                            img_3.setImageURI(uri);
-                        }
-                        break;
-                    default:break;
-                }
-                break;
-                default:break;
-        }
-    }*/
 }

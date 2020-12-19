@@ -86,64 +86,7 @@
         android:background="@color/colorGray"
         android:layout_marginTop="25px"
         ></View>
-    <LinearLayout
-        android:visibility="gone"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
 
-        <LinearLayout
-            android:id="@+id/lrout1"
-            android:layout_width="@dimen/dp_112"
-            android:layout_height="@dimen/dp_112"
-            android:layout_margin="@dimen/dp_1"
-            android:background="#F3F3F3"
-            android:orientation="horizontal">
-
-            <ImageView
-                android:id="@+id/img_1"
-                android:layout_width="@dimen/dp_112"
-                android:layout_height="@dimen/dp_112"
-                android:layout_centerInParent="true"
-                android:layout_gravity="center_vertical"
-                android:src="@mipmap/icon_load" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/lrout2"
-            android:layout_width="@dimen/dp_112"
-            android:layout_height="@dimen/dp_112"
-            android:layout_margin="@dimen/dp_1"
-            android:background="#F3F3F3"
-            android:orientation="horizontal"
-            android:visibility="gone">
-
-            <ImageView
-                android:id="@+id/img_2"
-                android:layout_width="@dimen/dp_112"
-                android:layout_height="@dimen/dp_112"
-                android:layout_gravity="center_vertical"
-                android:src="@mipmap/icon_load" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/lrout3"
-            android:layout_width="@dimen/dp_112"
-            android:layout_height="@dimen/dp_112"
-            android:layout_margin="@dimen/dp_1"
-            android:background="#F3F3F3"
-            android:orientation="horizontal"
-            android:visibility="gone">
-
-            <ImageView
-                android:id="@+id/img_3"
-                android:layout_width="@dimen/dp_112"
-                android:layout_height="@dimen/dp_112"
-                android:layout_centerInParent="true"
-                android:layout_gravity="center_vertical"
-                android:src="@mipmap/icon_load" />
-        </LinearLayout>
-    </LinearLayout>
 <LinearLayout
     android:layout_width="match_parent"
     android:orientation="vertical"

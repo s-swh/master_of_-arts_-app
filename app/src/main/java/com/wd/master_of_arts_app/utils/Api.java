@@ -66,7 +66,8 @@ public interface Api {
 
     // 作品上传 http://test.54artist.com/wap/HomeWork/add
     @POST("wap/HomeWork/add")
-    Observable<UploadWorks> getUploadWorks(@Body RequestBody requestBody);
+    @FormUrlEncoded @Multipart
+    Observable<UploadWorks> getUploadWorks(@Field("token") String token,@Field("course_unit_id")int course_unit_id,@Field("name") String name,@Field("content")String content,@Part("imglist") RequestBody imglist);
 
     // 轮播图 http://test.54artist.com/wap/Banner/getList
     @POST("wap/Banner/getList")

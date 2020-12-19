@@ -189,24 +189,7 @@ public class MainActivity extends BaseActivity {
             public void onTabReselect(int position) {
             }
         });
-       /* //viewPager 监听
-        vp.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
-            @Override
-            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-
-            }
-
-            @Override
-            public void onPageSelected(int position) {
-                bottom_navigation.setCurrentTab(position);
-
-            }
-
-            @Override
-            public void onPageScrollStateChanged(int state) {
-
-            }
-        });*/
+    
     }
     public static final int CAMERA_REQ_CODE = 111;
     private void requestPermission() {
