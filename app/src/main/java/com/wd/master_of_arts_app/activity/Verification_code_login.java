@@ -4,7 +4,6 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
-import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.view.View;
 import android.widget.Button;
@@ -14,10 +13,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.annotation.Nullable;
-
 import com.wd.master_of_arts_app.R;
-import com.wd.master_of_arts_app.adapter.MyEventBus;
 import com.wd.master_of_arts_app.base.BaseActivity;
 import com.wd.master_of_arts_app.base.BasePreantert;
 import com.wd.master_of_arts_app.bean.AccountLogin;
@@ -104,8 +100,6 @@ public class Verification_code_login extends BaseActivity implements View.OnClic
             @Override
             public void onClick(View view) {
                 String string = one.getText().toString();
-
-               EventBus.getDefault().post(new MyEventBus(string));
                 SharedPreferences sp = getSharedPreferences("phone", MODE_PRIVATE);
                 SharedPreferences.Editor edit = sp.edit();
                 edit.putString("phone",string);
@@ -141,7 +135,6 @@ public class Verification_code_login extends BaseActivity implements View.OnClic
                 SharedPreferences.Editor edit = sp.edit();
                 edit.putString("phone",string);
                 edit.commit();
-                EventBus.getDefault().post(new MyEventBus(string));
                 ((LoginContreater.IPreanter) basePreantert).OnLoginSuccess(string,string1);
             }
             }
