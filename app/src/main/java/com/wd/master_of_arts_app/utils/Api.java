@@ -6,10 +6,13 @@ import com.wd.master_of_arts_app.bean.AgeInterface;
 import com.wd.master_of_arts_app.bean.Beanner;
 import com.wd.master_of_arts_app.bean.CodeBean;
 import com.wd.master_of_arts_app.bean.CourseList;
+import com.wd.master_of_arts_app.bean.DeleteHarvestAddress;
+import com.wd.master_of_arts_app.bean.HarvestAddress;
 import com.wd.master_of_arts_app.bean.SMSLogin;
 import com.wd.master_of_arts_app.bean.SignOut;
 import com.wd.master_of_arts_app.bean.UploadPictures;
 import com.wd.master_of_arts_app.bean.UploadWorks;
+import com.wd.master_of_arts_app.bean.ViewHarvestAddress;
 
 import java.io.File;
 import java.util.HashMap;
@@ -88,4 +91,20 @@ public interface Api {
     @POST("wap/User/loginout")
     @FormUrlEncoded
     Observable<SignOut>getSignOut(@Field("token")String token);
+
+    //添加订单 http://test.54artist.com/wap/ConsigneeAddress/add
+    @POST("wap/ConsigneeAddress/add")
+    @FormUrlEncoded
+    Observable<HarvestAddress>getHarvestAddress(@Field("token")String token,@Field("province")String province,@Field("city")String city,@Field("county")String county,@Field("detail_address")String detail_address,@Field("company")String company,@Field("consignee")String consignee,@Field("contact_number")String contact_number,@Field("postcode")String postcode,@Field("is_default")String is_default);
+
+    //查看收获地址列表  http://test.54artist.com/wap/ConsigneeAddress/getList
+    @POST("wap/ConsigneeAddress/getList")
+    @FormUrlEncoded
+    Observable<ViewHarvestAddress>getViewHarvest(@Field("token")String token);
+
+    //删除收获地址  http://test.54artist.com/wap/ConsigneeAddress/del
+    @POST("wap/ConsigneeAddress/del")
+    @FormUrlEncoded
+    Observable<DeleteHarvestAddress>getDelete(@Field("token")String token,@Field("address_id")String address_id);
+
 }
