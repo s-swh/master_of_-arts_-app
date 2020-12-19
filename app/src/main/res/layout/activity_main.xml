@@ -6,13 +6,13 @@
     android:orientation="vertical"
     android:layout_height="match_parent"
     tools:context=".activity.MainActivity">
-<androidx.viewpager.widget.ViewPager
+<com.wd.master_of_arts_app.customview.NoScrollViewPager
     android:layout_width="match_parent"
     android:layout_weight="1"
     android:background="#F2F2F2"
     android:id="@+id/one_vp"
     android:layout_height="0dp">
-</androidx.viewpager.widget.ViewPager>
+</com.wd.master_of_arts_app.customview.NoScrollViewPager>
 <com.flyco.tablayout.CommonTabLayout
     android:layout_width="match_parent"
     android:id="@+id/bottom_navigation"

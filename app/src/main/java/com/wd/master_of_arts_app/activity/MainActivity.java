@@ -31,6 +31,7 @@ import com.wd.master_of_arts_app.app.CommonAction;
 import com.wd.master_of_arts_app.base.BaseActivity;
 import com.wd.master_of_arts_app.base.BasePreantert;
 import com.wd.master_of_arts_app.bean.CustomTabEntityDemo;
+import com.wd.master_of_arts_app.customview.NoScrollViewPager;
 import com.wd.master_of_arts_app.fragment.Find_page;
 import com.wd.master_of_arts_app.fragment.Home_page;
 import com.wd.master_of_arts_app.fragment.My_page;
@@ -120,7 +121,7 @@ public class MainActivity extends BaseActivity {
     }
 
 
-    ViewPager vp;
+    NoScrollViewPager vp;
     CommonTabLayout bottom_navigation;
     private List<Fragment> fragments = new ArrayList<>();
     private ArrayList<CustomTabEntity> customTabEntities = new ArrayList<>();
@@ -188,7 +189,7 @@ public class MainActivity extends BaseActivity {
             public void onTabReselect(int position) {
             }
         });
-        //viewPager 监听
+       /* //viewPager 监听
         vp.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
@@ -205,7 +206,7 @@ public class MainActivity extends BaseActivity {
             public void onPageScrollStateChanged(int state) {
 
             }
-        });
+        });*/
     }
     public static final int CAMERA_REQ_CODE = 111;
     private void requestPermission() {
