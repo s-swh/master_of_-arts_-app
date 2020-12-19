@@ -30,14 +30,19 @@ import com.bigkoo.pickerview.TimePickerView;
 
 import com.google.gson.Gson;
 import com.wd.master_of_arts_app.R;
+import com.wd.master_of_arts_app.activity.Login_interface;
 import com.wd.master_of_arts_app.activity.Privacy_policy;
 import com.wd.master_of_arts_app.activity.User_agreement;
+import com.wd.master_of_arts_app.activity.Verification_code_login;
 import com.wd.master_of_arts_app.activity.modify_password;
 import com.wd.master_of_arts_app.base.BaseActivity;
 import com.wd.master_of_arts_app.base.BasePreantert;
 
+import com.wd.master_of_arts_app.bean.SignOut;
 import com.wd.master_of_arts_app.bean.UploadPictures;
+import com.wd.master_of_arts_app.contreater.MyContreater;
 import com.wd.master_of_arts_app.customview.SwitchButton;
+import com.wd.master_of_arts_app.preanter.MyPreanter;
 import com.wd.master_of_arts_app.utils.DataCleanManager;
 
 import com.wd.master_of_arts_app.utils.NetUtils;
@@ -79,7 +84,7 @@ import retrofit2.http.Multipart;
 /**
  * 设置
  */
-public class SetUp extends BaseActivity implements View.OnClickListener {
+public class SetUp extends BaseActivity implements View.OnClickListener, MyContreater.IView {
 
     private TimePickerView pvTime;
     private TextView tv_data;
@@ -91,6 +96,7 @@ public class SetUp extends BaseActivity implements View.OnClickListener {
     private ImageView vo;
 
     private TextView hc;
+    private Button bt;
 
 
     @Override
@@ -100,7 +106,7 @@ public class SetUp extends BaseActivity implements View.OnClickListener {
 
     @Override
     protected BasePreantert initModel() {
-        return null;
+        return new MyPreanter(this);
     }
 
     String totalCacheSize = null;
@@ -122,6 +128,7 @@ public class SetUp extends BaseActivity implements View.OnClickListener {
 
     @Override
     protected void initView() {
+        bt = findViewById(R.id.signout);
         hc = findViewById(R.id.hc);
         try {
             totalCacheSize = DataCleanManager.getTotalCacheSize(getApplicationContext());
@@ -300,7 +307,17 @@ public class SetUp extends BaseActivity implements View.OnClickListener {
 
     @Override
     protected void initData() {
-
+        bt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                BasePreantert basePreantert = getmPreantert();
+                if(basePreantert instanceof MyContreater.IPreanter){
+                    SharedPreferences token = getSharedPreferences("token", MODE_PRIVATE);
+                    String token1 = token.getString("token", "");
+                    ((MyContreater.IPreanter) basePreantert).SignOutSuccess(token1);
+                }
+            }
+        });
     }
 
     @Override
@@ -332,5 +349,16 @@ public class SetUp extends BaseActivity implements View.OnClickListener {
     @OnClick(R.id.Privacy_policy)
     public void OnPrivacy_policy() {
         startActivity(new Intent(getApplicationContext(), Privacy_policy.class));
+    }
+
+    @Override
+    public void OnSignOut(SignOut signOut) {
+        int code = signOut.getCode();
+        if(code==1){
+            startActivity(new Intent(SetUp.this, Login_interface.class));
+            finish();
+        }
+        String msg = signOut.getMsg();
+        Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
     }
 }

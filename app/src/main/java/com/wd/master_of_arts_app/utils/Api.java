@@ -1,11 +1,13 @@
 package com.wd.master_of_arts_app.utils;
 
+import com.wd.master_of_arts_app.base.RetrievePassword;
 import com.wd.master_of_arts_app.bean.AccountLogin;
 import com.wd.master_of_arts_app.bean.AgeInterface;
 import com.wd.master_of_arts_app.bean.Beanner;
 import com.wd.master_of_arts_app.bean.CodeBean;
 import com.wd.master_of_arts_app.bean.CourseList;
 import com.wd.master_of_arts_app.bean.SMSLogin;
+import com.wd.master_of_arts_app.bean.SignOut;
 import com.wd.master_of_arts_app.bean.UploadPictures;
 import com.wd.master_of_arts_app.bean.UploadWorks;
 
@@ -76,4 +78,14 @@ public interface Api {
     // 年龄段列表接口 //http://test.54artist.com/wap/Age/getList
     @POST("wap/Age/getList")
     Observable<AgeInterface>getAge();
+
+    //找回密码  http://test.54artist.com/wap/UserAccount/findPwdByPhone
+    @POST("wap/UserAccount/findPwdByPhone")
+    @FormUrlEncoded
+    Observable<RetrievePassword>getRetrievePassword(@Field("phone")String phone,@Field("code")String code,@Field("pwd")String pwd);
+
+    //退出 http://test.54artist.com/wap/User/loginout
+    @POST("wap/User/loginout")
+    @FormUrlEncoded
+    Observable<SignOut>getSignOut(@Field("token")String token);
 }

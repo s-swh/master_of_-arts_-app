@@ -17,6 +17,7 @@ import android.widget.Toast;
 import androidx.annotation.Nullable;
 
 import com.wd.master_of_arts_app.R;
+import com.wd.master_of_arts_app.adapter.MyEventBus;
 import com.wd.master_of_arts_app.base.BaseActivity;
 import com.wd.master_of_arts_app.base.BasePreantert;
 import com.wd.master_of_arts_app.bean.AccountLogin;
@@ -24,6 +25,8 @@ import com.wd.master_of_arts_app.bean.CodeBean;
 import com.wd.master_of_arts_app.bean.SMSLogin;
 import com.wd.master_of_arts_app.contreater.LoginContreater;
 import com.wd.master_of_arts_app.preanter.LoginPreanter;
+
+import org.greenrobot.eventbus.EventBus;
 
 public class Verification_code_login extends BaseActivity implements View.OnClickListener, LoginContreater.IView {
 
@@ -101,6 +104,12 @@ public class Verification_code_login extends BaseActivity implements View.OnClic
             @Override
             public void onClick(View view) {
                 String string = one.getText().toString();
+
+               EventBus.getDefault().post(new MyEventBus(string));
+                SharedPreferences sp = getSharedPreferences("phone", MODE_PRIVATE);
+                SharedPreferences.Editor edit = sp.edit();
+                edit.putString("phone",string);
+                edit.commit();
                 String string1 = pwd.getText().toString();
                 BasePreantert basePreantert = getmPreantert();
                 if(basePreantert instanceof LoginContreater.IPreanter){
@@ -128,6 +137,11 @@ public class Verification_code_login extends BaseActivity implements View.OnClic
             if(basePreantert instanceof LoginContreater.IPreanter){
                 String string = et_phone1.getText().toString();
                 String string1 = code.getText().toString();
+                SharedPreferences sp = getSharedPreferences("phone", MODE_PRIVATE);
+                SharedPreferences.Editor edit = sp.edit();
+                edit.putString("phone",string);
+                edit.commit();
+                EventBus.getDefault().post(new MyEventBus(string));
                 ((LoginContreater.IPreanter) basePreantert).OnLoginSuccess(string,string1);
             }
             }
