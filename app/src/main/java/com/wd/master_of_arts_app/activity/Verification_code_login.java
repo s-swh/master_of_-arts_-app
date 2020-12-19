@@ -221,10 +221,6 @@ public class Verification_code_login extends BaseActivity implements View.OnClic
     public void OnAccoutLogin(AccountLogin accountLogin) {
         int code = accountLogin.getCode();
         String msg = accountLogin.getMsg();
-        SharedPreferences sp = getSharedPreferences("code", MODE_PRIVATE);
-        SharedPreferences.Editor edit1 = sp.edit();
-        edit1.putInt("code",code);
-        edit1.commit();
         if(code==1){
             startActivity(new Intent(Verification_code_login.this,MainActivity.class));
             finish();

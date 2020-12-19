@@ -7,6 +7,7 @@ import com.wd.master_of_arts_app.bean.Beanner;
 import com.wd.master_of_arts_app.bean.CodeBean;
 import com.wd.master_of_arts_app.bean.CourseList;
 import com.wd.master_of_arts_app.bean.DeleteHarvestAddress;
+import com.wd.master_of_arts_app.bean.EditUserInformation;
 import com.wd.master_of_arts_app.bean.HarvestAddress;
 import com.wd.master_of_arts_app.bean.SMSLogin;
 import com.wd.master_of_arts_app.bean.SignOut;
@@ -113,4 +114,9 @@ public interface Api {
     @POST("wap/User/getMsg")
     @FormUrlEncoded
     Observable<UserInformation>getUser(@Field("token")String token);
+
+    //编辑用户接口
+    @POST("wap/User/editMsg")
+    @FormUrlEncoded
+    Observable<EditUserInformation>getEditUser(@Field("token")String token,@Field("nickname")String nickname,@Field("sex")int sex,@Field("birthday")String birthday,@Field("province")String province,@Field("city")String city,@Field("county")String county);
 }

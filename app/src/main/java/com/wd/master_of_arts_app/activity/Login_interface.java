@@ -19,12 +19,7 @@ public class Login_interface extends BaseActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        SharedPreferences sp = getSharedPreferences("code", MODE_PRIVATE);
-        int code = sp.getInt("code", 0);
-        if(code==1){
-            startActivity(new Intent(Login_interface.this,MainActivity.class));
-            finish();
-        }
+
     }
 
     private Button bt;
