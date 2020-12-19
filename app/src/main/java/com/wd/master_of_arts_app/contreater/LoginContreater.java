@@ -7,7 +7,7 @@ import com.wd.master_of_arts_app.bean.SMSLogin;
 
 /**
  * @author 时文豪
- * @description:
+ * @description: 登录MVP
  * @date :2020/12/16 8:15
  */
 public interface LoginContreater {

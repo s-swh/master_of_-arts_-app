@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+
+
+    android:layout_height="wrap_content">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_margin="@dimen/dp_5"
+        android:orientation="vertical"
+        android:background="@drawable/coure"
+        android:layout_height="wrap_content">
+        <TextView
+            android:layout_width="wrap_content"
+            android:text="亲亲幼子班"
+            android:layout_margin="@dimen/dp_15"
+            android:textSize="@dimen/sp_14"
+            android:id="@+id/text_title"
+            android:layout_height="wrap_content" />
+
+            <ImageView
+                android:layout_width="@dimen/dp_80"
+                android:src="@mipmap/ic_launcher"
+                android:id="@+id/imv"
+                android:layout_centerVertical="true"
+                android:layout_alignParentRight="true"
+                android:layout_height="@dimen/dp_80" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:text="￥5000"
+        android:textSize="@dimen/sp_14"
+        android:id="@+id/moneyone"
+        android:background="@drawable/couremoney"
+        android:layout_marginTop="@dimen/dp_15"
+        android:layout_marginLeft="@dimen/dp_100"
+        android:layout_height="wrap_content" />
+        <com.wd.master_of_arts_app.customview.DrawLineTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="¥498.00"
+            android:layout_toRightOf="@id/moneyone"
+            android:layout_marginTop="@dimen/dp_15"
+            android:id="@+id/moneytow"
+            android:background="@drawable/couremoney"
+            android:textColor="#99282525"
+            android:textSize="@dimen/sp_14" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:text="任课老师"
+            android:textSize="@dimen/sp_12"
+            android:id="@+id/teacher"
+            android:layout_marginTop="@dimen/dp_35"
+            android:layout_marginLeft="@dimen/dp_15"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:text="48课时"
+            android:id="@+id/classhour"
+            android:textColor="#019A92"
+            android:textSize="@dimen/sp_12"
+            android:layout_marginTop="@dimen/dp_65"
+            android:layout_marginLeft="@dimen/dp_15"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:text="每周二、周三、周四09:00上课"
+            android:id="@+id/attend"
+            android:textSize="@dimen/sp_12"
+            android:layout_marginTop="@dimen/dp_90"
+            android:layout_marginLeft="@dimen/dp_15"
+            android:layout_height="wrap_content" />
+    </RelativeLayout>
+
+</LinearLayout>

@@ -8,7 +8,7 @@ import com.wd.master_of_arts_app.model.HomeModel;
 
 /**
  * @author 时文豪
- * @description:
+ * @description: 主页p层
  * @date :2020/12/17 16:53
  */
 public class HomePreanter extends BasePreantert implements HomePagerCrete.IPreanter {

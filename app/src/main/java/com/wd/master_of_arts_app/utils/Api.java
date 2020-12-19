@@ -1,8 +1,10 @@
 package com.wd.master_of_arts_app.utils;
 
 import com.wd.master_of_arts_app.bean.AccountLogin;
+import com.wd.master_of_arts_app.bean.AgeInterface;
 import com.wd.master_of_arts_app.bean.Beanner;
 import com.wd.master_of_arts_app.bean.CodeBean;
+import com.wd.master_of_arts_app.bean.CourseList;
 import com.wd.master_of_arts_app.bean.SMSLogin;
 import com.wd.master_of_arts_app.bean.UploadPictures;
 import com.wd.master_of_arts_app.bean.UploadWorks;
@@ -36,40 +38,42 @@ import retrofit2.http.Url;
  * @date :2020/12/3 10:22
  */
 public interface Api {
-    //todo 获取短信验证码  http://test.54artist.com/wap/Sms/send
+
+    // 获取短信验证码  http://test.54artist.com/wap/Sms/send
     @POST("wap/Sms/send")
     @FormUrlEncoded
-    Observable<CodeBean>getCodeBean(@Field("phone")String phone);
-    //todo 短信验证码登录http://test.54artist.com/wap/UserAccount/loginByCode
+    Observable<CodeBean> getCodeBean(@Field("phone") String phone);
+
+    // 短信验证码登录http://test.54artist.com/wap/UserAccount/loginByCode
     @POST("wap/UserAccount/loginByCode")
     @FormUrlEncoded
-    Observable<SMSLogin>getSmsLogin(@Field("phone")String phone,@Field("code")String code);
-    //todo 账号密码登录 http://test.54artist.com/wap/UserAccount/login
+    Observable<SMSLogin> getSmsLogin(@Field("phone") String phone, @Field("code") String code);
+
+    // 账号密码登录 http://test.54artist.com/wap/UserAccount/login
     @POST("wap/UserAccount/login")
     @FormUrlEncoded
-    Observable<AccountLogin>getAccount(@Field("account")String account,@Field("pwd")String pwd);
+    Observable<AccountLogin> getAccount(@Field("account") String account, @Field("pwd") String pwd);
 
-
-    //todo 编辑头像 http://test.54artist.com/wap/User/editAvatar
-
-
+    // 编辑头像 http://test.54artist.com/wap/User/editAvatar
     @Multipart
     @POST("wap/User/editAvatar")
-    Observable<UploadPictures> upImg(
-                             @Part("token") RequestBody token,
-                             @Part("FunName") RequestBody funName,
-                             @Part("path") RequestBody path,
-                             @Part("appfile") RequestBody appfile,
-                             @Part MultipartBody.Part file);
+    Observable<UploadPictures> upImg(@Part("token") RequestBody token, @Part("FunName") RequestBody funName, @Part("path") RequestBody path, @Part("appfile") RequestBody appfile, @Part MultipartBody.Part file);
 
-
-
-    //todo 作品上传 http://test.54artist.com/wap/HomeWork/add
+    // 作品上传 http://test.54artist.com/wap/HomeWork/add
     @POST("wap/HomeWork/add")
-    Observable<UploadWorks>getUploadWorks(@Body RequestBody requestBody);
-    //todo 轮播图 http://test.54artist.com/wap/Banner/getList
+    Observable<UploadWorks> getUploadWorks(@Body RequestBody requestBody);
+
+    // 轮播图 http://test.54artist.com/wap/Banner/getList
     @POST("wap/Banner/getList")
     @FormUrlEncoded
-    Observable<Beanner>getBeanner(@Field("cat_id")int cat_id);
+    Observable<Beanner> getBeanner(@Field("cat_id") int cat_id);
 
+    // 课程列表接口  //http://test.54artist.com/wap/CourseTime/getList
+    @POST("wap/CourseTime/getList")
+    @FormUrlEncoded
+    Observable<CourseList>getCourseList(@Field("cat_id")String cat_id,@Field("is_top")String is_top,@Field("age")String age,@Field("p")int p,@Field("per")int per);
+
+    // 年龄段列表接口 //http://test.54artist.com/wap/Age/getList
+    @POST("wap/Age/getList")
+    Observable<AgeInterface>getAge();
 }

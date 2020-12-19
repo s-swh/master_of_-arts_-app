@@ -11,7 +11,7 @@ import com.wd.master_of_arts_app.utils.NetUtils;
 
 /**
  * @author 时文豪
- * @description:
+ * @description: 登录P层
  * @date :2020/12/16 8:17
  */
 public class LoginPreanter extends BasePreantert implements LoginContreater.IPreanter {

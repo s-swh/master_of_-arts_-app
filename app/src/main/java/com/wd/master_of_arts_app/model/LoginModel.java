@@ -13,7 +13,7 @@ import io.reactivex.schedulers.Schedulers;
 
 /**
  * @author 时文豪
- * @description:
+ * @description: 登录model
  * @date :2020/12/16 8:16
  */
 public class LoginModel implements LoginContreater.IModel {

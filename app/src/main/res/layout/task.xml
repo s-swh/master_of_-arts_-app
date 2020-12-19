@@ -14,9 +14,10 @@
         android:layout_width="match_parent"
         android:background="#3F3F3F"
         android:layout_height="@dimen/dp_1"/>
-    <androidx.recyclerview.widget.RecyclerView
+    <com.jcodecraeer.xrecyclerview.XRecyclerView
         android:layout_width="match_parent"
         android:layout_marginTop="@dimen/dp_5"
+        android:id="@+id/course_rv"
         android:layout_height="match_parent">
-    </androidx.recyclerview.widget.RecyclerView>
+    </com.jcodecraeer.xrecyclerview.XRecyclerView>
 </LinearLayout>

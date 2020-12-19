@@ -11,7 +11,7 @@ import io.reactivex.schedulers.Schedulers;
 
 /**
  * @author 时文豪
- * @description:
+ * @description: 主页model
  * @date :2020/12/17 16:52
  */
 public class HomeModel implements HomePagerCrete.IModel {
