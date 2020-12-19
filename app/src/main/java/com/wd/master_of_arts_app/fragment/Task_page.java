@@ -103,10 +103,7 @@ public class Task_page extends BaseFragment implements   CourseContreater.IView 
     //弹框
    @OnClick(R.id.tt_opo)
     public void popwindow(){
-       BasePreantert basePreantert = getmPreanter();
-       if(basePreantert instanceof CourseContreater.IPreanter){
-           ((CourseContreater.IPreanter) basePreantert).OnAgeSuccess();
-       }
+
        View view = getLayoutInflater().inflate(R.layout.preview, null);
        agerv = view.findViewById(R.id.age_rv);
        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
@@ -137,15 +134,11 @@ public class Task_page extends BaseFragment implements   CourseContreater.IView 
 
        popupBigPhoto.setOutsideTouchable(true);
        popupBigPhoto.setFocusable(true);
-      /* ageInterfaceAdapter.Coallack(new AgeInterfaceAdapter.Coallack() {
-           @Override
-           public void setOnClick(AgeInterface.DataBean.ListBean listBean) {
-               int id = listBean.getId();
-               String name = listBean.getName();
-               Toast.makeText(getContext(), name+""+id, Toast.LENGTH_SHORT).show();
+       BasePreantert basePreantert = getmPreanter();
+       if(basePreantert instanceof CourseContreater.IPreanter){
+           ((CourseContreater.IPreanter) basePreantert).OnAgeSuccess();
+       }
 
-           }
-       });*/
     }
     @Override
     public void OnCourse(CourseList courseList) {
@@ -163,5 +156,14 @@ public class Task_page extends BaseFragment implements   CourseContreater.IView 
         List<AgeInterface.DataBean.ListBean> list = data.getList();
         ageInterfaceAdapter = new AgeInterfaceAdapter(getActivity(),list);
         agerv.setAdapter(ageInterfaceAdapter);
+        ageInterfaceAdapter.Coallack(new AgeInterfaceAdapter.Coallack() {
+            @Override
+            public void setOnClick(AgeInterface.DataBean.ListBean listBean) {
+                String name = listBean.getName();
+                tv.setText(name);
+                popupBigPhoto.dismiss();
+
+            }
+        });
     }
 }

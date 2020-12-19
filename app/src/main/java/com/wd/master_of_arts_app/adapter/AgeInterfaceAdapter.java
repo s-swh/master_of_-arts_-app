@@ -49,12 +49,9 @@ public class AgeInterfaceAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
         String name = listBean.getName();
         ((AgeViewHorder)holder).ol.setText(name);
         ((AgeViewHorder) holder).age_click.setOnClickListener(new View.OnClickListener() {
-
-
             @Override
             public void onClick(View view) {
-                Toast.makeText(context, name, Toast.LENGTH_SHORT).show();
-
+                coallack1.setOnClick(beans.get(position));
             }
         });
     }
