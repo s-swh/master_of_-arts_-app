@@ -1,9 +1,7 @@
 package com.wd.master_of_arts_app.activity;
 
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Build;
-import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,7 +11,6 @@ import android.widget.BaseAdapter;
 import android.widget.EditText;
 import android.widget.GridView;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -40,14 +37,10 @@ import com.wd.master_of_arts_app.wechatpictures.SelectModel;
 
 import org.json.JSONArray;
 
-import java.net.URI;
 import java.util.ArrayList;
 import java.util.List;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
-import retrofit2.http.Url;
 
 public class Publishing_works_Activity extends BaseActivity   {
 
@@ -67,15 +60,12 @@ public class Publishing_works_Activity extends BaseActivity   {
     private EditText textView;
     private String TAG =MainActivity.class.getSimpleName();
 
+
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN_MR2)
     @Override
     protected int getLayoutId() {
 
         return R.layout.activity_publishing_works;
-    }
-    @Override
-    protected void onResume() {
-        super.onResume();
     }
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -87,6 +77,10 @@ public class Publishing_works_Activity extends BaseActivity   {
                     ArrayList<String> list = data.getStringArrayListExtra(PhotoPickerActivity.EXTRA_RESULT);
                     Log.d(TAG, "数量："+list.size());
                     loadAdpater(list);
+                    for (int i = 0; i < list.size(); i++) {
+                        String s = list.get(i);
+                        Log.e("xxx",s);
+                    }
                     break;
                 // 预览
                 case REQUEST_PREVIEW_CODE:

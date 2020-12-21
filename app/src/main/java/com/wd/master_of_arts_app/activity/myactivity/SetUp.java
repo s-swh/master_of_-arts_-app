@@ -45,6 +45,7 @@ import com.wd.master_of_arts_app.customview.SwitchButton;
 import com.wd.master_of_arts_app.preanter.MyPreanter;
 import com.wd.master_of_arts_app.utils.DataCleanManager;
 
+import com.wd.master_of_arts_app.utils.FileUtils;
 import com.wd.master_of_arts_app.utils.NetUtils;
 import com.wildma.pictureselector.PictureBean;
 import com.wildma.pictureselector.PictureSelector;
@@ -358,7 +359,13 @@ public class SetUp extends BaseActivity implements View.OnClickListener, MyContr
             startActivity(new Intent(SetUp.this, Login_interface.class));
             finish();
         }
+        SharedPreferences code1 = getSharedPreferences("code", MODE_PRIVATE);
+        SharedPreferences.Editor edit = code1.edit();
+        int i=0;
+        edit.putInt("code",i);
+        edit.commit();
         String msg = signOut.getMsg();
         Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
+        DataCleanManager.clearAllCache(this);
     }
 }

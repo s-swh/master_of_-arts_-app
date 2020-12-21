@@ -5,6 +5,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 
@@ -16,16 +17,24 @@ import butterknife.OnClick;
 
 public class Login_interface extends BaseActivity {
 
-    @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-
-    }
-
     private Button bt;
 
     @Override
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        SharedPreferences code = getSharedPreferences("code", MODE_PRIVATE);
+        int code1 = code.getInt("code", 0);
+        if(code1==1){
+            Intent intent = new Intent(Login_interface.this, MainActivity.class);
+            startActivity(intent);
+        }else{
+            Toast.makeText(this, "请登录", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    @Override
     protected int getLayoutId() {
+
         return R.layout.activity_login_interface;
     }
 

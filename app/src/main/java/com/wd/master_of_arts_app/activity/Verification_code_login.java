@@ -22,8 +22,6 @@ import com.wd.master_of_arts_app.bean.SMSLogin;
 import com.wd.master_of_arts_app.contreater.LoginContreater;
 import com.wd.master_of_arts_app.preanter.LoginPreanter;
 
-import org.greenrobot.eventbus.EventBus;
-
 public class Verification_code_login extends BaseActivity implements View.OnClickListener, LoginContreater.IView {
 
     private TextView tv_swit, tv_swi1t, xy, ys;
@@ -194,21 +192,21 @@ public class Verification_code_login extends BaseActivity implements View.OnClic
 
     @Override
     public void OnCodeLogin(SMSLogin smsLogin) {
-        SMSLogin.DataBean data = smsLogin.getData();
-        String token = data.getToken();
-        int code2 = smsLogin.getCode();
-        SharedPreferences sp = getSharedPreferences("token", MODE_PRIVATE);
-        SharedPreferences.Editor edit = sp.edit();
-        edit.putString("token",token);
-        edit.commit();
-        SharedPreferences ssp = getSharedPreferences("code", MODE_PRIVATE);
-        SharedPreferences.Editor edit1 = ssp.edit();
-        edit1.putInt("code",code2);
-        edit1.commit();
+
         String msg = smsLogin.getMsg();
         Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
         int code = smsLogin.getCode();
         if(code==1){
+            SMSLogin.DataBean data = smsLogin.getData();
+            String token = data.getToken();
+            SharedPreferences sp = getSharedPreferences("token", MODE_PRIVATE);
+            SharedPreferences.Editor edit = sp.edit();
+            edit.putString("token",token);
+            edit.commit();
+            SharedPreferences sp1 = getSharedPreferences("code", MODE_PRIVATE);
+            SharedPreferences.Editor edit1 = sp1.edit();
+            edit1.putInt("code",code);
+            edit1.commit();
             startActivity(new Intent(Verification_code_login.this,MainActivity.class));
             finish();
         }else{
@@ -222,16 +220,22 @@ public class Verification_code_login extends BaseActivity implements View.OnClic
         int code = accountLogin.getCode();
         String msg = accountLogin.getMsg();
         if(code==1){
+            AccountLogin.DataBean data = accountLogin.getData();
+            String token = data.getToken();
+            SharedPreferences spa = getSharedPreferences("token", MODE_PRIVATE);
+            SharedPreferences.Editor edit = spa.edit();
+            edit.putString("token",token);
+            edit.commit();
+            SharedPreferences sp = getSharedPreferences("code", MODE_PRIVATE);
+            SharedPreferences.Editor edit1 = sp.edit();
+            edit1.putInt("code",code);
+            edit1.commit();
             startActivity(new Intent(Verification_code_login.this,MainActivity.class));
             finish();
         }else{
             Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
         }
-        AccountLogin.DataBean data = accountLogin.getData();
-        String token = data.getToken();
-        SharedPreferences spa = getSharedPreferences("token", MODE_PRIVATE);
-        SharedPreferences.Editor edit = spa.edit();
-        edit.putString("token",token);
-        edit.commit();
+
+
     }
 }

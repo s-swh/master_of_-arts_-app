@@ -69,7 +69,7 @@ public interface Api {
     // 作品上传 http://test.54artist.com/wap/HomeWork/add
     @POST("wap/HomeWork/add")
     @FormUrlEncoded @Multipart
-    Observable<UploadWorks> getUploadWorks(@Field("token") String token,@Field("course_unit_id")int course_unit_id,@Field("name") String name,@Field("content")String content,@Part("imglist") RequestBody imglist);
+    Observable<UploadWorks> getUploadWorks(@Field("token") String token,@Field("course_unit_id")int course_unit_id,@Field("name") String name,@Field("content")String content,@Part("FunName") RequestBody funName, @Part("path") RequestBody path, @Part("appfile") RequestBody appfile,@Part MultipartBody.Part imglist);
 
     // 轮播图 http://test.54artist.com/wap/Banner/getList
     @POST("wap/Banner/getList")
@@ -81,7 +81,7 @@ public interface Api {
     @FormUrlEncoded
     Observable<CourseList>getCourseList(@Field("cat_id")String cat_id,@Field("is_top")String is_top,@Field("age")String age,@Field("p")int p,@Field("per")int per);
 
-    // 年龄段列表接口 //http://test.54artist.com/wap/Age/getList
+    // 年龄段列表接口 http://test.54artist.com/wap/Age/getList
     @POST("wap/Age/getList")
     Observable<AgeInterface>getAge();
 
@@ -115,7 +115,7 @@ public interface Api {
     @FormUrlEncoded
     Observable<UserInformation>getUser(@Field("token")String token);
 
-    //编辑用户接口
+    //编辑用户接口  http://test.54artist.com/wap/User/editMsg
     @POST("wap/User/editMsg")
     @FormUrlEncoded
     Observable<EditUserInformation>getEditUser(@Field("token")String token,@Field("nickname")String nickname,@Field("sex")int sex,@Field("birthday")String birthday,@Field("province")String province,@Field("city")String city,@Field("county")String county);
