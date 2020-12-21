@@ -1,6 +1,7 @@
 package com.wd.master_of_arts_app.model;
 
 import com.wd.master_of_arts_app.bean.AgeInterface;
+import com.wd.master_of_arts_app.bean.CourseDetails;
 import com.wd.master_of_arts_app.bean.CourseList;
 import com.wd.master_of_arts_app.contreater.CourseContreater;
 import com.wd.master_of_arts_app.utils.NetUtils;
@@ -19,8 +20,8 @@ public class CourseModel implements CourseContreater.IModel {
 
         // 课程接口
     @Override
-    public void OnCourseSuccess(String cat_id, String is_top, String age, int p, int per, CourseCollack courseCollack) {
-        NetUtils.getInstance().getApi().getCourseList(cat_id, is_top, age, p, per)
+    public void OnCourseSuccess(String cat_id, String is_top,String course_name, String age, int p, int per, CourseCollack courseCollack) {
+        NetUtils.getInstance().getApi().getCourseList(cat_id, is_top,course_name, age, p, per)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Observer<CourseList>() {
@@ -63,6 +64,36 @@ public class CourseModel implements CourseContreater.IModel {
                     public void onNext(AgeInterface ageInterface) {
                         if(ageCoallack!=null){
                             ageCoallack.onAgeInterface(ageInterface);
+                        }
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+
+                    }
+
+                    @Override
+                    public void onComplete() {
+
+                    }
+                });
+    }
+//课程详情
+    @Override
+    public void OnCourseOnSuccess(int course_time_id, CourseCoallack courseCoallack) {
+        NetUtils.getInstance().getApi().getCourseDatails(course_time_id)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Observer<CourseDetails>() {
+                    @Override
+                    public void onSubscribe(Disposable d) {
+
+                    }
+
+                    @Override
+                    public void onNext(CourseDetails courseDetails) {
+                        if(courseCoallack!=null){
+                            courseCoallack.OnCourse(courseDetails);
                         }
                     }
 

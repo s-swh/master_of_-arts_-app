@@ -5,6 +5,7 @@ import com.wd.master_of_arts_app.bean.AccountLogin;
 import com.wd.master_of_arts_app.bean.AgeInterface;
 import com.wd.master_of_arts_app.bean.Beanner;
 import com.wd.master_of_arts_app.bean.CodeBean;
+import com.wd.master_of_arts_app.bean.CourseDetails;
 import com.wd.master_of_arts_app.bean.CourseList;
 import com.wd.master_of_arts_app.bean.DeleteHarvestAddress;
 import com.wd.master_of_arts_app.bean.EditUserInformation;
@@ -79,11 +80,16 @@ public interface Api {
     // 课程列表接口  //http://test.54artist.com/wap/CourseTime/getList
     @POST("wap/CourseTime/getList")
     @FormUrlEncoded
-    Observable<CourseList>getCourseList(@Field("cat_id")String cat_id,@Field("is_top")String is_top,@Field("age")String age,@Field("p")int p,@Field("per")int per);
+    Observable<CourseList>getCourseList(@Field("cat_id")String cat_id,@Field("is_top")String is_top,@Field("course_name")String course_name,@Field("age")String age,@Field("p")int p,@Field("per")int per);
 
     // 年龄段列表接口 http://test.54artist.com/wap/Age/getList
     @POST("wap/Age/getList")
     Observable<AgeInterface>getAge();
+
+    //课程详情接口 http://test.54artist.com/wap/CourseTime/getMsg
+    @POST("wap/CourseTime/getMsg")
+    @FormUrlEncoded
+    Observable<CourseDetails>getCourseDatails(@Field("course_time_id")int course_time_id);
 
     //找回密码  http://test.54artist.com/wap/UserAccount/findPwdByPhone
     @POST("wap/UserAccount/findPwdByPhone")

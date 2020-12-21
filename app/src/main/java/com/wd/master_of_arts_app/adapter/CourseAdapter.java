@@ -4,17 +4,19 @@ import android.content.Context;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.fragment.app.FragmentActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 import com.bumptech.glide.request.RequestOptions;
+import com.jcodecraeer.xrecyclerview.XRecyclerView;
 import com.wd.master_of_arts_app.R;
 import com.wd.master_of_arts_app.bean.CourseList;
+import com.wd.master_of_arts_app.contreater.CourseContreater;
 
 import java.util.List;
 
@@ -23,20 +25,21 @@ import java.util.List;
  * @description: todo 课程适配器
  * @date :2020/12/18 15:37
  */
-public class CourseAdapter  extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
+public class CourseAdapter  extends XRecyclerView.Adapter<XRecyclerView.ViewHolder> {
 
     Context context; List<CourseList.DataBeanX.ListBean.DataBean> list;
+    private OnIdClick onIdClick;
 
     public CourseAdapter(Context context, List<CourseList.DataBeanX.ListBean.DataBean> list) {
         this.context = context;
         this.list = list;
     }
     public void Refresh( List<CourseList.DataBeanX.ListBean.DataBean> list){
-        this.list.addAll(this.list);
+        this.list.addAll(list);
         notifyDataSetChanged();
     }
     public void LoadMore(List<CourseList.DataBeanX.ListBean.DataBean> list){
-       this.list.addAll(list);
+    this.list.addAll(this.list);
         notifyDataSetChanged();
     }
     @NonNull
@@ -64,16 +67,31 @@ public class CourseAdapter  extends RecyclerView.Adapter<RecyclerView.ViewHolder
         ((CourseViewHorder) holder).classhour.setText("课时："+unit_count);//课时
         ((CourseViewHorder) holder).attend.setText(time_detail+"");
         Glide.with(context).load(teacher_avatar).apply(RequestOptions.bitmapTransform(new RoundedCorners(50))).error(R.mipmap.ic_launcher_round).into(((CourseViewHorder)holder).vv);
+        ((CourseViewHorder)holder).ltv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                int id = dataBean1.getId();
+
+                onIdClick.onclick(id);
+            }
+        });
     }
 
     @Override
     public int getItemCount() {
         return list.size();
     }
-    class CourseViewHorder extends RecyclerView.ViewHolder {
+    public void OnIdClick(OnIdClick click){
+        onIdClick = click;
+    }
+    public interface OnIdClick{
+        void onclick(int id);
+    }
+    class CourseViewHorder extends XRecyclerView.ViewHolder {
 
         private final TextView text_title,moneyone,moneytow,teacher,classhour,attend;
         private final ImageView vv;
+        private final LinearLayout ltv;
 
         public CourseViewHorder(@NonNull View itemView) {
             super(itemView);
@@ -84,6 +102,7 @@ public class CourseAdapter  extends RecyclerView.Adapter<RecyclerView.ViewHolder
             classhour=itemView.findViewById(R.id.classhour);
             attend=itemView.findViewById(R.id.attend);
             vv = itemView.findViewById(R.id.imv);
+            ltv = itemView.findViewById(R.id.ltv);
         }
     }
 }

@@ -1,5 +1,6 @@
 package com.wd.master_of_arts_app.fragment;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.ColorDrawable;
@@ -15,11 +16,13 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.jcodecraeer.xrecyclerview.XRecyclerView;
 import com.wd.master_of_arts_app.R;
+import com.wd.master_of_arts_app.activity.CourseDetailsActivity;
 import com.wd.master_of_arts_app.adapter.AgeInterfaceAdapter;
 import com.wd.master_of_arts_app.adapter.CourseAdapter;
 import com.wd.master_of_arts_app.base.BaseFragment;
 import com.wd.master_of_arts_app.base.BasePreantert;
 import com.wd.master_of_arts_app.bean.AgeInterface;
+import com.wd.master_of_arts_app.bean.CourseDetails;
 import com.wd.master_of_arts_app.bean.CourseList;
 import com.wd.master_of_arts_app.contreater.CourseContreater;
 import com.wd.master_of_arts_app.preanter.CoursePreanter;
@@ -42,7 +45,9 @@ public class Task_page extends BaseFragment implements   CourseContreater.IView 
     private CourseAdapter courseAdapter;
     private List<CourseList.DataBeanX.ListBean.DataBean> data1;
     private CourseList.DataBeanX.ListBean list;
-
+    private int id;
+    private int start_age;
+    private String name1;
     int i=1;
     int j=10;
     private RecyclerView agerv;
@@ -75,10 +80,10 @@ public class Task_page extends BaseFragment implements   CourseContreater.IView 
                 Toast.makeText(getContext(), "下拉刷新", Toast.LENGTH_SHORT).show();
                 i=1;
                 courseAdapter.Refresh(list.getData());
-                BasePreantert basePreantert = getmPreanter();
+      /*          BasePreantert basePreantert = getmPreanter();
                 if(basePreantert instanceof CourseContreater.IPreanter){
-                    ((CourseContreater.IPreanter) basePreantert).OnCourseSuccess("","","",i,j);
-                }
+                    ((CourseContreater.IPreanter) basePreantert).OnCourseSuccess("","","","",i,j);
+                }*/
                 rv.refreshComplete();
             }
 
@@ -86,17 +91,20 @@ public class Task_page extends BaseFragment implements   CourseContreater.IView 
             public void onLoadMore() {
                 i++;
                 Toast.makeText(getContext(), "上拉加载更多", Toast.LENGTH_SHORT).show();
+
                 courseAdapter.LoadMore(list.getData());
+
                 BasePreantert basePreantert = getmPreanter();
                 if(basePreantert instanceof CourseContreater.IPreanter){
-                    ((CourseContreater.IPreanter) basePreantert).OnCourseSuccess("","","",i,j);
+                    ((CourseContreater.IPreanter) basePreantert).OnCourseSuccess("","","","",i,j);
                 }
+
                 rv.loadMoreComplete();
             }
         });
         BasePreantert basePreantert = getmPreanter();
         if(basePreantert instanceof CourseContreater.IPreanter){
-            ((CourseContreater.IPreanter) basePreantert).OnCourseSuccess("","","",i,j);
+            ((CourseContreater.IPreanter) basePreantert).OnCourseSuccess("","","","",i,j);
         }
 
     }
@@ -140,6 +148,7 @@ public class Task_page extends BaseFragment implements   CourseContreater.IView 
        }
 
     }
+    //课程列表
     @Override
     public void OnCourse(CourseList courseList) {
 
@@ -148,8 +157,17 @@ public class Task_page extends BaseFragment implements   CourseContreater.IView 
         data1 = list.getData();
         courseAdapter = new CourseAdapter(getActivity(), data1);
         rv.setAdapter(courseAdapter);
+        courseAdapter.OnIdClick(new CourseAdapter.OnIdClick() {
+            @Override
+            public void onclick(int id) {
+                Toast.makeText(getContext(), id+"", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(getActivity(), CourseDetailsActivity.class);
+                intent.putExtra("id",id);
+                startActivity(intent);
+            }
+        });
     }
-
+    //年龄
     @Override
     public void onAgeInterface(AgeInterface ageInterface) {
         AgeInterface.DataBean data = ageInterface.getData();
@@ -161,9 +179,20 @@ public class Task_page extends BaseFragment implements   CourseContreater.IView 
             public void setOnClick(AgeInterface.DataBean.ListBean listBean) {
                 String name = listBean.getName();
                 tv.setText(name);
+                id = listBean.getId();
+                start_age = listBean.getStart_age();
+                name1 = listBean.getName();
                 popupBigPhoto.dismiss();
-
+                BasePreantert basePreantert = getmPreanter();
+                if(basePreantert instanceof CourseContreater.IPreanter){
+                    ((CourseContreater.IPreanter) basePreantert).OnCourseSuccess(id+"","",name1,""+start_age,i,j);
+                }
             }
         });
+    }
+    //课程详情
+    @Override
+    public void OnCourse(CourseDetails courseDetails) {
+
     }
 }

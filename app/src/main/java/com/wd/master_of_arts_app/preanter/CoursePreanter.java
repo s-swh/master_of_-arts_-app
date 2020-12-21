@@ -3,6 +3,7 @@ package com.wd.master_of_arts_app.preanter;
 import com.wd.master_of_arts_app.base.BasePreantert;
 import com.wd.master_of_arts_app.base.IBaseView;
 import com.wd.master_of_arts_app.bean.AgeInterface;
+import com.wd.master_of_arts_app.bean.CourseDetails;
 import com.wd.master_of_arts_app.bean.CourseList;
 import com.wd.master_of_arts_app.contreater.CourseContreater;
 import com.wd.master_of_arts_app.model.CourseModel;
@@ -27,8 +28,8 @@ public class CoursePreanter extends BasePreantert implements CourseContreater.IP
 
     //课程
     @Override
-    public void OnCourseSuccess(String cat_id, String is_top, String age, int p, int per) {
-       courseModel.OnCourseSuccess(cat_id, is_top, age, p, per, new CourseContreater.IModel.CourseCollack() {
+    public void OnCourseSuccess(String cat_id, String is_top,String course_name, String age, int p, int per) {
+       courseModel.OnCourseSuccess(cat_id, is_top,course_name, age, p, per, new CourseContreater.IModel.CourseCollack() {
            @Override
            public void OnCourse(CourseList courseList) {
                IBaseView iBaseView = getView();
@@ -49,6 +50,20 @@ public class CoursePreanter extends BasePreantert implements CourseContreater.IP
                 if(view instanceof CourseContreater.IView){
                     CourseContreater.IView view1= (CourseContreater.IView) view;
                     view1.onAgeInterface(ageInterface);
+                }
+            }
+        });
+    }
+    //课程详情
+    @Override
+    public void OnCourseOnSuccess(int course_time_id) {
+        courseModel.OnCourseOnSuccess(course_time_id, new CourseContreater.IModel.CourseCoallack() {
+            @Override
+            public void OnCourse(CourseDetails courseDetails) {
+                IBaseView iBaseView = getView();
+                if(iBaseView instanceof CourseContreater.IView){
+                    CourseContreater.IView view= (CourseContreater.IView) iBaseView;
+                    view.OnCourse(courseDetails);
                 }
             }
         });
