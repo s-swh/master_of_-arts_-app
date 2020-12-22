@@ -2,9 +2,9 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
-<androidx.recyclerview.widget.RecyclerView
-    android:layout_width="match_parent"
-    android:id="@+id/rv_gre"
-    android:layout_height="@dimen/dp_300">
-</androidx.recyclerview.widget.RecyclerView>
+<fm.jiecao.jcvideoplayer_lib.JCVideoPlayerStandard
+    android:layout_width="@dimen/dp_150"
+    android:id="@+id/jc"
+    android:layout_height="@dimen/dp_150">
+</fm.jiecao.jcvideoplayer_lib.JCVideoPlayerStandard>
 </LinearLayout>

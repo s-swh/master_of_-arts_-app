@@ -80,10 +80,10 @@ public class Task_page extends BaseFragment implements   CourseContreater.IView 
                 Toast.makeText(getContext(), "下拉刷新", Toast.LENGTH_SHORT).show();
                 i=1;
                 courseAdapter.Refresh(list.getData());
-      /*          BasePreantert basePreantert = getmPreanter();
+                BasePreantert basePreantert = getmPreanter();
                 if(basePreantert instanceof CourseContreater.IPreanter){
                     ((CourseContreater.IPreanter) basePreantert).OnCourseSuccess("","","","",i,j);
-                }*/
+                }
                 rv.refreshComplete();
             }
 
@@ -178,14 +178,15 @@ public class Task_page extends BaseFragment implements   CourseContreater.IView 
             @Override
             public void setOnClick(AgeInterface.DataBean.ListBean listBean) {
                 String name = listBean.getName();
-                tv.setText(name);
+                String substring = name.substring(0, 3);
+                tv.setText(substring+"岁");
                 id = listBean.getId();
                 start_age = listBean.getStart_age();
                 name1 = listBean.getName();
                 popupBigPhoto.dismiss();
                 BasePreantert basePreantert = getmPreanter();
                 if(basePreantert instanceof CourseContreater.IPreanter){
-                    ((CourseContreater.IPreanter) basePreantert).OnCourseSuccess(id+"","",name1,""+start_age,i,j);
+                    ((CourseContreater.IPreanter) basePreantert).OnCourseSuccess(id+"","",name,""+start_age,i,j);
                 }
             }
         });

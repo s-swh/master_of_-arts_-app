@@ -3,6 +3,7 @@ package com.wd.master_of_arts_app.utils;
 import com.wd.master_of_arts_app.base.RetrievePassword;
 import com.wd.master_of_arts_app.bean.AccountLogin;
 import com.wd.master_of_arts_app.bean.AgeInterface;
+import com.wd.master_of_arts_app.bean.ArticleList;
 import com.wd.master_of_arts_app.bean.Beanner;
 import com.wd.master_of_arts_app.bean.CodeBean;
 import com.wd.master_of_arts_app.bean.CourseDetails;
@@ -90,6 +91,11 @@ public interface Api {
     @POST("wap/CourseTime/getMsg")
     @FormUrlEncoded
     Observable<CourseDetails>getCourseDatails(@Field("course_time_id")int course_time_id);
+
+    //文章列表 http://test.54artist.com/wap/Article/discover
+    @POST("wap/Article/discover")
+    @FormUrlEncoded
+    Observable<ArticleList>getArticle(@Field("token")String token);
 
     //找回密码  http://test.54artist.com/wap/UserAccount/findPwdByPhone
     @POST("wap/UserAccount/findPwdByPhone")
