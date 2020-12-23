@@ -11,6 +11,7 @@ import com.wd.master_of_arts_app.bean.CourseList;
 import com.wd.master_of_arts_app.bean.DeleteHarvestAddress;
 import com.wd.master_of_arts_app.bean.EditUserInformation;
 import com.wd.master_of_arts_app.bean.HarvestAddress;
+import com.wd.master_of_arts_app.bean.QiNiuYun;
 import com.wd.master_of_arts_app.bean.SMSLogin;
 import com.wd.master_of_arts_app.bean.SignOut;
 import com.wd.master_of_arts_app.bean.UploadPictures;
@@ -68,10 +69,15 @@ public interface Api {
     @POST("wap/User/editAvatar")
     Observable<UploadPictures> upImg(@Part("token") RequestBody token, @Part("FunName") RequestBody funName, @Part("path") RequestBody path, @Part("appfile") RequestBody appfile, @Part MultipartBody.Part file);
 
-    // 作品上传 http://test.54artist.com/wap/HomeWork/add
+    // 作品上传 http://test.54artist.com/wap/HomeWork/add   ,@Part("course_unit_id")int course_unit_id,@Part("name") String name,@Part("content")String content
     @POST("wap/HomeWork/add")
-    @FormUrlEncoded @Multipart
-    Observable<UploadWorks> getUploadWorks(@Field("token") String token,@Field("course_unit_id")int course_unit_id,@Field("name") String name,@Field("content")String content,@Part("FunName") RequestBody funName, @Part("path") RequestBody path, @Part("appfile") RequestBody appfile,@Part MultipartBody.Part imglist);
+ @Multipart
+    Observable<UploadWorks> getUploadWorks(@Part("token") RequestBody token,@Part("FunName") RequestBody funName, @Part("path") RequestBody path, @Part("appfile") RequestBody appfile,@Part MultipartBody.Part imglist);
+
+    //七牛云 http://test.54artist.com/wap/Qn/upload   http://test.54artist.com/wap/Qn/upload
+    @POST("wap/Qn/upload")
+    @Multipart
+    Observable<QiNiuYun>getQny( @Part("FunName") RequestBody funName, @Part("path") RequestBody path, @Part("appfile") RequestBody appfile, @Part MultipartBody.Part file);
 
     // 轮播图 http://test.54artist.com/wap/Banner/getList
     @POST("wap/Banner/getList")

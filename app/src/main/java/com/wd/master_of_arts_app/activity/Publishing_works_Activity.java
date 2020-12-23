@@ -1,7 +1,10 @@
 package com.wd.master_of_arts_app.activity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Build;
+import android.os.Handler;
+import android.os.Message;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -24,11 +27,15 @@ import androidx.viewpager.widget.ViewPager;
 
 import com.bumptech.glide.Glide;
 import com.google.android.material.tabs.TabLayout;
+import com.google.gson.Gson;
 import com.wd.master_of_arts_app.R;
 import com.wd.master_of_arts_app.base.BaseActivity;
 import com.wd.master_of_arts_app.base.BasePreantert;
+import com.wd.master_of_arts_app.bean.QiNiuYun;
+import com.wd.master_of_arts_app.bean.UploadWorks;
 import com.wd.master_of_arts_app.fragment.releasefragment.Voice;
 import com.wd.master_of_arts_app.fragment.releasefragment.Written_Words;
+import com.wd.master_of_arts_app.utils.NetUtils;
 import com.wd.master_of_arts_app.wechatpictures.PhotoPickerActivity;
 import com.wd.master_of_arts_app.wechatpictures.PhotoPickerIntent;
 import com.wd.master_of_arts_app.wechatpictures.PhotoPreviewActivity;
@@ -37,14 +44,23 @@ import com.wd.master_of_arts_app.wechatpictures.SelectModel;
 
 import org.json.JSONArray;
 
+import java.io.File;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import butterknife.OnClick;
+import io.reactivex.Observer;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.Disposable;
+import io.reactivex.schedulers.Schedulers;
+import okhttp3.MediaType;
+import okhttp3.MultipartBody;
+import okhttp3.RequestBody;
 
 public class Publishing_works_Activity extends BaseActivity   {
 
-
+    private String path;
     private TabLayout tb;
     private ViewPager vp;
     private List<Fragment> fragmentList=new ArrayList<>();
@@ -112,6 +128,8 @@ public class Publishing_works_Activity extends BaseActivity   {
     private class GridAdapter extends BaseAdapter {
         private ArrayList<String> listUrls;
         private LayoutInflater inflater;
+
+
         public GridAdapter(ArrayList<String> listUrls) {
             this.listUrls = listUrls;
             if(listUrls.size() == 7){
@@ -142,11 +160,15 @@ public class Publishing_works_Activity extends BaseActivity   {
                 convertView = inflater.inflate(R.layout.item, parent,false);
                 holder.image = (ImageView) convertView.findViewById(R.id.imageView);
                 convertView.setTag(holder);
+
+
             } else {
                 holder = (ViewHolder)convertView.getTag();
             }
 
-            final String path=listUrls.get(position);
+            path = listUrls.get(position);
+
+
             if (path.equals("paizhao")){
                 holder.image.setImageResource(R.mipmap.find_add_img);
             }else {
@@ -209,10 +231,56 @@ public class Publishing_works_Activity extends BaseActivity   {
                     PhotoPickerIntent intent = new PhotoPickerIntent(Publishing_works_Activity.this);
                     intent.setSelectModel(SelectModel.MULTI);
                     intent.setShowCarema(true); // 是否显示拍照
-                    intent.setMaxTotal(6); // 最多选择照片数量，默认为6
+                    intent.setMaxTotal(3); // 最多选择照片数量，默认为6
                     intent.setSelectedPaths(imagePaths); // 已选中的照片地址， 用于回显选中状态
                     startActivityForResult(intent, REQUEST_CAMERA_CODE);
+
+                    Handler handler=new Handler(){
+                        @Override
+                        public void handleMessage(@NonNull Message msg) {
+                            super.handleMessage(msg);
+                            RequestBody funName = RequestBody.create(null, "ict_uploadpicture");
+                            RequestBody path1 = RequestBody.create(null, "/uploadNews");
+                            String pat = path;
+                            File file = new File(path);
+                            RequestBody appfile = RequestBody.create(null, pat);
+                            RequestBody requestFile = RequestBody.create(MediaType.parse("image/jpeg"), file);
+                            MultipartBody.Part body = MultipartBody.Part.createFormData("file", pat, requestFile);
+                            NetUtils.getInstance().getApi().getQny(funName,path1,appfile,body)
+                                    .subscribeOn(Schedulers.io())
+                                    .observeOn(AndroidSchedulers.mainThread())
+                                    .subscribe(new Observer<QiNiuYun>() {
+                                        @Override
+                                        public void onSubscribe(Disposable d) {
+
+                                        }
+
+                                        @Override
+                                        public void onNext(QiNiuYun qiNiuYun) {
+                                            String msg = qiNiuYun.getMsg();
+                                            Toast.makeText(Publishing_works_Activity.this, msg, Toast.LENGTH_SHORT).show();
+                                            QiNiuYun.DataBean data = qiNiuYun.getData();
+                                            String key = data.getKey();
+                                            Log.i("ddddd",key);
+                                        }
+
+                                        @Override
+                                        public void onError(Throwable e) {
+                                            String message = e.getMessage();
+                                            Toast.makeText(Publishing_works_Activity.this, message, Toast.LENGTH_SHORT).show();
+                                        }
+
+                                        @Override
+                                        public void onComplete() {
+
+                                        }
+                                    });
+                        }
+                    };
+                    handler.sendEmptyMessageDelayed(1,10000);
+
                 }else{
+
                     Toast.makeText(Publishing_works_Activity.this,"1"+position,Toast.LENGTH_SHORT).show();
                     PhotoPreviewIntent intent = new PhotoPreviewIntent(Publishing_works_Activity.this);
                     intent.setCurrentItem(position);
@@ -248,7 +316,11 @@ public class Publishing_works_Activity extends BaseActivity   {
             return tbs.get(position);
         }
     }
+@OnClick(R.id.bt)
+    public void OnClick(){
 
+
+}
 
 
 }

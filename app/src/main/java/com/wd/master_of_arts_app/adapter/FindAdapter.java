@@ -4,19 +4,11 @@ import android.content.Context;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-
 import androidx.annotation.NonNull;
-import androidx.fragment.app.FragmentActivity;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.wd.master_of_arts_app.R;
 import com.wd.master_of_arts_app.bean.ArticleList;
-import com.wd.master_of_arts_app.fragment.Find_page;
-
 import java.util.List;
-
-import fm.jiecao.jcvideoplayer_lib.JCVideoPlayer;
-import fm.jiecao.jcvideoplayer_lib.JCVideoPlayerSimple;
 import fm.jiecao.jcvideoplayer_lib.JCVideoPlayerStandard;
 
 /**
