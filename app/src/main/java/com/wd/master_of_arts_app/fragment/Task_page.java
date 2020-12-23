@@ -163,6 +163,7 @@ public class Task_page extends BaseFragment implements   CourseContreater.IView 
                 Toast.makeText(getContext(), id+"", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(getActivity(), CourseDetailsActivity.class);
                 intent.putExtra("id",id);
+
                 startActivity(intent);
             }
         });
@@ -177,16 +178,15 @@ public class Task_page extends BaseFragment implements   CourseContreater.IView 
         ageInterfaceAdapter.Coallack(new AgeInterfaceAdapter.Coallack() {
             @Override
             public void setOnClick(AgeInterface.DataBean.ListBean listBean) {
-                String name = listBean.getName();
-                String substring = name.substring(0, 3);
-                tv.setText(substring+"岁");
+                String short_name = listBean.getShort_name();
+                tv.setText(short_name+"岁");
                 id = listBean.getId();
                 start_age = listBean.getStart_age();
                 name1 = listBean.getName();
                 popupBigPhoto.dismiss();
                 BasePreantert basePreantert = getmPreanter();
                 if(basePreantert instanceof CourseContreater.IPreanter){
-                    ((CourseContreater.IPreanter) basePreantert).OnCourseSuccess(id+"","",name,""+start_age,i,j);
+                    ((CourseContreater.IPreanter) basePreantert).OnCourseSuccess(id+"","",short_name,""+start_age,i,j);
                 }
             }
         });
