@@ -18,12 +18,12 @@
             android:layout_width="match_parent"
             android:layout_height="@dimen/dp_55">
             <ImageView
-                android:layout_width="wrap_content"
+                android:layout_width="16.72dp"
                 android:src="@mipmap/returnbutton"
-                android:gravity="center_vertical"
+
                 android:id="@+id/re1"
                 android:layout_marginLeft="@dimen/dp_15"
-                android:layout_height="50dp" />
+                android:layout_height="@dimen/dp_30" />
             <TextView
                 android:layout_width="wrap_content"
                 android:text="密码登录"
@@ -46,7 +46,7 @@
         <TextView
         android:layout_width="match_parent"
         android:text="新用户登陆后将自动创建账号"
-        android:layout_marginTop="@dimen/dp_17"
+        android:layout_marginTop="@dimen/dp_4"
         android:textSize="15sp"
         android:textColor="#333333"
         android:layout_marginLeft="@dimen/dp_35"
@@ -73,8 +73,9 @@
                 android:layout_height="@dimen/dp_30" />
         </LinearLayout>
         <View
-            android:layout_width="match_parent"
+            android:layout_width="510dp"
             android:background="#3F3F3F3F"
+            android:layout_gravity="center"
             android:layout_height="1dp"/>
         <LinearLayout
             android:layout_width="match_parent"
@@ -101,8 +102,9 @@
             android:layout_height="26dp" />
         </LinearLayout>
         <View
-            android:layout_width="match_parent"
+            android:layout_width="510dp"
             android:background="#3F3F3F3F"
+            android:layout_gravity="center"
             android:layout_height="1dp"/>
         <Button
             android:layout_width="@dimen/dp_305"
@@ -115,15 +117,7 @@
             android:layout_marginTop="@dimen/dp_57"
             android:layout_height="@dimen/dp_45" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="14dp"
-            android:layout_gravity="center"
-            android:layout_marginTop="12dp"
-            android:text="密码登录"
-            android:visibility="gone"
-            android:textColor="#010101"
-            android:textSize="@dimen/sp_11" />
+
 <RelativeLayout
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
@@ -161,8 +155,8 @@
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
-        android:visibility="gone"
         android:id="@+id/let_2"
+        android:visibility="gone"
         android:layout_height="match_parent">
         <RelativeLayout
             android:layout_width="match_parent"
@@ -189,12 +183,14 @@
             android:layout_width="wrap_content"
             android:text="密码登录"
             android:textSize="31sp"
+            android:textColor="#434343"
             android:layout_marginTop="@dimen/dp_48"
             android:layout_marginLeft="@dimen/dp_35"
             android:layout_height="wrap_content" />
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_marginTop="@dimen/dp_98"
+
             android:layout_height="wrap_content">
             <TextView
                 android:layout_width="wrap_content"
@@ -208,12 +204,13 @@
                 android:hint="请输入手机号码"
                 android:id="@+id/et_phone"
                 android:inputType="phone"
-                android:layout_marginLeft="@dimen/dp_5"
+
                 android:background="@android:color/transparent"
                 android:layout_height="wrap_content" />
         </LinearLayout>
         <View
-            android:layout_width="match_parent"
+            android:layout_width="@dimen/dp_300"
+            android:layout_gravity="center"
             android:background="#3F3F3F"
             android:layout_marginTop="@dimen/dp_1"
             android:layout_height="@dimen/dp_1"/>
@@ -227,14 +224,12 @@
                 android:hint="请输入密码"
                 android:inputType="textPassword"
                 android:id="@+id/pwd"
-                android:nextFocusLeft="@dimen/dp_38"
-                android:textSelectHandleLeft="@dimen/dp_38"
-                android:layout_marginLeft="@dimen/dp_5"
                 android:background="@android:color/transparent"
                 android:layout_height="wrap_content" />
         </LinearLayout>
         <View
-            android:layout_width="match_parent"
+            android:layout_width="@dimen/dp_300"
+            android:layout_gravity="center"
             android:background="#3F3F3F"
             android:layout_marginTop="@dimen/dp_1"
             android:layout_height="@dimen/dp_1"/>
@@ -248,13 +243,37 @@
             android:layout_gravity="center"
             android:background="@drawable/fillet4"
             android:layout_height="@dimen/dp_45" />
-        <TextView
+        <LinearLayout
             android:layout_width="wrap_content"
-            android:text="忘记密码?"
-            android:id="@+id/et_Forget_the_password"
             android:layout_gravity="center"
-            android:layout_marginTop="@dimen/dp_12"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_width="wrap_content"
+                android:text="注册或登录即表示您已同意"
+                android:id="@+id/et_Forget_the_password"
+                android:gravity="center_horizontal"
+                android:layout_marginTop="@dimen/dp_21"
+                android:textSize="@dimen/sp_14"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:text="《用户协议》"
+
+                android:layout_marginTop="@dimen/dp_21"
+                android:textSize="@dimen/sp_14"
+                android:textColor="#FF4747"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:text="《隐私政策》"
+
+                android:layout_marginTop="@dimen/dp_21"
+                android:textSize="@dimen/sp_14"
+                android:textColor="#FF4747"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+
+
     </LinearLayout>
 
 </LinearLayout>

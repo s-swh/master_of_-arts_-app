@@ -2,9 +2,11 @@ package com.wd.master_of_arts_app.fragment;
 
 import android.content.Intent;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 
 import com.wd.master_of_arts_app.R;
+import com.wd.master_of_arts_app.activity.PersonalDataActivity;
 import com.wd.master_of_arts_app.activity.myactivity.Customer_Service_Center;
 import com.wd.master_of_arts_app.activity.myactivity.Express_Inquiry;
 import com.wd.master_of_arts_app.activity.myactivity.Harvest_Address;
@@ -43,6 +45,7 @@ public class My_page extends BaseFragment implements View.OnClickListener {
     RelativeLayout notice;
 
     RelativeLayout setup;
+    private ImageView iv;
 
     @Override
     protected int getLayoutId() {
@@ -65,6 +68,7 @@ public class My_page extends BaseFragment implements View.OnClickListener {
         customerServiceCenter = view.findViewById(R.id.customer_service_center);
         notice = view.findViewById(R.id.notice);
         setup = view.findViewById(R.id.setup);
+        iv = view.findViewById(R.id.my_image);
     }
 
     @Override
@@ -78,6 +82,7 @@ public class My_page extends BaseFragment implements View.OnClickListener {
         customerServiceCenter.setOnClickListener(this);
         notice.setOnClickListener(this);
         setup.setOnClickListener(this);
+        iv.setOnClickListener(this);
     }
 
     @Override
@@ -138,6 +143,10 @@ public class My_page extends BaseFragment implements View.OnClickListener {
                 startActivity(intent);
             }
             break;
+            case R.id.my_image:{
+                Intent intent = new Intent(getActivity(), PersonalDataActivity.class);
+                startActivity(intent);
+            }break;
             default:
                 break;
         }

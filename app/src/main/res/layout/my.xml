@@ -33,6 +33,7 @@
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:layout_marginLeft="@dimen/dp_30"
+                android:id="@+id/my_image"
                 android:layout_marginTop="@dimen/dp_80"
                 android:src="@drawable/shape_point_select" />
 
@@ -121,6 +122,7 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/dp_30"
         android:layout_gravity="center"
+        android:visibility="gone"
         android:id="@+id/my_continuation"
         android:layout_marginTop="@dimen/dp_5"
         android:background="@drawable/fillet"
@@ -178,6 +180,7 @@
         android:layout_height="@dimen/dp_30"
         android:layout_gravity="center"
         android:id="@+id/express_inquiry"
+        android:visibility="gone"
         android:layout_marginTop="@dimen/dp_5"
         android:background="@drawable/fillet"
         android:gravity="center"
@@ -207,6 +210,7 @@
         android:layout_gravity="center"
         android:id="@+id/harvest_address"
         android:layout_marginTop="@dimen/dp_5"
+        android:visibility="gone"
         android:background="@drawable/fillet"
         android:gravity="center"
         android:orientation="horizontal">
@@ -234,6 +238,7 @@
         android:layout_height="@dimen/dp_30"
         android:layout_gravity="center"
         android:id="@+id/customer_service_center"
+        android:visibility="gone"
         android:layout_marginTop="@dimen/dp_5"
         android:background="@drawable/fillet"
         android:gravity="center"
@@ -263,6 +268,7 @@
         android:layout_gravity="center"
         android:layout_marginTop="@dimen/dp_5"
         android:id="@+id/notice"
+        android:visibility="gone"
         android:background="@drawable/fillet"
         android:gravity="center"
         android:orientation="horizontal">

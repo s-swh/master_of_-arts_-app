@@ -1,5 +1,6 @@
 package com.wd.master_of_arts_app.activity;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Build;
@@ -28,10 +29,13 @@ import androidx.viewpager.widget.ViewPager;
 import com.bumptech.glide.Glide;
 import com.google.android.material.tabs.TabLayout;
 import com.google.gson.Gson;
+import com.google.gson.JsonArray;
 import com.wd.master_of_arts_app.R;
 import com.wd.master_of_arts_app.base.BaseActivity;
 import com.wd.master_of_arts_app.base.BasePreantert;
+import com.wd.master_of_arts_app.bean.EditBean;
 import com.wd.master_of_arts_app.bean.QiNiuYun;
+import com.wd.master_of_arts_app.bean.TakePhotosAndComment;
 import com.wd.master_of_arts_app.bean.UploadWorks;
 import com.wd.master_of_arts_app.fragment.releasefragment.Voice;
 import com.wd.master_of_arts_app.fragment.releasefragment.Written_Words;
@@ -42,6 +46,9 @@ import com.wd.master_of_arts_app.wechatpictures.PhotoPreviewActivity;
 import com.wd.master_of_arts_app.wechatpictures.PhotoPreviewIntent;
 import com.wd.master_of_arts_app.wechatpictures.SelectModel;
 
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 import org.json.JSONArray;
 
 import java.io.File;
@@ -58,13 +65,13 @@ import okhttp3.MediaType;
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
 
-public class Publishing_works_Activity extends BaseActivity   {
-
+public class Publishing_works_Activity extends BaseActivity {
+    private String key;
     private String path;
     private TabLayout tb;
     private ViewPager vp;
-    private List<Fragment> fragmentList=new ArrayList<>();
-    private List<String> tbs=new ArrayList<>();
+    private List<Fragment> fragmentList = new ArrayList<>();
+    private List<String> tbs = new ArrayList<>();
     private Intent intent;
     private static final int REQUEST_CAMERA_CODE = 10;
     private static final int REQUEST_PREVIEW_CODE = 20;
@@ -74,8 +81,16 @@ public class Publishing_works_Activity extends BaseActivity   {
     private GridAdapter gridAdapter;
     private TextView tv_click;
     private EditText textView;
-    private String TAG =MainActivity.class.getSimpleName();
+    private String TAG = MainActivity.class.getSimpleName();
+    private MultipartBody.Part body;
 
+    private EditText et_user;
+    public String edit;
+
+    private String string;
+
+    private String[] str;
+    private String s2;
 
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN_MR2)
     @Override
@@ -83,19 +98,20 @@ public class Publishing_works_Activity extends BaseActivity   {
 
         return R.layout.activity_publishing_works;
     }
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if(resultCode == RESULT_OK) {
+        if (resultCode == RESULT_OK) {
             switch (requestCode) {
                 // 选择照片
                 case REQUEST_CAMERA_CODE:
                     ArrayList<String> list = data.getStringArrayListExtra(PhotoPickerActivity.EXTRA_RESULT);
-                    Log.d(TAG, "数量："+list.size());
+                    Log.d(TAG, "数量：" + list.size());
                     loadAdpater(list);
                     for (int i = 0; i < list.size(); i++) {
                         String s = list.get(i);
-                        Log.e("xxx",s);
+                        Log.e("xxx", s);
                     }
                     break;
                 // 预览
@@ -103,24 +119,26 @@ public class Publishing_works_Activity extends BaseActivity   {
                     ArrayList<String> ListExtra = data.getStringArrayListExtra(PhotoPreviewActivity.EXTRA_RESULT);
                     loadAdpater(ListExtra);
                     break;
-                    default:break;
+                default:
+                    break;
             }
         }
     }
-    private void loadAdpater(ArrayList<String> paths){
-        if (imagePaths!=null&& imagePaths.size()>0){
+
+    private void loadAdpater(ArrayList<String> paths) {
+        if (imagePaths != null && imagePaths.size() > 0) {
             imagePaths.clear();
         }
-        if (paths.contains("paizhao")){
+        if (paths.contains("paizhao")) {
             paths.remove("paizhao");
         }
         paths.add("paizhao");
         imagePaths.addAll(paths);
-        gridAdapter  = new GridAdapter(imagePaths);
+        gridAdapter = new GridAdapter(imagePaths);
         gridView.setAdapter(gridAdapter);
-        try{
+        try {
             JSONArray obj = new JSONArray(imagePaths);
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
@@ -132,16 +150,17 @@ public class Publishing_works_Activity extends BaseActivity   {
 
         public GridAdapter(ArrayList<String> listUrls) {
             this.listUrls = listUrls;
-            if(listUrls.size() == 7){
-                listUrls.remove(listUrls.size()-1);
+            if (listUrls.size() == 7) {
+                listUrls.remove(listUrls.size() - 1);
             }
             inflater = LayoutInflater.from(Publishing_works_Activity.this);
         }
 
         @Override
-        public int getCount(){
-            return  listUrls.size();
+        public int getCount() {
+            return listUrls.size();
         }
+
         @Override
         public String getItem(int position) {
             return listUrls.get(position);
@@ -157,21 +176,21 @@ public class Publishing_works_Activity extends BaseActivity   {
             ViewHolder holder = null;
             if (convertView == null) {
                 holder = new ViewHolder();
-                convertView = inflater.inflate(R.layout.item, parent,false);
+                convertView = inflater.inflate(R.layout.item, parent, false);
                 holder.image = (ImageView) convertView.findViewById(R.id.imageView);
                 convertView.setTag(holder);
 
 
             } else {
-                holder = (ViewHolder)convertView.getTag();
+                holder = (ViewHolder) convertView.getTag();
             }
 
             path = listUrls.get(position);
 
 
-            if (path.equals("paizhao")){
+            if (path.equals("paizhao")) {
                 holder.image.setImageResource(R.mipmap.find_add_img);
-            }else {
+            } else {
                 Glide.with(Publishing_works_Activity.this)
                         .load(path)
                         .placeholder(R.mipmap.default_error)
@@ -182,10 +201,12 @@ public class Publishing_works_Activity extends BaseActivity   {
             }
             return convertView;
         }
+
         class ViewHolder {
             ImageView image;
         }
     }
+
     @Override
     protected BasePreantert initModel() {
         return null;
@@ -196,7 +217,7 @@ public class Publishing_works_Activity extends BaseActivity   {
 
         tb = findViewById(R.id.tb);
         vp = findViewById(R.id.vp);
-
+        et_user = findViewById(R.id.et_username);
         Voice voice = new Voice();
         Written_Words written_words = new Written_Words();
         fragmentList.add(voice);
@@ -210,10 +231,12 @@ public class Publishing_works_Activity extends BaseActivity   {
         vp.setAdapter(myViewPager);
         vp.setOffscreenPageLimit(1);
     }
+
     @OnClick(R.id.oncDestruction)
-    public void onDestrution(){
+    public void onDestrution() {
         finish();
     }
+
     @Override
     protected void initData() {
         gridView = (GridView) findViewById(R.id.gridView);
@@ -227,7 +250,7 @@ public class Publishing_works_Activity extends BaseActivity   {
 
 
                 String imgs = (String) parent.getItemAtPosition(position);
-                if ("paizhao".equals(imgs) ){
+                if ("paizhao".equals(imgs)) {
                     PhotoPickerIntent intent = new PhotoPickerIntent(Publishing_works_Activity.this);
                     intent.setSelectModel(SelectModel.MULTI);
                     intent.setShowCarema(true); // 是否显示拍照
@@ -235,53 +258,10 @@ public class Publishing_works_Activity extends BaseActivity   {
                     intent.setSelectedPaths(imagePaths); // 已选中的照片地址， 用于回显选中状态
                     startActivityForResult(intent, REQUEST_CAMERA_CODE);
 
-                    Handler handler=new Handler(){
-                        @Override
-                        public void handleMessage(@NonNull Message msg) {
-                            super.handleMessage(msg);
-                            RequestBody funName = RequestBody.create(null, "ict_uploadpicture");
-                            RequestBody path1 = RequestBody.create(null, "/uploadNews");
-                            String pat = path;
-                            File file = new File(path);
-                            RequestBody appfile = RequestBody.create(null, pat);
-                            RequestBody requestFile = RequestBody.create(MediaType.parse("image/jpeg"), file);
-                            MultipartBody.Part body = MultipartBody.Part.createFormData("file", pat, requestFile);
-                            NetUtils.getInstance().getApi().getQny(funName,path1,appfile,body)
-                                    .subscribeOn(Schedulers.io())
-                                    .observeOn(AndroidSchedulers.mainThread())
-                                    .subscribe(new Observer<QiNiuYun>() {
-                                        @Override
-                                        public void onSubscribe(Disposable d) {
 
-                                        }
+                } else {
 
-                                        @Override
-                                        public void onNext(QiNiuYun qiNiuYun) {
-                                            String msg = qiNiuYun.getMsg();
-                                            Toast.makeText(Publishing_works_Activity.this, msg, Toast.LENGTH_SHORT).show();
-                                            QiNiuYun.DataBean data = qiNiuYun.getData();
-                                            String key = data.getKey();
-                                            Log.i("ddddd",key);
-                                        }
-
-                                        @Override
-                                        public void onError(Throwable e) {
-                                            String message = e.getMessage();
-                                            Toast.makeText(Publishing_works_Activity.this, message, Toast.LENGTH_SHORT).show();
-                                        }
-
-                                        @Override
-                                        public void onComplete() {
-
-                                        }
-                                    });
-                        }
-                    };
-                    handler.sendEmptyMessageDelayed(1,10000);
-
-                }else{
-
-                    Toast.makeText(Publishing_works_Activity.this,"1"+position,Toast.LENGTH_SHORT).show();
+                    Toast.makeText(Publishing_works_Activity.this, "1" + position, Toast.LENGTH_SHORT).show();
                     PhotoPreviewIntent intent = new PhotoPreviewIntent(Publishing_works_Activity.this);
                     intent.setCurrentItem(position);
                     intent.setPhotoPaths(imagePaths);
@@ -292,8 +272,57 @@ public class Publishing_works_Activity extends BaseActivity   {
         imagePaths.add("paizhao");
         gridAdapter = new GridAdapter(imagePaths);
         gridView.setAdapter(gridAdapter);
+        @SuppressLint("HandlerLeak") Handler handler = new Handler() {
+
+
+            @Override
+            public void handleMessage(@NonNull Message msg) {
+                super.handleMessage(msg);
+                RequestBody funName = RequestBody.create(null, "ict_uploadpicture");
+                RequestBody path1 = RequestBody.create(null, "/uploadNews");
+                String pat = path;
+                File file = new File(path);
+                RequestBody appfile = RequestBody.create(null, pat);
+                RequestBody requestFile = RequestBody.create(MediaType.parse("image/jpeg"), file);
+                body = MultipartBody.Part.createFormData("file", pat, requestFile);
+                NetUtils.getInstance().getApi().getQny(funName, path1, appfile, body)
+                        .subscribeOn(Schedulers.io())
+                        .observeOn(AndroidSchedulers.mainThread())
+                        .subscribe(new Observer<QiNiuYun>() {
+
+
+                            @Override
+                            public void onSubscribe(Disposable d) {
+
+                            }
+
+                            @Override
+                            public void onNext(QiNiuYun qiNiuYun) {
+                                String msg = qiNiuYun.getMsg();
+                                Toast.makeText(Publishing_works_Activity.this, msg, Toast.LENGTH_SHORT).show();
+                                QiNiuYun.DataBean data = qiNiuYun.getData();
+                                key = data.getKey();
+                                str = new String[]{key};
+
+                            }
+
+                            @Override
+                            public void onError(Throwable e) {
+                                String message = e.getMessage();
+                                Toast.makeText(Publishing_works_Activity.this, message, Toast.LENGTH_SHORT).show();
+                            }
+
+                            @Override
+                            public void onComplete() {
+
+                            }
+                        });
+            }
+        };
+        handler.sendEmptyMessageDelayed(1, 5000);
 
     }
+
     class MyViewPager extends FragmentPagerAdapter {
         public MyViewPager(@NonNull FragmentManager fm) {
             super(fm);
@@ -316,11 +345,53 @@ public class Publishing_works_Activity extends BaseActivity   {
             return tbs.get(position);
         }
     }
-@OnClick(R.id.bt)
-    public void OnClick(){
 
+    @OnClick(R.id.bt)
+    public void OnClick() {
+        SharedPreferences token = getSharedPreferences("token", MODE_PRIVATE);
+        String token1 = token.getString("token", "");
+        String string = et_user.getText().toString();
+        for (int i = 0; i < str.length; i++) {
 
-}
+            SharedPreferences sp = getSharedPreferences("str", MODE_PRIVATE);
+            SharedPreferences.Editor edit = sp.edit();
+            edit.putString("im", str[i]);
+            edit.commit();
+        }
+        SharedPreferences sp = getSharedPreferences("str", MODE_PRIVATE);
+        String im = sp.getString("im", "");
+        SharedPreferences imglist = getSharedPreferences("imglist", MODE_PRIVATE);
+
+        String imglist1 = imglist.getString("imglist", "");
+
+        NetUtils.getInstance().getApi().getTakePhotos(token1, "", "", im, "")
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Observer<TakePhotosAndComment>() {
+                    @Override
+                    public void onSubscribe(Disposable d) {
+
+                    }
+
+                    @Override
+                    public void onNext(TakePhotosAndComment takePhotosAndComment) {
+                        String msg = takePhotosAndComment.getMsg();
+                        Toast.makeText(Publishing_works_Activity.this, msg, Toast.LENGTH_SHORT).show();
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        String message = e.getMessage();
+                        Toast.makeText(Publishing_works_Activity.this, message, Toast.LENGTH_SHORT).show();
+                    }
+
+                    @Override
+                    public void onComplete() {
+
+                    }
+                });
+
+    }
 
 
 }

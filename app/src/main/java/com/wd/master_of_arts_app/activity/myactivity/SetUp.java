@@ -24,6 +24,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.bigkoo.pickerview.TimePickerView;
 
@@ -98,6 +99,7 @@ public class SetUp extends BaseActivity implements View.OnClickListener, MyContr
 
     private TextView hc;
     private Button bt;
+    private RelativeLayout rv;
 
 
     @Override
@@ -131,6 +133,14 @@ public class SetUp extends BaseActivity implements View.OnClickListener, MyContr
     protected void initView() {
         bt = findViewById(R.id.signout);
         hc = findViewById(R.id.hc);
+        rv = findViewById(R.id.souhuo);
+        rv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(SetUp.this, Harvest_Address.class);
+                startActivity(intent);
+            }
+        });
         try {
             totalCacheSize = DataCleanManager.getTotalCacheSize(getApplicationContext());
         } catch (Exception e) {
@@ -159,9 +169,9 @@ public class SetUp extends BaseActivity implements View.OnClickListener, MyContr
                         .show();
             }
         });
-        vo = findViewById(R.id.Upload_Avatar);
-        RelativeLayout rc = findViewById(R.id.rc);
-        rc.setOnClickListener(new View.OnClickListener() {
+     /*    vo = findViewById(R.id.Upload_Avatar);
+       RelativeLayout rc = findViewById(R.id.rc);
+    rc.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
@@ -170,8 +180,8 @@ public class SetUp extends BaseActivity implements View.OnClickListener, MyContr
                         .selectPicture(true, 200, 200, 1, 1);
 
             }
-        });
-        tv_data = findViewById(R.id.tt_date);
+        });*/
+      /*  tv_data = findViewById(R.id.tt_date);
         tv_userName = findViewById(R.id.suser_userName);
         //默认开关为开
         SwitchButton switchButton = findViewById(R.id.ischecked);
@@ -180,10 +190,10 @@ public class SetUp extends BaseActivity implements View.OnClickListener, MyContr
             public void onClick(View view) {
                 switchButton.setChecked(true);
             }
-        });
+        });*/
     }
 
-    @Override
+   /* @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == PictureSelector.SELECT_REQUEST_CODE) {
@@ -232,7 +242,7 @@ public class SetUp extends BaseActivity implements View.OnClickListener, MyContr
                 }
             }
         }
-    }
+    }*/
 
 
     @OnClick(R.id.oncDestruction)
@@ -247,14 +257,14 @@ public class SetUp extends BaseActivity implements View.OnClickListener, MyContr
 
     }
 
-    @OnClick(R.id.date)
+    /*@OnClick(R.id.date)
     public void Data() {
         //初始化时间选择器
         initTimePicker();
         pvTime.show();//显示时间选择器
-    }
+    }*/
 
-    @OnClick(R.id.user_name)
+  /*  @OnClick(R.id.user_name)
     public void setUser() {
         View view = getLayoutInflater().inflate(R.layout.user_name, null);
         if (popupBigPhoto == null) {
@@ -272,8 +282,8 @@ public class SetUp extends BaseActivity implements View.OnClickListener, MyContr
         et = view.findViewById(R.id.et_ttName);
         cancel.setOnClickListener(this);
         determine.setOnClickListener(this);
-    }
-
+    }*/
+/*
     private void initTimePicker() {
         Calendar selectedDate = Calendar.getInstance();
         Calendar startDate = Calendar.getInstance();
@@ -304,7 +314,7 @@ public class SetUp extends BaseActivity implements View.OnClickListener, MyContr
     private String getTimes(Date date) {
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
         return format.format(date);
-    }
+    }*/
 
     @Override
     protected void initData() {

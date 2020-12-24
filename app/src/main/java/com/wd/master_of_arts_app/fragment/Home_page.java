@@ -40,17 +40,8 @@ public class Home_page extends BaseFragment implements HomePagerCrete.IVew {
 
         return new HomePreanter(this);
     }
-    @OnClick({R.id.search})
-    public void search(){
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                Intent intent = new Intent(getActivity(), Search_Activity.class);
-                startActivity(intent);
-            }
-        }).start();
 
-    }
+
     @OnClick(R.id.tt_appointment)
     public void appointment(){
         startActivity(new Intent(getActivity(), Booking_experience.class));

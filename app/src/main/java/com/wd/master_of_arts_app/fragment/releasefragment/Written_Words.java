@@ -9,6 +9,9 @@ import android.widget.TextView;
 import com.wd.master_of_arts_app.R;
 import com.wd.master_of_arts_app.base.BaseFragment;
 import com.wd.master_of_arts_app.base.BasePreantert;
+import com.wd.master_of_arts_app.bean.EditBean;
+
+import org.greenrobot.eventbus.EventBus;
 
 /**
  * @author 时文豪
@@ -17,9 +20,9 @@ import com.wd.master_of_arts_app.base.BasePreantert;
  */
 public class Written_Words extends BaseFragment {
 
-    private EditText et;
-    private int num = 500;
-    private TextView ettv;
+    public EditText et;
+    public int num = 500;
+    public TextView ettv;
 
     @Override
     protected int getLayoutId() {
@@ -35,6 +38,8 @@ public class Written_Words extends BaseFragment {
     protected void initView(View inflate) {
         et = inflate.findViewById(R.id.et_ettv);
         ettv = inflate.findViewById(R.id.tt_tv);
+        String string = ettv.getText().toString();
+        EventBus.getDefault().post(new EditBean(string));
     }
 
     @Override

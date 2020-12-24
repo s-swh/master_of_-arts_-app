@@ -1,5 +1,6 @@
 package com.wd.master_of_arts_app.utils;
 
+import com.google.gson.JsonArray;
 import com.wd.master_of_arts_app.base.RetrievePassword;
 import com.wd.master_of_arts_app.bean.AccountLogin;
 import com.wd.master_of_arts_app.bean.AgeInterface;
@@ -14,12 +15,14 @@ import com.wd.master_of_arts_app.bean.HarvestAddress;
 import com.wd.master_of_arts_app.bean.QiNiuYun;
 import com.wd.master_of_arts_app.bean.SMSLogin;
 import com.wd.master_of_arts_app.bean.SignOut;
+import com.wd.master_of_arts_app.bean.TakePhotosAndComment;
 import com.wd.master_of_arts_app.bean.UploadPictures;
 import com.wd.master_of_arts_app.bean.UploadWorks;
 import com.wd.master_of_arts_app.bean.UserInformation;
 import com.wd.master_of_arts_app.bean.ViewHarvestAddress;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -137,4 +140,9 @@ public interface Api {
     @POST("wap/User/editMsg")
     @FormUrlEncoded
     Observable<EditUserInformation>getEditUser(@Field("token")String token,@Field("nickname")String nickname,@Field("sex")int sex,@Field("birthday")String birthday,@Field("province")String province,@Field("city")String city,@Field("county")String county);
+
+    //拍照点评  http://test.54artist.com/wap/Work/add @Field("token")String token,@Field("name")String name,@Field("content")String content,
+    @POST("wap/Work/add")
+    @FormUrlEncoded
+    Observable<TakePhotosAndComment>getTakePhotos(@Field("token")String token,@Field("name")String namem,@Field("content")String content,@Field("imglist")String imglist,@Field("voicelist")String voicelist);
 }

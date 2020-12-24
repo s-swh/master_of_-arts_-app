@@ -7,17 +7,22 @@
     android:layout_height="match_parent"
     tools:context=".activity.Login_interface">
     <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="50dp">
+        android:layout_marginTop="@dimen/dp_20"
+        android:layout_width="@dimen/dp_150"
+        android:background="@drawable/fillet9"
+        android:layout_marginRight="@dimen/dp_15"
+        android:layout_alignParentRight="true"
+        android:layout_height="wrap_content">
 <TextView
     android:layout_width="wrap_content"
     android:text="点击进入"
     android:textSize="@dimen/sp_14"
-    android:textColor="#000"
+    android:textColor="#FFFFFF"
     android:id="@+id/jr"
-    android:background="@drawable/fillet9"
-    android:layout_marginRight="@dimen/dp_50"
+    android:layout_marginRight="@dimen/dp_45"
     android:layout_centerVertical="true"
+    android:layout_centerHorizontal="true"
+    android:layout_centerInParent="true"
     android:layout_alignParentRight="true"
     android:layout_height="wrap_content" />
     </RelativeLayout>
@@ -35,8 +40,9 @@
         android:layout_width="@dimen/dp_50"
         android:src="@mipmap/ico"
         android:id="@+id/iv"
-        android:layout_marginTop="@dimen/dp_50"
-        android:layout_centerVertical="true"
+
+        android:layout_marginTop="@dimen/dp_175"
+
         android:layout_centerHorizontal="true"
         android:layout_height="@dimen/dp_50" />
     <View
@@ -47,6 +53,7 @@
 </RelativeLayout>
     <RelativeLayout
         android:layout_width="match_parent"
+        android:layout_marginTop="@dimen/dp_7"
         android:layout_height="wrap_content">
         <TextView
             android:layout_width="wrap_content"
@@ -58,11 +65,11 @@
     <Button
         android:layout_width="@dimen/dp_180"
         android:text="登录/注册"
-        android:textSize="@dimen/sp_15"
+        android:textSize="@dimen/sp_13"
         android:textColor="#fff"
         android:id="@+id/bt_login"
         android:background="@drawable/fillet4"
-        android:layout_marginTop="@dimen/dp_40"
+        android:layout_marginTop="@dimen/dp_200"
         android:layout_gravity="center"
         android:layout_height="wrap_content" />
 </LinearLayout>
