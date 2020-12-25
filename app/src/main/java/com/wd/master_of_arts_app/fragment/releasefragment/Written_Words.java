@@ -9,7 +9,6 @@ import android.widget.TextView;
 import com.wd.master_of_arts_app.R;
 import com.wd.master_of_arts_app.base.BaseFragment;
 import com.wd.master_of_arts_app.base.BasePreantert;
-import com.wd.master_of_arts_app.bean.EditBean;
 
 import org.greenrobot.eventbus.EventBus;
 
@@ -39,7 +38,7 @@ public class Written_Words extends BaseFragment {
         et = inflate.findViewById(R.id.et_ettv);
         ettv = inflate.findViewById(R.id.tt_tv);
         String string = ettv.getText().toString();
-        EventBus.getDefault().post(new EditBean(string));
+
     }
 
     @Override

@@ -2,6 +2,7 @@ package com.wd.master_of_arts_app.model;
 
 import com.wd.master_of_arts_app.bean.DeleteHarvestAddress;
 import com.wd.master_of_arts_app.bean.HarvestAddress;
+import com.wd.master_of_arts_app.bean.UpdateShipping;
 import com.wd.master_of_arts_app.bean.ViewHarvestAddress;
 import com.wd.master_of_arts_app.contreater.HarvestAddressContreater;
 import com.wd.master_of_arts_app.utils.NetUtils;
@@ -93,6 +94,36 @@ public class HarvestAddressModel implements HarvestAddressContreater.IModel {
                     public void onNext(DeleteHarvestAddress deleteHarvestAddress) {
                         if(deleteHarvestCoallack!=null){
                             deleteHarvestCoallack.DeleteHarvest(deleteHarvestAddress);
+                        }
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+
+                    }
+
+                    @Override
+                    public void onComplete() {
+
+                    }
+                });
+    }
+    //修改收货地址
+    @Override
+    public void UpdateSuccess(String token, int address_id, String province, String city, String county, String detail_address, String consignee, String contact_number, String is_default, UpdataCoallack updataCoallack) {
+        NetUtils.getInstance().getApi().getUpdate(token, address_id, province, city, county, detail_address, consignee, contact_number, is_default)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Observer<UpdateShipping>() {
+                    @Override
+                    public void onSubscribe(Disposable d) {
+
+                    }
+
+                    @Override
+                    public void onNext(UpdateShipping updateShipping) {
+                        if(updataCoallack!=null){
+                            updataCoallack.Update(updateShipping);
                         }
                     }
 

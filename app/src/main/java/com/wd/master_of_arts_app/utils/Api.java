@@ -16,6 +16,7 @@ import com.wd.master_of_arts_app.bean.QiNiuYun;
 import com.wd.master_of_arts_app.bean.SMSLogin;
 import com.wd.master_of_arts_app.bean.SignOut;
 import com.wd.master_of_arts_app.bean.TakePhotosAndComment;
+import com.wd.master_of_arts_app.bean.UpdateShipping;
 import com.wd.master_of_arts_app.bean.UploadPictures;
 import com.wd.master_of_arts_app.bean.UploadWorks;
 import com.wd.master_of_arts_app.bean.UserInformation;
@@ -130,6 +131,12 @@ public interface Api {
     @POST("wap/ConsigneeAddress/del")
     @FormUrlEncoded
     Observable<DeleteHarvestAddress>getDelete(@Field("token")String token,@Field("address_id")String address_id);
+
+    //修改收货地址  http://test.54artist.com/wap/ConsigneeAddress/edit
+    @POST("wap/ConsigneeAddress/edit")
+    @FormUrlEncoded
+    Observable<UpdateShipping>getUpdate(@Field("token")String token,@Field("address_id")int address_id,@Field("province")String province,@Field("city")String city,@Field("county")String county,@Field("detail_address")String detail_address,@Field("consignee")String consignee,@Field("contact_number")String contact_number,@Field("is_default")String is_default);
+
 
     //获取用户信息接口  http://test.54artist.com/wap/User/getMsg
     @POST("wap/User/getMsg")

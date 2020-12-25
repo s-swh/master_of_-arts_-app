@@ -4,6 +4,7 @@ import com.wd.master_of_arts_app.base.BasePreantert;
 import com.wd.master_of_arts_app.base.IBaseView;
 import com.wd.master_of_arts_app.bean.DeleteHarvestAddress;
 import com.wd.master_of_arts_app.bean.HarvestAddress;
+import com.wd.master_of_arts_app.bean.UpdateShipping;
 import com.wd.master_of_arts_app.bean.ViewHarvestAddress;
 import com.wd.master_of_arts_app.contreater.HarvestAddressContreater;
 import com.wd.master_of_arts_app.model.HarvestAddressModel;
@@ -63,6 +64,20 @@ public class HarvestAddressPreanter extends BasePreantert implements HarvestAddr
                 if(iBaseView instanceof HarvestAddressContreater.IView){
                     HarvestAddressContreater.IView view= (HarvestAddressContreater.IView) iBaseView;
                     view.DeleteHarvest(deleteHarvestAddress);
+                }
+            }
+        });
+    }
+
+    @Override
+    public void UpdateSuccess(String token, int address_id, String province, String city, String county, String detail_address, String consignee, String contact_number, String is_default) {
+        harvestAddressModel.UpdateSuccess(token, address_id, province, city, county, detail_address, consignee, contact_number, is_default, new HarvestAddressContreater.IModel.UpdataCoallack() {
+            @Override
+            public void Update(UpdateShipping updateShipping) {
+                IBaseView iBaseView = getView();
+                if(iBaseView instanceof HarvestAddressContreater.IView){
+                    HarvestAddressContreater.IView view= (HarvestAddressContreater.IView) iBaseView;
+                    view.Update(updateShipping);
                 }
             }
         });

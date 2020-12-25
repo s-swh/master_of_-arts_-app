@@ -53,7 +53,7 @@ public class HarvestAddressAdapter extends RecyclerView.Adapter<RecyclerView.Vie
         ((HarvestViewHorder)holder).lt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                cliack1.onclick(id);
+                cliack1.onclick(list.get(position));
             }
         });
     }
@@ -66,7 +66,7 @@ public class HarvestAddressAdapter extends RecyclerView.Adapter<RecyclerView.Vie
         cliack1 = cliack;
     }
     public interface OnCliack{
-        void onclick(int id);
+        void onclick(ViewHarvestAddress.DataBean.ListBean listBean);
     }
     class HarvestViewHorder extends RecyclerView.ViewHolder {
 

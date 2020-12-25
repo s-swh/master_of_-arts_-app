@@ -28,15 +28,11 @@ import androidx.viewpager.widget.ViewPager;
 
 import com.bumptech.glide.Glide;
 import com.google.android.material.tabs.TabLayout;
-import com.google.gson.Gson;
-import com.google.gson.JsonArray;
 import com.wd.master_of_arts_app.R;
 import com.wd.master_of_arts_app.base.BaseActivity;
 import com.wd.master_of_arts_app.base.BasePreantert;
-import com.wd.master_of_arts_app.bean.EditBean;
 import com.wd.master_of_arts_app.bean.QiNiuYun;
 import com.wd.master_of_arts_app.bean.TakePhotosAndComment;
-import com.wd.master_of_arts_app.bean.UploadWorks;
 import com.wd.master_of_arts_app.fragment.releasefragment.Voice;
 import com.wd.master_of_arts_app.fragment.releasefragment.Written_Words;
 import com.wd.master_of_arts_app.utils.NetUtils;
@@ -46,14 +42,10 @@ import com.wd.master_of_arts_app.wechatpictures.PhotoPreviewActivity;
 import com.wd.master_of_arts_app.wechatpictures.PhotoPreviewIntent;
 import com.wd.master_of_arts_app.wechatpictures.SelectModel;
 
-import org.greenrobot.eventbus.EventBus;
-import org.greenrobot.eventbus.Subscribe;
-import org.greenrobot.eventbus.ThreadMode;
 import org.json.JSONArray;
 
 import java.io.File;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 import butterknife.OnClick;

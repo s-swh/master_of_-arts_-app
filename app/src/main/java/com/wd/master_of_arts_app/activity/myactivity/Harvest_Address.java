@@ -12,11 +12,13 @@ import android.widget.Toast;
 
 import com.wd.master_of_arts_app.R;
 import com.wd.master_of_arts_app.activity.Add_Address;
+import com.wd.master_of_arts_app.activity.EditShippingAddress;
 import com.wd.master_of_arts_app.adapter.HarvestAddressAdapter;
 import com.wd.master_of_arts_app.base.BaseActivity;
 import com.wd.master_of_arts_app.base.BasePreantert;
 import com.wd.master_of_arts_app.bean.DeleteHarvestAddress;
 import com.wd.master_of_arts_app.bean.HarvestAddress;
+import com.wd.master_of_arts_app.bean.UpdateShipping;
 import com.wd.master_of_arts_app.bean.ViewHarvestAddress;
 import com.wd.master_of_arts_app.contreater.HarvestAddressContreater;
 import com.wd.master_of_arts_app.preanter.HarvestAddressPreanter;
@@ -96,14 +98,39 @@ public class Harvest_Address extends BaseActivity implements HarvestAddressContr
         rv.setAdapter(harvestAddressAdapter);
         harvestAddressAdapter.onclick(new HarvestAddressAdapter.OnCliack() {
             @Override
-            public void onclick(int id) {
-                Toast.makeText(Harvest_Address.this, id+"", Toast.LENGTH_SHORT).show();
+            public void onclick(ViewHarvestAddress.DataBean.ListBean listBean) {
+                int id1c = listBean.getId();
+                String province = listBean.getProvince();
+                String city = listBean.getCity();
+                String county = listBean.getCounty();
+                String detail_address = listBean.getDetail_address();
+                String consignee = listBean.getConsignee();
+                String contact_number = listBean.getContact_number();
+                String is_default = listBean.getIs_default();
+                Toast.makeText(Harvest_Address.this, id1c+"", Toast.LENGTH_SHORT).show();
+
+                Intent intent = new Intent(Harvest_Address.this, EditShippingAddress.class);
+                intent.putExtra("idc1",id1c);
+                intent.putExtra("province",province);
+                intent.putExtra("city",city);
+                intent.putExtra("county",county);
+                intent.putExtra("detail_address",detail_address);
+                intent.putExtra("consignee",consignee);
+                intent.putExtra("contact_number",contact_number);
+                intent.putExtra("is_default",is_default);
+                startActivity(intent);
+
             }
         });
     }
     //删除地址
     @Override
     public void DeleteHarvest(DeleteHarvestAddress deleteHarvestAddress) {
+
+    }
+    //修改收货地址
+    @Override
+    public void Update(UpdateShipping updateShipping) {
 
     }
 }
