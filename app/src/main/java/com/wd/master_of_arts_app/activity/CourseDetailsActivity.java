@@ -243,7 +243,6 @@ public class CourseDetailsActivity extends BaseActivity implements CourseContrea
     // 立即报名
     public void Signupnow(View view){
         Intent intent = new Intent(getApplicationContext(), SignUpNow.class);
-
         startActivity(intent);
     }
 }

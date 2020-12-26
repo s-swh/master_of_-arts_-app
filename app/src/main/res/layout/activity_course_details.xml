@@ -215,6 +215,7 @@
             <Button
                 android:layout_width="@dimen/dp_192"
                 android:text="立即报名"
+
                 android:background="@drawable/upnow"
                 android:textSize="@dimen/sp_12"
                 android:textColor="#ffffff"

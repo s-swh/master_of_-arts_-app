@@ -6,6 +6,7 @@ import android.content.SharedPreferences;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
@@ -24,13 +25,17 @@ import com.wd.master_of_arts_app.activity.myactivity.SetUp;
 import com.wd.master_of_arts_app.base.App;
 import com.wd.master_of_arts_app.base.BaseFragment;
 import com.wd.master_of_arts_app.base.BasePreantert;
+import com.wd.master_of_arts_app.bean.EditUser;
 import com.wd.master_of_arts_app.bean.EditUserInformation;
 import com.wd.master_of_arts_app.bean.Image;
+import com.wd.master_of_arts_app.bean.User;
 import com.wd.master_of_arts_app.bean.UserInformation;
 import com.wd.master_of_arts_app.contreater.UserInformationConreater;
 import com.wd.master_of_arts_app.preanter.UserInformartionPreanter;
 
 import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 import butterknife.BindView;
 
@@ -60,6 +65,7 @@ public class My_page extends BaseFragment implements View.OnClickListener, UserI
     RelativeLayout setup;
     private ImageView iv;
     private String avatar;
+    private TextView name1, aage;
 
     @Override
     protected int getLayoutId() {
@@ -83,6 +89,11 @@ public class My_page extends BaseFragment implements View.OnClickListener, UserI
         notice = view.findViewById(R.id.notice);
         setup = view.findViewById(R.id.setup);
         iv = view.findViewById(R.id.my_image);
+        name1 = view.findViewById(R.id.my_name);
+        aage = view.findViewById(R.id.my_age);
+        if (!EventBus.getDefault().isRegistered(this)) {
+            EventBus.getDefault().register(this);
+        }
     }
 
     @Override
@@ -98,7 +109,7 @@ public class My_page extends BaseFragment implements View.OnClickListener, UserI
         setup.setOnClickListener(this);
         iv.setOnClickListener(this);
         BasePreantert basePreantert = getmPreanter();
-        if(basePreantert instanceof UserInformationConreater.IPreanter){
+        if (basePreantert instanceof UserInformationConreater.IPreanter) {
             SharedPreferences token = App.getContext().getSharedPreferences("token", Context.MODE_PRIVATE);
             String token1 = token.getString("token", "");
             ((UserInformationConreater.IPreanter) basePreantert).OnUserSuccess(token1);
@@ -164,25 +175,46 @@ public class My_page extends BaseFragment implements View.OnClickListener, UserI
                 startActivity(intent);
             }
             break;
-            case R.id.my_image:{
+            case R.id.my_image: {
                 Intent intent = new Intent(getActivity(), PersonalDataActivity.class);
-               // intent.putExtra("image",avatar);
+
                 startActivity(intent);
-            }break;
+            }
+            break;
             default:
                 break;
         }
     }
-    //
+
+    @Subscribe(threadMode = ThreadMode.MAIN, sticky = true)
+    public void setUser(EditUser editUser) {
+        String name = editUser.getName();
+        name1.setText(name);
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        initData();
+    }
+
     @Override
     public void OnUserInfor(UserInformation userInformation) {
         UserInformation.DataBean data = userInformation.getData();
         UserInformation.DataBean.UserDetailBean user_detail = data.getUser_detail();
         avatar = user_detail.getAvatar();
         Glide.with(getActivity()).load(avatar).apply(RequestOptions.bitmapTransform(new RoundedCorners(50))).error(R.mipmap.ic_launcher_round).into(iv);
-
-
         EventBus.getDefault().postSticky(new Image(avatar));
+        String nickname = user_detail.getNickname();
+        name1.setText(nickname + "");
+        String birthday = user_detail.getBirthday();
+        int age = user_detail.getAge();
+        aage.setText(age + "");
+        int sex = user_detail.getSex();
+        String detail_address = user_detail.getDetail_address();
+
+        EventBus.getDefault().postSticky(new User(nickname, birthday, sex, detail_address));
+
     }
 
     @Override

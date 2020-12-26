@@ -10,7 +10,7 @@ public class UserInformation {
     /**
      * code : 1
      * msg : 成功
-     * data : {"user_msg":{"uid":54,"group_id":1,"group_name":"普通会员","username":null,"phone":"18803652019","email":null,"balance":"0.00","point":0,"exp":0,"expiration_date":"","auth_code":"978256","is_share_vip":"N","is_complete_info":"N","referrer_id":null,"star":0,"r_nickname":""},"user_detail":{"id":54,"user_id":54,"nickname":null,"avatar":"http://test.54artist.com/public/upload/user/avatar/20201219/454be4a20f179bf28a59fc2a681b2884.jpg","truename":null,"sex":0,"height":null,"weight":null,"blood":0,"birthday":null,"qq":null,"weixin":null,"province":null,"city":null,"county":null,"detail_address":null,"signature":null}}
+     * data : {"user_msg":{"uid":54,"group_id":1,"group_name":"普通会员","username":null,"phone":"18803652019","email":null,"balance":"0.00","point":0,"exp":0,"expiration_date":"","auth_code":"978256","is_share_vip":"N","is_complete_info":"N","referrer_id":null,"star":0,"r_nickname":""},"user_detail":{"id":54,"user_id":54,"nickname":"西柚过","avatar":"http://test.54artist.com/public/upload/user/avatar/20201224/672afd45124358c6abac0181a127720c.jpg","truename":null,"sex":1,"height":null,"weight":null,"blood":null,"birthday":"2020-12-26","qq":null,"weixin":null,"province":null,"city":null,"county":null,"detail_address":null,"signature":null,"age":0}}
      */
 
     private int code;
@@ -44,7 +44,7 @@ public class UserInformation {
     public static class DataBean {
         /**
          * user_msg : {"uid":54,"group_id":1,"group_name":"普通会员","username":null,"phone":"18803652019","email":null,"balance":"0.00","point":0,"exp":0,"expiration_date":"","auth_code":"978256","is_share_vip":"N","is_complete_info":"N","referrer_id":null,"star":0,"r_nickname":""}
-         * user_detail : {"id":54,"user_id":54,"nickname":null,"avatar":"http://test.54artist.com/public/upload/user/avatar/20201219/454be4a20f179bf28a59fc2a681b2884.jpg","truename":null,"sex":0,"height":null,"weight":null,"blood":0,"birthday":null,"qq":null,"weixin":null,"province":null,"city":null,"county":null,"detail_address":null,"signature":null}
+         * user_detail : {"id":54,"user_id":54,"nickname":"西柚过","avatar":"http://test.54artist.com/public/upload/user/avatar/20201224/672afd45124358c6abac0181a127720c.jpg","truename":null,"sex":1,"height":null,"weight":null,"blood":null,"birthday":"2020-12-26","qq":null,"weixin":null,"province":null,"city":null,"county":null,"detail_address":null,"signature":null,"age":0}
          */
 
         private UserMsgBean user_msg;
@@ -127,7 +127,7 @@ public class UserInformation {
                 this.group_name = group_name;
             }
 
-            public Object getUsername() {
+            public String getUsername() {
                 return username;
             }
 
@@ -143,7 +143,7 @@ public class UserInformation {
                 this.phone = phone;
             }
 
-            public Object getEmail() {
+            public String getEmail() {
                 return email;
             }
 
@@ -207,7 +207,7 @@ public class UserInformation {
                 this.is_complete_info = is_complete_info;
             }
 
-            public Object getReferrer_id() {
+            public String getReferrer_id() {
                 return referrer_id;
             }
 
@@ -236,14 +236,14 @@ public class UserInformation {
             /**
              * id : 54
              * user_id : 54
-             * nickname : null
-             * avatar : http://test.54artist.com/public/upload/user/avatar/20201219/454be4a20f179bf28a59fc2a681b2884.jpg
+             * nickname : 西柚过
+             * avatar : http://test.54artist.com/public/upload/user/avatar/20201224/672afd45124358c6abac0181a127720c.jpg
              * truename : null
-             * sex : 0
+             * sex : 1
              * height : null
              * weight : null
-             * blood : 0
-             * birthday : null
+             * blood : null
+             * birthday : 2020-12-26
              * qq : null
              * weixin : null
              * province : null
@@ -251,25 +251,27 @@ public class UserInformation {
              * county : null
              * detail_address : null
              * signature : null
+             * age : 0
              */
 
             private int id;
             private int user_id;
-            private Object nickname;
+            private String nickname;
             private String avatar;
-            private Object truename;
+            private String truename;
             private int sex;
-            private Object height;
-            private Object weight;
-            private int blood;
-            private Object birthday;
-            private Object qq;
-            private Object weixin;
-            private Object province;
-            private Object city;
-            private Object county;
-            private Object detail_address;
-            private Object signature;
+            private String height;
+            private String weight;
+            private String blood;
+            private String birthday;
+            private String qq;
+            private String weixin;
+            private String province;
+            private String city;
+            private String county;
+            private String detail_address;
+            private String signature;
+            private int age;
 
             public int getId() {
                 return id;
@@ -287,11 +289,11 @@ public class UserInformation {
                 this.user_id = user_id;
             }
 
-            public Object getNickname() {
+            public String getNickname() {
                 return nickname;
             }
 
-            public void setNickname(Object nickname) {
+            public void setNickname(String nickname) {
                 this.nickname = nickname;
             }
 
@@ -303,11 +305,11 @@ public class UserInformation {
                 this.avatar = avatar;
             }
 
-            public Object getTruename() {
+            public String getTruename() {
                 return truename;
             }
 
-            public void setTruename(Object truename) {
+            public void setTruename(String truename) {
                 this.truename = truename;
             }
 
@@ -319,92 +321,100 @@ public class UserInformation {
                 this.sex = sex;
             }
 
-            public Object getHeight() {
+            public String getHeight() {
                 return height;
             }
 
-            public void setHeight(Object height) {
+            public void setHeight(String height) {
                 this.height = height;
             }
 
-            public Object getWeight() {
+            public String getWeight() {
                 return weight;
             }
 
-            public void setWeight(Object weight) {
+            public void setWeight(String weight) {
                 this.weight = weight;
             }
 
-            public int getBlood() {
+            public String getBlood() {
                 return blood;
             }
 
-            public void setBlood(int blood) {
+            public void setBlood(String blood) {
                 this.blood = blood;
             }
 
-            public Object getBirthday() {
+            public String getBirthday() {
                 return birthday;
             }
 
-            public void setBirthday(Object birthday) {
+            public void setBirthday(String birthday) {
                 this.birthday = birthday;
             }
 
-            public Object getQq() {
+            public String getQq() {
                 return qq;
             }
 
-            public void setQq(Object qq) {
+            public void setQq(String qq) {
                 this.qq = qq;
             }
 
-            public Object getWeixin() {
+            public String getWeixin() {
                 return weixin;
             }
 
-            public void setWeixin(Object weixin) {
+            public void setWeixin(String weixin) {
                 this.weixin = weixin;
             }
 
-            public Object getProvince() {
+            public String getProvince() {
                 return province;
             }
 
-            public void setProvince(Object province) {
+            public void setProvince(String province) {
                 this.province = province;
             }
 
-            public Object getCity() {
+            public String getCity() {
                 return city;
             }
 
-            public void setCity(Object city) {
+            public void setCity(String city) {
                 this.city = city;
             }
 
-            public Object getCounty() {
+            public String getCounty() {
                 return county;
             }
 
-            public void setCounty(Object county) {
+            public void setCounty(String county) {
                 this.county = county;
             }
 
-            public Object getDetail_address() {
+            public String getDetail_address() {
                 return detail_address;
             }
 
-            public void setDetail_address(Object detail_address) {
+            public void setDetail_address(String detail_address) {
                 this.detail_address = detail_address;
             }
 
-            public Object getSignature() {
+            public String getSignature() {
                 return signature;
             }
 
-            public void setSignature(Object signature) {
+            public void setSignature(String signature) {
                 this.signature = signature;
+            }
+
+            public int getAge() {
+                return age;
+            }
+
+            public void setAge(int age) {
+                this.age = age;
             }
         }
     }

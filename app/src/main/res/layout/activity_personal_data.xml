@@ -47,9 +47,11 @@
             android:text="姓名:"
             android:layout_marginLeft="@dimen/dp_49"
             android:layout_height="wrap_content" />
-        <TextView
-            android:layout_width="wrap_content"
+        <EditText
+            android:layout_width="match_parent"
             android:text="西柚"
+            android:id="@+id/up_name"
+            android:background="@android:color/transparent"
             android:layout_marginLeft="@dimen/dp_5"
             android:layout_height="wrap_content" />
     </LinearLayout>
@@ -73,12 +75,13 @@
             <RadioButton
                 android:layout_width="wrap_content"
                 android:text="男"
-                android:id="@+id/rd"
+                android:id="@+id/nan"
                 android:checked="true"
                 android:layout_height="wrap_content" />
             <RadioButton
                 android:layout_width="wrap_content"
                 android:text="女"
+                android:id="@+id/nv"
                 android:layout_height="wrap_content" />
         </RadioGroup>
     </LinearLayout>
@@ -118,6 +121,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:text="江苏南京"
+            android:id="@+id/Address"
             android:layout_height="wrap_content" />
     </LinearLayout>
     <View
@@ -127,6 +131,7 @@
     <Button
         android:layout_width="@dimen/dp_150"
         android:text="确认修改"
+        android:id="@+id/upde"
         android:layout_gravity="center"
         android:layout_marginTop="@dimen/dp_69"
         android:layout_height="wrap_content" />
