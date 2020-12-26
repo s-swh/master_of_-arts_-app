@@ -89,9 +89,9 @@ public class UserInformation {
             private int uid;
             private int group_id;
             private String group_name;
-            private Object username;
+            private String username;
             private String phone;
-            private Object email;
+            private String email;
             private String balance;
             private int point;
             private int exp;
@@ -99,7 +99,7 @@ public class UserInformation {
             private String auth_code;
             private String is_share_vip;
             private String is_complete_info;
-            private Object referrer_id;
+            private String referrer_id;
             private int star;
             private String r_nickname;
 
@@ -131,7 +131,7 @@ public class UserInformation {
                 return username;
             }
 
-            public void setUsername(Object username) {
+            public void setUsername(String username) {
                 this.username = username;
             }
 
@@ -147,7 +147,7 @@ public class UserInformation {
                 return email;
             }
 
-            public void setEmail(Object email) {
+            public void setEmail(String email) {
                 this.email = email;
             }
 
@@ -211,7 +211,7 @@ public class UserInformation {
                 return referrer_id;
             }
 
-            public void setReferrer_id(Object referrer_id) {
+            public void setReferrer_id(String referrer_id) {
                 this.referrer_id = referrer_id;
             }
 

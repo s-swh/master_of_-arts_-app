@@ -1,10 +1,15 @@
 package com.wd.master_of_arts_app.fragment;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
+import com.bumptech.glide.request.RequestOptions;
 import com.wd.master_of_arts_app.R;
 import com.wd.master_of_arts_app.activity.PersonalDataActivity;
 import com.wd.master_of_arts_app.activity.myactivity.Customer_Service_Center;
@@ -16,8 +21,16 @@ import com.wd.master_of_arts_app.activity.myactivity.My_Course;
 import com.wd.master_of_arts_app.activity.myactivity.My_order;
 import com.wd.master_of_arts_app.activity.myactivity.Notice;
 import com.wd.master_of_arts_app.activity.myactivity.SetUp;
+import com.wd.master_of_arts_app.base.App;
 import com.wd.master_of_arts_app.base.BaseFragment;
 import com.wd.master_of_arts_app.base.BasePreantert;
+import com.wd.master_of_arts_app.bean.EditUserInformation;
+import com.wd.master_of_arts_app.bean.Image;
+import com.wd.master_of_arts_app.bean.UserInformation;
+import com.wd.master_of_arts_app.contreater.UserInformationConreater;
+import com.wd.master_of_arts_app.preanter.UserInformartionPreanter;
+
+import org.greenrobot.eventbus.EventBus;
 
 import butterknife.BindView;
 
@@ -26,7 +39,7 @@ import butterknife.BindView;
  * @description:我的界面
  * @date :2020/12/3 11:06
  */
-public class My_page extends BaseFragment implements View.OnClickListener {
+public class My_page extends BaseFragment implements View.OnClickListener, UserInformationConreater.IView {
 
     RelativeLayout myOrder;
 
@@ -46,6 +59,7 @@ public class My_page extends BaseFragment implements View.OnClickListener {
 
     RelativeLayout setup;
     private ImageView iv;
+    private String avatar;
 
     @Override
     protected int getLayoutId() {
@@ -54,7 +68,7 @@ public class My_page extends BaseFragment implements View.OnClickListener {
 
     @Override
     protected BasePreantert initPreantert() {
-        return null;
+        return new UserInformartionPreanter(this);
     }
 
     @Override
@@ -83,6 +97,13 @@ public class My_page extends BaseFragment implements View.OnClickListener {
         notice.setOnClickListener(this);
         setup.setOnClickListener(this);
         iv.setOnClickListener(this);
+        BasePreantert basePreantert = getmPreanter();
+        if(basePreantert instanceof UserInformationConreater.IPreanter){
+            SharedPreferences token = App.getContext().getSharedPreferences("token", Context.MODE_PRIVATE);
+            String token1 = token.getString("token", "");
+            ((UserInformationConreater.IPreanter) basePreantert).OnUserSuccess(token1);
+
+        }
     }
 
     @Override
@@ -145,10 +166,27 @@ public class My_page extends BaseFragment implements View.OnClickListener {
             break;
             case R.id.my_image:{
                 Intent intent = new Intent(getActivity(), PersonalDataActivity.class);
+               // intent.putExtra("image",avatar);
                 startActivity(intent);
             }break;
             default:
                 break;
         }
+    }
+    //
+    @Override
+    public void OnUserInfor(UserInformation userInformation) {
+        UserInformation.DataBean data = userInformation.getData();
+        UserInformation.DataBean.UserDetailBean user_detail = data.getUser_detail();
+        avatar = user_detail.getAvatar();
+        Glide.with(getActivity()).load(avatar).apply(RequestOptions.bitmapTransform(new RoundedCorners(50))).error(R.mipmap.ic_launcher_round).into(iv);
+
+
+        EventBus.getDefault().postSticky(new Image(avatar));
+    }
+
+    @Override
+    public void OnEditUser(EditUserInformation editUserInformation) {
+
     }
 }

@@ -11,7 +11,7 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.TextView;
-import android.widget.Toast;
+
 
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -79,7 +79,7 @@ public class Task_page extends BaseFragment implements   CourseContreater.IView 
         rv.setLoadingListener(new XRecyclerView.LoadingListener() {
             @Override
             public void onRefresh() {
-                Toast.makeText(getContext(), "下拉刷新", Toast.LENGTH_SHORT).show();
+
                 i=1;
                 courseAdapter.Refresh(list.getData());
                 BasePreantert basePreantert = getmPreanter();
@@ -92,7 +92,7 @@ public class Task_page extends BaseFragment implements   CourseContreater.IView 
             @Override
             public void onLoadMore() {
                 i++;
-                Toast.makeText(getContext(), "上拉加载更多", Toast.LENGTH_SHORT).show();
+
 
                 courseAdapter.LoadMore(list.getData());
 
@@ -160,7 +160,7 @@ public class Task_page extends BaseFragment implements   CourseContreater.IView 
         courseAdapter.OnIdClick(new CourseAdapter.OnIdClick() {
             @Override
             public void onclick(int id) {
-                Toast.makeText(getContext(), id+"", Toast.LENGTH_SHORT).show();
+
                 Intent intent = new Intent(getActivity(), CourseDetailsActivity.class);
                 intent.putExtra("id",id);
 

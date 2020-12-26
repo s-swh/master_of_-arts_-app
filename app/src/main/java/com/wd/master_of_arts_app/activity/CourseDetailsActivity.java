@@ -33,6 +33,7 @@ import com.wd.master_of_arts_app.bean.AgeInterface;
 import com.wd.master_of_arts_app.bean.CourseDetails;
 import com.wd.master_of_arts_app.bean.CourseList;
 import com.wd.master_of_arts_app.contreater.CourseContreater;
+import com.wd.master_of_arts_app.payment.SignUpNow;
 import com.wd.master_of_arts_app.preanter.CoursePreanter;
 
 import java.util.List;
@@ -238,5 +239,11 @@ public class CourseDetailsActivity extends BaseActivity implements CourseContrea
         //适配器加载评论列表
         CommentAdapter commentAdapter = new CommentAdapter(this, comment_list);
         rcv.setAdapter(commentAdapter);
+    }
+    // 立即报名
+    public void Signupnow(View view){
+        Intent intent = new Intent(getApplicationContext(), SignUpNow.class);
+
+        startActivity(intent);
     }
 }
