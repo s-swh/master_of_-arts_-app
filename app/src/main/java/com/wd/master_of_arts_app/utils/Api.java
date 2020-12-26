@@ -13,6 +13,7 @@ import com.wd.master_of_arts_app.bean.DeleteHarvestAddress;
 import com.wd.master_of_arts_app.bean.EditUserInformation;
 import com.wd.master_of_arts_app.bean.HarvestAddress;
 import com.wd.master_of_arts_app.bean.ListOfWorks;
+import com.wd.master_of_arts_app.bean.Purchase;
 import com.wd.master_of_arts_app.bean.QiNiuYun;
 import com.wd.master_of_arts_app.bean.SMSLogin;
 import com.wd.master_of_arts_app.bean.SignOut;
@@ -158,4 +159,10 @@ public interface Api {
     @POST("wap/work/getList")
     @FormUrlEncoded
     Observable<ListOfWorks>getListOf(@Field("token")String token,@Field("is_comment")String is_comment,@Field("p")int p,@Field("per")int per);
+
+    //下单 http://test.54artist.com/wap/CourseOrder/Order
+    @POST("wap/CourseOrder/Order")
+    @FormUrlEncoded
+    Observable<Purchase>getPurchase(@Field("token")String token,@Field("course_id")int course_id,@Field("course_time_id")int course_time_id);
+
 }

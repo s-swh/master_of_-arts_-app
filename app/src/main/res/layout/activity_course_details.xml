@@ -219,7 +219,7 @@
                 android:background="@drawable/upnow"
                 android:textSize="@dimen/sp_12"
                 android:textColor="#ffffff"
-                android:onClick="Signupnow"
+               android:id="@+id/Signupnow"
                 android:layout_alignParentRight="true"
                 android:layout_height="wrap_content" />
         </RelativeLayout>
