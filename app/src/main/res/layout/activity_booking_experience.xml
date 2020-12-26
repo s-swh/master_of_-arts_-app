@@ -6,10 +6,72 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".activity.Booking_experience">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <ImageView
+            android:layout_width="match_parent"
+            android:src="@mipmap/ic_launcher"
+            android:scaleType="fitXY"
+            android:layout_height="@dimen/dp_350" />
+    </LinearLayout>
 <LinearLayout
     android:layout_width="480dp"
+    android:orientation="vertical"
     android:background="@drawable/tiyanselected"
     android:layout_gravity="center"
     android:layout_height="@dimen/dp_200">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:layout_marginTop="@dimen/dp_15"
+        android:layout_height="wrap_content">
+        <TextView
+            android:layout_width="wrap_content"
+            android:text="姓名"
+            android:textSize="@dimen/sp_14"
+            android:textColor="#434343"
+            android:layout_marginLeft="@dimen/dp_15"
+            android:layout_marginTop="15dp"
+            android:layout_height="wrap_content" />
+        <EditText
+            android:layout_width="420dp"
+            android:hint="请输入您的姓名"
+            android:layout_marginTop="@dimen/dp_13"
+            android:background="@drawable/editseletect"
+            android:layout_gravity="center"
+            android:layout_height="@dimen/dp_20" />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:layout_marginTop="@dimen/dp_15"
+        android:layout_height="wrap_content">
+        <TextView
+            android:layout_width="wrap_content"
+            android:text="手机号"
+            android:textSize="@dimen/sp_14"
+            android:textColor="#434343"
+            android:layout_marginLeft="@dimen/dp_15"
+            android:layout_marginTop="10dp"
+            android:layout_height="wrap_content" />
+        <EditText
+            android:layout_width="420dp"
+            android:layout_gravity="center"
+            android:background="@drawable/editseletect"
+            android:hint="请输入您的手机号"
+            android:layout_marginTop="@dimen/dp_13"
+            android:layout_height="@dimen/dp_20" />
+    </LinearLayout>
+    <Button
+        android:layout_width="@dimen/dp_180"
+        android:text="领取"
+        android:id="@+id/bt_receive"
+        android:layout_gravity="center"
+        android:layout_marginTop="@dimen/dp_20"
+        android:textSize="@dimen/sp_14"
+        android:textColor="#fff"
+        android:background="@drawable/fillet2"
+        android:layout_height="wrap_content" />
 </LinearLayout>
 </LinearLayout>
