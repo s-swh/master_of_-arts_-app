@@ -56,7 +56,8 @@ public class Find_page extends BaseFragment implements ArticleListContreater.IVi
         }
         GridLayoutManager gridLayoutManager = new GridLayoutManager(getActivity(),2);
         rec.setLayoutManager(gridLayoutManager);
-        GridLayoutManager gridLayoutManager1 = new GridLayoutManager(getActivity(), 2);
+        GridLayoutManager gridLayoutManager1 = new GridLayoutManager(getActivity(), 3);
+        rv_gre_1.isNestedScrollingEnabled();
         rv_gre_1.setLayoutManager(gridLayoutManager1);
         GridLayoutManager gridLayoutManager2 = new GridLayoutManager(getActivity(), 2);
         rv_gre_2.setLayoutManager(gridLayoutManager2);

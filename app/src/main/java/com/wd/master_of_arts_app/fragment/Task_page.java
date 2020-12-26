@@ -5,8 +5,10 @@ import android.graphics.Color;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.ColorDrawable;
 import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -109,23 +111,20 @@ public class Task_page extends BaseFragment implements   CourseContreater.IView 
 
     }
     //弹框
-   @OnClick(R.id.tt_opo)
+   @OnClick(R.id.vve)
     public void popwindow(){
 
+
        View view = getLayoutInflater().inflate(R.layout.preview, null);
+
        agerv = view.findViewById(R.id.age_rv);
+       LinearLayout deim = view.findViewById(R.id.deim);
        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
        agerv.setLayoutManager(linearLayoutManager);
        if (popupBigPhoto == null) {
            popupBigPhoto = new PopupWindow(view, ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT, true);
            popupBigPhoto.setOutsideTouchable(true);
-           popupBigPhoto.setBackgroundDrawable(new BitmapDrawable());
-           popupBigPhoto.setFocusable(true);
-           popupBigPhoto.setOutsideTouchable(true);
-           popupBigPhoto.update();
-           popupBigPhoto.setContentView(view);
-
-           popupBigPhoto.showAtLocation(view,Gravity.CENTER, 0, 0);
+           popupBigPhoto.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
 
        }
        if (popupBigPhoto.isShowing()) {
@@ -133,15 +132,16 @@ public class Task_page extends BaseFragment implements   CourseContreater.IView 
        } else {
            popupBigPhoto.showAtLocation(view, Gravity.TOP, 0, 0);
        }
-// 设置PopupWindow的背景
-       popupBigPhoto.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-// 设置PopupWindow是否能响应外部点击事件
+       // 设置PopupWindow是否能响应外部点击事件
        popupBigPhoto.setOutsideTouchable(true);
 // 设置PopupWindow是否能响应点击事件
        popupBigPhoto.setTouchable(true);
-
-       popupBigPhoto.setOutsideTouchable(true);
-       popupBigPhoto.setFocusable(true);
+    deim.setOnClickListener(new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+            popupBigPhoto.dismiss();
+        }
+    });
        BasePreantert basePreantert = getmPreanter();
        if(basePreantert instanceof CourseContreater.IPreanter){
            ((CourseContreater.IPreanter) basePreantert).OnAgeSuccess();
@@ -186,7 +186,7 @@ public class Task_page extends BaseFragment implements   CourseContreater.IView 
                 popupBigPhoto.dismiss();
                 BasePreantert basePreantert = getmPreanter();
                 if(basePreantert instanceof CourseContreater.IPreanter){
-                    ((CourseContreater.IPreanter) basePreantert).OnCourseSuccess(id+"","",short_name,""+start_age,i,j);
+                    ((CourseContreater.IPreanter) basePreantert).OnCourseSuccess(id+"","","",""+start_age,i,j);
                 }
             }
         });

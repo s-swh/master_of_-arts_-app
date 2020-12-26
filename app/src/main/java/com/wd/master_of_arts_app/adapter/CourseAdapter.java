@@ -22,7 +22,7 @@ import java.util.List;
 
 /**
  * @author 时文豪
- * @description: todo 课程适配器
+ * @description:  课程适配器
  * @date :2020/12/18 15:37
  */
 public class CourseAdapter  extends XRecyclerView.Adapter<XRecyclerView.ViewHolder> {

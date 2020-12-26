@@ -355,8 +355,8 @@ public class Publishing_works_Activity extends BaseActivity {
         SharedPreferences imglist = getSharedPreferences("imglist", MODE_PRIVATE);
 
         String imglist1 = imglist.getString("imglist", "");
-
-        NetUtils.getInstance().getApi().getTakePhotos(token1, "", "", im, "")
+        String string1 = et_user.getText().toString();
+        NetUtils.getInstance().getApi().getTakePhotos(token1, string1, "", im, "")
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Observer<TakePhotosAndComment>() {
@@ -369,6 +369,10 @@ public class Publishing_works_Activity extends BaseActivity {
                     public void onNext(TakePhotosAndComment takePhotosAndComment) {
                         String msg = takePhotosAndComment.getMsg();
                         Toast.makeText(Publishing_works_Activity.this, msg, Toast.LENGTH_SHORT).show();
+                        int code = takePhotosAndComment.getCode();
+                        if(code==1){
+                            finish();
+                        }
                     }
 
                     @Override

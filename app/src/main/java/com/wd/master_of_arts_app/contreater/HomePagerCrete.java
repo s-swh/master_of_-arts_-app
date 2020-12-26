@@ -10,15 +10,15 @@ import com.wd.master_of_arts_app.bean.Beanner;
  */
 public interface HomePagerCrete {
     interface IVew extends IBaseView{
-        //todo 轮播图
+        // 轮播图
         void BannerSuccess(Beanner beanner);
     }
     interface IPreanter{
-        //todo 轮播图
+        // 轮播图
         void OnBeanner(int cat_id);
     }
     interface IModel{
-        //todo 轮播图
+        // 轮播图
         void OnBeanner(int cat_id,BeannerCoallack coallack);
         interface BeannerCoallack{
             void BannerSuccess(Beanner beanner);

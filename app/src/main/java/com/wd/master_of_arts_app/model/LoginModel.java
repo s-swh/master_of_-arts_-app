@@ -17,7 +17,7 @@ import io.reactivex.schedulers.Schedulers;
  * @date :2020/12/16 8:16
  */
 public class LoginModel implements LoginContreater.IModel {
-    // todo  短信验证码获取
+
     @Override
     public void OnCode(String phone, OnCodeCoallack onCodeCoallack) {
         NetUtils.getInstance().getApi().getCodeBean(phone)
@@ -47,7 +47,7 @@ public class LoginModel implements LoginContreater.IModel {
                     }
                 });
     }
-    //todo 短信验证码登录
+
     @Override
     public void OnLoginSuccess(String phone, String code, OnLoginCoallack onLoginCoallack) {
     NetUtils.getInstance().getApi().getSmsLogin(phone, code)
@@ -77,7 +77,7 @@ public class LoginModel implements LoginContreater.IModel {
                 }
             });
     }
-    //todo 账号密码登录
+
     @Override
     public void OnAccout(String account, String pwd, OnAccoutCoallack onAccoutCoallack) {
         NetUtils.getInstance().getApi().getAccount(account, pwd)

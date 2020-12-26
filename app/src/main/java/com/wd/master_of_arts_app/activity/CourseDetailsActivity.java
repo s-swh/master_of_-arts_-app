@@ -6,10 +6,17 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.View;
+import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.PopupWindow;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -17,6 +24,8 @@ import com.bumptech.glide.Glide;
 import com.wd.master_of_arts_app.R;
 import com.wd.master_of_arts_app.adapter.ActivityAdapter;
 import com.wd.master_of_arts_app.adapter.CommentAdapter;
+import com.wd.master_of_arts_app.adapter.PopActivityAdapter;
+import com.wd.master_of_arts_app.adapter.PopServiceAdapter;
 import com.wd.master_of_arts_app.adapter.ServiceActivity;
 import com.wd.master_of_arts_app.base.BaseActivity;
 import com.wd.master_of_arts_app.base.BasePreantert;
@@ -30,15 +39,16 @@ import java.util.List;
 
 import butterknife.OnClick;
 import fm.jiecao.jcvideoplayer_lib.JCResizeImageView;
+// todo 课程详情
 
 public class CourseDetailsActivity extends BaseActivity implements CourseContreater.IView {
 
 
-    private TextView tv,itle,present_price,original_price,  attend,ic_name ;
+    private TextView tv, itle, present_price, original_price, attend, ic_name;
     private JCResizeImageView img;
     private ImageView ic;
 
-    private RecyclerView rv_service,rv_service1,rcv;
+    private RecyclerView rv_service, rv_service1, rcv;
 
 
     @Override
@@ -55,27 +65,29 @@ public class CourseDetailsActivity extends BaseActivity implements CourseContrea
     protected void initView() {
         tv = findViewById(R.id.tv_name);
         img = findViewById(R.id.jcrImage);
-        itle=  findViewById(R.id.itle);
-        present_price=  findViewById(R.id.present_price);
-        original_price=  findViewById(R.id.original_price);
-        rv_service1= findViewById(R.id.rv_service1);
+        itle = findViewById(R.id.itle);
+        present_price = findViewById(R.id.present_price);
+        original_price = findViewById(R.id.original_price);
+        rv_service1 = findViewById(R.id.rv_service1);
         rv_service = findViewById(R.id.rv_service);
-        attend=  findViewById(R.id.attend1);
+        attend = findViewById(R.id.attend1);
         ic = findViewById(R.id.ic);
-        ic_name=  findViewById(R.id.ic_name);
+        ic_name = findViewById(R.id.ic_name);
         rcv = findViewById(R.id.rec_rv);
 
     }
+
     @OnClick(R.id.itreturn)
-    public void retu(){
+    public void retu() {
         finish();
     }
+
     @Override
     protected void initData() {
         Intent intent = getIntent();
         int id = intent.getIntExtra("id", 0);
         BasePreantert basePreantert = getmPreantert();
-        if(basePreantert instanceof CourseContreater.IPreanter){
+        if (basePreantert instanceof CourseContreater.IPreanter) {
             ((CourseContreater.IPreanter) basePreantert).OnCourseOnSuccess(id);
         }
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
@@ -85,16 +97,19 @@ public class CourseDetailsActivity extends BaseActivity implements CourseContrea
         LinearLayoutManager linearLayoutManager2 = new LinearLayoutManager(this, RecyclerView.HORIZONTAL, false);
         rv_service1.setLayoutManager(linearLayoutManager2);
     }
+
     //课程列表
     @Override
     public void OnCourse(CourseList courseList) {
 
     }
+
     //年龄
     @Override
     public void onAgeInterface(AgeInterface ageInterface) {
 
     }
+
     //课程详情
     @Override
     public void OnCourse(CourseDetails courseDetails) {
@@ -103,17 +118,115 @@ public class CourseDetailsActivity extends BaseActivity implements CourseContrea
         tv.setText(course_name);
         String icon = data.getIcon();
         Glide.with(this).load(icon).into(img);
-        itle.setText( data.getContent());
-        present_price.setText(data.getPrice()+"￥");
-        original_price.setText(data.getOld_price()+"￥");
+        itle.setText(data.getContent());
+        present_price.setText(data.getPrice() + "￥");
+        original_price.setText(data.getOld_price() + "￥");
         //活动适配器
         List<CourseDetails.DataBean.MarkBean> mark = data.getMark();
         ActivityAdapter activityAdapter = new ActivityAdapter(this, mark);
+        activityAdapter.Click(new ActivityAdapter.cnClick() {
+
+            private PopupWindow popupBigPhoto;
+
+            @Override
+            public void OnClick(CourseDetails.DataBean.MarkBean markBeans) {
+                int id = markBeans.getId();
+
+                String description = markBeans.getDescription();
+                View view = getLayoutInflater().inflate(R.layout.activity_photo_preview, null);
+                if (popupBigPhoto == null) {
+                    popupBigPhoto = new PopupWindow(view, ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT, true);
+                    popupBigPhoto.setOutsideTouchable(true);
+                }
+                if (popupBigPhoto.isShowing()) {
+                    popupBigPhoto.dismiss();
+                } else {
+                    popupBigPhoto.showAtLocation(view, Gravity.TOP, 0, 0);
+                }
+
+// 设置PopupWindow是否能响应外部点击事件
+                popupBigPhoto.setOutsideTouchable(true);
+// 设置PopupWindow是否能响应点击事件
+                popupBigPhoto.setTouchable(true);
+                RecyclerView v = view.findViewById(R.id.rec_service1);
+                LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getApplicationContext());
+                v.setLayoutManager(linearLayoutManager);
+                PopActivityAdapter popActivityAdapter = new PopActivityAdapter(getApplicationContext(), mark);
+                v.setAdapter(popActivityAdapter);
+                TextView xz = view.findViewById(R.id.xz);
+                LinearLayout de = view.findViewById(R.id.dimens);
+                de.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        popupBigPhoto.dismiss();
+                    }
+                });
+                String mark1 = markBeans.getMark();
+
+                String description1 = markBeans.getDescription();
+
+                xz.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        popupBigPhoto.dismiss();
+                    }
+                });
+            }
+        });
+
         rv_service1.setAdapter(activityAdapter);
 
         List<CourseDetails.DataBean.ServiceBean> service = data.getService();
         //服务适配器
-        ServiceActivity serviceActivity = new ServiceActivity(this, service);
+        ServiceActivity serviceActivity = new ServiceActivity(this, data);
+
+        serviceActivity.OnClicked(new ServiceActivity.OnService() {
+            private PopupWindow popupBigPhoto;
+
+            @Override
+            public void OnCliakc(CourseDetails.DataBean.ServiceBean serviceBean) {
+                int id = serviceBean.getId();
+
+                View view = getLayoutInflater().inflate(R.layout.service, null);
+                if (popupBigPhoto == null) {
+                    popupBigPhoto = new PopupWindow(view, ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT, true);
+                    popupBigPhoto.setOutsideTouchable(true);
+                }
+                if (popupBigPhoto.isShowing()) {
+                    popupBigPhoto.dismiss();
+                } else {
+                    popupBigPhoto.showAtLocation(view, Gravity.TOP, 0, 0);
+                }
+
+// 设置PopupWindow是否能响应外部点击事件
+                popupBigPhoto.setOutsideTouchable(true);
+// 设置PopupWindow是否能响应点击事件
+                popupBigPhoto.setTouchable(true);
+                TextView zx = view.findViewById(R.id.xz);
+                LinearLayout let = view.findViewById(R.id.dimens);
+                RecyclerView rv = view.findViewById(R.id.rec_service);
+                String description = serviceBean.getDescription();
+                String service1 = serviceBean.getService();
+                String icon1 = serviceBean.getIcon();
+                LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getApplicationContext());
+                rv.setLayoutManager(linearLayoutManager);
+                PopServiceAdapter popServiceAdapter = new PopServiceAdapter(getApplicationContext(), data);
+                rv.setAdapter(popServiceAdapter);
+
+                let.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        popupBigPhoto.dismiss();
+                    }
+                });
+                zx.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        popupBigPhoto.dismiss();
+                    }
+                });
+            }
+        });
         rv_service.setAdapter(serviceActivity);
 
 

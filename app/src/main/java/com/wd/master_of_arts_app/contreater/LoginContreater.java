@@ -12,33 +12,33 @@ import com.wd.master_of_arts_app.bean.SMSLogin;
  */
 public interface LoginContreater {
     interface IView extends IBaseView{
-        //todo 获取短信验证码
+        // 获取短信验证码
         void OnCodeSuccess(CodeBean codeBean);
-        //todo 短信验证码登录
+        // 短信验证码登录
         void OnCodeLogin(SMSLogin smsLogin);
-        //todo 账号密码登录
+        // 账号密码登录
         void OnAccoutLogin(AccountLogin accountLogin);
     }
     interface IPreanter{
-        //todo 获取短信验证码拼参
+        // 获取短信验证码拼参
         void OnCode(String phone);
-        //todo 短信验证码登录
+        // 短信验证码登录
         void OnLoginSuccess(String phone,String code);
-        //todo 账号密码登录
+        // 账号密码登录
         void OnAccout(String account,String pwd);
     }
     interface IModel{
-        //todo 短信获取
+        // 短信获取
         void OnCode(String phone,OnCodeCoallack onCodeCoallack);
         interface OnCodeCoallack{
             void OnCodeSuccess(CodeBean codeBean);
         }
-        //todo 短信验证码登录
+        // 短信验证码登录
         void OnLoginSuccess(String phone,String code,OnLoginCoallack onLoginCoallack);
         interface OnLoginCoallack{
             void OnCodeLogin(SMSLogin smsLogin);
         }
-        // todo 账号密码登录
+        //  账号密码登录
         void OnAccout(String account,String pwd,OnAccoutCoallack onAccoutCoallack);
         interface OnAccoutCoallack{
             void OnAccoutLogin(AccountLogin accountLogin);

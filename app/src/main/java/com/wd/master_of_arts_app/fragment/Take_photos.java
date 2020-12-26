@@ -1,24 +1,34 @@
 package com.wd.master_of_arts_app.fragment;
 
 import android.Manifest;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Environment;
 import android.provider.MediaStore;
 import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
+import androidx.recyclerview.widget.LinearLayoutManager;
 
+import com.jcodecraeer.xrecyclerview.XRecyclerView;
 import com.wd.master_of_arts_app.R;
 import com.wd.master_of_arts_app.activity.Publishing_works_Activity;
+import com.wd.master_of_arts_app.adapter.WorksAdapter;
 import com.wd.master_of_arts_app.base.BaseFragment;
 import com.wd.master_of_arts_app.base.BasePreantert;
+import com.wd.master_of_arts_app.bean.ListOfWorks;
+import com.wd.master_of_arts_app.contreater.worksContreanter;
+import com.wd.master_of_arts_app.preanter.WorksPreanter;
 
 import java.io.File;
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -28,8 +38,10 @@ import butterknife.OnClick;
  * @description:  拍照办公
  * @date :2020/12/3 10:54
  */
-public class Take_photos extends BaseFragment {
+public class Take_photos extends BaseFragment implements worksContreanter.IVew {
     public static final int CAMERA_REQ_CODE = 111;
+    private LinearLayout lt;
+    private XRecyclerView xrv;
 
     @Override
     protected int getLayoutId() {
@@ -38,12 +50,13 @@ public class Take_photos extends BaseFragment {
 
     @Override
     protected BasePreantert initPreantert() {
-        return null;
+        return new WorksPreanter(this);
     }
 
     @Override
     protected void initView(View view) {
-
+        lt = view.findViewById(R.id.vigono);
+        xrv = view.findViewById(R.id.works_rv);
     }
      //发布作品
     @OnClick({R.id.photograph})
@@ -79,8 +92,33 @@ public class Take_photos extends BaseFragment {
 
     @Override
     protected void initData() {
+        BasePreantert basePreantert = getmPreanter();
+        if(basePreantert instanceof worksContreanter.IPreanter){
+            SharedPreferences token = getActivity().getSharedPreferences("token", Context.MODE_PRIVATE);
+            String token1 = token.getString("token", "");
+            int i=1;
+            int j=10;
+            ((worksContreanter.IPreanter) basePreantert).OnWorksSuccess(token1,"",i,j);
+        }
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
+        xrv.setLayoutManager(linearLayoutManager);
 
     }
 
 
+    @Override
+    public void OnWorks(ListOfWorks listOfWorks) {
+        int code = listOfWorks.getCode();
+        if(code==1){
+            lt.setVisibility(View.GONE);
+            xrv.setVisibility(View.VISIBLE);
+        }else{
+            xrv.setVisibility(View.GONE);
+        }
+        ListOfWorks.DataBean data = listOfWorks.getData();
+        List<ListOfWorks.DataBean.ListBean> list = data.getList();
+        WorksAdapter worksAdapter = new WorksAdapter(getActivity(), list);
+        xrv.setAdapter(worksAdapter);
+
+    }
 }

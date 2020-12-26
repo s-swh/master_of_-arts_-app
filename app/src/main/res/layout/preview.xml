@@ -1,103 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-
-
+    android:orientation="vertical"
+    android:id="@+id/deim"
+    android:layout_width="match_parent"
     android:layout_height="match_parent">
     <androidx.recyclerview.widget.RecyclerView
         android:layout_width="match_parent"
         android:id="@+id/age_rv"
         android:layout_height="match_parent">
     </androidx.recyclerview.widget.RecyclerView>
-<LinearLayout
-    android:layout_width="match_parent"
-    android:orientation="vertical"
-    android:visibility="gone"
-    android:layout_height="match_parent">
 
-
-        <TextView
-            android:layout_width="match_parent"
-            android:text="3-4岁"
-            android:gravity="center"
-            android:background="#fff"
-            android:id="@+id/o_1"
-            android:textSize="@dimen/sp_14"
-            android:layout_height="@dimen/dp_45" />
-        <View
-            android:layout_width="match_parent"
-            android:background="#DFDCDC"
-            android:layout_height="1dp"/>
-
-        <TextView
-            android:layout_width="match_parent"
-            android:text="5-6岁"
-            android:id="@+id/o_2"
-            android:background="#fff"
-            android:gravity="center"
-            android:textSize="@dimen/sp_14"
-            android:layout_height="@dimen/dp_45" />
-        <View
-            android:layout_width="match_parent"
-            android:background="#DFDCDC"
-            android:layout_height="1dp"/>
-
-
-
-        <TextView
-            android:layout_width="match_parent"
-            android:text="7-8岁"
-            android:gravity="center"
-            android:background="#fff"
-            android:id="@+id/o_3"
-            android:textSize="@dimen/sp_14"
-            android:layout_height="@dimen/dp_45" />
-        <View
-            android:layout_width="match_parent"
-            android:background="#DFDCDC"
-            android:layout_height="1dp"/>
-
-
-        <TextView
-            android:layout_width="match_parent"
-            android:text="9-10岁"
-            android:id="@+id/o_4"
-            android:background="#fff"
-            android:gravity="center"
-            android:textSize="@dimen/sp_14"
-            android:layout_height="@dimen/dp_45" />
-        <View
-            android:layout_width="match_parent"
-            android:background="#DFDCDC"
-            android:layout_height="1dp"/>
-
-
-        <TextView
-            android:layout_width="match_parent"
-            android:text="11-12岁"
-            android:gravity="center"
-            android:background="#fff"
-            android:id="@+id/o_5"
-            android:textSize="@dimen/sp_14"
-            android:layout_height="@dimen/dp_45" />
-        <View
-            android:layout_width="match_parent"
-            android:background="#DFDCDC"
-            android:layout_height="1dp"/>
-
-
-        <TextView
-            android:layout_width="match_parent"
-            android:text="13-15岁"
-            android:id="@+id/o_6"
-            android:gravity="center"
-            android:background="#fff"
-            android:textSize="@dimen/sp_14"
-            android:layout_height="@dimen/dp_45" />
-        <View
-            android:layout_width="match_parent"
-            android:background="#DFDCDC"
-            android:layout_height="1dp"/>
-</LinearLayout>
 
 </LinearLayout>

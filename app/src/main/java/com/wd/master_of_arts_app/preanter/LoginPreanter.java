@@ -26,7 +26,7 @@ public class LoginPreanter extends BasePreantert implements LoginContreater.IPre
     protected void initModer() {
         loginModel = new LoginModel();
     }
-    //todo 获取短信
+
     @Override
     public void OnCode(String phone) {
         loginModel.OnCode(phone, new LoginContreater.IModel.OnCodeCoallack() {
@@ -40,7 +40,7 @@ public class LoginPreanter extends BasePreantert implements LoginContreater.IPre
             }
         });
     }
-    //todo 短信登录
+
     @Override
     public void OnLoginSuccess(String phone, String code) {
         loginModel.OnLoginSuccess(phone, code, new LoginContreater.IModel.OnLoginCoallack() {
@@ -54,7 +54,7 @@ public class LoginPreanter extends BasePreantert implements LoginContreater.IPre
             }
         });
     }
-    //todo 账号密码登录
+
     @Override
     public void OnAccout(String account, String pwd) {
         loginModel.OnAccout(account, pwd, new LoginContreater.IModel.OnAccoutCoallack() {

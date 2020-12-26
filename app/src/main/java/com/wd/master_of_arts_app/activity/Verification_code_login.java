@@ -93,7 +93,7 @@ public class Verification_code_login extends BaseActivity implements View.OnClic
       Button bt= findViewById(R.id.login_log);
 
 
-      //todo 账号密码登录
+      // 账号密码登录
         bt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -109,7 +109,7 @@ public class Verification_code_login extends BaseActivity implements View.OnClic
                 }
             }
         });
-        // todo 短信获取
+        //  短信获取
       bt_code.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -121,7 +121,7 @@ public class Verification_code_login extends BaseActivity implements View.OnClic
                     }
             }
         });
-      //todo 短信登录
+      // 短信登录
         but_log.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -214,7 +214,7 @@ public class Verification_code_login extends BaseActivity implements View.OnClic
         }
 
     }
-    //todo  账号密码登录
+    //  账号密码登录
     @Override
     public void OnAccoutLogin(AccountLogin accountLogin) {
         int code = accountLogin.getCode();

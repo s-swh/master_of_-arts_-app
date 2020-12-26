@@ -18,7 +18,7 @@ import com.wd.master_of_arts_app.fragment.releasefragment.Voice;
 import java.util.List;
 
 /**
- *list的adapter  todo 语音适配器
+ *list的adapter   语音适配器
  * Created by Administrator on 2017/11/28.
  */
  

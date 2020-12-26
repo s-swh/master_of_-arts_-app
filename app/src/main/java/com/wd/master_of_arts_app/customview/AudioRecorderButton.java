@@ -102,7 +102,7 @@ public class AudioRecorderButton extends Button implements AudioManager.AudioSta
         public void handleMessage(Message msg) {
             switch (msg.what) {
                 case MSG_AUDIO_PREPARED :
-                    //TODO 真正现实应该在audio end prepared以后
+
                     mDialogManager.showRecordingDialog();
                     isRecording = true;
  
@@ -131,7 +131,7 @@ public class AudioRecorderButton extends Button implements AudioManager.AudioSta
         int y = (int) event.getY();
         switch (action) {
             case MotionEvent.ACTION_DOWN:
-                //TODO
+
                 isRecording = true;
                 changeState(STATE_RECORDING);
  

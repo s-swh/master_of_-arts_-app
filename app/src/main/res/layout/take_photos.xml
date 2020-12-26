@@ -3,144 +3,143 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:background="#EFF1F4"
-        android:layout_height="wrap_content">
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="30dp"
-            android:text="拍照点评"
-            android:gravity="center"
-            android:textColor="#434343"
-            android:textSize="18sp"
-            />
-    </LinearLayout>
+
     <View
         android:layout_width="match_parent"
-        android:background="#F3F3F3F3"
-        android:layout_height="@dimen/dp_2"/>
+        android:layout_height="@dimen/dp_2"
+        android:background="#F3F3F3F3" />
+
     <LinearLayout
+        android:id="@+id/vigono"
         android:layout_width="match_parent"
-        android:orientation="vertical"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
         <ImageView
             android:layout_width="match_parent"
-            android:src="@mipmap/ic_launcher"
+            android:layout_height="@dimen/dp_300"
             android:scaleType="fitXY"
-            android:layout_height="@dimen/dp_300" />
+            android:src="@mipmap/ic_launcher" />
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
+
             <TextView
                 android:layout_width="wrap_content"
-                android:text="①"
+                android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/dp_20"
                 android:layout_marginTop="@dimen/dp_49"
-                android:textColor="#019A92"
-                android:layout_height="wrap_content" />
+                android:text="①"
+                android:textColor="#019A92" />
+
             <TextView
                 android:layout_width="wrap_content"
-                android:text="上传作品"
+                android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/dp_49"
-                android:textColor="#019A92"
-                android:layout_height="wrap_content" />
+                android:text="上传作品"
+                android:textColor="#019A92" />
         </LinearLayout>
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dp_15"
             android:text="点击“发布作品”按钮，进入作品发布页面，上传图片，添加文字介绍。"
             android:textColor="#3F0A0707"
-            android:layout_marginLeft="@dimen/dp_15"
-            android:textSize="12sp"
-            />
+            android:textSize="12sp" />
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
+
             <TextView
                 android:layout_width="wrap_content"
-                android:text="②"
+                android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/dp_20"
                 android:layout_marginTop="@dimen/dp_22"
-                android:textColor="#019A92"
-                android:layout_height="wrap_content" />
+                android:text="②"
+                android:textColor="#019A92" />
+
             <TextView
                 android:layout_width="wrap_content"
-                android:text="发布作品"
+                android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/dp_22"
-                android:textColor="#019A92"
-                android:layout_height="wrap_content" />
+                android:text="发布作品"
+                android:textColor="#019A92" />
         </LinearLayout>
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dp_15"
             android:text="提交作品，等待老师点评。"
             android:textColor="#3F0A0707"
-            android:layout_marginLeft="@dimen/dp_15"
-            android:textSize="12sp"
-            />
+            android:textSize="12sp" />
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
+
             <TextView
                 android:layout_width="wrap_content"
-                android:text="②"
+                android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/dp_20"
                 android:layout_marginTop="@dimen/dp_22"
-                android:textColor="#019A92"
-                android:layout_height="wrap_content" />
+                android:text="②"
+                android:textColor="#019A92" />
+
             <TextView
                 android:layout_width="wrap_content"
-                android:text="查看点评"
+                android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/dp_22"
-                android:textColor="#019A92"
-                android:layout_height="wrap_content" />
+                android:text="查看点评"
+                android:textColor="#019A92" />
         </LinearLayout>
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dp_15"
             android:text="在个人中心页查看点评消息"
             android:textColor="#3F0A0707"
-            android:layout_marginLeft="@dimen/dp_15"
-            android:textSize="12sp"
-            />
+            android:textSize="12sp" />
     </LinearLayout>
-<RelativeLayout
-    android:layout_width="match_parent"
-    android:orientation="vertical"
-    android:gravity="center_horizontal"
-    android:layout_height="wrap_content">
-    <LinearLayout
-        android:id="@+id/photograph"
-        android:layout_alignParentBottom="true"
-        android:layout_width="@dimen/dp_180"
-        android:layout_height="@dimen/dp_30"
-        android:gravity="center_vertical"
-        android:layout_marginTop="@dimen/dp_15"
-        android:layout_gravity="center"
-        android:background="@drawable/fillet2">
-
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:background="#fff"
-        android:layout_marginLeft="@dimen/dp_25"
-        android:src="@mipmap/icon_nav_photo_nomal_selected" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginLeft="20dp"
-        android:text="发布作品"
-        android:textColor="#FFFF"
-        android:textSize="22sp" />
-    </LinearLayout>
-</RelativeLayout>
 
 
 
+    <com.jcodecraeer.xrecyclerview.XRecyclerView
+        android:id="@+id/works_rv"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_500"
+        android:visibility="gone"/>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal">
+            <LinearLayout
+                android:id="@+id/photograph"
+                android:layout_width="@dimen/dp_180"
+                android:layout_height="wrap_content"
+                android:background="@drawable/fillet2"
+                android:gravity="center_vertical">
 
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="@dimen/dp_25"
+                    android:background="#fff"
+                    android:src="@mipmap/icon_nav_photo_nomal_selected" />
 
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="20dp"
+                    android:text="发布作品"
+                    android:textColor="#FFFF"
+                    android:textSize="22sp" />
+            </LinearLayout>
+        </RelativeLayout>
 </LinearLayout>

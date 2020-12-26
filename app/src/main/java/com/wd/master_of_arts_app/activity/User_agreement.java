@@ -10,7 +10,7 @@ import com.wd.master_of_arts_app.base.BasePreantert;
 import butterknife.OnClick;
 
 /**
- * TODO
+ *
  * 用户协议
  */
 public class User_agreement extends BaseActivity {

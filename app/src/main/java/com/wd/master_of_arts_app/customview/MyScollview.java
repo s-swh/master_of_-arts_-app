@@ -22,7 +22,7 @@ public class MyScollview extends ScrollView {
 
     @Override
     public boolean onInterceptTouchEvent(MotionEvent ev) {
-// TODO Auto-generated method stub
+
 // return super.onInterceptTouchEvent(ev);
         return super.onInterceptTouchEvent(ev) && gestureDetector.onTouchEvent(ev);
     }
