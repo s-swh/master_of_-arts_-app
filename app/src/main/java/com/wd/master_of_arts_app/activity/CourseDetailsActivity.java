@@ -14,6 +14,7 @@ import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
@@ -32,9 +33,12 @@ import com.wd.master_of_arts_app.base.BasePreantert;
 import com.wd.master_of_arts_app.bean.AgeInterface;
 import com.wd.master_of_arts_app.bean.CourseDetails;
 import com.wd.master_of_arts_app.bean.CourseList;
+import com.wd.master_of_arts_app.bean.IdNumber;
 import com.wd.master_of_arts_app.contreater.CourseContreater;
 import com.wd.master_of_arts_app.payment.SignUpNow;
 import com.wd.master_of_arts_app.preanter.CoursePreanter;
+
+import org.greenrobot.eventbus.EventBus;
 
 import java.util.List;
 
@@ -48,7 +52,7 @@ public class CourseDetailsActivity extends BaseActivity implements CourseContrea
     private TextView tv, itle, present_price, original_price, attend, ic_name;
     private JCResizeImageView img;
     private ImageView ic;
-
+    private Button Signupnow;
     private RecyclerView rv_service, rv_service1, rcv;
 
 
@@ -75,6 +79,7 @@ public class CourseDetailsActivity extends BaseActivity implements CourseContrea
         ic = findViewById(R.id.ic);
         ic_name = findViewById(R.id.ic_name);
         rcv = findViewById(R.id.rec_rv);
+        Signupnow = findViewById(R.id.Signupnow);
 
     }
 
@@ -85,6 +90,13 @@ public class CourseDetailsActivity extends BaseActivity implements CourseContrea
 
     @Override
     protected void initData() {
+        Signupnow.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), SignUpNow.class);
+                startActivity(intent);
+            }
+        });
         Intent intent = getIntent();
         int id = intent.getIntExtra("id", 0);
         BasePreantert basePreantert = getmPreantert();
@@ -122,6 +134,12 @@ public class CourseDetailsActivity extends BaseActivity implements CourseContrea
         itle.setText(data.getContent());
         present_price.setText(data.getPrice() + "￥");
         original_price.setText(data.getOld_price() + "￥");
+
+        int course_id = data.getCourse_id();
+        int course_time_id = data.getCourse_time_id();
+        EventBus.getDefault().postSticky(new IdNumber(course_id,course_time_id));
+
+
         //活动适配器
         List<CourseDetails.DataBean.MarkBean> mark = data.getMark();
         ActivityAdapter activityAdapter = new ActivityAdapter(this, mark);
@@ -240,9 +258,5 @@ public class CourseDetailsActivity extends BaseActivity implements CourseContrea
         CommentAdapter commentAdapter = new CommentAdapter(this, comment_list);
         rcv.setAdapter(commentAdapter);
     }
-    // 立即报名
-    public void Signupnow(View view){
-        Intent intent = new Intent(getApplicationContext(), SignUpNow.class);
-        startActivity(intent);
-    }
+
 }
