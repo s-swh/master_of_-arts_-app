@@ -151,11 +151,11 @@ public class MainActivity extends BaseActivity {
         fragments.add(task_page);
         fragments.add(find_page);
         fragments.add(my_page);
-        CustomTabEntityDemo demo1 = new CustomTabEntityDemo("首页", R.mipmap.icon_nav_home_selected, R.drawable.ic_launcher_background);
-        CustomTabEntityDemo demo2 = new CustomTabEntityDemo("拍照点评", R.mipmap.icon_nav_photo_nomal_selected, R.mipmap.icon_nav_photo_nomal);
+        CustomTabEntityDemo demo1 = new CustomTabEntityDemo("首页", R.mipmap.icon_home_page_selected, R.mipmap.icon_home_page);
+        CustomTabEntityDemo demo2 = new CustomTabEntityDemo("拍照点评", R.mipmap.icon_photograph_selected, R.mipmap.icon_photograph);
         CustomTabEntityDemo demo3 = new CustomTabEntityDemo("选课", R.mipmap.icon_xuke_select, R.mipmap.icon_xuanke_se);
-        CustomTabEntityDemo demo4 = new CustomTabEntityDemo("发现", R.mipmap.icon_nav_find_nomal_selected, R.mipmap.icon_nav_find_nomal);
-        CustomTabEntityDemo demo5 = new CustomTabEntityDemo("我的", R.mipmap.icon_nav_me_nomal_selected, R.mipmap.icon_nav_me_nomal);
+        CustomTabEntityDemo demo4 = new CustomTabEntityDemo("发现", R.mipmap.icon_find_select, R.mipmap.icon_find);
+        CustomTabEntityDemo demo5 = new CustomTabEntityDemo("我的", R.mipmap.icon_my_selected, R.mipmap.icon_my);
         customTabEntities.add(demo1);
         customTabEntities.add(demo2);
         customTabEntities.add(demo3);
