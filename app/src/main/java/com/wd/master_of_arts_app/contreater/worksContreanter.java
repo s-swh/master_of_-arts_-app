@@ -1,6 +1,8 @@
 package com.wd.master_of_arts_app.contreater;
 
+import com.wd.master_of_arts_app.activity.DetailsOfWorks;
 import com.wd.master_of_arts_app.base.IBaseView;
+import com.wd.master_of_arts_app.bean.DetailsOfWorksBean;
 import com.wd.master_of_arts_app.bean.ListOfWorks;
 
 /**
@@ -11,14 +13,23 @@ import com.wd.master_of_arts_app.bean.ListOfWorks;
 public interface worksContreanter {
     interface IVew extends IBaseView{
         void OnWorks(ListOfWorks listOfWorks);
+        //作品详情
+        void OnDetailsWorks(DetailsOfWorksBean worksBean);
     }
     interface IPreanter{
         void OnWorksSuccess(String token,String is_comment,int p,int per);
+        //作品详情
+        void OnDetailsSuccess(int work_id);
     }
     interface IModel{
         void OnWorksSuccess(String token,String is_comment,int p,int per,OnWorksCoallack onWorksCoallack);
         interface OnWorksCoallack{
             void OnWorks(ListOfWorks listOfWorks);
+        }
+        //作品详情
+        void OnDetailsSuccess(int work_id,OnWoksCoallack woksCoallack);
+        interface OnWoksCoallack{
+            void OnDetailsWorks(DetailsOfWorksBean worksBean);
         }
     }
 }

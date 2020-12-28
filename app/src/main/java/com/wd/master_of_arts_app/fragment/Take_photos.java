@@ -1,36 +1,31 @@
 package com.wd.master_of_arts_app.fragment;
 
-import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
-import android.net.Uri;
-import android.os.Environment;
-import android.provider.MediaStore;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.jcodecraeer.xrecyclerview.XRecyclerView;
 import com.wd.master_of_arts_app.R;
+import com.wd.master_of_arts_app.activity.DetailsOfWorks;
 import com.wd.master_of_arts_app.activity.Publishing_works_Activity;
 import com.wd.master_of_arts_app.adapter.WorksAdapter;
 import com.wd.master_of_arts_app.base.BaseFragment;
 import com.wd.master_of_arts_app.base.BasePreantert;
+import com.wd.master_of_arts_app.bean.DetailsOfWorksBean;
 import com.wd.master_of_arts_app.bean.ListOfWorks;
 import com.wd.master_of_arts_app.contreater.worksContreanter;
 import com.wd.master_of_arts_app.preanter.WorksPreanter;
 
-import java.io.File;
+import org.greenrobot.eventbus.EventBus;
+
 import java.util.List;
 
-import butterknife.BindView;
 import butterknife.OnClick;
 
 /**
@@ -118,7 +113,22 @@ public class Take_photos extends BaseFragment implements worksContreanter.IVew {
         ListOfWorks.DataBean data = listOfWorks.getData();
         List<ListOfWorks.DataBean.ListBean> list = data.getList();
         WorksAdapter worksAdapter = new WorksAdapter(getActivity(), list);
+        worksAdapter.OnClickWorks(new WorksAdapter.OnClickWorks() {
+            @Override
+            public void click(int id) {
+                Toast.makeText(getActivity(), ""+id, Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(getActivity(), DetailsOfWorks.class);
+                intent.putExtra("work_id",id);
+                startActivity(intent);
+
+            }
+        });
         xrv.setAdapter(worksAdapter);
+
+    }
+
+    @Override
+    public void OnDetailsWorks(DetailsOfWorksBean worksBean) {
 
     }
 }

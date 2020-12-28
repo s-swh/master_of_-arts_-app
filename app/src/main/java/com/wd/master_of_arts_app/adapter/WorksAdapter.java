@@ -4,6 +4,7 @@ import android.content.Context;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -24,6 +25,8 @@ import java.util.List;
  */
 public class WorksAdapter extends XRecyclerView.Adapter<XRecyclerView.ViewHolder> {
     Context context; List<ListOfWorks.DataBean.ListBean> list;
+    private OnClickWorks clickWorks1;
+
     public WorksAdapter(Context context, List<ListOfWorks.DataBean.ListBean> list) {
         this.context=context;
         this.list=list;
@@ -46,23 +49,38 @@ public class WorksAdapter extends XRecyclerView.Adapter<XRecyclerView.ViewHolder
         String imglist = listBean.getImglist();
 
         Glide.with(context).load("http://qiniu.54artist.com/"+imglist).into(((WorksViewHorder)holder).img);
+        ((WorksViewHorder)holder).et.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                int work_id = listBean.getWork_id();
+                clickWorks1.click(work_id);
+            }
+        });
     }
 
     @Override
     public int getItemCount() {
         return list.size();
     }
+    public void OnClickWorks(OnClickWorks clickWorks){
+        clickWorks1 = clickWorks;
+    }
+    public interface OnClickWorks{
+        void click(int id);
+    }
     class WorksViewHorder extends RecyclerView.ViewHolder {
 
         private final ImageView img;
         private final TextView tv;
         private final TextView tt;
+        private final LinearLayout et;
 
         public WorksViewHorder(@NonNull View itemView) {
             super(itemView);
             img = itemView.findViewById(R.id.work_img);
             tv = itemView.findViewById(R.id.work_data);
             tt = itemView.findViewById(R.id.work_txt);
+            et = itemView.findViewById(R.id.Detailsofworks);
 
         }
     }

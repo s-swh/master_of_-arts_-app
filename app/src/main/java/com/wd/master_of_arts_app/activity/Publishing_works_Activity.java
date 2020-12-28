@@ -31,6 +31,7 @@ import com.google.android.material.tabs.TabLayout;
 import com.wd.master_of_arts_app.R;
 import com.wd.master_of_arts_app.base.BaseActivity;
 import com.wd.master_of_arts_app.base.BasePreantert;
+import com.wd.master_of_arts_app.bean.Count;
 import com.wd.master_of_arts_app.bean.QiNiuYun;
 import com.wd.master_of_arts_app.bean.TakePhotosAndComment;
 import com.wd.master_of_arts_app.fragment.releasefragment.Voice;
@@ -42,6 +43,9 @@ import com.wd.master_of_arts_app.wechatpictures.PhotoPreviewActivity;
 import com.wd.master_of_arts_app.wechatpictures.PhotoPreviewIntent;
 import com.wd.master_of_arts_app.wechatpictures.SelectModel;
 
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 import org.json.JSONArray;
 
 import java.io.File;
@@ -83,6 +87,7 @@ public class Publishing_works_Activity extends BaseActivity {
 
     private String[] str;
     private String s2;
+    private String content;
 
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN_MR2)
     @Override
@@ -338,11 +343,15 @@ public class Publishing_works_Activity extends BaseActivity {
         }
     }
 
+
+
     @OnClick(R.id.bt)
     public void OnClick() {
         SharedPreferences token = getSharedPreferences("token", MODE_PRIVATE);
         String token1 = token.getString("token", "");
         String string = et_user.getText().toString();
+        SharedPreferences sp1 = getSharedPreferences("content", MODE_PRIVATE);
+        String string2 = sp1.getString("string", "");
         for (int i = 0; i < str.length; i++) {
 
             SharedPreferences sp = getSharedPreferences("str", MODE_PRIVATE);
@@ -356,7 +365,9 @@ public class Publishing_works_Activity extends BaseActivity {
 
         String imglist1 = imglist.getString("imglist", "");
         String string1 = et_user.getText().toString();
-        NetUtils.getInstance().getApi().getTakePhotos(token1, string1, "", im, "")
+
+
+        NetUtils.getInstance().getApi().getTakePhotos(token1, string1, string2, im, "")
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Observer<TakePhotosAndComment>() {

@@ -1,5 +1,6 @@
 package com.wd.master_of_arts_app.model;
 
+import com.wd.master_of_arts_app.bean.DetailsOfWorksBean;
 import com.wd.master_of_arts_app.bean.ListOfWorks;
 import com.wd.master_of_arts_app.contreater.worksContreanter;
 import com.wd.master_of_arts_app.utils.NetUtils;
@@ -30,6 +31,36 @@ public class WorksModel implements worksContreanter.IModel {
                     public void onNext(ListOfWorks listOfWorks) {
                         if(onWorksCoallack!=null){
                             onWorksCoallack.OnWorks(listOfWorks);
+                        }
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+
+                    }
+
+                    @Override
+                    public void onComplete() {
+
+                    }
+                });
+    }
+    //作品详情
+    @Override
+    public void OnDetailsSuccess(int work_id, OnWoksCoallack woksCoallack) {
+        NetUtils.getInstance().getApi().getOfWorks(work_id)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Observer<DetailsOfWorksBean>() {
+                    @Override
+                    public void onSubscribe(Disposable d) {
+
+                    }
+
+                    @Override
+                    public void onNext(DetailsOfWorksBean worksBean) {
+                        if(woksCoallack!=null){
+                            woksCoallack.OnDetailsWorks(worksBean);
                         }
                     }
 

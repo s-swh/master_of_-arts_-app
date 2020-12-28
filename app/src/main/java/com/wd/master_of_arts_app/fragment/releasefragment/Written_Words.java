@@ -1,5 +1,7 @@
 package com.wd.master_of_arts_app.fragment.releasefragment;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
@@ -7,8 +9,10 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.wd.master_of_arts_app.R;
+import com.wd.master_of_arts_app.base.App;
 import com.wd.master_of_arts_app.base.BaseFragment;
 import com.wd.master_of_arts_app.base.BasePreantert;
+import com.wd.master_of_arts_app.bean.Count;
 
 import org.greenrobot.eventbus.EventBus;
 
@@ -43,7 +47,12 @@ public class Written_Words extends BaseFragment {
 
     @Override
     protected void initData() {
-    et.addTextChangedListener(new TextWatcher() {
+        String string = et.getText().toString();
+        SharedPreferences sp = App.getContext().getSharedPreferences("content", Context.MODE_PRIVATE);
+        SharedPreferences.Editor edit = sp.edit();
+        edit.putString("string",string);
+        edit.commit();
+        et.addTextChangedListener(new TextWatcher() {
         private CharSequence wordNum;//记录输入的字数
         private int selectionStart;
         private int selectionEnd;

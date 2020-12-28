@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:background="@drawable/detailsselete"
+        android:layout_height="wrap_content">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dp_15"
+            android:id="@+id/tv_title"
+            android:layout_marginTop="@dimen/dp_15"
+            android:text="作品名称：大白鹅" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:text="发布时间：2020-12-12 18:30:22"
+            android:layout_marginLeft="@dimen/dp_15"
+            android:layout_marginTop="@dimen/dp_10"
+            android:id="@+id/tv_date"
+            android:layout_height="wrap_content" />
+        <GridLayout
+            android:layout_width="match_parent"
+            android:columnCount="3"
+            android:orientation="horizontal"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:layout_marginLeft="@dimen/dp_10"
+                android:layout_width="@dimen/dp_90"
+                android:layout_marginTop="@dimen/dp_15"
+                android:id="@+id/igv_iv"
+                android:layout_height="@dimen/dp_90"
+                android:src="@mipmap/ic_launcher" />
+        </GridLayout>
+        <TextView
+            android:layout_width="match_parent"
+            android:text="作品故事："
+            android:layout_marginTop="@dimen/dp_15"
+            android:textColor="#019A92"
+            android:textSize="@dimen/sp_12"
+            android:layout_marginLeft="@dimen/dp_15"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_marginTop="@dimen/dp_5"
+            android:textSize="@dimen/sp_13"
+            android:text="大白鹅大白鹅大白鹅大白鹅大白鹅大白鹅大白鹅大白鹅大白鹅大白鹅大白鹅大白鹅大白鹅大白鹅大白鹅大白鹅大白鹅大白鹅大白鹅大白鹅大白鹅大白鹅大白鹅大白鹅大白鹅大白鹅大白鹅大白鹅"
+            android:id="@+id/tv_gu"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:layout_width="match_parent"
+            android:text="音频介绍：："
+            android:layout_marginTop="@dimen/dp_15"
+            android:textColor="#019A92"
+            android:textSize="@dimen/sp_12"
+            android:layout_marginLeft="@dimen/dp_15"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+</LinearLayout>

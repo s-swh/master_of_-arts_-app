@@ -1,6 +1,5 @@
 package com.wd.master_of_arts_app.utils;
 
-import com.google.gson.JsonArray;
 import com.wd.master_of_arts_app.base.RetrievePassword;
 import com.wd.master_of_arts_app.bean.AccountLogin;
 import com.wd.master_of_arts_app.bean.AgeInterface;
@@ -10,6 +9,7 @@ import com.wd.master_of_arts_app.bean.CodeBean;
 import com.wd.master_of_arts_app.bean.CourseDetails;
 import com.wd.master_of_arts_app.bean.CourseList;
 import com.wd.master_of_arts_app.bean.DeleteHarvestAddress;
+import com.wd.master_of_arts_app.bean.DetailsOfWorksBean;
 import com.wd.master_of_arts_app.bean.EditUserInformation;
 import com.wd.master_of_arts_app.bean.HarvestAddress;
 import com.wd.master_of_arts_app.bean.ListOfWorks;
@@ -26,29 +26,14 @@ import com.wd.master_of_arts_app.bean.UploadWorks;
 import com.wd.master_of_arts_app.bean.UserInformation;
 import com.wd.master_of_arts_app.bean.ViewHarvestAddress;
 
-import java.io.File;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
 import io.reactivex.Observable;
-import okhttp3.Headers;
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
-import okhttp3.ResponseBody;
-import retrofit2.Call;
-import retrofit2.adapter.rxjava2.Result;
-import retrofit2.http.Body;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.Multipart;
 import retrofit2.http.POST;
 import retrofit2.http.Part;
-import retrofit2.http.PartMap;
-import retrofit2.http.Query;
-import retrofit2.http.QueryMap;
-import retrofit2.http.Url;
 
 /**
  * @author 时文豪
@@ -81,6 +66,11 @@ public interface Api {
     @POST("wap/HomeWork/add")
     @Multipart
     Observable<UploadWorks> getUploadWorks(@Part("token") RequestBody token, @Part("FunName") RequestBody funName, @Part("path") RequestBody path, @Part("appfile") RequestBody appfile, @Part MultipartBody.Part imglist);
+
+    //作品详情  http://test.54artist.com/wap/Work/getMsg
+    @POST("wap/Work/getMsg")
+    @FormUrlEncoded
+    Observable<DetailsOfWorksBean>getOfWorks(@Field("work_id")int work_id);
 
     //七牛云 http://test.54artist.com/wap/Qn/upload   http://test.54artist.com/wap/Qn/upload
     @POST("wap/Qn/upload")
@@ -176,4 +166,6 @@ public interface Api {
     @POST("wap/CourseOrder/del")
     @FormUrlEncoded
     Observable<OrderDelete>getOrderDelete(@Field("token")String token,@Field("order_id")int order_id);
+
+
 }
