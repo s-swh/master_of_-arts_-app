@@ -13,6 +13,7 @@ import com.wd.master_of_arts_app.bean.DetailsOfWorksBean;
 import com.wd.master_of_arts_app.bean.EditUserInformation;
 import com.wd.master_of_arts_app.bean.HarvestAddress;
 import com.wd.master_of_arts_app.bean.ListOfWorks;
+import com.wd.master_of_arts_app.bean.MyCurse;
 import com.wd.master_of_arts_app.bean.OrderDelete;
 import com.wd.master_of_arts_app.bean.OrderList;
 import com.wd.master_of_arts_app.bean.Purchase;
@@ -166,6 +167,9 @@ public interface Api {
     @POST("wap/CourseOrder/del")
     @FormUrlEncoded
     Observable<OrderDelete>getOrderDelete(@Field("token")String token,@Field("order_id")int order_id);
-
+    //我的课程  http://test.54artist.com/wap/CourseOrder/getCourse
+    @POST("wap/CourseOrder/getCourse")
+    @FormUrlEncoded
+    Observable<MyCurse>getCurse(@Field("token")String token,@Field("p")int p,@Field("per")int per);
 
 }
