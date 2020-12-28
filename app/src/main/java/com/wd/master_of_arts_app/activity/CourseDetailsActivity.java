@@ -33,6 +33,7 @@ import com.wd.master_of_arts_app.base.BasePreantert;
 import com.wd.master_of_arts_app.bean.AgeInterface;
 import com.wd.master_of_arts_app.bean.CourseDetails;
 import com.wd.master_of_arts_app.bean.CourseList;
+import com.wd.master_of_arts_app.bean.DingdanXiangqing;
 import com.wd.master_of_arts_app.bean.IdNumber;
 import com.wd.master_of_arts_app.contreater.CourseContreater;
 import com.wd.master_of_arts_app.payment.SignUpNow;
@@ -134,6 +135,14 @@ public class CourseDetailsActivity extends BaseActivity implements CourseContrea
         itle.setText(data.getContent());
         present_price.setText(data.getPrice() + "￥");
         original_price.setText(data.getOld_price() + "￥");
+        String course_name1 = data.getCourse_name();
+        String icon1 = data.getIcon();
+        String time_detail = data.getTime_detail();
+        String first_class_time = data.getFirst_class_time();
+        String de=time_detail+first_class_time;
+        String price = data.getPrice();
+        EventBus.getDefault().postSticky(new DingdanXiangqing(course_name1,de,price,icon1));
+
 
         int course_id = data.getCourse_id();
         int course_time_id = data.getCourse_time_id();

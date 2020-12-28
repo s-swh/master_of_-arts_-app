@@ -16,6 +16,7 @@ import com.wd.master_of_arts_app.adapter.OrderListAdapter;
 import com.wd.master_of_arts_app.base.App;
 import com.wd.master_of_arts_app.base.BaseFragment;
 import com.wd.master_of_arts_app.base.BasePreantert;
+import com.wd.master_of_arts_app.bean.CancellationOfOrder;
 import com.wd.master_of_arts_app.bean.OrderList;
 import com.wd.master_of_arts_app.bean.Purchase;
 import com.wd.master_of_arts_app.contreater.OrderContreater;
@@ -84,5 +85,10 @@ public class Whole extends BaseFragment implements OrderContreater.IView {
         List<OrderList.DataBean.ListBean> list = data.getList();
         OrderListAdapter orderListAdapter = new OrderListAdapter(getActivity(), list);
         xrv.setAdapter(orderListAdapter);
+    }
+
+    @Override
+    public void OnCancel(CancellationOfOrder cancellationOfOrder) {
+
     }
 }

@@ -1,5 +1,6 @@
 package com.wd.master_of_arts_app.model;
 
+import com.wd.master_of_arts_app.bean.CancellationOfOrder;
 import com.wd.master_of_arts_app.bean.OrderList;
 import com.wd.master_of_arts_app.bean.Purchase;
 import com.wd.master_of_arts_app.contreater.OrderContreater;
@@ -18,8 +19,8 @@ import io.reactivex.schedulers.Schedulers;
 public class OrderModel implements OrderContreater.IModel {
     //创建订单
     @Override
-    public void OnPruchaseSuccess(String token, int course_id, int course_time_id, OnPruchaseCoallack coallack) {
-        NetUtils.getInstance().getApi().getPurchase(token, course_id, course_time_id)
+    public void OnPruchaseSuccess(String token, int course_id, int course_time_id,int address_id, OnPruchaseCoallack coallack) {
+        NetUtils.getInstance().getApi().getPurchase(token, course_id, course_time_id,address_id)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Observer<Purchase>() {
@@ -62,6 +63,36 @@ public class OrderModel implements OrderContreater.IModel {
                     public void onNext(OrderList orderList) {
                         if(coallack!=null){
                             coallack.OnOrderList(orderList);
+                        }
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+
+                    }
+
+                    @Override
+                    public void onComplete() {
+
+                    }
+                });
+    }
+    //取消订单
+    @Override
+    public void OnCancelSuccess(String token, String order_id, OnCancelCoallack cancelCoallack) {
+        NetUtils.getInstance().getApi().getOfOrder(token,order_id)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Observer<CancellationOfOrder>() {
+                    @Override
+                    public void onSubscribe(Disposable d) {
+
+                    }
+
+                    @Override
+                    public void onNext(CancellationOfOrder cancellationOfOrder) {
+                        if(cancelCoallack!=null){
+                            cancelCoallack.OnCancel(cancellationOfOrder);
                         }
                     }
 

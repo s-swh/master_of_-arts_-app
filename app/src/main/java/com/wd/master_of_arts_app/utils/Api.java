@@ -5,6 +5,7 @@ import com.wd.master_of_arts_app.bean.AccountLogin;
 import com.wd.master_of_arts_app.bean.AgeInterface;
 import com.wd.master_of_arts_app.bean.ArticleList;
 import com.wd.master_of_arts_app.bean.Beanner;
+import com.wd.master_of_arts_app.bean.CancellationOfOrder;
 import com.wd.master_of_arts_app.bean.CodeBean;
 import com.wd.master_of_arts_app.bean.CourseDetails;
 import com.wd.master_of_arts_app.bean.CourseList;
@@ -156,7 +157,7 @@ public interface Api {
     //下单 http://test.54artist.com/wap/CourseOrder/Order
     @POST("wap/CourseOrder/Order")
     @FormUrlEncoded
-    Observable<Purchase>getPurchase(@Field("token")String token,@Field("course_id")int course_id,@Field("course_time_id")int course_time_id);
+    Observable<Purchase>getPurchase(@Field("token")String token,@Field("course_id")int course_id,@Field("course_time_id")int course_time_id,@Field("address_id")int address_id);
 
     //订单列表  http://test.54artist.com/wap/CourseOrder/getList
     @POST("wap/CourseOrder/getList")
@@ -167,9 +168,14 @@ public interface Api {
     @POST("wap/CourseOrder/del")
     @FormUrlEncoded
     Observable<OrderDelete>getOrderDelete(@Field("token")String token,@Field("order_id")int order_id);
+
     //我的课程  http://test.54artist.com/wap/CourseOrder/getCourse
     @POST("wap/CourseOrder/getCourse")
     @FormUrlEncoded
     Observable<MyCurse>getCurse(@Field("token")String token,@Field("p")int p,@Field("per")int per);
 
+    //取消订单  http://test.54artist.com/wap/CourseOrder/cancel
+    @POST("wap/CourseOrder/cancel")
+    @FormUrlEncoded
+    Observable<CancellationOfOrder>getOfOrder(@Field("token")String token,@Field("order_id")String order_id);
 }

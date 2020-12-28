@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
@@ -22,6 +23,8 @@ import com.wd.master_of_arts_app.bean.UpdateShipping;
 import com.wd.master_of_arts_app.bean.ViewHarvestAddress;
 import com.wd.master_of_arts_app.contreater.HarvestAddressContreater;
 import com.wd.master_of_arts_app.preanter.HarvestAddressPreanter;
+
+import org.greenrobot.eventbus.EventBus;
 
 import java.util.List;
 
@@ -96,6 +99,17 @@ public class Harvest_Address extends BaseActivity implements HarvestAddressContr
         List<ViewHarvestAddress.DataBean.ListBean> list = data.getList();
         harvestAddressAdapter = new HarvestAddressAdapter(getApplicationContext(), list);
         rv.setAdapter(harvestAddressAdapter);
+        harvestAddressAdapter.OnId(new HarvestAddressAdapter.OnIdClick() {
+            @Override
+            public void OnidClick(int id) {
+                SharedPreferences addid = getSharedPreferences("addid", MODE_PRIVATE);
+                SharedPreferences.Editor edit = addid.edit();
+                edit.putInt("id",id);
+                edit.commit();
+
+                finish();
+            }
+        });
         harvestAddressAdapter.onclick(new HarvestAddressAdapter.OnCliack() {
             @Override
             public void onclick(ViewHarvestAddress.DataBean.ListBean listBean) {
@@ -107,6 +121,8 @@ public class Harvest_Address extends BaseActivity implements HarvestAddressContr
                 String consignee = listBean.getConsignee();
                 String contact_number = listBean.getContact_number();
                 String is_default = listBean.getIs_default();
+
+
                 Toast.makeText(Harvest_Address.this, id1c+"", Toast.LENGTH_SHORT).show();
 
                 Intent intent = new Intent(Harvest_Address.this, EditShippingAddress.class);
@@ -118,6 +134,7 @@ public class Harvest_Address extends BaseActivity implements HarvestAddressContr
                 intent.putExtra("consignee",consignee);
                 intent.putExtra("contact_number",contact_number);
                 intent.putExtra("is_default",is_default);
+
                 startActivity(intent);
 
             }

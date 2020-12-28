@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.TextView;
+import android.widget.Toast;
 
 
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -163,7 +164,7 @@ public class Task_page extends BaseFragment implements   CourseContreater.IView 
 
                 Intent intent = new Intent(getActivity(), CourseDetailsActivity.class);
                 intent.putExtra("id",id);
-
+                Toast.makeText(getActivity(), id+"", Toast.LENGTH_SHORT).show();
                 startActivity(intent);
             }
         });

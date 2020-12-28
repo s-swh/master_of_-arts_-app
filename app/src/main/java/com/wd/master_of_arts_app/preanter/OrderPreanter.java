@@ -2,6 +2,7 @@ package com.wd.master_of_arts_app.preanter;
 
 import com.wd.master_of_arts_app.base.BasePreantert;
 import com.wd.master_of_arts_app.base.IBaseView;
+import com.wd.master_of_arts_app.bean.CancellationOfOrder;
 import com.wd.master_of_arts_app.bean.OrderList;
 import com.wd.master_of_arts_app.bean.Purchase;
 import com.wd.master_of_arts_app.contreater.OrderContreater;
@@ -26,8 +27,8 @@ public class OrderPreanter extends BasePreantert implements OrderContreater.IPre
     }
     //创建订单
     @Override
-    public void OnPruchaseSuccess(String token, int course_id, int course_time_id) {
-        orderModel.OnPruchaseSuccess(token, course_id, course_time_id, new OrderContreater.IModel.OnPruchaseCoallack() {
+    public void OnPruchaseSuccess(String token, int course_id, int course_time_id,int address_id) {
+        orderModel.OnPruchaseSuccess(token, course_id, course_time_id,address_id, new OrderContreater.IModel.OnPruchaseCoallack() {
             @Override
             public void OnPurchase(Purchase purchase) {
                 IBaseView iBaseView = getView();
@@ -48,6 +49,20 @@ public class OrderPreanter extends BasePreantert implements OrderContreater.IPre
                 if(iBaseView instanceof OrderContreater.IView){
                     OrderContreater.IView view= (OrderContreater.IView) iBaseView;
                     view.OnOrderList(orderList);
+                }
+            }
+        });
+    }
+    //取消订单
+    @Override
+    public void OnCancelSuccess(String token, String order_id) {
+        orderModel.OnCancelSuccess(token, order_id, new OrderContreater.IModel.OnCancelCoallack() {
+            @Override
+            public void OnCancel(CancellationOfOrder cancellationOfOrder) {
+                IBaseView iBaseView = getView();
+                if(iBaseView instanceof OrderContreater.IView){
+                    OrderContreater.IView view= (OrderContreater.IView) iBaseView;
+                    view.OnCancel(cancellationOfOrder);
                 }
             }
         });

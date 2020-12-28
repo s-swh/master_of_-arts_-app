@@ -25,6 +25,7 @@ import butterknife.OnClick;
 public class HarvestAddressAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     Context context; List<ViewHarvestAddress.DataBean.ListBean> list;
     private OnCliack cliack1;
+    private OnIdClick onIdClick1;
 
     public HarvestAddressAdapter(Context context, List<ViewHarvestAddress.DataBean.ListBean> list) {
         this.context = context;
@@ -56,6 +57,14 @@ public class HarvestAddressAdapter extends RecyclerView.Adapter<RecyclerView.Vie
                 cliack1.onclick(list.get(position));
             }
         });
+        ((HarvestViewHorder) holder).add.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ViewHarvestAddress.DataBean.ListBean listBean = list.get(position);
+                int id1 = listBean.getId();
+                onIdClick1.OnidClick(id1);
+            }
+        });
     }
 
     @Override
@@ -65,13 +74,20 @@ public class HarvestAddressAdapter extends RecyclerView.Adapter<RecyclerView.Vie
     public void onclick(OnCliack cliack){
         cliack1 = cliack;
     }
+    public void OnId(OnIdClick onIdClick){
+        onIdClick1 = onIdClick;
+    }
     public interface OnCliack{
         void onclick(ViewHarvestAddress.DataBean.ListBean listBean);
+    }
+    public interface OnIdClick{
+        void OnidClick(int id);
     }
     class HarvestViewHorder extends RecyclerView.ViewHolder {
 
         private final TextView tv_name,tv_phone,tv_acce;
-        private final LinearLayout lt;
+        private final TextView lt;
+        private final LinearLayout add;
 
         public HarvestViewHorder(@NonNull View itemView) {
             super(itemView);
@@ -79,6 +95,7 @@ public class HarvestAddressAdapter extends RecyclerView.Adapter<RecyclerView.Vie
            tv_phone= itemView.findViewById(R.id.text_phone);
            tv_acce= itemView.findViewById(R.id.text_acceccte);
             lt = itemView.findViewById(R.id.lt);
+            add = itemView.findViewById(R.id.addres);
         }
     }
 }
