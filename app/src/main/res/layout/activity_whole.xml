@@ -58,13 +58,15 @@
             android:src="@mipmap/icon_cloed" />
 
     </RelativeLayout>
-    <TextView
-        android:layout_width="match_parent"
-        android:text="待付款"
-        android:layout_height="match_parent" />
+
     <LinearLayout
         android:layout_width="match_parent"
         android:background="#F2F2F2"
         android:layout_height="match_parent">
+        <com.jcodecraeer.xrecyclerview.XRecyclerView
+            android:layout_width="match_parent"
+            android:id="@+id/order_xrv"
+            android:layout_height="match_parent">
+        </com.jcodecraeer.xrecyclerview.XRecyclerView>
     </LinearLayout>
 </LinearLayout>

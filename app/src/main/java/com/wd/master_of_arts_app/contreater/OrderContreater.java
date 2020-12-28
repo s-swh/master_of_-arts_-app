@@ -1,6 +1,7 @@
 package com.wd.master_of_arts_app.contreater;
 
 import com.wd.master_of_arts_app.base.IBaseView;
+import com.wd.master_of_arts_app.bean.OrderList;
 import com.wd.master_of_arts_app.bean.Purchase;
 
 /**
@@ -10,15 +11,27 @@ import com.wd.master_of_arts_app.bean.Purchase;
  */
 public interface OrderContreater {
     interface IView extends IBaseView{
+        //创建订单
         void OnPurchase(Purchase purchase);
+        //订单列表
+        void OnOrderList(OrderList orderList);
     }
     interface IPreanter{
+        //创建订单
         void OnPruchaseSuccess(String token,int course_id,int course_time_id);
+        //订单列表
+        void OrderSuccess(String token,int p,int per);
     }
     interface IModel{
+        //创建订单
         void OnPruchaseSuccess(String token,int course_id,int course_time_id,OnPruchaseCoallack coallack);
         interface OnPruchaseCoallack{
             void OnPurchase(Purchase purchase);
+        }
+        //订单列表
+        void OrderSuccess(String token,int p,int per,OnOrderCoallack coallack);
+        interface OnOrderCoallack{
+            void OnOrderList(OrderList orderList);
         }
     }
 }

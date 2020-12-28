@@ -1,0 +1,183 @@
+package com.wd.master_of_arts_app.bean;
+
+import java.util.List;
+
+/**
+ * @author 时文豪
+ * @description:
+ * @date :2020/12/28 8:34
+ */
+public class OrderList {
+
+    /**
+     * code : 1
+     * msg : 成功
+     * data : {"list":[{"id":1,"order_num":"5fab93c184d39843","course_id":79,"course_time_id":214,"icon":"","title":"蒙蒙童画班/10:30","allprice":"5000.00","status":3,"create_time":"2020-11-11 15:33:21","pay_time":null,"time_detail":"每周一、二上课","unit_count":48}]}
+     */
+
+    private int code;
+    private String msg;
+    private DataBean data;
+
+    public int getCode() {
+        return code;
+    }
+
+    public void setCode(int code) {
+        this.code = code;
+    }
+
+    public String getMsg() {
+        return msg;
+    }
+
+    public void setMsg(String msg) {
+        this.msg = msg;
+    }
+
+    public DataBean getData() {
+        return data;
+    }
+
+    public void setData(DataBean data) {
+        this.data = data;
+    }
+
+    public static class DataBean {
+        private List<ListBean> list;
+
+        public List<ListBean> getList() {
+            return list;
+        }
+
+        public void setList(List<ListBean> list) {
+            this.list = list;
+        }
+
+        public static class ListBean {
+            /**
+             * id : 1
+             * order_num : 5fab93c184d39843
+             * course_id : 79
+             * course_time_id : 214
+             * icon :
+             * title : 蒙蒙童画班/10:30
+             * allprice : 5000.00
+             * status : 3
+             * create_time : 2020-11-11 15:33:21
+             * pay_time : null
+             * time_detail : 每周一、二上课
+             * unit_count : 48
+             */
+
+            private int id;
+            private String order_num;
+            private int course_id;
+            private int course_time_id;
+            private String icon;
+            private String title;
+            private String allprice;
+            private int status;
+            private String create_time;
+            private Object pay_time;
+            private String time_detail;
+            private int unit_count;
+
+            public int getId() {
+                return id;
+            }
+
+            public void setId(int id) {
+                this.id = id;
+            }
+
+            public String getOrder_num() {
+                return order_num;
+            }
+
+            public void setOrder_num(String order_num) {
+                this.order_num = order_num;
+            }
+
+            public int getCourse_id() {
+                return course_id;
+            }
+
+            public void setCourse_id(int course_id) {
+                this.course_id = course_id;
+            }
+
+            public int getCourse_time_id() {
+                return course_time_id;
+            }
+
+            public void setCourse_time_id(int course_time_id) {
+                this.course_time_id = course_time_id;
+            }
+
+            public String getIcon() {
+                return icon;
+            }
+
+            public void setIcon(String icon) {
+                this.icon = icon;
+            }
+
+            public String getTitle() {
+                return title;
+            }
+
+            public void setTitle(String title) {
+                this.title = title;
+            }
+
+            public String getAllprice() {
+                return allprice;
+            }
+
+            public void setAllprice(String allprice) {
+                this.allprice = allprice;
+            }
+
+            public int getStatus() {
+                return status;
+            }
+
+            public void setStatus(int status) {
+                this.status = status;
+            }
+
+            public String getCreate_time() {
+                return create_time;
+            }
+
+            public void setCreate_time(String create_time) {
+                this.create_time = create_time;
+            }
+
+            public Object getPay_time() {
+                return pay_time;
+            }
+
+            public void setPay_time(Object pay_time) {
+                this.pay_time = pay_time;
+            }
+
+            public String getTime_detail() {
+                return time_detail;
+            }
+
+            public void setTime_detail(String time_detail) {
+                this.time_detail = time_detail;
+            }
+
+            public int getUnit_count() {
+                return unit_count;
+            }
+
+            public void setUnit_count(int unit_count) {
+                this.unit_count = unit_count;
+            }
+        }
+    }
+}

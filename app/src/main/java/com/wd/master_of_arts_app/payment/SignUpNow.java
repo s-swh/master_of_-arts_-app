@@ -12,6 +12,7 @@ import com.wd.master_of_arts_app.R;
 import com.wd.master_of_arts_app.base.BaseActivity;
 import com.wd.master_of_arts_app.base.BasePreantert;
 import com.wd.master_of_arts_app.bean.IdNumber;
+import com.wd.master_of_arts_app.bean.OrderList;
 import com.wd.master_of_arts_app.bean.Purchase;
 import com.wd.master_of_arts_app.contreater.OrderContreater;
 import com.wd.master_of_arts_app.preanter.OrderPreanter;
@@ -73,5 +74,10 @@ public class SignUpNow extends BaseActivity implements OrderContreater.IView {
         if(purchase.getCode()==1){
             finish();
         }
+    }
+
+    @Override
+    public void OnOrderList(OrderList orderList) {
+
     }
 }
