@@ -37,6 +37,11 @@ public class Take_photos extends BaseFragment implements worksContreanter.IVew {
     public static final int CAMERA_REQ_CODE = 111;
     private LinearLayout lt;
     private XRecyclerView xrv;
+    int i=1;
+    int j=10;
+    private WorksAdapter worksAdapter;
+    private List<ListOfWorks.DataBean.ListBean> list;
+    private ListOfWorks.DataBean data;
 
     @Override
     protected int getLayoutId() {
@@ -87,12 +92,26 @@ public class Take_photos extends BaseFragment implements worksContreanter.IVew {
 
     @Override
     protected void initData() {
+
         BasePreantert basePreantert = getmPreanter();
         if(basePreantert instanceof worksContreanter.IPreanter){
             SharedPreferences token = getActivity().getSharedPreferences("token", Context.MODE_PRIVATE);
             String token1 = token.getString("token", "");
-            int i=1;
-            int j=10;
+            xrv.setLoadingListener(new XRecyclerView.LoadingListener() {
+                @Override
+                public void onRefresh() {
+                    i=1;
+                    worksAdapter.Refresh(data.getList());
+                    xrv.refreshComplete();
+                }
+
+                @Override
+                public void onLoadMore() {
+                    i++;
+                    worksAdapter.LoadMore(data.getList());
+                    xrv.loadMoreComplete();
+                }
+            });
             ((worksContreanter.IPreanter) basePreantert).OnWorksSuccess(token1,"",i,j);
         }
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
@@ -110,9 +129,9 @@ public class Take_photos extends BaseFragment implements worksContreanter.IVew {
         }else{
             xrv.setVisibility(View.GONE);
         }
-        ListOfWorks.DataBean data = listOfWorks.getData();
-        List<ListOfWorks.DataBean.ListBean> list = data.getList();
-        WorksAdapter worksAdapter = new WorksAdapter(getActivity(), list);
+        data = listOfWorks.getData();
+        list = data.getList();
+        worksAdapter = new WorksAdapter(getActivity(), list);
         worksAdapter.OnClickWorks(new WorksAdapter.OnClickWorks() {
             @Override
             public void click(int id) {

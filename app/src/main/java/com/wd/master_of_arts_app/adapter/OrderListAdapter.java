@@ -35,6 +35,7 @@ import io.reactivex.schedulers.Schedulers;
  */
 public class OrderListAdapter extends XRecyclerView.Adapter<XRecyclerView.ViewHolder> {
     Context context; List<OrderList.DataBean.ListBean> beanList;
+    private OrderListAdapter.itdelete itdelete;
 
     public OrderListAdapter(Context context, List<OrderList.DataBean.ListBean> beanList) {
         this.context = context;
@@ -64,7 +65,7 @@ public class OrderListAdapter extends XRecyclerView.Adapter<XRecyclerView.ViewHo
         if(status==1){
             ((OrderListViewHorder) holder).bt_order.setText("未付款");
         }else if(status==2){
-            ((OrderListViewHorder) holder).bt_order.setText("已付款");
+            ((OrderListViewHorder) holder).bt_order.setText("已完成");
         }else if(status==3){
             ((OrderListViewHorder) holder).bt_order.setText("已评论");
         }else{
@@ -75,34 +76,8 @@ public class OrderListAdapter extends XRecyclerView.Adapter<XRecyclerView.ViewHo
         ((OrderListViewHorder) holder).iv_delete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                SharedPreferences token = App.getContext().getSharedPreferences("token", Context.MODE_PRIVATE);
-                String token1 = token.getString("token", "");
                 int id = listBean.getId();
-                NetUtils.getInstance().getApi().getOrderDelete(token1,id)
-                        .subscribeOn(Schedulers.io())
-                        .observeOn(AndroidSchedulers.mainThread())
-                        .subscribe(new Observer<OrderDelete>() {
-                            @Override
-                            public void onSubscribe(Disposable d) {
-
-                            }
-
-                            @Override
-                            public void onNext(OrderDelete orderDelete) {
-                                String msg = orderDelete.getMsg();
-                                Toast.makeText(context, msg, Toast.LENGTH_SHORT).show();
-                            }
-
-                            @Override
-                            public void onError(Throwable e) {
-
-                            }
-
-                            @Override
-                            public void onComplete() {
-
-                            }
-                        });
+                itdelete.Click(id);
             }
         });
 
@@ -111,6 +86,12 @@ public class OrderListAdapter extends XRecyclerView.Adapter<XRecyclerView.ViewHo
     @Override
     public int getItemCount() {
         return beanList.size();
+    }
+    public void delete(itdelete cet){
+        itdelete = cet;
+    }
+    public interface itdelete{
+        void Click(int id);
     }
     class OrderListViewHorder extends XRecyclerView.ViewHolder {
 

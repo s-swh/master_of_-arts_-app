@@ -35,11 +35,11 @@ public class CourseAdapter  extends XRecyclerView.Adapter<XRecyclerView.ViewHold
         this.list = list;
     }
     public void Refresh( List<CourseList.DataBeanX.ListBean.DataBean> list){
-        this.list.addAll(list);
+      list.addAll(this.list);
         notifyDataSetChanged();
     }
     public void LoadMore(List<CourseList.DataBeanX.ListBean.DataBean> list){
-    this.list.addAll(this.list);
+        this.list.addAll(this.list);
         notifyDataSetChanged();
     }
     @NonNull

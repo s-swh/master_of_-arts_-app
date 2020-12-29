@@ -2,6 +2,7 @@ package com.wd.master_of_arts_app.preanter;
 
 import com.wd.master_of_arts_app.base.BasePreantert;
 import com.wd.master_of_arts_app.base.IBaseView;
+import com.wd.master_of_arts_app.bean.MyCourseDetailsBean;
 import com.wd.master_of_arts_app.bean.MyCurse;
 import com.wd.master_of_arts_app.contreater.MyCourseContreater;
 import com.wd.master_of_arts_app.model.MyCourseModel;
@@ -33,6 +34,20 @@ public class MyCoursePreanter extends BasePreantert implements MyCourseContreate
                 if(iBaseView instanceof MyCourseContreater.IView){
                     MyCourseContreater.IView view= (MyCourseContreater.IView) iBaseView;
                     view.OnCourse(myCurse);
+                }
+            }
+        });
+    }
+
+    @Override
+    public void OnCourseDatailsSuccess(String token, int order_id, int course_time_id) {
+        myCourseModel.OnCourseDatailsSuccess(token, order_id, course_time_id, new MyCourseContreater.IModel.MyCourseDatilsCoallack() {
+            @Override
+            public void OnCourseDatails(MyCourseDetailsBean myCourseDetailsBean) {
+                IBaseView iBaseView = getView();
+                if(iBaseView instanceof MyCourseContreater.IView){
+                    MyCourseContreater.IView view= (MyCourseContreater.IView) iBaseView;
+                    view.OnCourseDatails(myCourseDetailsBean);
                 }
             }
         });

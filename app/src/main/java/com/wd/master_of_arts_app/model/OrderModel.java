@@ -49,8 +49,8 @@ public class OrderModel implements OrderContreater.IModel {
     }
     //订单列表
     @Override
-    public void OrderSuccess(String token,int p,int per, OnOrderCoallack coallack) {
-        NetUtils.getInstance().getApi().getOrderlist(token,p,per)
+    public void OrderSuccess(String token,String status,int p,int per, OnOrderCoallack coallack) {
+        NetUtils.getInstance().getApi().getOrderlist(token,status,p,per)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Observer<OrderList>() {

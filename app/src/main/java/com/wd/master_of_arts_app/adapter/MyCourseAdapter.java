@@ -65,7 +65,8 @@ public class MyCourseAdapter extends XRecyclerView.Adapter<XRecyclerView.ViewHol
             @Override
             public void onClick(View view) {
                 int course_time_id = listBean.getCourse_time_id();
-                click1.OnCliack(course_time_id);
+                int order_id = listBean.getOrder_id();
+                click1.OnCliack(course_time_id,order_id);
             }
         });
     }
@@ -78,7 +79,7 @@ public class MyCourseAdapter extends XRecyclerView.Adapter<XRecyclerView.ViewHol
         click1 = click;
     }
     public interface OnClick{
-        void OnCliack(int id);
+        void OnCliack(int id,int order_id);
     }
     class MyCourseViewHorder extends XRecyclerView.ViewHolder {
         private final TextView tle, kj, te,name,Viewcoursedetails;

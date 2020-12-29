@@ -58,10 +58,10 @@
             android:src="@mipmap/icon_cloed" />
 
     </RelativeLayout>
+<com.jcodecraeer.xrecyclerview.XRecyclerView
+    android:layout_width="match_parent"
+    android:id="@+id/comment_rv"
+    android:layout_height="match_parent">
+</com.jcodecraeer.xrecyclerview.XRecyclerView>
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:layout_width="match_parent"
-        android:id="@+id/cancel_rv"
-        android:layout_height="match_parent">
-    </androidx.recyclerview.widget.RecyclerView>
 </LinearLayout>

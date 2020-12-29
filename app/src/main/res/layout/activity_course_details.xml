@@ -203,9 +203,6 @@
         android:id="@+id/rec_rv"
         android:layout_height="wrap_content">
     </androidx.recyclerview.widget.RecyclerView>
-
-</LinearLayout>
-</ScrollView>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -219,10 +216,13 @@
                 android:background="@drawable/upnow"
                 android:textSize="@dimen/sp_12"
                 android:textColor="#ffffff"
-               android:id="@+id/Signupnow"
+                android:id="@+id/Signupnow"
                 android:layout_alignParentRight="true"
                 android:layout_height="wrap_content" />
         </RelativeLayout>
     </LinearLayout>
+</LinearLayout>
+</ScrollView>
+
 
 </LinearLayout>

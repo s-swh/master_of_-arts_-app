@@ -21,6 +21,7 @@ import com.wd.master_of_arts_app.activity.Calendar_Activity;
 import com.wd.master_of_arts_app.adapter.MyCourseAdapter;
 import com.wd.master_of_arts_app.base.BaseActivity;
 import com.wd.master_of_arts_app.base.BasePreantert;
+import com.wd.master_of_arts_app.bean.MyCourseDetailsBean;
 import com.wd.master_of_arts_app.bean.MyCurse;
 import com.wd.master_of_arts_app.contreater.MyCourseContreater;
 import com.wd.master_of_arts_app.preanter.MyCoursePreanter;
@@ -82,11 +83,19 @@ public class My_Course extends BaseActivity implements MyCourseContreater.IView 
         MyCourseAdapter myCourseAdapter = new MyCourseAdapter(getApplicationContext(), list);
         myCourseAdapter.setOnClick(new MyCourseAdapter.OnClick() {
             @Override
-            public void OnCliack(int id) {
+            public void OnCliack(int id,int order_id) {
                 Intent intent = new Intent(getApplicationContext(), MyCourseDetails.class);
+
+                intent.putExtra("icqd",id);
+                intent.putExtra("order_id",order_id);
                 startActivity(intent);
             }
         });
         xrv.setAdapter(myCourseAdapter);
+    }
+
+    @Override
+    public void OnCourseDatails(MyCourseDetailsBean myCourseDetailsBean) {
+
     }
 }

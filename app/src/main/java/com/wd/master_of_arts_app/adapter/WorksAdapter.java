@@ -31,7 +31,14 @@ public class WorksAdapter extends XRecyclerView.Adapter<XRecyclerView.ViewHolder
         this.context=context;
         this.list=list;
     }
-
+    public void Refresh(List<ListOfWorks.DataBean.ListBean> list){
+        this.list=list;
+        notifyDataSetChanged();
+    }
+    public void LoadMore(List<ListOfWorks.DataBean.ListBean> list){
+        list=this.list;
+        notifyDataSetChanged();
+    }
     @NonNull
     @Override
     public XRecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {

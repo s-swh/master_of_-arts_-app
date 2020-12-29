@@ -23,7 +23,7 @@ public interface OrderContreater {
         //创建订单
         void OnPruchaseSuccess(String token,int course_id,int course_time_id,int address_id);
         //订单列表
-        void OrderSuccess(String token,int p,int per);
+        void OrderSuccess(String token,String status,int p,int per);
         //取消订单
         void OnCancelSuccess(String token,String order_id);
     }
@@ -34,7 +34,7 @@ public interface OrderContreater {
             void OnPurchase(Purchase purchase);
         }
         //订单列表
-        void OrderSuccess(String token,int p,int per,OnOrderCoallack coallack);
+        void OrderSuccess(String token,String status,int p,int per,OnOrderCoallack coallack);
         interface OnOrderCoallack{
             void OnOrderList(OrderList orderList);
         }

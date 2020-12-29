@@ -8,7 +8,12 @@ import java.util.List;
  * @date :2020/12/28 11:11
  */
 public class MyCurse {
-    
+
+    /**
+     * code : 1
+     * msg : 成功
+     * data : {"list":[{"course_id":76,"course_time_id":213,"order_id":23,"icon":"http://test.54artist.com/public/upload/course/20201218/b4087ba74135c2944a3e1e9f74ddd4f9.jpg","title":"童童创想班A","time_detail":"每周一、二上课","teacher_id":2,"teacher_name":"谭老师","avatar":"http://test.54artist.com/public/upload/teacher/20201218/f5a447bc3a2f824516f8e971323f9362.png","unit_num":24},{"course_id":76,"course_time_id":213,"icon":"http://test.54artist.com/public/upload/course/20201218/b4087ba74135c2944a3e1e9f74ddd4f9.jpg","title":"童童创想班A","time_detail":"每周一、二上课","teacher_id":2,"teacher_name":"谭老师","avatar":"http://test.54artist.com/public/upload/teacher/20201218/f5a447bc3a2f824516f8e971323f9362.png"},{"course_id":76,"course_time_id":213,"icon":"http://test.54artist.com/public/upload/course/20201218/b4087ba74135c2944a3e1e9f74ddd4f9.jpg","title":"童童创想班A","time_detail":"每周一、二上课","teacher_id":2,"teacher_name":"谭老师","avatar":"http://test.54artist.com/public/upload/teacher/20201218/f5a447bc3a2f824516f8e971323f9362.png"},{"course_id":76,"course_time_id":213,"icon":"http://test.54artist.com/public/upload/course/20201218/b4087ba74135c2944a3e1e9f74ddd4f9.jpg","title":"童童创想班A","time_detail":"每周一、二上课","teacher_id":2,"teacher_name":"谭老师","avatar":"http://test.54artist.com/public/upload/teacher/20201218/f5a447bc3a2f824516f8e971323f9362.png"}]}
+     */
 
     private int code;
     private String msg;
@@ -51,24 +56,28 @@ public class MyCurse {
 
         public static class ListBean {
             /**
-             * course_id : 79
-             * course_time_id : 214
-             * icon :
-             * title : 蒙蒙童画班/10:30
+             * course_id : 76
+             * course_time_id : 213
+             * order_id : 23
+             * icon : http://test.54artist.com/public/upload/course/20201218/b4087ba74135c2944a3e1e9f74ddd4f9.jpg
+             * title : 童童创想班A
              * time_detail : 每周一、二上课
-             * teacher_id : 3
-             * teacher_name : 殷老师
-             * avatar : http://test.54artist.com/public/upload/teacher/20201218/b082ae8d248078bc9a78924fff2b60a9.png
+             * teacher_id : 2
+             * teacher_name : 谭老师
+             * avatar : http://test.54artist.com/public/upload/teacher/20201218/f5a447bc3a2f824516f8e971323f9362.png
+             * unit_num : 24
              */
 
             private int course_id;
             private int course_time_id;
+            private int order_id;
             private String icon;
             private String title;
             private String time_detail;
             private int teacher_id;
             private String teacher_name;
             private String avatar;
+            private int unit_num;
 
             public int getCourse_id() {
                 return course_id;
@@ -84,6 +93,14 @@ public class MyCurse {
 
             public void setCourse_time_id(int course_time_id) {
                 this.course_time_id = course_time_id;
+            }
+
+            public int getOrder_id() {
+                return order_id;
+            }
+
+            public void setOrder_id(int order_id) {
+                this.order_id = order_id;
             }
 
             public String getIcon() {
@@ -132,6 +149,14 @@ public class MyCurse {
 
             public void setAvatar(String avatar) {
                 this.avatar = avatar;
+            }
+
+            public int getUnit_num() {
+                return unit_num;
+            }
+
+            public void setUnit_num(int unit_num) {
+                this.unit_num = unit_num;
             }
         }
     }

@@ -1,5 +1,6 @@
 package com.wd.master_of_arts_app.model;
 
+import com.wd.master_of_arts_app.bean.MyCourseDetailsBean;
 import com.wd.master_of_arts_app.bean.MyCurse;
 import com.wd.master_of_arts_app.contreater.MyCourseContreater;
 import com.wd.master_of_arts_app.utils.NetUtils;
@@ -32,6 +33,36 @@ public class MyCourseModel implements MyCourseContreater.IModel {
                     if(courseCoallack!=null){
                         courseCoallack.OnCourse(myCurse);
                     }
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+
+                    }
+
+                    @Override
+                    public void onComplete() {
+
+                    }
+                });
+    }
+
+    @Override
+    public void OnCourseDatailsSuccess(String token, int order_id, int course_time_id, MyCourseDatilsCoallack myCourseDatilsCoallack) {
+        NetUtils.getInstance().getApi().getCourseBean(token, order_id, course_time_id)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Observer<MyCourseDetailsBean>() {
+                    @Override
+                    public void onSubscribe(Disposable d) {
+
+                    }
+
+                    @Override
+                    public void onNext(MyCourseDetailsBean myCourseDetailsBean) {
+                        if(myCourseDatilsCoallack!=null){
+                            myCourseDatilsCoallack.OnCourseDatails(myCourseDetailsBean);
+                        }
                     }
 
                     @Override

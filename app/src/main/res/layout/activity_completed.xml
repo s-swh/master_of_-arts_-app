@@ -58,13 +58,10 @@
             android:src="@mipmap/icon_cloed" />
 
     </RelativeLayout>
-    <TextView
+
+    <com.jcodecraeer.xrecyclerview.XRecyclerView
         android:layout_width="match_parent"
-        android:text="已完成"
-        android:layout_height="match_parent" />
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:background="#F2F2F2"
+        android:id="@+id/com_rv"
         android:layout_height="match_parent">
-    </LinearLayout>
+    </com.jcodecraeer.xrecyclerview.XRecyclerView>
 </LinearLayout>

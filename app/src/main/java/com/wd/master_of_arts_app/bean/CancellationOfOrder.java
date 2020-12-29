@@ -6,27 +6,28 @@ package com.wd.master_of_arts_app.bean;
  * @date :2020/12/28 16:23
  */
 public class CancellationOfOrder {
+
     /**
-     * token :
-     * order_id : 1
+     * code : 1
+     * msg : 成功
      */
 
-    private String token;
-    private String order_id;
+    private int code;
+    private String msg;
 
-    public String getToken() {
-        return token;
+    public int getCode() {
+        return code;
     }
 
-    public void setToken(String token) {
-        this.token = token;
+    public void setCode(int code) {
+        this.code = code;
     }
 
-    public String getOrder_id() {
-        return order_id;
+    public String getMsg() {
+        return msg;
     }
 
-    public void setOrder_id(String order_id) {
-        this.order_id = order_id;
+    public void setMsg(String msg) {
+        this.msg = msg;
     }
 }

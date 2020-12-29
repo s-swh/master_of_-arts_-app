@@ -40,9 +40,11 @@ public class OrderPreanter extends BasePreantert implements OrderContreater.IPre
         });
     }
 
+
+
     @Override
-    public void OrderSuccess(String token,int p,int per) {
-        orderModel.OrderSuccess(token,p,per, new OrderContreater.IModel.OnOrderCoallack() {
+    public void OrderSuccess(String token,String status,int p,int per) {
+        orderModel.OrderSuccess(token,status,p,per, new OrderContreater.IModel.OnOrderCoallack() {
             @Override
             public void OnOrderList(OrderList orderList) {
                 IBaseView iBaseView = getView();

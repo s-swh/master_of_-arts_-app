@@ -59,9 +59,9 @@
 
     </RelativeLayout>
 
-    <LinearLayout
+    <com.jcodecraeer.xrecyclerview.XRecyclerView
         android:layout_width="match_parent"
-        android:background="#FFFF"
+        android:id="@+id/xrv"
         android:layout_height="match_parent">
-    </LinearLayout>
+    </com.jcodecraeer.xrecyclerview.XRecyclerView>
 </LinearLayout>
