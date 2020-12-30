@@ -129,19 +129,24 @@ public class Take_photos extends BaseFragment implements worksContreanter.IVew {
             xrv.setVisibility(View.GONE);
         }
         data = listOfWorks.getData();
-        list = data.getList();
-        worksAdapter = new WorksAdapter(getActivity(), list);
-        worksAdapter.OnClickWorks(new WorksAdapter.OnClickWorks() {
-            @Override
-            public void click(int id) {
-                Toast.makeText(getActivity(), ""+id, Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(getActivity(), DetailsOfWorks.class);
-                intent.putExtra("work_id",id);
-                startActivity(intent);
 
-            }
-        });
-        xrv.setAdapter(worksAdapter);
+        if(data!=null){
+            list = data.getList();
+            worksAdapter = new WorksAdapter(getActivity(), list);
+            worksAdapter.OnClickWorks(new WorksAdapter.OnClickWorks() {
+                @Override
+                public void click(int id) {
+                    Toast.makeText(getActivity(), ""+id, Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(getActivity(), DetailsOfWorks.class);
+                    intent.putExtra("work_id",id);
+                    startActivity(intent);
+
+                }
+            });
+            xrv.setAdapter(worksAdapter);
+        }
+
+
 
     }
 

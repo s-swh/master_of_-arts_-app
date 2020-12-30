@@ -81,7 +81,19 @@ public class Task_page extends BaseFragment implements   CourseContreater.IView 
         if(basePreantert instanceof CourseContreater.IPreanter){
             ((CourseContreater.IPreanter) basePreantert).OnCourseSuccess("","","","",i,j);
         }
+        rv.setLoadingListener(new XRecyclerView.LoadingListener() {
+            @Override
+            public void onRefresh() {
+                courseAdapter.Refresh(list.getData());
+                rv.refreshComplete();
+            }
 
+            @Override
+            public void onLoadMore() {
+                courseAdapter.LoadMore(list.getData());
+                rv.loadMoreComplete();
+            }
+        });
     }
     //弹框
    @OnClick(R.id.vve)
