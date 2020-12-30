@@ -3,10 +3,13 @@ package com.wd.master_of_arts_app.preanter;
 import com.wd.master_of_arts_app.base.BasePreantert;
 import com.wd.master_of_arts_app.base.IBaseView;
 import com.wd.master_of_arts_app.bean.CancellationOfOrder;
+import com.wd.master_of_arts_app.bean.CommentOrder;
+import com.wd.master_of_arts_app.bean.CourseOrderBean;
 import com.wd.master_of_arts_app.bean.OrderList;
 import com.wd.master_of_arts_app.bean.Purchase;
 import com.wd.master_of_arts_app.contreater.OrderContreater;
 import com.wd.master_of_arts_app.model.OrderModel;
+import com.wd.master_of_arts_app.utils.NetUtils;
 
 /**
  * @author 时文豪
@@ -65,6 +68,34 @@ public class OrderPreanter extends BasePreantert implements OrderContreater.IPre
                 if(iBaseView instanceof OrderContreater.IView){
                     OrderContreater.IView view= (OrderContreater.IView) iBaseView;
                     view.OnCancel(cancellationOfOrder);
+                }
+            }
+        });
+    }
+
+    @Override
+    public void OnOrderdetailsSuccess(String token, int order_id) {
+        orderModel.OnOrderdetailsSuccess(token, order_id, new OrderContreater.IModel.OnOrderdetilsCoallack() {
+            @Override
+            public void OnOrderdetails(CourseOrderBean orderBean) {
+                IBaseView iBaseView = getView();
+                if(iBaseView instanceof OrderContreater.IView){
+                    OrderContreater.IView view= (OrderContreater.IView) iBaseView;
+                    view.OnOrderdetails(orderBean);
+                }
+            }
+        });
+    }
+    //订单评论
+    @Override
+    public void OnCommentSuccess(String token, int order_id, int score, String content) {
+        orderModel.OnCommentSuccess(token, order_id, score, content, new OrderContreater.IModel.OnCommentCoallack() {
+            @Override
+            public void OnComment(CommentOrder commentOrder) {
+                IBaseView iBaseView = getView();
+                if(iBaseView instanceof OrderContreater.IView){
+                    OrderContreater.IView view= (OrderContreater.IView) iBaseView;
+                    view.OnComment(commentOrder);
                 }
             }
         });

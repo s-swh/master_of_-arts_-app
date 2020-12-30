@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -36,10 +37,19 @@ import io.reactivex.schedulers.Schedulers;
 public class OrderListAdapter extends XRecyclerView.Adapter<XRecyclerView.ViewHolder> {
     Context context; List<OrderList.DataBean.ListBean> beanList;
     private OrderListAdapter.itdelete itdelete;
+    private idtet idtet1;
 
     public OrderListAdapter(Context context, List<OrderList.DataBean.ListBean> beanList) {
         this.context = context;
         this.beanList = beanList;
+    }
+    public void Refresh(List<OrderList.DataBean.ListBean> beanList){
+
+        notifyDataSetChanged();
+    }
+    public void Load( List<OrderList.DataBean.ListBean> beanList){
+      beanList.addAll(this.beanList);
+        notifyDataSetChanged();
     }
 
     @NonNull
@@ -61,14 +71,21 @@ public class OrderListAdapter extends XRecyclerView.Adapter<XRecyclerView.ViewHo
         ((OrderListViewHorder) holder).tv_title.setText(title);
         ((OrderListViewHorder) holder).tv_date.setText(time_detail+create_time);
         ((OrderListViewHorder) holder).tv_money.setText(allprice);
+            ((OrderListViewHorder) holder).lt.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    int id = listBean.getId();
+                    idtet1.OnClick(id);
+                }
+            });
         int status = listBean.getStatus();
         if(status==1){
             ((OrderListViewHorder) holder).bt_order.setText("未付款");
         }else if(status==2){
-            ((OrderListViewHorder) holder).bt_order.setText("已完成");
+            ((OrderListViewHorder) holder).bt_order.setText("已付款");
         }else if(status==3){
             ((OrderListViewHorder) holder).bt_order.setText("已评论");
-        }else{
+        }else if(status==4){
             ((OrderListViewHorder) holder).bt_order.setText("已取消");
         }
         String icon = listBean.getIcon();
@@ -93,11 +110,18 @@ public class OrderListAdapter extends XRecyclerView.Adapter<XRecyclerView.ViewHo
     public interface itdelete{
         void Click(int id);
     }
+    public void OnClick(idtet idtet){
+        idtet1 = idtet;
+    }
+    public interface idtet{
+        void OnClick(int id);
+    }
     class OrderListViewHorder extends XRecyclerView.ViewHolder {
 
         private final TextView tv_number,tv_title,tv_date,tv_money;
         private final ImageView tv_iv,iv_delete;
         private final  TextView bt_order;
+        private final LinearLayout lt;
 
         public OrderListViewHorder(@NonNull View itemView) {
             super(itemView);
@@ -108,6 +132,7 @@ public class OrderListAdapter extends XRecyclerView.Adapter<XRecyclerView.ViewHo
           iv_delete=    itemView.findViewById(R.id.order_delete);
           tv_money=    itemView.findViewById(R.id.order_money);
            bt_order= itemView.findViewById(R.id.order_but);
+            lt = itemView.findViewById(R.id.precode);
         }
     }
 }

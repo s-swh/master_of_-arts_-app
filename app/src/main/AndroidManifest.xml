@@ -34,7 +34,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
-        <activity android:name=".activity.myactivity.MyCourseDetails"></activity>
+        <activity android:name=".activity.OrderComment"></activity>
+        <activity android:name=".activity.OrderDetails" />
+        <activity android:name=".activity.myactivity.MyCourseDetails" />
         <activity android:name=".activity.DetailsOfWorks" />
         <activity android:name=".payment.SignUpNow" />
         <activity android:name=".activity.EditShippingAddress" />

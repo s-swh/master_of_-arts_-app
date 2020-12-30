@@ -77,29 +77,8 @@ public class Task_page extends BaseFragment implements   CourseContreater.IView 
     protected void initData() {
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
         rv.setLayoutManager(linearLayoutManager);
-
         BasePreantert basePreantert = getmPreanter();
         if(basePreantert instanceof CourseContreater.IPreanter){
-
-            rv.setLoadingListener(new XRecyclerView.LoadingListener() {
-                @Override
-                public void onRefresh() {
-                    i=1;
-                    courseAdapter.Refresh(list.getData());
-                    courseAdapter.notifyDataSetChanged();
-                    rv.refreshComplete();
-                }
-
-                @Override
-                public void onLoadMore() {
-                    i++;
-                    courseAdapter.LoadMore(list.getData());
-                    courseAdapter.notifyDataSetChanged();
-                    rv.loadMoreComplete();
-
-
-                }
-            });
             ((CourseContreater.IPreanter) basePreantert).OnCourseSuccess("","","","",i,j);
         }
 

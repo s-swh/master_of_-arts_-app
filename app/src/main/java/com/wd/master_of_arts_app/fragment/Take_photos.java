@@ -92,26 +92,25 @@ public class Take_photos extends BaseFragment implements worksContreanter.IVew {
 
     @Override
     protected void initData() {
+        xrv.setLoadingListener(new XRecyclerView.LoadingListener() {
+            @Override
+            public void onRefresh() {
+                i=1;
+                xrv.refreshComplete();
+            }
 
+            @Override
+            public void onLoadMore() {
+                i++;
+
+                xrv.loadMoreComplete();
+            }
+        });
         BasePreantert basePreantert = getmPreanter();
         if(basePreantert instanceof worksContreanter.IPreanter){
             SharedPreferences token = getActivity().getSharedPreferences("token", Context.MODE_PRIVATE);
             String token1 = token.getString("token", "");
-            xrv.setLoadingListener(new XRecyclerView.LoadingListener() {
-                @Override
-                public void onRefresh() {
-                    i=1;
-                    worksAdapter.Refresh(data.getList());
-                    xrv.refreshComplete();
-                }
 
-                @Override
-                public void onLoadMore() {
-                    i++;
-                    worksAdapter.LoadMore(data.getList());
-                    xrv.loadMoreComplete();
-                }
-            });
             ((worksContreanter.IPreanter) basePreantert).OnWorksSuccess(token1,"",i,j);
         }
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());

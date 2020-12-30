@@ -1,6 +1,8 @@
 package com.wd.master_of_arts_app.model;
 
 import com.wd.master_of_arts_app.bean.CancellationOfOrder;
+import com.wd.master_of_arts_app.bean.CommentOrder;
+import com.wd.master_of_arts_app.bean.CourseOrderBean;
 import com.wd.master_of_arts_app.bean.OrderList;
 import com.wd.master_of_arts_app.bean.Purchase;
 import com.wd.master_of_arts_app.contreater.OrderContreater;
@@ -93,6 +95,66 @@ public class OrderModel implements OrderContreater.IModel {
                     public void onNext(CancellationOfOrder cancellationOfOrder) {
                         if(cancelCoallack!=null){
                             cancelCoallack.OnCancel(cancellationOfOrder);
+                        }
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+
+                    }
+
+                    @Override
+                    public void onComplete() {
+
+                    }
+                });
+    }
+    //订单详情
+    @Override
+    public void OnOrderdetailsSuccess(String token, int order_id, OnOrderdetilsCoallack coallack) {
+        NetUtils.getInstance().getApi().getCourseOrder(token,order_id)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Observer<CourseOrderBean>() {
+                    @Override
+                    public void onSubscribe(Disposable d) {
+
+                    }
+
+                    @Override
+                    public void onNext(CourseOrderBean orderBean) {
+                    if(coallack!=null){
+                        coallack.OnOrderdetails(orderBean);
+                    }
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+
+                    }
+
+                    @Override
+                    public void onComplete() {
+
+                    }
+                });
+    }
+    //订单评论
+    @Override
+    public void OnCommentSuccess(String token, int order_id, int score, String content, OnCommentCoallack commentCoallack) {
+        NetUtils.getInstance().getApi().getCommentOrder(token, order_id, score, content)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Observer<CommentOrder>() {
+                    @Override
+                    public void onSubscribe(Disposable d) {
+
+                    }
+
+                    @Override
+                    public void onNext(CommentOrder commentOrder) {
+                        if(commentCoallack!=null){
+                            commentCoallack.OnComment(commentOrder);
                         }
                     }
 

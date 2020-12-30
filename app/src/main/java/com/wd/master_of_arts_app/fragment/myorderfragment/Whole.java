@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
@@ -13,11 +14,14 @@ import android.widget.Toast;
 
 import com.jcodecraeer.xrecyclerview.XRecyclerView;
 import com.wd.master_of_arts_app.R;
+import com.wd.master_of_arts_app.activity.OrderDetails;
 import com.wd.master_of_arts_app.adapter.OrderListAdapter;
 import com.wd.master_of_arts_app.base.App;
 import com.wd.master_of_arts_app.base.BaseFragment;
 import com.wd.master_of_arts_app.base.BasePreantert;
 import com.wd.master_of_arts_app.bean.CancellationOfOrder;
+import com.wd.master_of_arts_app.bean.CommentOrder;
+import com.wd.master_of_arts_app.bean.CourseOrderBean;
 import com.wd.master_of_arts_app.bean.OrderDelete;
 import com.wd.master_of_arts_app.bean.OrderList;
 import com.wd.master_of_arts_app.bean.Purchase;
@@ -42,6 +46,11 @@ public class Whole extends BaseFragment implements OrderContreater.IView {
     private ImageView iv;
     private EditText us;
     private XRecyclerView xrv;
+    private int p;
+    private int per;
+    private OrderListAdapter orderListAdapter;
+    private OrderList.DataBean data;
+    private List<OrderList.DataBean.ListBean> list;
 
     @Override
     protected int getLayoutId() {
@@ -68,9 +77,27 @@ public class Whole extends BaseFragment implements OrderContreater.IView {
         if(basePreantert instanceof OrderContreater.IPreanter){
             SharedPreferences token = App.getContext().getSharedPreferences("token", Context.MODE_PRIVATE);
             String token1 = token.getString("token", "");
-            int p=1;
-            int per=10;
-            ((OrderContreater.IPreanter) basePreantert).OrderSuccess(token1,"",p,per);
+
+            per = 10;
+            xrv.setLoadingMoreEnabled(true);
+            xrv.setPullRefreshEnabled(true);
+            xrv.setLoadingListener(new XRecyclerView.LoadingListener() {
+                @Override
+                public void onRefresh() {
+                    p =1;
+                    ((OrderContreater.IPreanter) basePreantert).OrderSuccess(token1,"", p, per);
+                orderListAdapter.Refresh(data.getList());
+                    xrv.refreshComplete();
+                }
+
+                @Override
+                public void onLoadMore() {
+                p++;
+                orderListAdapter.Load(data.getList());
+                xrv.loadMoreComplete();
+                }
+            });
+            ((OrderContreater.IPreanter) basePreantert).OrderSuccess(token1,"", p, per);
         }
         iv.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -92,14 +119,23 @@ public class Whole extends BaseFragment implements OrderContreater.IView {
 
     @Override
     public void OnOrderList(OrderList orderList) {
-        OrderList.DataBean data = orderList.getData();
-        List<OrderList.DataBean.ListBean> list = data.getList();
-        OrderListAdapter orderListAdapter = new OrderListAdapter(getActivity(), list);
-
+        data = orderList.getData();
+        list = data.getList();
+        orderListAdapter = new OrderListAdapter(getActivity(), list);
+        orderListAdapter.OnClick(new OrderListAdapter.idtet() {
+            @Override
+            public void OnClick(int id) {
+                Intent intent = new Intent(getActivity(), OrderDetails.class);
+                intent.putExtra("idddddd",id);
+                Toast.makeText(getActivity(), id+"", Toast.LENGTH_SHORT).show();
+                startActivity(intent);
+            }
+        });
         xrv.setAdapter(orderListAdapter);
         orderListAdapter.delete(new OrderListAdapter.itdelete() {
             @Override
             public void Click(int id) {
+
                 SharedPreferences token = App.getContext().getSharedPreferences("token", Context.MODE_PRIVATE);
                 String token1 = token.getString("token", "");
                 NetUtils.getInstance().getApi().getOrderDelete(token1,id)
@@ -134,6 +170,16 @@ public class Whole extends BaseFragment implements OrderContreater.IView {
 
     @Override
     public void OnCancel(CancellationOfOrder cancellationOfOrder) {
+
+    }
+
+    @Override
+    public void OnOrderdetails(CourseOrderBean orderBean) {
+
+    }
+
+    @Override
+    public void OnComment(CommentOrder commentOrder) {
 
     }
 }

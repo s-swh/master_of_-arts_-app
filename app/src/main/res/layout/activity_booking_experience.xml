@@ -5,19 +5,18 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="@mipmap/icon_yuyuetiyan"
     tools:context=".activity.Booking_experience">
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <ImageView
-            android:layout_width="match_parent"
-            android:src="@mipmap/ic_launcher"
-            android:scaleType="fitXY"
-            android:layout_height="@dimen/dp_350" />
-    </LinearLayout>
+
+        android:layout_height="match_parent">
 <LinearLayout
     android:layout_width="480dp"
     android:orientation="vertical"
+    android:gravity="center"
+    android:layout_centerHorizontal="true"
+    android:layout_marginTop="612dp"
     android:background="@drawable/tiyanselected"
     android:layout_gravity="center"
     android:layout_height="@dimen/dp_200">
@@ -37,7 +36,7 @@
         <EditText
             android:layout_width="420dp"
             android:hint="请输入您的姓名"
-            android:layout_marginTop="@dimen/dp_13"
+            android:layout_marginTop="13dp"
             android:background="@drawable/editseletect"
             android:layout_gravity="center"
             android:layout_height="@dimen/dp_20" />
@@ -60,7 +59,7 @@
             android:layout_gravity="center"
             android:background="@drawable/editseletect"
             android:hint="请输入您的手机号"
-            android:layout_marginTop="@dimen/dp_13"
+            android:layout_marginTop="13dp"
             android:layout_height="@dimen/dp_20" />
     </LinearLayout>
     <Button
@@ -74,4 +73,5 @@
         android:background="@drawable/fillet2"
         android:layout_height="wrap_content" />
 </LinearLayout>
+    </RelativeLayout>
 </LinearLayout>

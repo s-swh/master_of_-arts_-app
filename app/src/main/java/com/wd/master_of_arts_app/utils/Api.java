@@ -7,13 +7,16 @@ import com.wd.master_of_arts_app.bean.ArticleList;
 import com.wd.master_of_arts_app.bean.Beanner;
 import com.wd.master_of_arts_app.bean.CancellationOfOrder;
 import com.wd.master_of_arts_app.bean.CodeBean;
+import com.wd.master_of_arts_app.bean.CommentOrder;
 import com.wd.master_of_arts_app.bean.CourseDetails;
 import com.wd.master_of_arts_app.bean.CourseList;
+import com.wd.master_of_arts_app.bean.CourseOrderBean;
 import com.wd.master_of_arts_app.bean.DeleteHarvestAddress;
 import com.wd.master_of_arts_app.bean.DetailsOfWorksBean;
 import com.wd.master_of_arts_app.bean.EditUserInformation;
 import com.wd.master_of_arts_app.bean.HarvestAddress;
 import com.wd.master_of_arts_app.bean.ListOfWorks;
+import com.wd.master_of_arts_app.bean.Logistics;
 import com.wd.master_of_arts_app.bean.MyCourseDetailsBean;
 import com.wd.master_of_arts_app.bean.MyCurse;
 import com.wd.master_of_arts_app.bean.OrderDelete;
@@ -184,4 +187,20 @@ public interface Api {
     @POST("wap/CourseOrder/getMyCourseMsg")
     @FormUrlEncoded
     Observable<MyCourseDetailsBean>getCourseBean(@Field("token")String token,@Field("order_id")int order_id,@Field("course_time_id")int course_time_id);
+
+    //订单详情 http://test.54artist.com/wap/CourseOrder/getMsg
+    @POST("wap/CourseOrder/getMsg")
+    @FormUrlEncoded
+    Observable<CourseOrderBean>getCourseOrder(@Field("token")String token,@Field("order_id")int order_id);
+
+    //评论    http://test.54artist.com/wap/CourseOrder/comment
+    @POST("wap/CourseOrder/comment")
+    @FormUrlEncoded
+    Observable<CommentOrder>getCommentOrder(@Field("token")String token,@Field("order_id")int order_id,@Field("score")int score,@Field("content")String content);
+
+    //查看物流   http://test.54artist.com/wap/CourseOrder/getLogisticsMsg
+    @POST("wap/CourseOrder/getLogisticsMsg")
+    @FormUrlEncoded
+    Observable<Logistics>getLogist(@Field("token")String token,@Field("logistics")String logistics,@Field("express_number")String express_number);
+
 }

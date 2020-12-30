@@ -22,8 +22,10 @@ import com.wd.master_of_arts_app.base.BaseActivity;
 import com.wd.master_of_arts_app.base.BasePreantert;
 import com.wd.master_of_arts_app.bean.AgeInterface;
 import com.wd.master_of_arts_app.bean.CancellationOfOrder;
+import com.wd.master_of_arts_app.bean.CommentOrder;
 import com.wd.master_of_arts_app.bean.CourseDetails;
 import com.wd.master_of_arts_app.bean.CourseList;
+import com.wd.master_of_arts_app.bean.CourseOrderBean;
 import com.wd.master_of_arts_app.bean.DingdanXiangqing;
 import com.wd.master_of_arts_app.bean.IdNumber;
 import com.wd.master_of_arts_app.bean.OrderList;
@@ -163,6 +165,16 @@ private ImageView dd_img;
 
     @Override
     public void OnCancel(CancellationOfOrder cancellationOfOrder) {
+
+    }
+
+    @Override
+    public void OnOrderdetails(CourseOrderBean orderBean) {
+
+    }
+
+    @Override
+    public void OnComment(CommentOrder commentOrder) {
 
     }
 
