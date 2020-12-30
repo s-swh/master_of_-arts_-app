@@ -21,6 +21,7 @@ import com.wd.master_of_arts_app.activity.Calendar_Activity;
 import com.wd.master_of_arts_app.adapter.MyCourseAdapter;
 import com.wd.master_of_arts_app.base.BaseActivity;
 import com.wd.master_of_arts_app.base.BasePreantert;
+import com.wd.master_of_arts_app.bean.MyClassDate;
 import com.wd.master_of_arts_app.bean.MyCourseDetailsBean;
 import com.wd.master_of_arts_app.bean.MyCurse;
 import com.wd.master_of_arts_app.contreater.MyCourseContreater;
@@ -96,6 +97,11 @@ public class My_Course extends BaseActivity implements MyCourseContreater.IView 
 
     @Override
     public void OnCourseDatails(MyCourseDetailsBean myCourseDetailsBean) {
+
+    }
+
+    @Override
+    public void OnMyClassDate(MyClassDate myClassDate) {
 
     }
 }

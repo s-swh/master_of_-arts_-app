@@ -1,5 +1,6 @@
 package com.wd.master_of_arts_app.model;
 
+import com.wd.master_of_arts_app.base.RetrievePassword;
 import com.wd.master_of_arts_app.bean.AccountLogin;
 import com.wd.master_of_arts_app.bean.CodeBean;
 import com.wd.master_of_arts_app.bean.SMSLogin;
@@ -93,6 +94,36 @@ public class LoginModel implements LoginContreater.IModel {
                     public void onNext(AccountLogin accountLogin) {
                         if(onAccoutCoallack!=null){
                             onAccoutCoallack.OnAccoutLogin(accountLogin);
+                        }
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+
+                    }
+
+                    @Override
+                    public void onComplete() {
+
+                    }
+                });
+    }
+        //重置密码
+    @Override
+    public void OnRetrieveSuccess(String phone, String code, String pwd, RetrieveCoallack retrieveCoallack) {
+        NetUtils.getInstance().getApi().getRetrievePassword(phone, code, pwd)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Observer<RetrievePassword>() {
+                    @Override
+                    public void onSubscribe(Disposable d) {
+
+                    }
+
+                    @Override
+                    public void onNext(RetrievePassword retrievePassword) {
+                        if(retrieveCoallack!=null){
+                            retrieveCoallack.OnReturnPwd(retrievePassword);
                         }
                     }
 

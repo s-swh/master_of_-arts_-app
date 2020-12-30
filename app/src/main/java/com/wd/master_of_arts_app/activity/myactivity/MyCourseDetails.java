@@ -17,6 +17,7 @@ import com.wd.master_of_arts_app.R;
 import com.wd.master_of_arts_app.adapter.MyCourseAdapterData;
 import com.wd.master_of_arts_app.base.BaseActivity;
 import com.wd.master_of_arts_app.base.BasePreantert;
+import com.wd.master_of_arts_app.bean.MyClassDate;
 import com.wd.master_of_arts_app.bean.MyCourseDetailsBean;
 import com.wd.master_of_arts_app.bean.MyCurse;
 import com.wd.master_of_arts_app.contreater.MyCourseContreater;
@@ -92,5 +93,10 @@ public class MyCourseDetails extends BaseActivity implements MyCourseContreater.
         List<MyCourseDetailsBean.DataBean.UnitListBean> unit_list = data.getUnit_list();
         MyCourseAdapterData myCourseAdapterData = new MyCourseAdapterData(getApplicationContext(), unit_list);
         rv.setAdapter(myCourseAdapterData);
+    }
+
+    @Override
+    public void OnMyClassDate(MyClassDate myClassDate) {
+
     }
 }

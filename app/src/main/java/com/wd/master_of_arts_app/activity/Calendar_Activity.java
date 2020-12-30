@@ -1,67 +1,102 @@
 package com.wd.master_of_arts_app.activity;
 
-import android.content.Intent;
+import android.content.SharedPreferences;
+import android.graphics.Color;
+import android.os.Bundle;
+import android.os.PersistableBundle;
+import android.util.Log;
 import android.view.View;
-import android.widget.CalendarView;
-import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.wd.master_of_arts_app.R;
-import com.wd.master_of_arts_app.activity.myactivity.My_Course;
 import com.wd.master_of_arts_app.base.BaseActivity;
 import com.wd.master_of_arts_app.base.BasePreantert;
+import com.wd.master_of_arts_app.bean.MyClassDate;
+import com.wd.master_of_arts_app.bean.MyCourseDetailsBean;
+import com.wd.master_of_arts_app.bean.MyCurse;
+import com.wd.master_of_arts_app.contreater.MyCourseContreater;
+import com.wd.master_of_arts_app.customview.CalendarView;
+import com.wd.master_of_arts_app.customview.WeekView;
+import com.wd.master_of_arts_app.preanter.MyCoursePreanter;
+import com.wd.master_of_arts_app.utils.NetUtils;
 
-import java.util.Calendar;
+import java.util.ArrayList;
+import java.util.List;
+
+import io.reactivex.Observer;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.Disposable;
+import io.reactivex.schedulers.Schedulers;
 
 /**
  * @author 时文豪
  * @description:
  * @date :2020/12/4 14:17
  */
-public class Calendar_Activity extends BaseActivity {
-    private CalendarView cd;
-    private TextView tvw;
+public class Calendar_Activity extends AppCompatActivity {
 
-    @Override
-    protected int getLayoutId() {
-        return R.layout.calendar;
-    }
 
-    @Override
-    protected BasePreantert initModel() {
-        return null;
-    }
 
-    @Override
-    protected void initView() {
-        cd = findViewById(R.id.cdv);
-        tvw = findViewById(R.id.curriculum);
-        tvw.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                finish();
-            }
-        });
-        Calendar now = Calendar.getInstance();
-        int i = now.get(Calendar.YEAR);
-        int i1 = now.get(Calendar.MONTH);
-        int i2 = now.get(Calendar.DAY_OF_MONTH);
-        int j=i1+1;
-        tvw.setText("点击查看"+i+"年"+j+"月"+i2+"号课程");
-    }
 
+    private String date;
+    private CalendarView mCalendarView;
+    private WeekView weekkView;
+    private List<String> mDatas;
     @Override
-    protected void initData() {
-        cd.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
-            @Override
-            public void onSelectedDayChange(CalendarView calendarView, int i, int i1, int i2) {
-                int j=i1+1;
-                Toast.makeText(getApplicationContext(), i+"   "+j+"    "+i2, Toast.LENGTH_SHORT).show();
-                tvw.setText("点击查看"+i+"年"+j+"月"+i2+"号课程");
-            }
-        });
-    }
-    public void fanhui(View view){
-        finish();
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.calendar);
+        mCalendarView =  findViewById(R.id.calendarView);
+        weekkView = findViewById(R.id.weekkView);
+        SharedPreferences token = getSharedPreferences("token", MODE_PRIVATE);
+        String token1 = token.getString("token", "");
+        NetUtils.getInstance().getApi().getMyClass(token1)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Observer<MyClassDate>() {
+
+
+
+                    @Override
+                    public void onSubscribe(Disposable d) {
+
+                    }
+
+                    @Override
+                    public void onNext(MyClassDate myClassDate) {
+                        List<MyClassDate.DataBean> data = myClassDate.getData();
+                        weekkView.setTextSize(15);
+                        weekkView.setTextColor(Color.BLACK);
+                        mDatas = new ArrayList<>();
+                        for (int i = 0; i < data.size(); i++) {
+                            String date = data.get(i).getDate();
+                            mDatas.add(date);
+                            mCalendarView.setSelectedDates(mDatas);
+                        }
+
+                        mCalendarView.setOptionalDate(mDatas);
+                        mCalendarView.setClickable(true);
+
+
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+
+                    }
+
+                    @Override
+                    public void onComplete() {
+
+                    }
+                });
+
+// 设置不可以被点击
+
+
+
     }
 }

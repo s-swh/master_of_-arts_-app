@@ -16,6 +16,7 @@ import android.widget.Toast;
 import com.wd.master_of_arts_app.R;
 import com.wd.master_of_arts_app.base.BaseActivity;
 import com.wd.master_of_arts_app.base.BasePreantert;
+import com.wd.master_of_arts_app.base.RetrievePassword;
 import com.wd.master_of_arts_app.bean.AccountLogin;
 import com.wd.master_of_arts_app.bean.CodeBean;
 import com.wd.master_of_arts_app.bean.SMSLogin;
@@ -91,9 +92,11 @@ public class Verification_code_login extends BaseActivity implements View.OnClic
        EditText one= findViewById(R.id.et_phone);
        EditText pwd= findViewById(R.id.pwd);
       Button bt= findViewById(R.id.login_log);
-
-
-      // 账号密码登录
+        SharedPreferences sp = getSharedPreferences("phone", MODE_PRIVATE);
+        String phone = sp.getString("phone", "");
+        et_phone1.setText(phone);
+        one.setText(phone);
+        // 账号密码登录
         bt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -236,6 +239,11 @@ public class Verification_code_login extends BaseActivity implements View.OnClic
             Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
         }
 
+
+    }
+
+    @Override
+    public void OnReturnPwd(RetrievePassword retrievePassword) {
 
     }
 }

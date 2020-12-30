@@ -33,6 +33,7 @@
     <ImageView
         android:id="@+id/detailsiv"
         android:layout_width="match_parent"
+        android:scaleType="fitXY"
         android:layout_height="@dimen/dp_180" />
     <LinearLayout
         android:layout_width="match_parent"

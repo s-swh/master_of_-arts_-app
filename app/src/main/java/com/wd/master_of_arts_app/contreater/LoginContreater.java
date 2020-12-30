@@ -1,6 +1,7 @@
 package com.wd.master_of_arts_app.contreater;
 
 import com.wd.master_of_arts_app.base.IBaseView;
+import com.wd.master_of_arts_app.base.RetrievePassword;
 import com.wd.master_of_arts_app.bean.AccountLogin;
 import com.wd.master_of_arts_app.bean.CodeBean;
 import com.wd.master_of_arts_app.bean.SMSLogin;
@@ -18,6 +19,8 @@ public interface LoginContreater {
         void OnCodeLogin(SMSLogin smsLogin);
         // 账号密码登录
         void OnAccoutLogin(AccountLogin accountLogin);
+        //重置密码
+        void OnReturnPwd(RetrievePassword retrievePassword);
     }
     interface IPreanter{
         // 获取短信验证码拼参
@@ -26,6 +29,8 @@ public interface LoginContreater {
         void OnLoginSuccess(String phone,String code);
         // 账号密码登录
         void OnAccout(String account,String pwd);
+        //重置密码
+        void OnRetrieveSuccess(String phone,String code,String pwd);
     }
     interface IModel{
         // 短信获取
@@ -42,6 +47,11 @@ public interface LoginContreater {
         void OnAccout(String account,String pwd,OnAccoutCoallack onAccoutCoallack);
         interface OnAccoutCoallack{
             void OnAccoutLogin(AccountLogin accountLogin);
+        }
+        //重置密码
+        void OnRetrieveSuccess(String phone,String code,String pwd,RetrieveCoallack retrieveCoallack);
+        interface RetrieveCoallack{
+            void OnReturnPwd(RetrievePassword retrievePassword);
         }
     }
 }

@@ -2,6 +2,7 @@ package com.wd.master_of_arts_app.preanter;
 
 import com.wd.master_of_arts_app.base.BasePreantert;
 import com.wd.master_of_arts_app.base.IBaseView;
+import com.wd.master_of_arts_app.base.RetrievePassword;
 import com.wd.master_of_arts_app.bean.AccountLogin;
 import com.wd.master_of_arts_app.bean.CodeBean;
 import com.wd.master_of_arts_app.bean.SMSLogin;
@@ -64,6 +65,20 @@ public class LoginPreanter extends BasePreantert implements LoginContreater.IPre
                 if(iBaseView instanceof LoginContreater.IView){
                     LoginContreater.IView view= (LoginContreater.IView) iBaseView;
                     view.OnAccoutLogin(accountLogin);
+                }
+            }
+        });
+    }
+    //重置密码
+    @Override
+    public void OnRetrieveSuccess(String phone, String code, String pwd) {
+        loginModel.OnRetrieveSuccess(phone, code, pwd, new LoginContreater.IModel.RetrieveCoallack() {
+            @Override
+            public void OnReturnPwd(RetrievePassword retrievePassword) {
+                IBaseView iBaseView = getView();
+                if(iBaseView instanceof LoginContreater.IView){
+                    LoginContreater.IView view= (LoginContreater.IView) iBaseView;
+                    view.OnReturnPwd(retrievePassword);
                 }
             }
         });

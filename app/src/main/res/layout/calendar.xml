@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
 
+    android:layout_width="match_parent"
     android:layout_height="match_parent">
     <RelativeLayout
         android:layout_width="match_parent"
@@ -13,25 +15,14 @@
             android:src="@mipmap/returnbutton"
             android:layout_height="@dimen/dp_65" />
     </RelativeLayout>
-<CalendarView
+<com.wd.master_of_arts_app.customview.WeekView
     android:layout_width="match_parent"
-    android:id="@+id/cdv"
-    android:layout_marginTop="@dimen/dp_40"
-    android:layout_height="wrap_content">
-</CalendarView>
-    <RelativeLayout
-        android:layout_width="@dimen/dp_180"
-        android:layout_gravity="center_horizontal"
-        android:background="@drawable/fillet3"
-        android:layout_height="wrap_content">
-    <TextView
-        android:layout_width="match_parent"
-        android:text="查看课程"
-        android:id="@+id/curriculum"
-        android:textSize="@dimen/sp_12"
-        android:textColor="#fff"
-        android:gravity="center_horizontal"
-        android:layout_marginTop="@dimen/dp_20"
-        android:layout_height="@dimen/dp_40" />
-    </RelativeLayout>
+    android:id="@+id/weekkView"
+    android:layout_height="wrap_content" />
+<com.wd.master_of_arts_app.customview.CalendarView
+    android:layout_width="match_parent"
+    android:id="@+id/calendarView"
+    android:layout_height="wrap_content" />
+
+
 </LinearLayout>
