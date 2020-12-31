@@ -73,7 +73,32 @@ public class Cancelled extends BaseFragment implements OrderContreater.IView{
             }
         });
     }
-
+    @Override
+    public void onPause() {
+        super.onPause();
+        BasePreantert basePreantert = getmPreanter();
+        if(basePreantert instanceof OrderContreater.IPreanter){
+            SharedPreferences token = App.getContext().getSharedPreferences("token", Context.MODE_PRIVATE);
+            String token1 = token.getString("token", "");
+            String i="1";
+            int p=1;
+            int per=10;
+            ((OrderContreater.IPreanter) basePreantert).OrderSuccess(token1,i,p,per);
+        }
+    }
+    @Override
+    public void onResume() {
+        super.onResume();
+        BasePreantert basePreantert = getmPreanter();
+        if(basePreantert instanceof OrderContreater.IPreanter){
+            SharedPreferences token = App.getContext().getSharedPreferences("token", Context.MODE_PRIVATE);
+            String token1 = token.getString("token", "");
+            String i="1";
+            int p=1;
+            int per=10;
+            ((OrderContreater.IPreanter) basePreantert).OrderSuccess(token1,i,p,per);
+        }
+    }
     @Override
     protected void initData() {
         rec_rv.setLoadingListener(new XRecyclerView.LoadingListener() {

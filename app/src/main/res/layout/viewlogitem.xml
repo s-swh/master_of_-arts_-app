@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+<TextView
+    android:layout_width="wrap_content"
+    android:text="2020-12-22 08:04:02"
+    android:id="@+id/viewitem_date"
+    android:textSize="@dimen/sp_14"
+    android:layout_height="wrap_content" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:id="@+id/viewitem_address"
+        android:text="【广东省商品部一部】的收件员【刘红冰】已收件"
+        android:layout_height="wrap_content" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:text=" "
+        android:id="@+id/viewitem_zone"
+        android:layout_height="wrap_content" />
+</LinearLayout>

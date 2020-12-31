@@ -80,7 +80,7 @@ public class OrderListAdapter extends XRecyclerView.Adapter<XRecyclerView.ViewHo
             });
         int status = listBean.getStatus();
         if(status==1){
-            ((OrderListViewHorder) holder).bt_order.setText("未付款");
+            ((OrderListViewHorder) holder).bt_order.setText("待付款");
         }else if(status==2){
             ((OrderListViewHorder) holder).bt_order.setText("已付款");
         }else if(status==3){

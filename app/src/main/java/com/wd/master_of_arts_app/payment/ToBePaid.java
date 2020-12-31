@@ -1,4 +1,4 @@
-package com.wd.master_of_arts_app.activity;
+package com.wd.master_of_arts_app.payment;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
@@ -7,7 +7,6 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.text.AlteredCharSequence;
 import android.view.View;
 import android.widget.Button;
 import android.widget.RelativeLayout;
@@ -15,6 +14,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.wd.master_of_arts_app.R;
+import com.wd.master_of_arts_app.activity.OrderDetails;
 import com.wd.master_of_arts_app.base.BaseActivity;
 import com.wd.master_of_arts_app.base.BasePreantert;
 import com.wd.master_of_arts_app.bean.CancellationOfOrder;
@@ -23,24 +23,21 @@ import com.wd.master_of_arts_app.bean.CommentOrder;
 import com.wd.master_of_arts_app.bean.CourseOrderBean;
 import com.wd.master_of_arts_app.bean.OrderList;
 import com.wd.master_of_arts_app.bean.Purchase;
-import com.wd.master_of_arts_app.bean.ViewLogist;
 import com.wd.master_of_arts_app.contreater.OrderContreater;
-import com.wd.master_of_arts_app.payment.ViewLogistics;
 import com.wd.master_of_arts_app.preanter.OrderPreanter;
 
 import org.greenrobot.eventbus.EventBus;
 
 import java.util.List;
 
-public class OrderDetails extends BaseActivity implements OrderContreater.IView {
-
-
+public class ToBePaid extends BaseActivity implements OrderContreater.IView {
     private TextView tv_pcty,tv_address,tv_namenumber,tv_detailstitle,tv_allprice,tv_create_time,tv_teacher_name,tv_mark,tv_order_num,tv_create,tv_pay_price,tv_allpricec;
     private RelativeLayout success,fail,shost;
     private Button ckwl,qpj;
+
     @Override
     protected int getLayoutId() {
-        return R.layout.activity_order_details;
+        return R.layout.activity_to_be_paid2;
     }
 
     @Override
@@ -83,15 +80,15 @@ public class OrderDetails extends BaseActivity implements OrderContreater.IView 
         ckwl.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(OrderDetails.this, ViewLogistics.class);
-                startActivity(intent);
-            }
-        });
-        qpj.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(OrderDetails.this,OrderComment.class);
-                startActivity(intent);
+                BasePreantert basePreantert = getmPreantert();
+                if(basePreantert instanceof OrderContreater.IPreanter){
+                    SharedPreferences token = getSharedPreferences("token", MODE_PRIVATE);
+                    String token1 = token.getString("token", "");
+                    Intent intent = getIntent();
+                    int idddddd = intent.getIntExtra("idddddd", 0);
+                    EventBus.getDefault().postSticky(new CommentId(idddddd));
+                    ((OrderContreater.IPreanter) basePreantert).OnCancelSuccess(token1,idddddd+"");
+                }
             }
         });
     }
@@ -110,6 +107,10 @@ public class OrderDetails extends BaseActivity implements OrderContreater.IView 
     public void OnCancel(CancellationOfOrder cancellationOfOrder) {
         String msg = cancellationOfOrder.getMsg();
         Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
+        int code = cancellationOfOrder.getCode();
+        if(code==1){
+            finish();
+        }
     }
 
     @Override
@@ -117,49 +118,8 @@ public class OrderDetails extends BaseActivity implements OrderContreater.IView 
         CourseOrderBean.DataBean data = orderBean.getData();
         CourseOrderBean.DataBean.OrderMsgBean orderMsg = data.getOrderMsg();
         int status = orderMsg.getStatus();
-        if(status==2){
-            success.setVisibility(View.VISIBLE);
-            fail.setVisibility(View.GONE);
-            shost.setVisibility(View.VISIBLE);
-        }else if(status==3){
-            success.setVisibility(View.VISIBLE);
-            fail.setVisibility(View.GONE);
-            shost.setVisibility(View.VISIBLE);
-        }else {
-            success.setVisibility(View.GONE);
-            shost.setVisibility(View.GONE);
-            fail.setVisibility(View.VISIBLE);
-            new AlertDialog.Builder(OrderDetails.this)
-                    .setTitle("确定取消订单?")
-                    .setMessage("是否取消当前订单")
-                    .setPositiveButton("取消", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialogInterface, int i) {
 
-                        }
-                    }).setNegativeButton("确定", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialogInterface, int i) {
-                            BasePreantert basePreantert = getmPreantert();
-                            if(basePreantert instanceof OrderContreater.IPreanter){
-                                SharedPreferences token = getSharedPreferences("token", MODE_PRIVATE);
-                                String token1 = token.getString("token", "");
-                                CourseOrderBean.DataBean data1 = orderBean.getData();
-                                CourseOrderBean.DataBean.OrderMsgBean orderMsg1 = data1.getOrderMsg();
-                                Intent intent = getIntent();
-                                int idddddd = intent.getIntExtra("idddddd", 0);
-
-                                ((OrderContreater.IPreanter) basePreantert).OnCancelSuccess(token1,idddddd+"");
-                            }
-                        }
-                    }).show();
-
-
-        }
         String province = orderMsg.getProvince();
-        String logistics = orderMsg.getLogistics();
-        String express_number = orderMsg.getExpress_number();
-        EventBus.getDefault().postSticky(new ViewLogist(logistics,express_number));
         String city = orderMsg.getCity();
         String county = orderMsg.getCounty();
         String address = orderMsg.getAddress();
@@ -190,7 +150,7 @@ public class OrderDetails extends BaseActivity implements OrderContreater.IView 
         tv_pay_price.setText(pay_price);
         tv_allpricec.setText(allprice);
     }
-    //评论
+
     @Override
     public void OnComment(CommentOrder commentOrder) {
 

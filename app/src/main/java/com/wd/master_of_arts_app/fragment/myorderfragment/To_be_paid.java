@@ -26,6 +26,7 @@ import com.wd.master_of_arts_app.bean.OrderDelete;
 import com.wd.master_of_arts_app.bean.OrderList;
 import com.wd.master_of_arts_app.bean.Purchase;
 import com.wd.master_of_arts_app.contreater.OrderContreater;
+import com.wd.master_of_arts_app.payment.ToBePaid;
 import com.wd.master_of_arts_app.preanter.OrderPreanter;
 import com.wd.master_of_arts_app.utils.NetUtils;
 
@@ -158,7 +159,7 @@ public class To_be_paid extends BaseFragment implements OrderContreater.IView {
         orderListAdapter.OnClick(new OrderListAdapter.idtet() {
             @Override
             public void OnClick(int id) {
-                Intent intent = new Intent(getActivity(), OrderDetails.class);
+                Intent intent = new Intent(getActivity(), ToBePaid.class);
                 intent.putExtra("idddddd",id);
                 Toast.makeText(getActivity(), id+"", Toast.LENGTH_SHORT).show();
                 startActivity(intent);

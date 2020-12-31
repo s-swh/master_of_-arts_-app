@@ -86,13 +86,13 @@ public class CourseOrderBean {
             private String address;
             private String consignee;
             private String contact_number;
-            private Object logistics;
-            private Object express_number;
+            private String logistics;
+            private String express_number;
             private String order_num;
             private String create_time;
             private String allprice;
             private String pay_price;
-            private Object pay_time;
+            private String pay_time;
             private String title;
             private int course_time_id;
             private int course_id;
@@ -147,19 +147,19 @@ public class CourseOrderBean {
                 this.contact_number = contact_number;
             }
 
-            public Object getLogistics() {
+            public String getLogistics() {
                 return logistics;
             }
 
-            public void setLogistics(Object logistics) {
+            public void setLogistics(String logistics) {
                 this.logistics = logistics;
             }
 
-            public Object getExpress_number() {
+            public String getExpress_number() {
                 return express_number;
             }
 
-            public void setExpress_number(Object express_number) {
+            public void setExpress_number(String express_number) {
                 this.express_number = express_number;
             }
 
@@ -195,11 +195,11 @@ public class CourseOrderBean {
                 this.pay_price = pay_price;
             }
 
-            public Object getPay_time() {
+            public String getPay_time() {
                 return pay_time;
             }
 
-            public void setPay_time(Object pay_time) {
+            public void setPay_time(String pay_time) {
                 this.pay_time = pay_time;
             }
 
