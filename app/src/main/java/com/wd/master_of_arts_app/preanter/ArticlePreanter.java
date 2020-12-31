@@ -3,6 +3,7 @@ package com.wd.master_of_arts_app.preanter;
 import com.wd.master_of_arts_app.base.BasePreantert;
 import com.wd.master_of_arts_app.base.IBaseView;
 import com.wd.master_of_arts_app.bean.ArticleList;
+import com.wd.master_of_arts_app.bean.CommBean;
 import com.wd.master_of_arts_app.contreater.ArticleListContreater;
 import com.wd.master_of_arts_app.model.ArticleModel;
 
@@ -33,6 +34,20 @@ public class ArticlePreanter extends BasePreantert implements ArticleListContrea
                 if(iBaseView instanceof ArticleListContreater.IView){
                     ArticleListContreater.IView view= (ArticleListContreater.IView) iBaseView;
                     view.OnArticle(articleList);
+                }
+            }
+        });
+    }
+
+    @Override
+    public void OnCommonSuccess(int cat_id, int p, int per) {
+        articleModel.OnCommonSuccess(cat_id, p, per, new ArticleListContreater.IModel.OnCommonCoallack() {
+            @Override
+            public void OnCommon(CommBean commBean) {
+                IBaseView iBaseView = getView();
+                if(iBaseView instanceof ArticleListContreater.IView){
+                    ArticleListContreater.IView view= (ArticleListContreater.IView) iBaseView;
+                    view.OnCommon(commBean);
                 }
             }
         });

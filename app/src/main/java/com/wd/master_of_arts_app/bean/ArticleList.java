@@ -9,10 +9,11 @@ import java.util.List;
  */
 public class ArticleList {
 
+
     /**
      * code : 1
      * msg : 成功
-     * data : {"free_video":[{"article_id":11,"cat_id":4,"title":"【免费】旋转木马","img":"article/20201110/6a43ae682252f3dad85a93a369ac7088.jpg","clicknum":106,"href":"http://qiniu.54artist.com/xzmm.mp4","pubtime":"2020-11-10 23:19:51"},{"article_id":10,"cat_id":4,"title":"【免费】小草莓成熟了","img":"article/20201110/99ba345b8aac48eb2a2497a07a969fbb.jpg","clicknum":55,"href":"http://qiniu.54artist.com/xcm.mp4","pubtime":"2020-11-10 23:10:21"},{"article_id":13,"cat_id":4,"title":"【免费】会生气的河豚","img":"article/20201110/4f935d2dd1ee14e041d75fa7cc621356.jpg","clicknum":43,"href":"http://qiniu.54artist.com/hsqdht.mp4","pubtime":"2020-11-10 23:12:11"},{"article_id":12,"cat_id":4,"title":"【免费】切开的水果蔬菜","img":"article/20201110/0b9b4a333e4d9fb08d16a4bbd8608219.jpg","clicknum":31,"href":"http://qiniu.54artist.com/sgsc.mp4","pubtime":"2020-11-10 23:15:28"}],"selected_works":[{"article_id":7,"cat_id":3,"title":"甜甜石榴","img":"article/20201110/f32b9dbbc30d74591edf1c1bebcc40a5.jpeg","clicknum":39,"href":"","pubtime":"2020-11-10 23:39:23"},{"article_id":8,"cat_id":3,"title":"时间的速度","img":"article/20201110/db094c56d7092d3107b5ecef5b832b3e.jpg","clicknum":35,"href":"","pubtime":"2020-11-10 23:39:11"},{"article_id":9,"cat_id":3,"title":"魔幻街景","img":"article/20201110/c95d450831c19fac6f2a780d503d8b7e.jpg","clicknum":65,"href":"","pubtime":"2020-11-10 23:38:53"},{"article_id":26,"cat_id":3,"title":"动物证件照","img":"article/20201110/cf0b50611f1174cd71db15caf2cac406.jpg","clicknum":12,"href":"","pubtime":"2020-11-10 23:21:46"}],"my_video":[{"course_name":"童童创想班A","course_id":76,"video":[[{"course_name":"童童创想班A","href":"http://qiniu.54artist.com/htjz.mp4","img":null,"title":"童童A课程测试","clicknum":0,"article_id":29,"pubtime":"0000-00-00 00:00:00","cat_id":5},{"course_name":"童童创想班A","href":"http://qiniu.54artist.com/hsqdht.mp4","img":null,"title":"童童A课程测试2","clicknum":0,"article_id":30,"pubtime":"0000-00-00 00:00:00","cat_id":5}]]},{"course_name":"童童创想班B","course_id":79,"video":[[{"course_name":"童童创想班B","href":"http://qiniu.54artist.com/xcm.mp4","img":null,"title":"童童B课程","clicknum":0,"article_id":31,"pubtime":"0000-00-00 00:00:00","cat_id":5}]]}]}
+     * data : {"free_video":[{"article_id":11,"cat_id":4,"title":"【免费】旋转木马","img":"http://qiniu.54artist.com/5fed65a5d13a03112.jpg","clicknum":106,"href":"http://qiniu.54artist.com/xzmm.mp4","pubtime":"2020-12-31 13:46:13"},{"article_id":10,"cat_id":4,"title":"【免费】小草莓成熟了","img":"http://qiniu.54artist.com/5fed65daa90fc5522.jpg","clicknum":55,"href":"http://qiniu.54artist.com/xcm.mp4","pubtime":"2020-12-31 13:47:06"},{"article_id":13,"cat_id":4,"title":"【免费】会生气的河豚","img":"http://qiniu.54artist.com/5fed65f4bb5a65630.jpg","clicknum":43,"href":"http://qiniu.54artist.com/hsqdht.mp4","pubtime":"2020-12-31 13:47:32"},{"article_id":12,"cat_id":4,"title":"【免费】切开的水果蔬菜","img":"http://qiniu.54artist.com/5fed660dc60185390.jpg","clicknum":31,"href":"http://qiniu.54artist.com/sgsc.mp4","pubtime":"2020-12-31 13:47:57"}],"selected_works":[{"article_id":7,"cat_id":3,"title":"甜甜石榴","img":"http://qiniu.54artist.com/5fed3903ad6c62003.PNG","clicknum":39,"href":"","pubtime":"2020-12-31 10:35:48"},{"article_id":8,"cat_id":3,"title":"时间的速度","img":"http://qiniu.54artist.com/5fed391aac6f37223.PNG","clicknum":35,"href":"","pubtime":"2020-12-31 10:36:21"},{"article_id":27,"cat_id":3,"title":"秋葵","img":"http://qiniu.54artist.com/5fed394dd62174677.PNG","clicknum":4,"href":"","pubtime":"2020-12-31 10:37:07"},{"article_id":34,"cat_id":3,"title":"爱爬树的蜥蜴","img":"http://qiniu.54artist.com/5fed39858d10f4943.png","clicknum":0,"href":"","pubtime":"2020-12-31 10:37:57"}],"my_video":[{"course_name":"童童创想班A","href":"http://qiniu.54artist.com/xcm.mp4","img":"http://qiniu.54artist.com/5fed6d692e4ca5533.jpg","title":"童童创想班A","clicknum":0,"article_id":29,"pubtime":"2020-12-31 14:19:21","cat_id":5},{"course_name":"童童创想班A","href":"http://qiniu.54artist.com/hsqdht.mp4","img":"http://qiniu.54artist.com/5fed6d46ceda67208.jpg","title":"童童创想班A","clicknum":0,"article_id":30,"pubtime":"2020-12-31 14:18:57","cat_id":5},{"course_name":"童童创想班A","href":"http://qiniu.54artist.com/htjz.mp4","img":"http://qiniu.54artist.com/5fed6d371a5295044.jpg","title":"童童创想班A","clicknum":0,"article_id":37,"pubtime":"2020-12-31 14:18:31","cat_id":5},{"course_name":"童童创想班A","href":"http://qiniu.54artist.com/sgsc.mp4","img":"http://qiniu.54artist.com/5fed6d06c355c6447.jpg","title":"童童创想班A","clicknum":0,"article_id":38,"pubtime":"2020-12-31 14:17:42","cat_id":5}]}
      */
 
     private int code;
@@ -77,10 +78,10 @@ public class ArticleList {
              * article_id : 11
              * cat_id : 4
              * title : 【免费】旋转木马
-             * img : article/20201110/6a43ae682252f3dad85a93a369ac7088.jpg
+             * img : http://qiniu.54artist.com/5fed65a5d13a03112.jpg
              * clicknum : 106
              * href : http://qiniu.54artist.com/xzmm.mp4
-             * pubtime : 2020-11-10 23:19:51
+             * pubtime : 2020-12-31 13:46:13
              */
 
             private int article_id;
@@ -153,10 +154,10 @@ public class ArticleList {
              * article_id : 7
              * cat_id : 3
              * title : 甜甜石榴
-             * img : article/20201110/f32b9dbbc30d74591edf1c1bebcc40a5.jpeg
+             * img : http://qiniu.54artist.com/5fed3903ad6c62003.PNG
              * clicknum : 39
              * href :
-             * pubtime : 2020-11-10 23:39:23
+             * pubtime : 2020-12-31 10:35:48
              */
 
             private int article_id;
@@ -227,13 +228,23 @@ public class ArticleList {
         public static class MyVideoBean {
             /**
              * course_name : 童童创想班A
-             * course_id : 76
-             * video : [[{"course_name":"童童创想班A","href":"http://qiniu.54artist.com/htjz.mp4","img":null,"title":"童童A课程测试","clicknum":0,"article_id":29,"pubtime":"0000-00-00 00:00:00","cat_id":5},{"course_name":"童童创想班A","href":"http://qiniu.54artist.com/hsqdht.mp4","img":null,"title":"童童A课程测试2","clicknum":0,"article_id":30,"pubtime":"0000-00-00 00:00:00","cat_id":5}]]
+             * href : http://qiniu.54artist.com/xcm.mp4
+             * img : http://qiniu.54artist.com/5fed6d692e4ca5533.jpg
+             * title : 童童创想班A
+             * clicknum : 0
+             * article_id : 29
+             * pubtime : 2020-12-31 14:19:21
+             * cat_id : 5
              */
 
             private String course_name;
-            private int course_id;
-            private List<List<VideoBean>> video;
+            private String href;
+            private String img;
+            private String title;
+            private int clicknum;
+            private int article_id;
+            private String pubtime;
+            private int cat_id;
 
             public String getCourse_name() {
                 return course_name;
@@ -243,106 +254,60 @@ public class ArticleList {
                 this.course_name = course_name;
             }
 
-            public int getCourse_id() {
-                return course_id;
+            public String getHref() {
+                return href;
             }
 
-            public void setCourse_id(int course_id) {
-                this.course_id = course_id;
+            public void setHref(String href) {
+                this.href = href;
             }
 
-            public List<List<VideoBean>> getVideo() {
-                return video;
+            public String getImg() {
+                return img;
             }
 
-            public void setVideo(List<List<VideoBean>> video) {
-                this.video = video;
+            public void setImg(String img) {
+                this.img = img;
             }
 
-            public static class VideoBean {
-                /**
-                 * course_name : 童童创想班A
-                 * href : http://qiniu.54artist.com/htjz.mp4
-                 * img : null
-                 * title : 童童A课程测试
-                 * clicknum : 0
-                 * article_id : 29
-                 * pubtime : 0000-00-00 00:00:00
-                 * cat_id : 5
-                 */
+            public String getTitle() {
+                return title;
+            }
 
-                private String course_name;
-                private String href;
-                private Object img;
-                private String title;
-                private int clicknum;
-                private int article_id;
-                private String pubtime;
-                private int cat_id;
+            public void setTitle(String title) {
+                this.title = title;
+            }
 
-                public String getCourse_name() {
-                    return course_name;
-                }
+            public int getClicknum() {
+                return clicknum;
+            }
 
-                public void setCourse_name(String course_name) {
-                    this.course_name = course_name;
-                }
+            public void setClicknum(int clicknum) {
+                this.clicknum = clicknum;
+            }
 
-                public String getHref() {
-                    return href;
-                }
+            public int getArticle_id() {
+                return article_id;
+            }
 
-                public void setHref(String href) {
-                    this.href = href;
-                }
+            public void setArticle_id(int article_id) {
+                this.article_id = article_id;
+            }
 
-                public Object getImg() {
-                    return img;
-                }
+            public String getPubtime() {
+                return pubtime;
+            }
 
-                public void setImg(Object img) {
-                    this.img = img;
-                }
+            public void setPubtime(String pubtime) {
+                this.pubtime = pubtime;
+            }
 
-                public String getTitle() {
-                    return title;
-                }
+            public int getCat_id() {
+                return cat_id;
+            }
 
-                public void setTitle(String title) {
-                    this.title = title;
-                }
-
-                public int getClicknum() {
-                    return clicknum;
-                }
-
-                public void setClicknum(int clicknum) {
-                    this.clicknum = clicknum;
-                }
-
-                public int getArticle_id() {
-                    return article_id;
-                }
-
-                public void setArticle_id(int article_id) {
-                    this.article_id = article_id;
-                }
-
-                public String getPubtime() {
-                    return pubtime;
-                }
-
-                public void setPubtime(String pubtime) {
-                    this.pubtime = pubtime;
-                }
-
-                public int getCat_id() {
-                    return cat_id;
-                }
-
-                public void setCat_id(int cat_id) {
-                    this.cat_id = cat_id;
-                }
+            public void setCat_id(int cat_id) {
+                this.cat_id = cat_id;
             }
         }
     }

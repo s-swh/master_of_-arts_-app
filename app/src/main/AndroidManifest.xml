@@ -34,7 +34,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
-        <activity android:name=".payment.ViewLogistics"></activity>
+        <activity android:name=".activity.CommonwealClass">
+
+        </activity>
+        <activity android:name=".payment.ViewLogistics" />
         <activity android:name=".payment.ToBePaid" />
         <activity android:name=".activity.OrderComment" />
         <activity android:name=".activity.OrderDetails" />

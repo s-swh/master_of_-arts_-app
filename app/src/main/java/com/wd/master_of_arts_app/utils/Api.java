@@ -8,6 +8,7 @@ import com.wd.master_of_arts_app.bean.Beanner;
 import com.wd.master_of_arts_app.bean.BookingExperience;
 import com.wd.master_of_arts_app.bean.CancellationOfOrder;
 import com.wd.master_of_arts_app.bean.CodeBean;
+import com.wd.master_of_arts_app.bean.CommBean;
 import com.wd.master_of_arts_app.bean.CommentOrder;
 import com.wd.master_of_arts_app.bean.CourseDetails;
 import com.wd.master_of_arts_app.bean.CourseList;
@@ -214,5 +215,10 @@ public interface Api {
     @POST("wap/Message/online")
     @FormUrlEncoded
     Observable<BookingExperience>getBook(@Field("token")String token,@Field("phone")String phone,@Field("linkman")String linkman,@Field("cat_id")int cat_id);
+
+    //文章列表 http://test.54artist.com/wap/Article/getList
+    @POST("wap/Article/getList")
+    @FormUrlEncoded
+    Observable<CommBean>getCommBean(@Field("cat_id")int cat_id,@Field("p")int p,@Field("per")int per);
 
 }

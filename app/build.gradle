@@ -124,6 +124,9 @@ dependencies {
     implementation 'com.github.maning0303:MNUpdateAPK:V2.0.3'
     //今日头条适配
     //  implementation 'me.jessyan:autosize:1.2.1'
-    //节超适配框架
-    implementation 'fm.jiecao:jiecaovideoplayer:4.8.3'
+
+    //饺子
+    implementation 'cn.jzvd:jiaozivideoplayer:6.4.1'
+
+
 }

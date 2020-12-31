@@ -13,6 +13,7 @@
         android:layout_height="match_parent">
         <RelativeLayout
             android:layout_width="match_parent"
+            android:id="@+id/find_hyh"
             android:layout_height="wrap_content">
             <TextView
                 android:layout_width="wrap_content"
@@ -29,6 +30,7 @@
                 android:layout_marginRight="@dimen/dp_15"
                 android:layout_alignParentRight="true"
                 android:scrollbarSize="@dimen/sp_12"
+
                 android:layout_centerVertical="true"
                 android:textColor="#019A92"
                 android:layout_height="wrap_content" />
@@ -42,10 +44,11 @@
         </androidx.recyclerview.widget.RecyclerView>
         <RelativeLayout
             android:layout_width="match_parent"
+            android:id="@+id/find_gd"
             android:layout_height="wrap_content">
             <TextView
                 android:layout_width="wrap_content"
-                android:text="工艺课堂"
+                android:text="公益课程"
                 android:layout_marginTop="@dimen/dp_15"
                 android:textSize="@dimen/dp_15"
                 android:layout_marginLeft="@dimen/dp_29"
@@ -58,6 +61,7 @@
                 android:layout_marginRight="@dimen/dp_15"
                 android:layout_alignParentRight="true"
                 android:scrollbarSize="@dimen/sp_12"
+
                 android:layout_centerVertical="true"
                 android:textColor="#019A92"
                 android:layout_height="wrap_content" />
@@ -73,10 +77,11 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
+            android:id="@+id/find_mfgd"
             android:layout_height="wrap_content">
             <TextView
                 android:layout_width="wrap_content"
-                android:text="我的视频"
+                android:text="免费课程"
                 android:layout_marginTop="@dimen/dp_15"
                 android:textSize="@dimen/dp_15"
                 android:layout_marginLeft="@dimen/dp_29"
@@ -91,6 +96,7 @@
                 android:scrollbarSize="@dimen/sp_12"
                 android:layout_centerVertical="true"
                 android:textColor="#019A92"
+
                 android:layout_height="wrap_content" />
         </RelativeLayout>
         <androidx.recyclerview.widget.RecyclerView

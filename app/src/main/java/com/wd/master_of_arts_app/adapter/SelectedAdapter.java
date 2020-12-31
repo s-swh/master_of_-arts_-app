@@ -50,7 +50,7 @@ public class SelectedAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
     @Override
     public int getItemCount() {
-        return list.size();
+        return list.size()-1;
     }
     class SelectedViewHorder extends RecyclerView.ViewHolder {
         private final ImageView jc;

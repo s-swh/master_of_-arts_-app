@@ -6,7 +6,6 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.fragment.app.FragmentActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.wd.master_of_arts_app.R;
@@ -14,8 +13,8 @@ import com.wd.master_of_arts_app.bean.ArticleList;
 
 import java.util.List;
 
-import fm.jiecao.jcvideoplayer_lib.JCResizeImageView;
-import fm.jiecao.jcvideoplayer_lib.JCVideoPlayerStandard;
+import cn.jzvd.JzvdStd;
+
 
 /**
  * @author 时文豪
@@ -40,12 +39,10 @@ public class MyVideoAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
         ArticleList.DataBean.MyVideoBean myVideoBean = list.get(position);
-        List<List<ArticleList.DataBean.MyVideoBean.VideoBean>> video = myVideoBean.getVideo();
-        List<ArticleList.DataBean.MyVideoBean.VideoBean> videoBeans = video.get(position);
-        ArticleList.DataBean.MyVideoBean.VideoBean videoBean = videoBeans.get(position);
-        String href = videoBean.getHref();
-        ((MyViewHorder)holder).jc.setUp(href, JCVideoPlayerStandard.SCREEN_LAYOUT_NORMAL,"");
-        ((MyViewHorder) holder).tv.setText(videoBean.getTitle());
+        String href = myVideoBean.getHref();
+        String title = myVideoBean.getTitle();
+        ((MyViewHorder) holder).tv.setText(title);
+        ((MyViewHorder) holder).jc.setUp(href,"",JzvdStd.SCREEN_WINDOW_NORMAL);
     }
 
     @Override
@@ -53,7 +50,7 @@ public class MyVideoAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
         return list.size();
     }
     class MyViewHorder extends RecyclerView.ViewHolder {
-        private final JCVideoPlayerStandard jc;
+        private final JzvdStd jc;
         private final TextView tv;
         public MyViewHorder(@NonNull View itemView) {
             super(itemView);

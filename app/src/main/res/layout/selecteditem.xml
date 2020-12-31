@@ -7,7 +7,7 @@
         android:id="@+id/jc"
         android:src="@mipmap/ic_launcher"
         android:scaleType="fitXY"
-
+        android:layout_gravity="center"
         android:layout_height="@dimen/dp_109">
     </ImageView>
     <TextView
@@ -16,6 +16,7 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="@dimen/dp_11"
         android:text="【免费】色彩入门课"
+        android:layout_gravity="center"
         android:id="@+id/tv_tit"
         android:textColor="#ff333333"
         android:layout_margin="@dimen/dp_5"

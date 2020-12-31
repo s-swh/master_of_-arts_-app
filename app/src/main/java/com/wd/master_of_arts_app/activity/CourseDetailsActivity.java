@@ -44,14 +44,14 @@ import org.greenrobot.eventbus.EventBus;
 import java.util.List;
 
 import butterknife.OnClick;
-import fm.jiecao.jcvideoplayer_lib.JCResizeImageView;
+
 // todo 课程详情
 
 public class CourseDetailsActivity extends BaseActivity implements CourseContreater.IView {
 
 
     private TextView tv, itle, present_price, original_price, attend, ic_name;
-    private JCResizeImageView img;
+    private ImageView img;
     private ImageView ic;
     private Button Signupnow;
     private RecyclerView rv_service, rv_service1, rcv;

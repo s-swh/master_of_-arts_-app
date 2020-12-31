@@ -23,12 +23,12 @@
         android:layout_height="wrap_content">
 
 
-        <fm.jiecao.jcvideoplayer_lib.JCResizeImageView
+        <ImageView
             android:layout_width="match_parent"
             android:layout_height="223dp"
             android:scaleType="fitXY"
             android:id="@+id/jcrImage"
-            tools:ignore="NotSibling"/>
+           />
         <ImageView
             android:layout_width="9.5dp"
             android:src="@mipmap/returnbutton"

@@ -9,7 +9,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.wd.master_of_arts_app.R;
 import com.wd.master_of_arts_app.bean.ArticleList;
 import java.util.List;
-import fm.jiecao.jcvideoplayer_lib.JCVideoPlayerStandard;
+
+import cn.jzvd.JzvdStd;
 
 /**
  * @author 时文豪
@@ -37,7 +38,7 @@ public class FindAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
         ArticleList.DataBean.FreeVideoBean freeVideoBean = list.get(position);
         String href = freeVideoBean.getHref();
-        ((FindViewHorder)holder).jc.setUp(href,JCVideoPlayerStandard.SCREEN_LAYOUT_NORMAL,"");
+        ((FindViewHorder)holder).jc.setUp(href,"",JzvdStd.SCREEN_WINDOW_NORMAL);
         String title = freeVideoBean.getTitle();
         ((FindViewHorder) holder).tv.setText(title);
     }
@@ -49,7 +50,7 @@ public class FindAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     }
     class FindViewHorder extends RecyclerView.ViewHolder {
 
-        private final JCVideoPlayerStandard jc;
+        private final JzvdStd jc;
         private final TextView tv;
 
         public FindViewHorder(@NonNull View itemView) {
