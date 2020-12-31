@@ -16,7 +16,7 @@
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="15dp"
                 android:layout_marginTop="@dimen/dp_15"
-
+                android:id="@+id/details_return"
                 android:layout_height="wrap_content" />
             <TextView
                 android:layout_width="match_parent"
@@ -45,6 +45,23 @@
             android:textSize="30sp"
             android:textColor="#ffffff"
 
+            android:layout_centerVertical="true"
+            android:gravity="center"
+            android:layout_height="wrap_content" />
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:background="@drawable/tobepaid"
+        android:orientation="vertical"
+        android:visibility="gone"
+        android:id="@+id/fai2"
+        android:layout_height="@dimen/dp_90">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:text="待支付"
+            android:textSize="30sp"
+            android:textColor="#ffffff"
             android:layout_centerVertical="true"
             android:gravity="center"
             android:layout_height="wrap_content" />
@@ -267,21 +284,33 @@
         android:layout_width="match_parent"
         android:layout_marginTop="@dimen/dp_15"
         android:id="@+id/shost"
-        android:visibility="gone"
+
         android:layout_height="wrap_content">
-        <Button
-            android:layout_width="wrap_content"
+        <TextView
+            android:layout_width="@dimen/dp_100"
+            android:text="去评价"
+            android:id="@+id/qpj"
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="@dimen/dp_15"
+            android:gravity="center"
+            android:layout_marginRight="@dimen/dp_15"
+
+            android:background="@drawable/orderbut"
+
+            android:layout_marginTop="@dimen/dp_10"
+            android:layout_height="@dimen/dp_25" />
+        <TextView
+            android:layout_width="@dimen/dp_100"
             android:text="查看物流"
             android:id="@+id/ckwl"
-            android:layout_marginRight="@dimen/dp_95"
             android:layout_alignParentRight="true"
-            android:layout_height="wrap_content" />
-        <Button
-            android:layout_width="wrap_content"
-            android:text="去评价"
+            android:gravity="center"
+            android:layout_marginRight="@dimen/dp_15"
 
-            android:id="@+id/qpj"
-            android:layout_alignParentRight="true"
-            android:layout_height="wrap_content" />
+            android:background="@drawable/orderbut"
+
+            android:layout_marginTop="@dimen/dp_10"
+            android:layout_height="@dimen/dp_25" />
+
     </RelativeLayout>
 </LinearLayout>

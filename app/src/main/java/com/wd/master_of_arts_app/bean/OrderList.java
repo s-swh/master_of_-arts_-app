@@ -9,10 +9,11 @@ import java.util.List;
  */
 public class OrderList {
 
+
     /**
      * code : 1
      * msg : 成功
-     * data : {"list":[{"id":1,"order_num":"5fab93c184d39843","course_id":79,"course_time_id":214,"icon":"","title":"蒙蒙童画班/10:30","allprice":"5000.00","status":3,"create_time":"2020-11-11 15:33:21","pay_time":null,"time_detail":"每周一、二上课","unit_count":48}]}
+     * data : {"list":[{"id":53,"order_num":"5fed8465e2c3d462","course_id":71,"course_time_id":228,"logistics":"顺丰","express_number":"SF1045519952863","icon":"http://qiniu.54artist.com/5fed7421d639f1353.jpeg","title":"幼幼亲子班","allprice":"3840.00","status":2,"create_time":"2020-12-31 15:57:25","pay_time":null,"time_detail":"每周二","unit_count":48}]}
      */
 
     private int code;
@@ -56,17 +57,19 @@ public class OrderList {
 
         public static class ListBean {
             /**
-             * id : 1
-             * order_num : 5fab93c184d39843
-             * course_id : 79
-             * course_time_id : 214
-             * icon :
-             * title : 蒙蒙童画班/10:30
-             * allprice : 5000.00
-             * status : 3
-             * create_time : 2020-11-11 15:33:21
+             * id : 53
+             * order_num : 5fed8465e2c3d462
+             * course_id : 71
+             * course_time_id : 228
+             * logistics : 顺丰
+             * express_number : SF1045519952863
+             * icon : http://qiniu.54artist.com/5fed7421d639f1353.jpeg
+             * title : 幼幼亲子班
+             * allprice : 3840.00
+             * status : 2
+             * create_time : 2020-12-31 15:57:25
              * pay_time : null
-             * time_detail : 每周一、二上课
+             * time_detail : 每周二
              * unit_count : 48
              */
 
@@ -74,6 +77,8 @@ public class OrderList {
             private String order_num;
             private int course_id;
             private int course_time_id;
+            private String logistics;
+            private String express_number;
             private String icon;
             private String title;
             private String allprice;
@@ -113,6 +118,22 @@ public class OrderList {
 
             public void setCourse_time_id(int course_time_id) {
                 this.course_time_id = course_time_id;
+            }
+
+            public String getLogistics() {
+                return logistics;
+            }
+
+            public void setLogistics(String logistics) {
+                this.logistics = logistics;
+            }
+
+            public String getExpress_number() {
+                return express_number;
+            }
+
+            public void setExpress_number(String express_number) {
+                this.express_number = express_number;
             }
 
             public String getIcon() {

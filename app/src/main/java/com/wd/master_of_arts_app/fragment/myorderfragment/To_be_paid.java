@@ -45,7 +45,7 @@ public class To_be_paid extends BaseFragment implements OrderContreater.IView {
     private XRecyclerView xrv;
     private OrderListAdapter orderListAdapter;
     private int p;
-    private int per=10;
+    private int per = 10;
     private OrderList.DataBean data;
 
     @Override
@@ -67,7 +67,7 @@ public class To_be_paid extends BaseFragment implements OrderContreater.IView {
             @Override
             public void onClick(View view) {
 
-                        us.setText("");
+                us.setText("");
 
             }
         });
@@ -77,20 +77,19 @@ public class To_be_paid extends BaseFragment implements OrderContreater.IView {
     protected void initData() {
 
 
-
         xrv.setLoadingListener(new XRecyclerView.LoadingListener() {
             @Override
             public void onRefresh() {
-                p =1;
+                p = 1;
                 orderListAdapter.Refresh(data.getList());
                 xrv.refreshComplete();
                 BasePreantert basePreantert = getmPreanter();
-                if(basePreantert instanceof OrderContreater.IPreanter){
+                if (basePreantert instanceof OrderContreater.IPreanter) {
                     SharedPreferences token = App.getContext().getSharedPreferences("token", Context.MODE_PRIVATE);
                     String token1 = token.getString("token", "");
-                    String i="1";
+                    String i = "1";
 
-                    ((OrderContreater.IPreanter) basePreantert).OrderSuccess(token1,i, p, per);
+                    ((OrderContreater.IPreanter) basePreantert).OrderSuccess(token1, i, p, per);
                 }
             }
 
@@ -103,13 +102,13 @@ public class To_be_paid extends BaseFragment implements OrderContreater.IView {
             }
         });
         BasePreantert basePreantert = getmPreanter();
-        if(basePreantert instanceof OrderContreater.IPreanter){
+        if (basePreantert instanceof OrderContreater.IPreanter) {
             SharedPreferences token = App.getContext().getSharedPreferences("token", Context.MODE_PRIVATE);
             String token1 = token.getString("token", "");
-            String i="1";
-            int p=1;
-            int per=10;
-            ((OrderContreater.IPreanter) basePreantert).OrderSuccess(token1,i, p, per);
+            String i = "1";
+            int p = 1;
+            int per = 10;
+            ((OrderContreater.IPreanter) basePreantert).OrderSuccess(token1, i, p, per);
         }
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
         xrv.setLayoutManager(linearLayoutManager);
@@ -119,13 +118,13 @@ public class To_be_paid extends BaseFragment implements OrderContreater.IView {
     public void onPause() {
         super.onPause();
         BasePreantert basePreantert = getmPreanter();
-        if(basePreantert instanceof OrderContreater.IPreanter){
+        if (basePreantert instanceof OrderContreater.IPreanter) {
             SharedPreferences token = App.getContext().getSharedPreferences("token", Context.MODE_PRIVATE);
             String token1 = token.getString("token", "");
-            String i="1";
-            int p=1;
-            int per=10;
-            ((OrderContreater.IPreanter) basePreantert).OrderSuccess(token1,i,p,per);
+            String i = "1";
+            int p = 1;
+            int per = 10;
+            ((OrderContreater.IPreanter) basePreantert).OrderSuccess(token1, i, p, per);
         }
     }
 
@@ -133,13 +132,13 @@ public class To_be_paid extends BaseFragment implements OrderContreater.IView {
     public void onResume() {
         super.onResume();
         BasePreantert basePreantert = getmPreanter();
-        if(basePreantert instanceof OrderContreater.IPreanter){
+        if (basePreantert instanceof OrderContreater.IPreanter) {
             SharedPreferences token = App.getContext().getSharedPreferences("token", Context.MODE_PRIVATE);
             String token1 = token.getString("token", "");
-            String i="1";
-            int p=1;
-            int per=10;
-            ((OrderContreater.IPreanter) basePreantert).OrderSuccess(token1,i,p,per);
+            String i = "1";
+            int p = 1;
+            int per = 10;
+            ((OrderContreater.IPreanter) basePreantert).OrderSuccess(token1, i, p, per);
         }
     }
 
@@ -148,7 +147,6 @@ public class To_be_paid extends BaseFragment implements OrderContreater.IView {
 
 
     }
-
 
 
     @Override
@@ -160,8 +158,8 @@ public class To_be_paid extends BaseFragment implements OrderContreater.IView {
             @Override
             public void OnClick(int id) {
                 Intent intent = new Intent(getActivity(), ToBePaid.class);
-                intent.putExtra("idddddd",id);
-                Toast.makeText(getActivity(), id+"", Toast.LENGTH_SHORT).show();
+                intent.putExtra("idddddd", id);
+                Toast.makeText(getActivity(), id + "", Toast.LENGTH_SHORT).show();
                 startActivity(intent);
             }
         });
@@ -178,7 +176,7 @@ public class To_be_paid extends BaseFragment implements OrderContreater.IView {
 
                 SharedPreferences token = App.getContext().getSharedPreferences("token", Context.MODE_PRIVATE);
                 String token1 = token.getString("token", "");
-                NetUtils.getInstance().getApi().getOrderDelete(token1,id)
+                NetUtils.getInstance().getApi().getOrderDelete(token1, id)
                         .subscribeOn(Schedulers.io())
                         .observeOn(AndroidSchedulers.mainThread())
                         .subscribe(new Observer<OrderDelete>() {
@@ -215,10 +213,10 @@ public class To_be_paid extends BaseFragment implements OrderContreater.IView {
 
     }
 
-     @Override
-     public void OnOrderdetails(CourseOrderBean orderBean) {
+    @Override
+    public void OnOrderdetails(CourseOrderBean orderBean) {
 
-     }
+    }
 
     @Override
     public void OnComment(CommentOrder commentOrder) {

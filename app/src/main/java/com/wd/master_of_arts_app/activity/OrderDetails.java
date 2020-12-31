@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.text.AlteredCharSequence;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -35,9 +36,10 @@ import java.util.List;
 public class OrderDetails extends BaseActivity implements OrderContreater.IView {
 
 
-    private TextView tv_pcty,tv_address,tv_namenumber,tv_detailstitle,tv_allprice,tv_create_time,tv_teacher_name,tv_mark,tv_order_num,tv_create,tv_pay_price,tv_allpricec;
-    private RelativeLayout success,fail,shost;
-    private Button ckwl,qpj;
+    private TextView tv_pcty, tv_address, tv_namenumber, tv_detailstitle, tv_allprice, tv_create_time, tv_teacher_name, tv_mark, tv_order_num, tv_create, tv_pay_price, tv_allpricec, ckwl, qpj;
+    private RelativeLayout success, fail, shost, fai2;
+    private ImageView details_return;
+
     @Override
     protected int getLayoutId() {
         return R.layout.activity_order_details;
@@ -67,18 +69,20 @@ public class OrderDetails extends BaseActivity implements OrderContreater.IView 
         shost = findViewById(R.id.shost);
         ckwl = findViewById(R.id.ckwl);
         qpj = findViewById(R.id.qpj);
+        details_return = findViewById(R.id.details_return);
+        fai2 = findViewById(R.id.fai2);
     }
 
     @Override
     protected void initData() {
         BasePreantert basePreantert = getmPreantert();
-        if(basePreantert instanceof OrderContreater.IPreanter){
+        if (basePreantert instanceof OrderContreater.IPreanter) {
             SharedPreferences token = getSharedPreferences("token", MODE_PRIVATE);
             String token1 = token.getString("token", "");
             Intent intent = getIntent();
             int idddddd = intent.getIntExtra("idddddd", 0);
             EventBus.getDefault().postSticky(new CommentId(idddddd));
-            ((OrderContreater.IPreanter) basePreantert).OnOrderdetailsSuccess(token1,idddddd);
+            ((OrderContreater.IPreanter) basePreantert).OnOrderdetailsSuccess(token1, idddddd);
         }
         ckwl.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -87,10 +91,16 @@ public class OrderDetails extends BaseActivity implements OrderContreater.IView 
                 startActivity(intent);
             }
         });
+        details_return.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
         qpj.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(OrderDetails.this,OrderComment.class);
+                Intent intent = new Intent(OrderDetails.this, OrderComment.class);
                 startActivity(intent);
             }
         });
@@ -117,60 +127,45 @@ public class OrderDetails extends BaseActivity implements OrderContreater.IView 
         CourseOrderBean.DataBean data = orderBean.getData();
         CourseOrderBean.DataBean.OrderMsgBean orderMsg = data.getOrderMsg();
         int status = orderMsg.getStatus();
-        if(status==2){
+        if (status == 2) {
             success.setVisibility(View.VISIBLE);
             fail.setVisibility(View.GONE);
+            fai2.setVisibility(View.GONE);
             shost.setVisibility(View.VISIBLE);
-        }else if(status==3){
+        } else if (status == 3) {
             success.setVisibility(View.VISIBLE);
             fail.setVisibility(View.GONE);
+            fai2.setVisibility(View.GONE);
             shost.setVisibility(View.VISIBLE);
-        }else {
+        } else if (status == 1) {
+            fai2.setVisibility(View.VISIBLE);
+            fail.setVisibility(View.GONE);
+            success.setVisibility(View.GONE);
+        } else {
             success.setVisibility(View.GONE);
             shost.setVisibility(View.GONE);
             fail.setVisibility(View.VISIBLE);
-            new AlertDialog.Builder(OrderDetails.this)
-                    .setTitle("确定取消订单?")
-                    .setMessage("是否取消当前订单")
-                    .setPositiveButton("取消", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialogInterface, int i) {
-
-                        }
-                    }).setNegativeButton("确定", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialogInterface, int i) {
-                            BasePreantert basePreantert = getmPreantert();
-                            if(basePreantert instanceof OrderContreater.IPreanter){
-                                SharedPreferences token = getSharedPreferences("token", MODE_PRIVATE);
-                                String token1 = token.getString("token", "");
-                                CourseOrderBean.DataBean data1 = orderBean.getData();
-                                CourseOrderBean.DataBean.OrderMsgBean orderMsg1 = data1.getOrderMsg();
-                                Intent intent = getIntent();
-                                int idddddd = intent.getIntExtra("idddddd", 0);
-
-                                ((OrderContreater.IPreanter) basePreantert).OnCancelSuccess(token1,idddddd+"");
-                            }
-                        }
-                    }).show();
-
-
         }
         String province = orderMsg.getProvince();
         String logistics = orderMsg.getLogistics();
         String express_number = orderMsg.getExpress_number();
-        EventBus.getDefault().postSticky(new ViewLogist(logistics,express_number));
+        SharedPreferences express = getSharedPreferences("express", MODE_PRIVATE);
+        SharedPreferences.Editor edit = express.edit();
+        edit.putString("logistics", logistics);
+        edit.putString("express_number", express_number);
+        edit.commit();
+        EventBus.getDefault().postSticky(new ViewLogist(logistics, express_number));
         String city = orderMsg.getCity();
         String county = orderMsg.getCounty();
         String address = orderMsg.getAddress();
-        tv_pcty.setText(province+city+city);
+        tv_pcty.setText(province + city + city);
         tv_address.setText(address);
         String consignee = orderMsg.getConsignee();
         String contact_number = orderMsg.getContact_number();
         String title = orderMsg.getTitle();
         tv_detailstitle.setText(title);
         String allprice = orderMsg.getAllprice();
-        tv_namenumber.setText(consignee+contact_number);
+        tv_namenumber.setText(consignee + contact_number);
         tv_allprice.setText(allprice);
         String create_time = orderMsg.getCreate_time();
         tv_create_time.setText(create_time);
@@ -178,18 +173,19 @@ public class OrderDetails extends BaseActivity implements OrderContreater.IView 
 
         String first_class_time = course_detail.getFirst_class_time();
         String first_class_date = course_detail.getFirst_class_date();
-        tv_teacher_name.setText(first_class_date+first_class_time);
+        tv_teacher_name.setText(first_class_date + first_class_time);
         List<CourseOrderBean.DataBean.OrderMsgBean.CourseDetailBean.MarkBean> mark = course_detail.getMark();
         String mark1 = mark.get(0).getMark();
         tv_mark.setText(mark1);
         String order_num = orderMsg.getOrder_num();
-        tv_order_num.setText("订单号："+order_num);
+        tv_order_num.setText("订单号：" + order_num);
         String create_time1 = orderMsg.getCreate_time();
         tv_create.setText(create_time1);
         String pay_price = orderMsg.getPay_price();
         tv_pay_price.setText(pay_price);
         tv_allpricec.setText(allprice);
     }
+
     //评论
     @Override
     public void OnComment(CommentOrder commentOrder) {

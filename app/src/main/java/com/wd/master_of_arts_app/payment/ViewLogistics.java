@@ -66,6 +66,8 @@ public class ViewLogistics extends BaseActivity implements ViewLogisticsConreate
         SharedPreferences token = getSharedPreferences("token", MODE_PRIVATE);
         String token1 = token.getString("token", "");
         BasePreantert basePreantert = getmPreantert();
+
+
         if(basePreantert instanceof ViewLogisticsConreater.IPreanter){
             ((ViewLogisticsConreater.IPreanter) basePreantert).OnViewLoginsticsSuccess(token1,logistics,express_number);
         }

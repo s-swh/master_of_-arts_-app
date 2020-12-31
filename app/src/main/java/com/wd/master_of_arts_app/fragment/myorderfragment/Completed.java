@@ -25,9 +25,13 @@ import com.wd.master_of_arts_app.bean.CourseOrderBean;
 import com.wd.master_of_arts_app.bean.OrderDelete;
 import com.wd.master_of_arts_app.bean.OrderList;
 import com.wd.master_of_arts_app.bean.Purchase;
+import com.wd.master_of_arts_app.bean.ViewLogist;
 import com.wd.master_of_arts_app.contreater.OrderContreater;
+import com.wd.master_of_arts_app.payment.ViewLogistics;
 import com.wd.master_of_arts_app.preanter.OrderPreanter;
 import com.wd.master_of_arts_app.utils.NetUtils;
+
+import org.greenrobot.eventbus.EventBus;
 
 import java.util.List;
 
@@ -111,6 +115,17 @@ public class Completed extends BaseFragment implements OrderContreater.IView {
         data = orderList.getData();
         List<OrderList.DataBean.ListBean> list = data.getList();
         orderListAdapter = new OrderListAdapter(getActivity(), list);
+        orderListAdapter.OnClickwl(new OrderListAdapter.Ckwl() {
+            @Override
+            public void OnClick(OrderList.DataBean.ListBean listBean) {
+                Intent intent = new Intent(getActivity(), ViewLogistics.class);
+                String express_number = listBean.getExpress_number();
+                String logistics = listBean.getLogistics();
+
+                startActivity(intent);
+                EventBus.getDefault().postSticky(new ViewLogist(logistics,express_number));
+            }
+        });
         orderListAdapter.OnClick(new OrderListAdapter.idtet() {
             @Override
             public void OnClick(int id) {

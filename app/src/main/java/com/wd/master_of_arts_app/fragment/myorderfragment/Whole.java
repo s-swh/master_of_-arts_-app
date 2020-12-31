@@ -25,9 +25,13 @@ import com.wd.master_of_arts_app.bean.CourseOrderBean;
 import com.wd.master_of_arts_app.bean.OrderDelete;
 import com.wd.master_of_arts_app.bean.OrderList;
 import com.wd.master_of_arts_app.bean.Purchase;
+import com.wd.master_of_arts_app.bean.ViewLogist;
 import com.wd.master_of_arts_app.contreater.OrderContreater;
+import com.wd.master_of_arts_app.payment.ViewLogistics;
 import com.wd.master_of_arts_app.preanter.OrderPreanter;
 import com.wd.master_of_arts_app.utils.NetUtils;
+
+import org.greenrobot.eventbus.EventBus;
 
 import java.util.List;
 
@@ -37,7 +41,7 @@ import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
 
 /**
- *  全部
+ * 全部
  */
 @SuppressWarnings("ALL")
 public class Whole extends BaseFragment implements OrderContreater.IView {
@@ -51,6 +55,7 @@ public class Whole extends BaseFragment implements OrderContreater.IView {
     private OrderListAdapter orderListAdapter;
     private OrderList.DataBean data;
     private List<OrderList.DataBean.ListBean> list;
+    private int j;
 
     @Override
     protected int getLayoutId() {
@@ -74,7 +79,7 @@ public class Whole extends BaseFragment implements OrderContreater.IView {
     @Override
     protected void initData() {
         BasePreantert basePreantert = getmPreanter();
-        if(basePreantert instanceof OrderContreater.IPreanter){
+        if (basePreantert instanceof OrderContreater.IPreanter) {
             SharedPreferences token = App.getContext().getSharedPreferences("token", Context.MODE_PRIVATE);
             String token1 = token.getString("token", "");
 
@@ -84,20 +89,22 @@ public class Whole extends BaseFragment implements OrderContreater.IView {
             xrv.setLoadingListener(new XRecyclerView.LoadingListener() {
                 @Override
                 public void onRefresh() {
-                    p =1;
-                    ((OrderContreater.IPreanter) basePreantert).OrderSuccess(token1,"", p, per);
-                orderListAdapter.Refresh(data.getList());
+                    p = 1;
+                    ((OrderContreater.IPreanter) basePreantert).OrderSuccess(token1, "", p, per);
+                    orderListAdapter.Refresh(data.getList());
                     xrv.refreshComplete();
                 }
 
                 @Override
                 public void onLoadMore() {
-                p++;
-                orderListAdapter.Load(data.getList());
-                xrv.loadMoreComplete();
+                    p++;
+                    orderListAdapter.Load(data.getList());
+                    xrv.loadMoreComplete();
                 }
             });
-            ((OrderContreater.IPreanter) basePreantert).OrderSuccess(token1,"", p, per);
+
+            ((OrderContreater.IPreanter) basePreantert).OrderSuccess(token1, "", p, per);
+
         }
         iv.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -121,13 +128,30 @@ public class Whole extends BaseFragment implements OrderContreater.IView {
     public void OnOrderList(OrderList orderList) {
         data = orderList.getData();
         list = data.getList();
-        orderListAdapter = new OrderListAdapter(getActivity(), list);
+
+        orderListAdapter = new OrderListAdapter(getActivity(), this.list);
+
+
+        orderListAdapter.OnClickwl(new OrderListAdapter.Ckwl() {
+            @Override
+            public void OnClick(OrderList.DataBean.ListBean listBean) {
+                Intent intent = new Intent(getActivity(), ViewLogistics.class);
+                String express_number = listBean.getExpress_number();
+                String logistics = listBean.getLogistics();
+
+                startActivity(intent);
+                EventBus.getDefault().postSticky(new ViewLogist(logistics,express_number));
+            }
+        });
         orderListAdapter.OnClick(new OrderListAdapter.idtet() {
+
+
             @Override
             public void OnClick(int id) {
+                j = id;
                 Intent intent = new Intent(getActivity(), OrderDetails.class);
-                intent.putExtra("idddddd",id);
-                Toast.makeText(getActivity(), id+"", Toast.LENGTH_SHORT).show();
+                intent.putExtra("idddddd", id);
+                Toast.makeText(getActivity(), id + "", Toast.LENGTH_SHORT).show();
                 startActivity(intent);
             }
         });
@@ -138,7 +162,7 @@ public class Whole extends BaseFragment implements OrderContreater.IView {
 
                 SharedPreferences token = App.getContext().getSharedPreferences("token", Context.MODE_PRIVATE);
                 String token1 = token.getString("token", "");
-                NetUtils.getInstance().getApi().getOrderDelete(token1,id)
+                NetUtils.getInstance().getApi().getOrderDelete(token1, id)
                         .subscribeOn(Schedulers.io())
                         .observeOn(AndroidSchedulers.mainThread())
                         .subscribe(new Observer<OrderDelete>() {

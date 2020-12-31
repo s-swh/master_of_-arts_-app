@@ -80,7 +80,7 @@ public class Cancelled extends BaseFragment implements OrderContreater.IView{
         if(basePreantert instanceof OrderContreater.IPreanter){
             SharedPreferences token = App.getContext().getSharedPreferences("token", Context.MODE_PRIVATE);
             String token1 = token.getString("token", "");
-            String i="1";
+            String i="4";
             int p=1;
             int per=10;
             ((OrderContreater.IPreanter) basePreantert).OrderSuccess(token1,i,p,per);
@@ -93,7 +93,7 @@ public class Cancelled extends BaseFragment implements OrderContreater.IView{
         if(basePreantert instanceof OrderContreater.IPreanter){
             SharedPreferences token = App.getContext().getSharedPreferences("token", Context.MODE_PRIVATE);
             String token1 = token.getString("token", "");
-            String i="1";
+            String i="4";
             int p=1;
             int per=10;
             ((OrderContreater.IPreanter) basePreantert).OrderSuccess(token1,i,p,per);
