@@ -53,9 +53,9 @@ public class MyCourseAdapter extends XRecyclerView.Adapter<XRecyclerView.ViewHol
         MyCurse.DataBean.ListBean listBean = list.get(position);
         String title = listBean.getTitle();
         String time_detail = listBean.getTime_detail();
-
         String teacher_name = listBean.getTeacher_name();
         ((MyCourseViewHorder) holder).tle.setText(title);
+
         ((MyCourseViewHorder) holder).te.setText(time_detail);
         ((MyCourseViewHorder) holder).name.setText(teacher_name);
         String avatar = listBean.getAvatar();
@@ -81,13 +81,14 @@ public class MyCourseAdapter extends XRecyclerView.Adapter<XRecyclerView.ViewHol
         void OnCliack(int id,int order_id);
     }
     class MyCourseViewHorder extends XRecyclerView.ViewHolder {
-        private final TextView tle, kj, te,name,Viewcoursedetails;
+        private final TextView tle,sort_num , te,name,Viewcoursedetails;
         private final ImageView iv;
 
         public MyCourseViewHorder(@NonNull View itemView) {
             super(itemView);
             tle = itemView.findViewById(R.id.my_tile);
-            kj = itemView.findViewById(R.id.my_kj);
+            sort_num = itemView.findViewById(R.id.sort_num);
+
             te = itemView.findViewById(R.id.myte);
             iv = itemView.findViewById(R.id.my_iv);
             name = itemView.findViewById(R.id.my_name);

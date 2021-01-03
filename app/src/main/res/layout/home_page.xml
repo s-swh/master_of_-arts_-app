@@ -64,18 +64,7 @@
                         android:layout_marginTop="@dimen/dp_5"
                         android:layout_marginLeft="@dimen/dp_32"
                         android:layout_height="wrap_content" />
-                    <RelativeLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
-                        <Button
-                            android:layout_width="@dimen/dp_250"
-                            android:text="立即前往"
-                            android:layout_marginTop="@dimen/dp_25"
-                            android:layout_marginBottom="@dimen/dp_15"
-                            android:background="@drawable/backgroundbuttonleft"
-                            android:textColor="#FF4747"
-                            android:layout_height="@dimen/dp_53" />
-                    </RelativeLayout>
+
                 </LinearLayout>
 
                 <View
@@ -103,18 +92,7 @@
                         android:layout_marginTop="@dimen/dp_5"
                         android:layout_marginLeft="@dimen/dp_32"
                         android:layout_height="wrap_content" />
-                    <RelativeLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
-                        <Button
-                            android:layout_width="@dimen/dp_250"
-                            android:text="立即前往"
-                            android:layout_marginTop="@dimen/dp_25"
-                            android:layout_marginBottom="@dimen/dp_15"
-                            android:background="@drawable/backgroundbuttonleft"
-                            android:textColor="#FF4747"
-                            android:layout_height="@dimen/dp_53" />
-                    </RelativeLayout>
+
                 </LinearLayout>
             </LinearLayout>
 
@@ -129,25 +107,25 @@
     android:layout_height="@dimen/dp_140" />
 
         <ImageView
-            android:layout_width="@dimen/dp_110"
+            android:layout_width="@dimen/dp_150"
             android:layout_centerHorizontal="true"
             android:layout_centerInParent="true"
             android:paddingTop="@dimen/dp_25"
+            android:id="@+id/tt_appointment"
             android:layout_marginTop="@dimen/dp_10"
             android:contextClickable="true"
             android:layout_gravity="center"
-
             android:layout_centerVertical="true"
             android:src="@mipmap/icon_yuanzuitu"
-            android:layout_height="@dimen/dp_120" />
+            android:layout_height="@dimen/dp_150" />
         <TextView
-            android:id="@+id/tt_appointment"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
             android:layout_centerInParent="true"
             android:layout_centerHorizontal="true"
-            android:text="预约体验"
+            android:id="@+id/tv_tvv"
+            android:text="123123"
             android:paddingTop="@dimen/dp_25"
             android:textColor="#FD0808"
             android:textSize="@dimen/sp_16" />

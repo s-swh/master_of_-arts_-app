@@ -1,17 +1,25 @@
 package com.wd.master_of_arts_app.fragment;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.stx.xhb.xbanner.XBanner;
 import com.wd.master_of_arts_app.R;
 import com.wd.master_of_arts_app.activity.Booking_experience;
+import com.wd.master_of_arts_app.activity.CoursePreview;
 import com.wd.master_of_arts_app.activity.Search_Activity;
+import com.wd.master_of_arts_app.base.App;
 import com.wd.master_of_arts_app.base.BaseFragment;
 import com.wd.master_of_arts_app.base.BasePreantert;
 import com.wd.master_of_arts_app.bean.Beanner;
+import com.wd.master_of_arts_app.bean.HomePage;
 import com.wd.master_of_arts_app.contreater.HomePagerCrete;
 import com.wd.master_of_arts_app.preanter.HomePreanter;
 import com.wd.master_of_arts_app.utils.NetUtils;
@@ -20,6 +28,10 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.OnClick;
+import io.reactivex.Observer;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.Disposable;
+import io.reactivex.schedulers.Schedulers;
 
 /**
  * @author 时文豪
@@ -27,9 +39,12 @@ import butterknife.OnClick;
  * @date :2020/12/3 10:48
  */
 @SuppressWarnings("ALL")
-public class Home_page extends BaseFragment implements HomePagerCrete.IVew {
+public class Home_page extends BaseFragment implements HomePagerCrete.IVew, View.OnClickListener {
     @BindView(R.id.xbn)
     XBanner xb;
+    private ImageView iv;
+    private TextView tv;
+
     @Override
     protected int getLayoutId() {
         return R.layout.home_page;
@@ -42,21 +57,52 @@ public class Home_page extends BaseFragment implements HomePagerCrete.IVew {
     }
 
 
-    @OnClick(R.id.tt_appointment)
-    public void appointment(){
-        startActivity(new Intent(getActivity(), Booking_experience.class));
-    }
     @Override
     protected void initView(View view) {
+        iv = view.findViewById(R.id.tt_appointment);
+        tv = view.findViewById(R.id.tv_tvv);
 
     }
 
     @Override
-    protected void initData() {
+    public void onStart() {
+        super.onStart();
+        SharedPreferences token = App.getContext().getSharedPreferences("token", Context.MODE_PRIVATE);
+        String token1 = token.getString("token", "");
         BasePreantert basePreantert=getmPreanter();
         if(basePreantert instanceof HomePagerCrete.IPreanter){
             ((HomePagerCrete.IPreanter) basePreantert).OnBeanner(2);
+            if(token1!=null){
+                ((HomePagerCrete.IPreanter) basePreantert).OnHomepage(token1);
+            }else{
+                ((HomePagerCrete.IPreanter) basePreantert).OnHomepage("");
+            }
+
         }
+
+
+
+    }
+
+
+
+    @Override
+    protected void initData() {
+        SharedPreferences token = App.getContext().getSharedPreferences("token", Context.MODE_PRIVATE);
+        String token1 = token.getString("token", "");
+        BasePreantert basePreantert=getmPreanter();
+        if(basePreantert instanceof HomePagerCrete.IPreanter){
+            ((HomePagerCrete.IPreanter) basePreantert).OnBeanner(2);
+            if(token1!=null){
+                ((HomePagerCrete.IPreanter) basePreantert).OnHomepage(token1);
+            }else{
+                ((HomePagerCrete.IPreanter) basePreantert).OnHomepage("");
+            }
+
+        }
+
+
+
     }
 
     @Override
@@ -74,17 +120,26 @@ public class Home_page extends BaseFragment implements HomePagerCrete.IVew {
         });
     }
 
-  /*  @Override
-    public void OnBeanSuccess(Beanner_Bean beanner_bean) {//首页轮播图
-        Beanner_Bean.DataBean data = beanner_bean.getData();
-        List<Beanner_Bean.DataBean.ListBean> list = data.getList();
-        xb.setData(list,null);
-        xb.loadImage(new XBanner.XBannerAdapter() {
+    @Override
+    public void HomePage(HomePage homePage) {
+        HomePage.DataBean data = homePage.getData();
+        String status = data.getStatus();
+        tv.setText(status);
+        iv.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void loadBanner(XBanner banner, Object model, View view, int position) {
-                String img = list.get(position).getImg();//获取图片的路径
-                Glide.with(getActivity()).load(img).into(((ImageView)view));//图片加载
+            public void onClick(View view) {
+                if(status.equals("预约体验")){
+                    startActivity(new Intent(getActivity(), Booking_experience.class));
+                }else if(status.equals("去预习")){
+                    startActivity(new Intent(getActivity(), CoursePreview.class));
+                }
             }
         });
-    }*/
+
+    }
+
+    @Override
+    public void onClick(View view) {
+
+    }
 }

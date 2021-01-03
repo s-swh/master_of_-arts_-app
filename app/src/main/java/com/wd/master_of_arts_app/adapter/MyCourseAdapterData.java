@@ -3,6 +3,7 @@ package com.wd.master_of_arts_app.adapter;
 import android.content.Context;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -40,7 +41,7 @@ public class MyCourseAdapterData extends RecyclerView.Adapter<RecyclerView.ViewH
         int sort_num = unitListBean.getSort_num();
         String unit_name = unitListBean.getUnit_name();
         ((MyCourseDataViewHorder)holder).tv.setText(date);
-        ((MyCourseDataViewHorder) holder).num.setText(sort_num+"");
+        ((MyCourseDataViewHorder) holder).num.setText("第"+sort_num+"课");
         ((MyCourseDataViewHorder) holder).name.setText(unit_name);
     }
 
@@ -48,16 +49,20 @@ public class MyCourseAdapterData extends RecyclerView.Adapter<RecyclerView.ViewH
     public int getItemCount() {
         return beanList.size();
     }
+    //我的作业  todo  我的作业
+    public interface OnClickZYe{
+
+    }
     class MyCourseDataViewHorder extends RecyclerView.ViewHolder {
 
-        private final TextView tv,num,name,myzu,myhf;
-
+        private final TextView tv,num,name;
+        private RelativeLayout myzu,myhf;
         public MyCourseDataViewHorder(@NonNull View itemView) {
             super(itemView);
             tv = itemView.findViewById(R.id.zrdate);
             num=    itemView.findViewById(R.id.ort_num);
              name=   itemView.findViewById(R.id.unit_name);
-            myzu=    itemView.findViewById(R.id.myzy);
+            myzu=    itemView.findViewById(R.id.my_zy);
               myhf=  itemView.findViewById(R.id.myhf);
         }
     }

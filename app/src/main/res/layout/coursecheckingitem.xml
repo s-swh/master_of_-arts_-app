@@ -69,24 +69,24 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
-            <RelativeLayout
-                android:layout_width="@dimen/dp_129"
-                android:layout_alignParentRight="true"
-                android:background="@drawable/coursecheck"
-                android:layout_margin="@dimen/dp_15"
-                android:layout_height="@dimen/dp_30">
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:gravity="center"
-                    android:layout_centerVertical="true"
-                    android:layout_centerHorizontal="true"
-                    android:textSize="@dimen/sp_20"
-                    android:textColor="#019A92"
-                    android:text="查看课程 >"
-                    android:id="@+id/Viewcoursedetails"
+        <RelativeLayout
+            android:layout_width="@dimen/dp_129"
+            android:layout_alignParentRight="true"
+            android:background="@drawable/coursecheck"
+            android:layout_margin="@dimen/dp_15"
+            android:layout_height="@dimen/dp_30">
+            <TextView
+                android:layout_width="wrap_content"
+                android:gravity="center"
+                android:layout_centerVertical="true"
+                android:layout_centerHorizontal="true"
+                android:textSize="@dimen/sp_20"
+                android:textColor="#019A92"
+                android:text="查看课程 >"
+                android:id="@+id/Viewcoursedetails"
 
-                    android:layout_height="wrap_content" />
-            </RelativeLayout>
+                android:layout_height="wrap_content" />
+        </RelativeLayout>
         </RelativeLayout>
     </LinearLayout>
 

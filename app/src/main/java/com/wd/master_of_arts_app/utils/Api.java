@@ -1,5 +1,6 @@
 package com.wd.master_of_arts_app.utils;
 
+import com.wd.master_of_arts_app.base.CourseChecking;
 import com.wd.master_of_arts_app.base.RetrievePassword;
 import com.wd.master_of_arts_app.bean.AccountLogin;
 import com.wd.master_of_arts_app.bean.AgeInterface;
@@ -17,6 +18,7 @@ import com.wd.master_of_arts_app.bean.DeleteHarvestAddress;
 import com.wd.master_of_arts_app.bean.DetailsOfWorksBean;
 import com.wd.master_of_arts_app.bean.EditUserInformation;
 import com.wd.master_of_arts_app.bean.HarvestAddress;
+import com.wd.master_of_arts_app.bean.HomePage;
 import com.wd.master_of_arts_app.bean.ListOfWorks;
 import com.wd.master_of_arts_app.bean.Logistics;
 import com.wd.master_of_arts_app.bean.MyClassDate;
@@ -40,6 +42,7 @@ import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
+import retrofit2.http.GET;
 import retrofit2.http.Multipart;
 import retrofit2.http.POST;
 import retrofit2.http.Part;
@@ -221,4 +224,12 @@ public interface Api {
     @FormUrlEncoded
     Observable<CommBean>getCommBean(@Field("cat_id")int cat_id,@Field("p")int p,@Field("per")int per);
 
+    //日历查课 http://test.54artist.com/wap/CourseTime/getMyClassMsg
+    @POST("wap/CourseTime/getMyClassMsg")
+    @FormUrlEncoded
+    Observable<CourseChecking>getCourseChecking(@Field("token")String token,@Field("date")String date);
+    //首页 http://test.54artist.com/wap/CourseUnit/getIndex
+    @POST("wap/CourseUnit/getIndex")
+    @FormUrlEncoded
+    Observable<HomePage>getHomePage(@Field("token")String token);
 }

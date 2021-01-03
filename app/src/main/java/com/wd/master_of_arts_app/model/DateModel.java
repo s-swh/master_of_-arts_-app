@@ -1,8 +1,8 @@
 package com.wd.master_of_arts_app.model;
 
-import com.wd.master_of_arts_app.bean.Beanner;
-import com.wd.master_of_arts_app.bean.HomePage;
-import com.wd.master_of_arts_app.contreater.HomePagerCrete;
+import com.wd.master_of_arts_app.base.CourseChecking;
+import com.wd.master_of_arts_app.bean.MyClassDate;
+import com.wd.master_of_arts_app.contreater.DateTableContreater;
 import com.wd.master_of_arts_app.utils.NetUtils;
 
 import io.reactivex.Observer;
@@ -12,25 +12,25 @@ import io.reactivex.schedulers.Schedulers;
 
 /**
  * @author 时文豪
- * @description: 主页model
- * @date :2020/12/17 16:52
+ * @description:
+ * @date :2021/1/3 9:38
  */
-public class HomeModel implements HomePagerCrete.IModel {
+public class DateModel implements DateTableContreater.IModel {
     @Override
-    public void OnBeanner(int cat_id, BeannerCoallack coallack) {
-        NetUtils.getInstance().getApi().getBeanner(cat_id)
+    public void DateSuccess(String token, DateTableCoallack coallack) {
+        NetUtils.getInstance().getApi().getMyClass(token)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Observer<Beanner>() {
+                .subscribe(new Observer<MyClassDate>() {
                     @Override
                     public void onSubscribe(Disposable d) {
 
                     }
 
                     @Override
-                    public void onNext(Beanner beanner) {
+                    public void onNext(MyClassDate myClassDate) {
                         if(coallack!=null){
-                            coallack.BannerSuccess(beanner);
+                            coallack.DateTable(myClassDate);
                         }
                     }
 
@@ -44,25 +44,24 @@ public class HomeModel implements HomePagerCrete.IModel {
 
                     }
                 });
-
     }
 
     @Override
-    public void OnHomepage(String token,OnHomePagerCoallack homePagerCoallack) {
-        NetUtils.getInstance().getApi().getHomePage(token)
+    public void OnCourseCheckingSuccess(String token, String date, CourseCheckingCoallack courseCheckingCoallack) {
+        NetUtils.getInstance().getApi().getCourseChecking(token,date)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Observer<HomePage>() {
+                .subscribe(new Observer<CourseChecking>() {
                     @Override
                     public void onSubscribe(Disposable d) {
 
                     }
 
                     @Override
-                    public void onNext(HomePage homePage) {
-                        if(homePagerCoallack!=null){
-                            homePagerCoallack.HomePage(homePage);
-                        }
+                    public void onNext(CourseChecking courseChecking) {
+                    if(courseCheckingCoallack!=null){
+                        courseCheckingCoallack.CourseChecking(courseChecking);
+                    }
                     }
 
                     @Override
