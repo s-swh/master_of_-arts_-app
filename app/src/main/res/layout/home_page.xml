@@ -98,13 +98,13 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_marginTop="@dimen/dp_50"
+
         android:layout_height="wrap_content">
 <ImageView
-    android:layout_width="@dimen/dp_120"
+    android:layout_width="@dimen/dp_130"
     android:src="@mipmap/icon_left_l"
     android:layout_marginTop="@dimen/dp_25"
-    android:layout_height="@dimen/dp_140" />
+    android:layout_height="@dimen/dp_200" />
 
         <ImageView
             android:layout_width="@dimen/dp_150"
@@ -125,16 +125,16 @@
             android:layout_centerInParent="true"
             android:layout_centerHorizontal="true"
             android:id="@+id/tv_tvv"
-            android:text="123123"
+            android:text=" "
             android:paddingTop="@dimen/dp_25"
             android:textColor="#FD0808"
             android:textSize="@dimen/sp_16" />
         <ImageView
-            android:layout_width="@dimen/dp_120"
+            android:layout_width="@dimen/dp_130"
             android:src="@mipmap/icon_right_r"
             android:layout_marginTop="@dimen/dp_25"
             android:layout_alignParentRight="true"
-            android:layout_height="@dimen/dp_140" />
+            android:layout_height="@dimen/dp_200" />
 
     </RelativeLayout>
 

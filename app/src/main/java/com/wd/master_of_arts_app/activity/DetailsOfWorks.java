@@ -6,6 +6,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.ImageView;
 
 import com.wd.master_of_arts_app.R;
 import com.wd.master_of_arts_app.adapter.DetailsWorksAdapter;
@@ -22,6 +24,7 @@ public class DetailsOfWorks extends BaseActivity implements worksContreanter.IVe
 
 
     private RecyclerView rv;
+    private ImageView bt;
 
     @Override
     protected int getLayoutId() {
@@ -36,10 +39,17 @@ public class DetailsOfWorks extends BaseActivity implements worksContreanter.IVe
     @Override
     protected void initView() {
         rv = findViewById(R.id.wor_rv);
+        bt = findViewById(R.id.but_return);
     }
 
     @Override
     protected void initData() {
+        bt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         rv.setLayoutManager(linearLayoutManager);
         BasePreantert basePreantert = getmPreantert();

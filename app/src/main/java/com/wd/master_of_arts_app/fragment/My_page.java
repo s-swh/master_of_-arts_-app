@@ -201,6 +201,7 @@ public class My_page extends BaseFragment implements View.OnClickListener, UserI
     @Override
     public void OnUserInfor(UserInformation userInformation) {
         UserInformation.DataBean data = userInformation.getData();
+
         UserInformation.DataBean.UserDetailBean user_detail = data.getUser_detail();
         avatar = user_detail.getAvatar();
         Glide.with(getActivity()).load(avatar).apply(RequestOptions.bitmapTransform(new RoundedCorners(50))).error(R.mipmap.ic_launcher_round).into(iv);
@@ -209,7 +210,7 @@ public class My_page extends BaseFragment implements View.OnClickListener, UserI
         name1.setText(nickname + "");
         String birthday = user_detail.getBirthday();
         int age = user_detail.getAge();
-        aage.setText(age + "");
+        aage.setText(age + "岁");
         int sex = user_detail.getSex();
         String detail_address = user_detail.getDetail_address();
 

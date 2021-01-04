@@ -10,7 +10,7 @@
         android:background="#ebebeb"
         android:divider="@null"
         android:dividerHeight="10dp"
-        ></ListView>
+       />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -24,17 +24,17 @@
             />
         <com.wd.master_of_arts_app.customview.AudioRecorderButton
             android:id="@+id/id_recorder_button"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/dp_20"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
             android:layout_marginLeft="50dp"
             android:layout_marginRight="50dp"
             android:gravity="center"
             android:layout_marginTop="7dp"
             android:layout_marginBottom="7dp"
             android:padding="5dp"
-            android:text="@string/str_recorder_normal"
+            android:layout_gravity="center"
             android:textColor="#727272"
-            android:background="@mipmap/icon_video"
+            android:background="@mipmap/icon_lvyin"
             android:minHeight="0dp"
           />
 

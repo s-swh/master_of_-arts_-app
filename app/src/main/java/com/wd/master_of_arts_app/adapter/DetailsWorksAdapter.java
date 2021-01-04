@@ -1,18 +1,23 @@
 package com.wd.master_of_arts_app.adapter;
 
 import android.content.Context;
+import android.media.MediaPlayer;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+
 import com.wd.master_of_arts_app.R;
 import com.wd.master_of_arts_app.bean.DetailsOfWorksBean;
 
+import java.io.IOException;
 import java.util.List;
 
 /**
@@ -46,7 +51,32 @@ public class DetailsWorksAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
         ((DetailsWorksViewHorder)holder).tv_title.setText(name);
         ((DetailsWorksViewHorder) holder).tv_date.setText(create_time);
         ((DetailsWorksViewHorder) holder).tv_gu.setText(content);
-        Glide.with(context).load("http://qiniu.54artist.com/"+imglist).into(((DetailsWorksViewHorder)holder).iv);
+        String voice = workMsgBean.getVoice();
+        if(voice==null){
+            ((DetailsWorksViewHorder) holder).bton.setVisibility(View.GONE);
+        }else{
+            Glide.with(context).load("http://qiniu.54artist.com/"+imglist).into(((DetailsWorksViewHorder)holder).iv);
+            ((DetailsWorksViewHorder) holder).bton.setOnClickListener(new View.OnClickListener() {
+
+
+
+                @Override
+                public void onClick(View view) {
+                    MediaPlayer   mediaPlayer = new MediaPlayer();
+
+                    try {
+                        mediaPlayer.setDataSource("http://qiniu.54artist.com/"+voice);
+                        mediaPlayer.prepare();
+                        mediaPlayer.start();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+
+                }
+            });
+        }
+
+
     }
 
     @Override
@@ -56,6 +86,8 @@ public class DetailsWorksAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
     class DetailsWorksViewHorder extends RecyclerView.ViewHolder {
         private final TextView tv_title,tv_date,tv_gu;
         private final ImageView iv;
+        private final Button bton;
+
 
         public DetailsWorksViewHorder(@NonNull View itemView) {
             super(itemView);
@@ -63,6 +95,9 @@ public class DetailsWorksAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
           tv_date=   itemView.findViewById(R.id.tv_date);
             iv = itemView.findViewById(R.id.igv_iv);
           tv_gu=  itemView.findViewById(R.id.tv_gu);
+            bton = itemView.findViewById(R.id.bton);
+
+
         }
     }
 }

@@ -123,15 +123,25 @@ public class Home_page extends BaseFragment implements HomePagerCrete.IVew, View
     @Override
     public void HomePage(HomePage homePage) {
         HomePage.DataBean data = homePage.getData();
-        String status = data.getStatus();
-        tv.setText(status);
+        int status = data.getStatus();
+        String button = data.getButton();
+        tv.setText(button);
+
         iv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(status.equals("预约体验")){
+                if(status==0){
                     startActivity(new Intent(getActivity(), Booking_experience.class));
-                }else if(status.equals("去预习")){
+                }else if(status==1){
+
+                }else if(status==2){
                     startActivity(new Intent(getActivity(), CoursePreview.class));
+                }else if(status==3){
+
+                }else if(status==4){
+
+                }else if(status==5){
+
                 }
             }
         });

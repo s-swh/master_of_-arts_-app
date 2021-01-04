@@ -7,10 +7,11 @@ package com.wd.master_of_arts_app.bean;
  */
 public class HomePage {
 
+
     /**
      * code : 1
      * msg : 成功
-     * data : {"status":"预约体验","unit_id":"","unit_name":"","date":"","time":""}
+     * data : {"status":2,"button":"去预习","unit_id":241,"unit_name":"神奇的豆芽","date":"2021-02-02","time":"17:30:00","teacher":"谭老师","avatar":"http://qiniu.54artist.com/5feae974db33d7868.jpg"}
      */
 
     private int code;
@@ -43,32 +44,46 @@ public class HomePage {
 
     public static class DataBean {
         /**
-         * status : 预约体验
-         * unit_id :
-         * unit_name :
-         * date :
-         * time :
+         * status : 2
+         * button : 去预习
+         * unit_id : 241
+         * unit_name : 神奇的豆芽
+         * date : 2021-02-02
+         * time : 17:30:00
+         * teacher : 谭老师
+         * avatar : http://qiniu.54artist.com/5feae974db33d7868.jpg
          */
 
-        private String status;
-        private String unit_id;
+        private int status;
+        private String button;
+        private int unit_id;
         private String unit_name;
         private String date;
         private String time;
+        private String teacher;
+        private String avatar;
 
-        public String getStatus() {
+        public int getStatus() {
             return status;
         }
 
-        public void setStatus(String status) {
+        public void setStatus(int status) {
             this.status = status;
         }
 
-        public String getUnit_id() {
+        public String getButton() {
+            return button;
+        }
+
+        public void setButton(String button) {
+            this.button = button;
+        }
+
+        public int getUnit_id() {
             return unit_id;
         }
 
-        public void setUnit_id(String unit_id) {
+        public void setUnit_id(int unit_id) {
             this.unit_id = unit_id;
         }
 
@@ -94,6 +109,22 @@ public class HomePage {
 
         public void setTime(String time) {
             this.time = time;
+        }
+
+        public String getTeacher() {
+            return teacher;
+        }
+
+        public void setTeacher(String teacher) {
+            this.teacher = teacher;
+        }
+
+        public String getAvatar() {
+            return avatar;
+        }
+
+        public void setAvatar(String avatar) {
+            this.avatar = avatar;
         }
     }
 }

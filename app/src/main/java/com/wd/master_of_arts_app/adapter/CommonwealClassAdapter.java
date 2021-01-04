@@ -7,17 +7,19 @@ import android.view.SurfaceView;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import android.widget.VideoView;
+
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.wd.master_of_arts_app.R;
-import com.wd.master_of_arts_app.bean.ArticleList;
 import com.wd.master_of_arts_app.bean.CommBean;
+
+
 
 import java.util.List;
 
+import cn.jzvd.JZTextureView;
 import cn.jzvd.JzvdStd;
 
 
@@ -46,23 +48,13 @@ public class CommonwealClassAdapter extends RecyclerView.Adapter<RecyclerView.Vi
         CommBean.DataBean.ListBean listBean = beanList.get(position);
         String href = listBean.getHref();
         String title = listBean.getTitle();
-        try {
-           // ((CommonwealViewHorder)holder).jc.setUp(href, JCVideoPlayerStandard.SCREEN_LAYOUT_NORMAL,"");
-
-        }catch (Exception e){
-            e.printStackTrace();
-        }
-
-
         ((CommonwealViewHorder) holder).tv.setText(title);
-        ((CommonwealViewHorder) holder).v.setVideoURI(Uri.parse(href));
-        ((CommonwealViewHorder) holder).v.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                ((CommonwealViewHorder) holder).v.start();
-            }
-        });
-        //((CommonwealViewHorder)holder).jc.setUp(href,"",JzvdStd.SCREEN_WINDOW_NORMAL);
+        ((CommonwealViewHorder) holder).jz.setUp(href,"",JzvdStd.SCREEN_WINDOW_NORMAL);
+
+
+
+
+
     }
 
     @Override
@@ -72,17 +64,16 @@ public class CommonwealClassAdapter extends RecyclerView.Adapter<RecyclerView.Vi
     class CommonwealViewHorder extends RecyclerView.ViewHolder {
 
         private final TextView tv;
-
-       // private final JzvdStd jc;
-        private final VideoView v;
+        private final JzvdStd jz;
 
 
         public CommonwealViewHorder(@NonNull View itemView) {
             super(itemView);
-            v = itemView.findViewById(R.id.videocontroller1);
-         // jc = itemView.findViewById(R.id.videocontroller1);
+
+
 
             tv = itemView.findViewById(R.id.tv_tit);
+            jz = itemView.findViewById(R.id.jiaozi);
         }
     }
 }

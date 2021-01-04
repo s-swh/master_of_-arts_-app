@@ -88,7 +88,9 @@ public class PersonalDataActivity extends BaseActivity implements View.OnClickLi
         nan = findViewById(R.id.nan);
         nv = findViewById(R.id.nv);
         bt = findViewById(R.id.upde);
-
+        if(!EventBus.getDefault().isRegistered(this)){
+            EventBus.getDefault().register(this);
+        }
     }
 
 
@@ -98,17 +100,7 @@ public class PersonalDataActivity extends BaseActivity implements View.OnClickLi
         Glide.with(getApplicationContext()).load(img).apply(RequestOptions.bitmapTransform(new RoundedCorners(50))).error(R.mipmap.ic_launcher_round).into(iv);
     }
 
-    @Override
-    protected void onResume() {
-        super.onResume();
-        EventBus.getDefault().register(this);
-    }
 
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        EventBus.getDefault().unregister(this);
-    }
 
     @Subscribe(threadMode = ThreadMode.MAIN, sticky = true)
     public void se(User user) {

@@ -12,9 +12,6 @@ import com.wd.master_of_arts_app.R;
 import com.wd.master_of_arts_app.base.App;
 import com.wd.master_of_arts_app.base.BaseFragment;
 import com.wd.master_of_arts_app.base.BasePreantert;
-import com.wd.master_of_arts_app.bean.Count;
-
-import org.greenrobot.eventbus.EventBus;
 
 /**
  * @author 时文豪
@@ -47,12 +44,9 @@ public class Written_Words extends BaseFragment {
 
     @Override
     protected void initData() {
-        String string = et.getText().toString();
-        SharedPreferences sp = App.getContext().getSharedPreferences("content", Context.MODE_PRIVATE);
-        SharedPreferences.Editor edit = sp.edit();
-        edit.putString("string",string);
-        edit.commit();
-        et.addTextChangedListener(new TextWatcher() {
+
+
+        this.et.addTextChangedListener(new TextWatcher() {
         private CharSequence wordNum;//记录输入的字数
         private int selectionStart;
         private int selectionEnd;
@@ -64,6 +58,12 @@ public class Written_Words extends BaseFragment {
         @Override
         public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
             wordNum= charSequence;//实时记录输入的字数
+            String string = et.getText().toString();
+
+            SharedPreferences et = App.getContext().getSharedPreferences("et", Context.MODE_PRIVATE);
+            SharedPreferences.Editor edit = et.edit();
+            edit.putString("striasdasdasng",string);
+            edit.commit();
         }
 
         @Override
@@ -71,14 +71,14 @@ public class Written_Words extends BaseFragment {
             int number = num - editable.length();
             //TextView显示剩余字数
             ettv.setText("" + number);
-            selectionStart=et.getSelectionStart();
-            selectionEnd = et.getSelectionEnd();
+            selectionStart= Written_Words.this.et.getSelectionStart();
+            selectionEnd = Written_Words.this.et.getSelectionEnd();
             if (wordNum.length() > num) {
                 //删除多余输入的字（不会显示出来）
                 editable.delete(selectionStart - 1, selectionEnd);
                 int tempSelection = selectionEnd;
                 ettv.setText(editable);
-                et.setSelection(tempSelection);//设置光标在最后
+                Written_Words.this.et.setSelection(tempSelection);//设置光标在最后
             }
 
         }

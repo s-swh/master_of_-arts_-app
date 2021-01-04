@@ -219,20 +219,20 @@ public class AudioRecorderButton extends Button implements AudioManager.AudioSta
             mCurState = state;
             switch (state) {
                 case STATE_NORMAL:
-                    setBackgroundResource(R.drawable.ic_launcher_background);
-                    setText(R.string.str_recorder_normal);
+                    setBackgroundResource(R.mipmap.icon_lvyin);
+
                     break;
                 case STATE_RECORDING:
-                    setBackgroundResource(R.drawable.ic_launcher_background);
-                    setText(R.string.str_recorder_recording);
+                    setBackgroundResource(R.mipmap.icon_lvyin);
+
  
                     if (isRecording) {
                         mDialogManager.recording();
                     }
                     break;
                 case STATE_WANT_TO_CANCEL:
-                    setBackgroundResource(R.drawable.ic_launcher_background);
-                    setText(R.string.str_recorder_want_cancel);
+                    setBackgroundResource(R.mipmap.icon_lvyin);
+
                     mDialogManager.wantToCancel();
                     break;
             }

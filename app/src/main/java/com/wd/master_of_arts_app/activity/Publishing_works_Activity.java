@@ -31,7 +31,6 @@ import com.google.android.material.tabs.TabLayout;
 import com.wd.master_of_arts_app.R;
 import com.wd.master_of_arts_app.base.BaseActivity;
 import com.wd.master_of_arts_app.base.BasePreantert;
-import com.wd.master_of_arts_app.bean.Count;
 import com.wd.master_of_arts_app.bean.QiNiuYun;
 import com.wd.master_of_arts_app.bean.TakePhotosAndComment;
 import com.wd.master_of_arts_app.fragment.releasefragment.Voice;
@@ -77,17 +76,14 @@ public class Publishing_works_Activity extends BaseActivity {
     private GridAdapter gridAdapter;
     private TextView tv_click;
     private EditText textView;
-    private String TAG = MainActivity.class.getSimpleName();
     private MultipartBody.Part body;
 
     private EditText et_user;
-    public String edit;
-
-    private String string;
 
     private String[] str;
-    private String s2;
-    private String content;
+    private String accc;
+    private String content1;
+
 
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN_MR2)
     @Override
@@ -104,7 +100,7 @@ public class Publishing_works_Activity extends BaseActivity {
                 // 选择照片
                 case REQUEST_CAMERA_CODE:
                     ArrayList<String> list = data.getStringArrayListExtra(PhotoPickerActivity.EXTRA_RESULT);
-                    Log.d(TAG, "数量：" + list.size());
+
                     loadAdpater(list);
                     for (int i = 0; i < list.size(); i++) {
                         String s = list.get(i);
@@ -270,8 +266,6 @@ public class Publishing_works_Activity extends BaseActivity {
         gridAdapter = new GridAdapter(imagePaths);
         gridView.setAdapter(gridAdapter);
         @SuppressLint("HandlerLeak") Handler handler = new Handler() {
-
-
             @Override
             public void handleMessage(@NonNull Message msg) {
                 super.handleMessage(msg);
@@ -288,27 +282,26 @@ public class Publishing_works_Activity extends BaseActivity {
                         .subscribe(new Observer<QiNiuYun>() {
 
 
+
                             @Override
                             public void onSubscribe(Disposable d) {
 
                             }
-
                             @Override
                             public void onNext(QiNiuYun qiNiuYun) {
                                 String msg = qiNiuYun.getMsg();
                                 Toast.makeText(Publishing_works_Activity.this, msg, Toast.LENGTH_SHORT).show();
                                 QiNiuYun.DataBean data = qiNiuYun.getData();
-                                key = data.getKey();
+                                String key = data.getKey();
                                 str = new String[]{key};
 
                             }
-
                             @Override
                             public void onError(Throwable e) {
                                 String message = e.getMessage();
                                 Toast.makeText(Publishing_works_Activity.this, message, Toast.LENGTH_SHORT).show();
+                                Log.e("acacac",message);
                             }
-
                             @Override
                             public void onComplete() {
 
@@ -316,8 +309,8 @@ public class Publishing_works_Activity extends BaseActivity {
                         });
             }
         };
-        handler.sendEmptyMessageDelayed(1, 5000);
 
+        handler.sendEmptyMessageDelayed(1, 10000);
     }
 
     class MyViewPager extends FragmentPagerAdapter {
@@ -343,62 +336,56 @@ public class Publishing_works_Activity extends BaseActivity {
         }
     }
 
-
-
-    @OnClick(R.id.bt)
-    public void OnClick() {
-        SharedPreferences token = getSharedPreferences("token", MODE_PRIVATE);
-        String token1 = token.getString("token", "");
-        String string = et_user.getText().toString();
-        SharedPreferences sp1 = getSharedPreferences("content", MODE_PRIVATE);
-        String string2 = sp1.getString("string", "");
-        for (int i = 0; i < str.length; i++) {
-
-            SharedPreferences sp = getSharedPreferences("str", MODE_PRIVATE);
-            SharedPreferences.Editor edit = sp.edit();
-            edit.putString("im", str[i]);
-            edit.commit();
-        }
-        SharedPreferences sp = getSharedPreferences("str", MODE_PRIVATE);
-        String im = sp.getString("im", "");
-        SharedPreferences imglist = getSharedPreferences("imglist", MODE_PRIVATE);
-
-        String imglist1 = imglist.getString("imglist", "");
-        String string1 = et_user.getText().toString();
-
-
-        NetUtils.getInstance().getApi().getTakePhotos(token1, string1, string2, im, "")
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Observer<TakePhotosAndComment>() {
-                    @Override
-                    public void onSubscribe(Disposable d) {
-
-                    }
-
-                    @Override
-                    public void onNext(TakePhotosAndComment takePhotosAndComment) {
-                        String msg = takePhotosAndComment.getMsg();
-                        Toast.makeText(Publishing_works_Activity.this, msg, Toast.LENGTH_SHORT).show();
-                        int code = takePhotosAndComment.getCode();
-                        if(code==1){
-                            finish();
-                        }
-                    }
-
-                    @Override
-                    public void onError(Throwable e) {
-                        String message = e.getMessage();
-                        Toast.makeText(Publishing_works_Activity.this, message, Toast.LENGTH_SHORT).show();
-                    }
-
-                    @Override
-                    public void onComplete() {
-
-                    }
-                });
-
+@OnClick(R.id.bt)
+    public void OnBt(View view){
+    for (int i = 0; i < str.length; i++) {
+        accc = str[i].toString();
+        Toast.makeText(this, accc, Toast.LENGTH_SHORT).show();
     }
+    SharedPreferences token = getSharedPreferences("token", MODE_PRIVATE);
+    String token1 = token.getString("token", "");
+    String string = et_user.getText().toString();
+
+    SharedPreferences et = getSharedPreferences("et", MODE_PRIVATE);
+    String string1 = et.getString("striasdasdasng", "");
+    SharedPreferences sp = getSharedPreferences("key", MODE_PRIVATE);
+    String ke = sp.getString("ke", "");
+    Log.d("xxxxxxxxx",ke);
+    NetUtils.getInstance().getApi().getTakePhotos(token1,string,string1,accc,ke)
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe(new Observer<TakePhotosAndComment>() {
+                @Override
+                public void onSubscribe(Disposable d) {
+
+                }
+
+                @Override
+                public void onNext(TakePhotosAndComment takePhotosAndComment) {
+                    String msg = takePhotosAndComment.getMsg();
+                    Toast.makeText(Publishing_works_Activity.this, msg, Toast.LENGTH_SHORT).show();
+                    int code = takePhotosAndComment.getCode();
+                    if(code==1){
+                        finish();
+
+                    }
+                    SharedPreferences et1 = getSharedPreferences("et", MODE_PRIVATE);
+                    SharedPreferences.Editor edit = et1.edit();
+                    edit.putString("striasdasdasng","");
+                    edit.commit();
+                }
+
+                @Override
+                public void onError(Throwable e) {
+
+                }
+
+                @Override
+                public void onComplete() {
+
+                }
+            });
+}
 
 
 }
