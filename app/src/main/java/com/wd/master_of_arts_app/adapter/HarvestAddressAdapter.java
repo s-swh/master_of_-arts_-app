@@ -13,6 +13,8 @@ import com.wd.master_of_arts_app.R;
 import com.wd.master_of_arts_app.bean.HarvestAddress;
 import com.wd.master_of_arts_app.bean.ViewHarvestAddress;
 
+import org.greenrobot.eventbus.EventBus;
+
 import java.util.List;
 
 import butterknife.OnClick;
@@ -63,6 +65,8 @@ public class HarvestAddressAdapter extends RecyclerView.Adapter<RecyclerView.Vie
                 ViewHarvestAddress.DataBean.ListBean listBean = list.get(position);
                 int id1 = listBean.getId();
                 onIdClick1.OnidClick(id1);
+                String string = ((HarvestViewHorder) holder).tv_acce.getText().toString();
+                EventBus.getDefault().postSticky(string);
             }
         });
     }

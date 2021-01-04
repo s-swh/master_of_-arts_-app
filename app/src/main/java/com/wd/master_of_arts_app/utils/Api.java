@@ -4,6 +4,7 @@ import com.wd.master_of_arts_app.base.CourseChecking;
 import com.wd.master_of_arts_app.base.RetrievePassword;
 import com.wd.master_of_arts_app.bean.AccountLogin;
 import com.wd.master_of_arts_app.bean.AgeInterface;
+import com.wd.master_of_arts_app.bean.ArticleDetails;
 import com.wd.master_of_arts_app.bean.ArticleList;
 import com.wd.master_of_arts_app.bean.Beanner;
 import com.wd.master_of_arts_app.bean.BookingExperience;
@@ -26,6 +27,7 @@ import com.wd.master_of_arts_app.bean.MyCourseDetailsBean;
 import com.wd.master_of_arts_app.bean.MyCurse;
 import com.wd.master_of_arts_app.bean.OrderDelete;
 import com.wd.master_of_arts_app.bean.OrderList;
+import com.wd.master_of_arts_app.bean.Preview;
 import com.wd.master_of_arts_app.bean.Purchase;
 import com.wd.master_of_arts_app.bean.QiNiuYun;
 import com.wd.master_of_arts_app.bean.SMSLogin;
@@ -232,4 +234,13 @@ public interface Api {
     @POST("wap/CourseUnit/getIndex")
     @FormUrlEncoded
     Observable<HomePage>getHomePage(@Field("token")String token);
+    //获取预习内容接口 http://test.54artist.com/wap/CourseUnit/getPreContent
+    @POST("wap/CourseUnit/getPreContent")
+    @FormUrlEncoded
+    Observable<Preview>getPreview(@Field("token")String token,@Field("unit_id")int unit_id);
+
+    //文章详情  http://test.54artist.com/wap/Article/getMsg
+    @POST("wap/Article/getMsg")
+    @FormUrlEncoded
+    Observable<ArticleDetails>getArti(@Field("article_id")int article_id);
 }

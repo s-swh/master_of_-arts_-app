@@ -15,6 +15,7 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 import com.bumptech.glide.request.RequestOptions;
 import com.wd.master_of_arts_app.R;
+import com.wd.master_of_arts_app.activity.OrderComment;
 import com.wd.master_of_arts_app.adapter.MyCourseAdapterData;
 import com.wd.master_of_arts_app.base.BaseActivity;
 import com.wd.master_of_arts_app.base.BasePreantert;
@@ -31,9 +32,9 @@ public class MyCourseDetails extends BaseActivity implements MyCourseContreater.
 
 
     private RecyclerView rv;
-    private ImageView iv,ls_iv;
-    private TextView name,time_detail,num,user_n,unit_num_tv;
-    private ImageView vv;
+    private ImageView iv, ls_iv;
+    private TextView name, time_detail, num, user_n, unit_num_tv;
+    private ImageView vv, qpl;
 
     @Override
     protected int getLayoutId() {
@@ -56,26 +57,34 @@ public class MyCourseDetails extends BaseActivity implements MyCourseContreater.
         num = findViewById(R.id.num);
         ls_iv = findViewById(R.id.ls_iv);
         user_n = findViewById(R.id.user_n);
+        qpl = findViewById(R.id.qpl);
         rv.setLayoutManager(new LinearLayoutManager(this));
     }
 
     @Override
     protected void initData() {
         BasePreantert basePreantert = getmPreantert();
-        if(basePreantert instanceof MyCourseContreater.IPreanter){
+        if (basePreantert instanceof MyCourseContreater.IPreanter) {
             SharedPreferences token = getSharedPreferences("token", MODE_PRIVATE);
             String token1 = token.getString("token", "");
             Intent intent = getIntent();
             int icqd = intent.getIntExtra("icqd", 0);
             int order_id = intent.getIntExtra("order_id", 0);
-            ((MyCourseContreater.IPreanter) basePreantert).OnCourseDatailsSuccess(token1,order_id,icqd);
+            ((MyCourseContreater.IPreanter) basePreantert).OnCourseDatailsSuccess(token1, order_id, icqd);
         }
-vv.setOnClickListener(new View.OnClickListener() {
-    @Override
-    public void onClick(View view) {
-        finish();
-    }
-});
+        vv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
+        qpl.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MyCourseDetails.this, OrderComment.class);
+                startActivity(intent);
+            }
+        });
     }
 
     @Override
@@ -91,13 +100,13 @@ vv.setOnClickListener(new View.OnClickListener() {
         String course_name = data.getCourse_name();
         name.setText(course_name);
         String t = data.getTime_detail();
-         time_detail.setText(t);
+        time_detail.setText(t);
         int unit_num = data.getUnit_num();
-        num.setText(unit_num+"课时");
+        num.setText(unit_num + "课时");
         String name = data.getName();
         user_n.setText(name);
 
-        unit_num_tv.setText("课程章节"+unit_num);
+        unit_num_tv.setText("课程章节" + unit_num);
         String avatar = data.getAvatar();
         Glide.with(getApplicationContext()).load(avatar).apply(RequestOptions.bitmapTransform(new RoundedCorners(50))).into(ls_iv);
         Glide.with(getApplicationContext()).load(data.getIcon()).apply(RequestOptions.bitmapTransform(new RoundedCorners(50))).into(iv);

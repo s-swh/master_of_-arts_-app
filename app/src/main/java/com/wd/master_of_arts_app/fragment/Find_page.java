@@ -6,12 +6,14 @@ import android.content.SharedPreferences;
 import android.view.View;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.wd.master_of_arts_app.R;
 import com.wd.master_of_arts_app.activity.CommonwealClass;
+import com.wd.master_of_arts_app.activity.FindHref;
 import com.wd.master_of_arts_app.adapter.FindAdapter;
 import com.wd.master_of_arts_app.adapter.MyVideoAdapter;
 import com.wd.master_of_arts_app.adapter.SelectedAdapter;
@@ -96,6 +98,16 @@ public class Find_page extends BaseFragment implements ArticleListContreater.IVi
         cat_id = data.getFree_video().get(0).getCat_id();
         List<ArticleList.DataBean.FreeVideoBean> free_video = data.getFree_video();
         FindAdapter findAdapter = new FindAdapter(getActivity(), free_video);
+        findAdapter.OnClick(new FindAdapter.OnClickHref() {
+            @Override
+            public void OnClick(String href) {
+                   Intent intent = new Intent(getActivity(), FindHref.class);
+                   intent.putExtra("href",href);
+                startActivity(intent);
+
+            }
+        });
+
         rec.setAdapter(findAdapter);
         //精选作品
         List<ArticleList.DataBean.SelectedWorksBean> selected_works = data.getSelected_works();
@@ -104,6 +116,14 @@ public class Find_page extends BaseFragment implements ArticleListContreater.IVi
         //我的视频
         List<ArticleList.DataBean.MyVideoBean> my_video = data.getMy_video();
         MyVideoAdapter myVideoAdapter = new MyVideoAdapter(getActivity(),my_video);
+        myVideoAdapter.OnMyClicked(new MyVideoAdapter.OnMyClick() {
+            @Override
+            public void Myclick(String href) {
+                Intent intent = new Intent(getActivity(), FindHref.class);
+                intent.putExtra("href",href);
+                startActivity(intent);
+            }
+        });
         rv_gre_2.setAdapter(myVideoAdapter);
     }
 

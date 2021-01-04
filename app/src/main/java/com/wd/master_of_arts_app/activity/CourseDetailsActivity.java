@@ -45,7 +45,7 @@ import java.util.List;
 
 import butterknife.OnClick;
 
-// todo 课程详情
+
 
 public class CourseDetailsActivity extends BaseActivity implements CourseContreater.IView {
 
@@ -69,7 +69,7 @@ public class CourseDetailsActivity extends BaseActivity implements CourseContrea
 
     @Override
     protected void initView() {
-        tv = findViewById(R.id.tv_name);
+
         img = findViewById(R.id.jcrImage);
         itle = findViewById(R.id.itle);
         present_price = findViewById(R.id.present_price);
@@ -129,7 +129,7 @@ public class CourseDetailsActivity extends BaseActivity implements CourseContrea
     public void OnCourse(CourseDetails courseDetails) {
         CourseDetails.DataBean data = courseDetails.getData();
         String course_name = data.getCourse_name();
-        tv.setText(course_name);
+
         String icon = data.getIcon();
         Glide.with(this).load(icon).into(img);
         itle.setText(data.getContent());

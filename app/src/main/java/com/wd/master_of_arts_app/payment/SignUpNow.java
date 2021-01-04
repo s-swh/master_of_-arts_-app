@@ -91,7 +91,10 @@ private ImageView dd_img;
 
         });
     }
-
+        @Subscribe(threadMode = ThreadMode.MAIN,sticky = true)
+        public void String(String string){
+            tv.setText(string);
+        }
     @Override
     protected void initData() {
 

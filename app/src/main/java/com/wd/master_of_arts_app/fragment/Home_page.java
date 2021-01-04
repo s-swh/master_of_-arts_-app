@@ -126,6 +126,7 @@ public class Home_page extends BaseFragment implements HomePagerCrete.IVew, View
         int status = data.getStatus();
         String button = data.getButton();
         tv.setText(button);
+        int unit_id = data.getUnit_id();
 
         iv.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -135,7 +136,9 @@ public class Home_page extends BaseFragment implements HomePagerCrete.IVew, View
                 }else if(status==1){
 
                 }else if(status==2){
-                    startActivity(new Intent(getActivity(), CoursePreview.class));
+                    Intent intent = new Intent(getActivity(), CoursePreview.class);
+                    intent.putExtra("unit_id_two",unit_id);
+                    startActivity(intent);
                 }else if(status==3){
 
                 }else if(status==4){

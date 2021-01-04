@@ -6,12 +6,14 @@ import android.net.Uri;
 import android.view.SurfaceView;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.wd.master_of_arts_app.R;
 import com.wd.master_of_arts_app.bean.CommBean;
 
@@ -30,6 +32,7 @@ import cn.jzvd.JzvdStd;
  */
 public class CommonwealClassAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     Context context; List<CommBean.DataBean.ListBean> beanList;
+    private OnClickIntrHref clickIntrHref;
 
     public CommonwealClassAdapter(Context context, List<CommBean.DataBean.ListBean> beanList) {
         this.context = context;
@@ -49,11 +52,14 @@ public class CommonwealClassAdapter extends RecyclerView.Adapter<RecyclerView.Vi
         String href = listBean.getHref();
         String title = listBean.getTitle();
         ((CommonwealViewHorder) holder).tv.setText(title);
-        ((CommonwealViewHorder) holder).jz.setUp(href,"",JzvdStd.SCREEN_WINDOW_NORMAL);
-
-
-
-
+        String img = listBean.getImg();
+        Glide.with(context).load(img).into(((CommonwealViewHorder) holder).jz);
+        ((CommonwealViewHorder) holder).jz.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                clickIntrHref.OnClick(href);
+            }
+        });
 
     }
 
@@ -61,10 +67,16 @@ public class CommonwealClassAdapter extends RecyclerView.Adapter<RecyclerView.Vi
     public int getItemCount() {
         return beanList.size();
     }
+    public void OnClick(OnClickIntrHref href){
+        clickIntrHref = href;
+    }
+    public interface OnClickIntrHref{
+        void OnClick(String href);
+    }
     class CommonwealViewHorder extends RecyclerView.ViewHolder {
 
         private final TextView tv;
-        private final JzvdStd jz;
+        private final ImageView jz;
 
 
         public CommonwealViewHorder(@NonNull View itemView) {

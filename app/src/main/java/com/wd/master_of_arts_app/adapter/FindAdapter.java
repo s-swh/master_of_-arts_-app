@@ -3,9 +3,12 @@ package com.wd.master_of_arts_app.adapter;
 import android.content.Context;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.bumptech.glide.Glide;
 import com.wd.master_of_arts_app.R;
 import com.wd.master_of_arts_app.bean.ArticleList;
 import java.util.List;
@@ -20,6 +23,7 @@ import cn.jzvd.JzvdStd;
 public class FindAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     Context context; List<ArticleList.DataBean.FreeVideoBean> list;
+    private OnClickHref clickHref;
 
     public FindAdapter(Context context, List<ArticleList.DataBean.FreeVideoBean> list) {
         this.context = context;
@@ -38,9 +42,17 @@ public class FindAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
         ArticleList.DataBean.FreeVideoBean freeVideoBean = list.get(position);
         String href = freeVideoBean.getHref();
-        ((FindViewHorder)holder).jc.setUp(href,"",JzvdStd.SCREEN_WINDOW_NORMAL);
         String title = freeVideoBean.getTitle();
+        String img = freeVideoBean.getImg();
+        Glide.with(context).load(img).into(((FindViewHorder)holder).jc);
+
         ((FindViewHorder) holder).tv.setText(title);
+        ((FindViewHorder)holder).jc.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                clickHref.OnClick(href);
+            }
+        });
     }
 
     @Override
@@ -48,9 +60,15 @@ public class FindAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
         return list.size();
     }
+    public void OnClick(OnClickHref href){
+        clickHref = href;
+    }
+    public interface OnClickHref{
+        void OnClick(String href);
+    }
     class FindViewHorder extends RecyclerView.ViewHolder {
 
-        private final JzvdStd jc;
+        private final ImageView jc;
         private final TextView tv;
 
         public FindViewHorder(@NonNull View itemView) {

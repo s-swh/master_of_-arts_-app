@@ -81,6 +81,14 @@ public class CommonwealClass extends BaseActivity implements ArticleListContreat
         CommBean.DataBean data = commBean.getData();
         List<CommBean.DataBean.ListBean> list = data.getList();
         CommonwealClassAdapter commonwealClassAdapter = new CommonwealClassAdapter(getApplication(), list);
+        commonwealClassAdapter.OnClick(new CommonwealClassAdapter.OnClickIntrHref() {
+            @Override
+            public void OnClick(String href) {
+                Intent intent = new Intent(getApplicationContext(),MoreHref.class);
+                intent.putExtra("href_tow",href);
+               startActivity(intent);
+            }
+        });
         rv.setAdapter(commonwealClassAdapter);
     }
 }

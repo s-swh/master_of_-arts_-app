@@ -261,8 +261,6 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
-
-
             <TextView
                 android:layout_width="wrap_content"
                 android:text="实付"
@@ -282,10 +280,8 @@
     </LinearLayout>
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_marginTop="@dimen/dp_15"
         android:id="@+id/shost"
-
-        android:layout_height="wrap_content">
+        android:layout_height="@dimen/dp_35">
         <TextView
             android:layout_width="@dimen/dp_100"
             android:text="去评价"
@@ -294,11 +290,9 @@
             android:layout_marginLeft="@dimen/dp_15"
             android:gravity="center"
             android:layout_marginRight="@dimen/dp_15"
-
             android:background="@drawable/orderbut"
-
-            android:layout_marginTop="@dimen/dp_10"
-            android:layout_height="@dimen/dp_25" />
+            android:layout_marginTop="@dimen/dp_5"
+            android:layout_height="@dimen/dp_100" />
         <TextView
             android:layout_width="@dimen/dp_100"
             android:text="查看物流"
@@ -309,8 +303,8 @@
 
             android:background="@drawable/orderbut"
 
-            android:layout_marginTop="@dimen/dp_10"
-            android:layout_height="@dimen/dp_25" />
+            android:layout_marginTop="@dimen/dp_5"
+            android:layout_height="@dimen/dp_100" />
 
     </RelativeLayout>
 </LinearLayout>

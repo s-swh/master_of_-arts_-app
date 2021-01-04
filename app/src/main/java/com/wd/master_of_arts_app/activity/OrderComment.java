@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.Toast;
 
@@ -37,6 +38,7 @@ public class OrderComment extends BaseActivity implements OrderContreater.IView 
     public    int i;
     private Button fub;
     private int j;
+    private ImageView return_fn;
 
     @Override
     protected int getLayoutId() {
@@ -56,6 +58,7 @@ public class OrderComment extends BaseActivity implements OrderContreater.IView 
         rba = findViewById(R.id.rba);
         et_context = findViewById(R.id.et_context);
         fub = findViewById(R.id.fub);
+        return_fn = findViewById(R.id.return_fn);
 
     }
         @Subscribe(threadMode = ThreadMode.MAIN,sticky = true)
@@ -64,7 +67,12 @@ public class OrderComment extends BaseActivity implements OrderContreater.IView 
         }
     @Override
     protected void initData() {
-
+        return_fn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
         rba.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
 
 
