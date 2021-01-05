@@ -18,6 +18,8 @@ import com.wd.master_of_arts_app.bean.Preview;
 import com.wd.master_of_arts_app.contreater.PreViewContreater;
 import com.wd.master_of_arts_app.preanter.PreViewPreanter;
 
+import org.greenrobot.eventbus.EventBus;
+
 public class CoursePreview extends BaseActivity implements PreViewContreater.IView {
 
 
@@ -64,7 +66,6 @@ public class CoursePreview extends BaseActivity implements PreViewContreater.IVi
         Preview.DataBean data = preview.getData();
         String unit_name = data.getUnit_name();
         String pre_content = data.getPre_content();
-
 
         munit_name.setText(unit_name);
         tv_content.setText(pre_content);

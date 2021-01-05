@@ -24,7 +24,8 @@ import cn.jzvd.JzvdStd;
  * @date :2020/12/23 15:48
  */
 public class MyVideoAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
-    Context context;List<ArticleList.DataBean.MyVideoBean> list;
+    Context context;
+    List<ArticleList.DataBean.MyVideoBean> list;
     private OnMyClick click1;
 
     public MyVideoAdapter(Context context, List<ArticleList.DataBean.MyVideoBean> list) {
@@ -47,7 +48,7 @@ public class MyVideoAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
         ((MyViewHorder) holder).tv.setText(title);
 
         String img = myVideoBean.getImg();
-        Glide.with(context).load(img).into( ((MyViewHorder) holder).jc);
+        Glide.with(context).load(img).into(((MyViewHorder) holder).jc);
         ((MyViewHorder) holder).jc.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -60,15 +61,19 @@ public class MyVideoAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
     public int getItemCount() {
         return list.size();
     }
-    public void OnMyClicked(OnMyClick click){
+
+    public void OnMyClicked(OnMyClick click) {
         click1 = click;
     }
-    public interface OnMyClick{
+
+    public interface OnMyClick {
         void Myclick(String href);
     }
+
     class MyViewHorder extends RecyclerView.ViewHolder {
         private final ImageView jc;
         private final TextView tv;
+
         public MyViewHorder(@NonNull View itemView) {
             super(itemView);
             jc = itemView.findViewById(R.id.jc);

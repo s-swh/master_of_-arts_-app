@@ -11,7 +11,7 @@ public class HomePage {
     /**
      * code : 1
      * msg : 成功
-     * data : {"status":2,"button":"去预习","unit_id":241,"unit_name":"神奇的豆芽","date":"2021-02-02","time":"17:30:00","teacher":"谭老师","avatar":"http://qiniu.54artist.com/5feae974db33d7868.jpg"}
+     * data : {"status":4,"button":"提交作业","unit_id":310,"unit_name":"植物写生（上）","date":"2021-01-05","time":"13:30:00","teacher":"殷老师","avatar":"http://qiniu.54artist.com/5feae941b92875871.jpg","class_id":""}
      */
 
     private int code;
@@ -44,14 +44,15 @@ public class HomePage {
 
     public static class DataBean {
         /**
-         * status : 2
-         * button : 去预习
-         * unit_id : 241
-         * unit_name : 神奇的豆芽
-         * date : 2021-02-02
-         * time : 17:30:00
-         * teacher : 谭老师
-         * avatar : http://qiniu.54artist.com/5feae974db33d7868.jpg
+         * status : 4
+         * button : 提交作业
+         * unit_id : 310
+         * unit_name : 植物写生（上）
+         * date : 2021-01-05
+         * time : 13:30:00
+         * teacher : 殷老师
+         * avatar : http://qiniu.54artist.com/5feae941b92875871.jpg
+         * class_id :
          */
 
         private int status;
@@ -62,6 +63,7 @@ public class HomePage {
         private String time;
         private String teacher;
         private String avatar;
+        private String class_id;
 
         public int getStatus() {
             return status;
@@ -125,6 +127,14 @@ public class HomePage {
 
         public void setAvatar(String avatar) {
             this.avatar = avatar;
+        }
+
+        public String getClass_id() {
+            return class_id;
+        }
+
+        public void setClass_id(String class_id) {
+            this.class_id = class_id;
         }
     }
 }

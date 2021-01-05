@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
+import android.util.Log;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.Toast;
@@ -35,7 +36,7 @@ import butterknife.OnClick;
  */
 public class Take_photos extends BaseFragment implements worksContreanter.IVew {
     public static final int CAMERA_REQ_CODE = 111;
-    private LinearLayout lt;
+    private LinearLayout lt,lyt;
     private XRecyclerView xrv;
     int i=1;
     int j=10;
@@ -57,6 +58,7 @@ public class Take_photos extends BaseFragment implements worksContreanter.IVew {
     protected void initView(View view) {
         lt = view.findViewById(R.id.vigono);
         xrv = view.findViewById(R.id.works_rv);
+        lyt = view.findViewById(R.id.lyt);
     }
      //发布作品
     @OnClick({R.id.photograph})
@@ -67,7 +69,13 @@ public class Take_photos extends BaseFragment implements worksContreanter.IVew {
 
     }
 
+    @OnClick({R.id.photograph1})
+    public void photograph1(){
 
+        Intent intent = new Intent(getActivity(), Publishing_works_Activity.class);
+        startActivity(intent);
+
+    }
     @Override
     public void onRequestPermissionsResult(int requestCode,
                                            String permissions[], int[] grantResults) {
@@ -114,6 +122,7 @@ public class Take_photos extends BaseFragment implements worksContreanter.IVew {
             ((worksContreanter.IPreanter) basePreantert).OnWorksSuccess(token1,"",i,j);
         }
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
+
         xrv.setLayoutManager(linearLayoutManager);
 
     }
@@ -121,18 +130,18 @@ public class Take_photos extends BaseFragment implements worksContreanter.IVew {
 
     @Override
     public void OnWorks(ListOfWorks listOfWorks) {
-        int code = listOfWorks.getCode();
-        if(code==1){
-            lt.setVisibility(View.GONE);
-            xrv.setVisibility(View.VISIBLE);
-        }else{
-            xrv.setVisibility(View.GONE);
-        }
         data = listOfWorks.getData();
+        list = data.getList();
+        int size = list.size();
+        Log.i("xxxx",""+size);
+        if(list.size()==0){
+            lyt.setVisibility(View.GONE);
+            lt.setVisibility(View.VISIBLE);
 
-        if(data!=null){
-            list = data.getList();
+        }else{
             worksAdapter = new WorksAdapter(getActivity(), list);
+            lt.setVisibility(View.GONE);
+            lyt.setVisibility(View.VISIBLE);
             worksAdapter.OnClickWorks(new WorksAdapter.OnClickWorks() {
                 @Override
                 public void click(int id) {

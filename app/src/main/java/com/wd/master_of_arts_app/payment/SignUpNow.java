@@ -41,14 +41,14 @@ import org.greenrobot.eventbus.ThreadMode;
 
 import butterknife.OnClick;
 
-public class SignUpNow extends BaseActivity implements OrderContreater.IView{
+public class SignUpNow extends BaseActivity implements OrderContreater.IView {
 
 
     private int course_id;
     private int course_time_id;
     private Button bt;
-    private TextView dd_title,dd_date,dd_money,dd_zfmoney;
-private ImageView dd_img;
+    private TextView dd_title, dd_date, dd_money, dd_zfmoney;
+    private ImageView dd_img;
     private String date;
     private String img;
     private String money;
@@ -68,7 +68,7 @@ private ImageView dd_img;
 
     @Override
     protected void initView() {
-        if(!EventBus.getDefault().isRegistered(this)){
+        if (!EventBus.getDefault().isRegistered(this)) {
             EventBus.getDefault().register(this);
         }
         bt = findViewById(R.id.but_zf);
@@ -91,10 +91,12 @@ private ImageView dd_img;
 
         });
     }
-        @Subscribe(threadMode = ThreadMode.MAIN,sticky = true)
-        public void String(String string){
-            tv.setText(string);
-        }
+
+    @Subscribe(threadMode = ThreadMode.MAIN, sticky = true)
+    public void String(String string) {
+        tv.setText(string);
+    }
+
     @Override
     protected void initData() {
 
@@ -103,13 +105,13 @@ private ImageView dd_img;
             @Override
             public void onClick(View view) {
                 BasePreantert basePreantert = getmPreantert();
-                if(basePreantert instanceof OrderContreater.IPreanter){
+                if (basePreantert instanceof OrderContreater.IPreanter) {
                     SharedPreferences token = getSharedPreferences("token", MODE_PRIVATE);
                     String token1 = token.getString("token", "");
                     SharedPreferences addid = getSharedPreferences("addid", MODE_PRIVATE);
                     int id = addid.getInt("id", 0);
 
-                    ((OrderContreater.IPreanter) basePreantert).OnPruchaseSuccess(token1, course_id, course_time_id,id);
+                    ((OrderContreater.IPreanter) basePreantert).OnPruchaseSuccess(token1, course_id, course_time_id, id);
 
                 }
             }
@@ -121,30 +123,34 @@ private ImageView dd_img;
         Glide.with(getApplicationContext()).load(img).into(dd_img);
         dd_zfmoney.setText(money);
     }
-    @Subscribe(threadMode = ThreadMode.MAIN,sticky = true)
-    public void IdNum(IdNumber idNumber){
+
+    @Subscribe(threadMode = ThreadMode.MAIN, sticky = true)
+    public void IdNum(IdNumber idNumber) {
         course_id = idNumber.getCourse_id();
         course_time_id = idNumber.getCourse_time_id();
 
     }
-    @Subscribe(threadMode = ThreadMode.MAIN,sticky = true)
-    public void Omdet(DingdanXiangqing dingdanXiangqing){
+
+    @Subscribe(threadMode = ThreadMode.MAIN, sticky = true)
+    public void Omdet(DingdanXiangqing dingdanXiangqing) {
         date = dingdanXiangqing.getDate();
         img = dingdanXiangqing.getImg();
         money = dingdanXiangqing.getMoney();
         title = dingdanXiangqing.getTitle();
 
     }
+
     @OnClick(R.id.deltfinsh)
-    public void onclick(){
+    public void onclick() {
         finish();
     }
+
     @Override
     public void OnPurchase(Purchase purchase) {
         String msg = purchase.getMsg();
         Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
         Purchase.DataBean data = purchase.getData();
-        if(data!=null){
+        if (data != null) {
             String order_id = data.getOrder_id();
             EventBus.getDefault().post(order_id);
             String order_num = data.getOrder_num();
@@ -154,7 +160,7 @@ private ImageView dd_img;
         }
 
 
-        if(purchase.getCode()==1){
+        if (purchase.getCode() == 1) {
             finish();
         }
 

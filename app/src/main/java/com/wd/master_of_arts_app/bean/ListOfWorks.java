@@ -71,8 +71,8 @@ public class ListOfWorks {
             private int unit_id;
             private String name;
             private String imglist;
-            private Object content;
-            private Object voice;
+            private String content;
+            private String voice;
             private String create_time;
             private String is_comment;
 
@@ -116,19 +116,19 @@ public class ListOfWorks {
                 this.imglist = imglist;
             }
 
-            public Object getContent() {
+            public String getContent() {
                 return content;
             }
 
-            public void setContent(Object content) {
+            public void setContent(String content) {
                 this.content = content;
             }
 
-            public Object getVoice() {
+            public String getVoice() {
                 return voice;
             }
 
-            public void setVoice(Object voice) {
+            public void setVoice(String voice) {
                 this.voice = voice;
             }
 

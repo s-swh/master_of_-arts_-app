@@ -60,10 +60,10 @@ public class CommonwealClass extends BaseActivity implements ArticleListContreat
             }
         });
         BasePreantert basePreantert = getmPreantert();
-        if(basePreantert instanceof ArticleListContreater.IPreanter){
+        if (basePreantert instanceof ArticleListContreater.IPreanter) {
             Intent intent = getIntent();
             int catid = intent.getIntExtra("catid", 0);
-            ((ArticleListContreater.IPreanter) basePreantert).OnCommonSuccess(catid,1,10);
+            ((ArticleListContreater.IPreanter) basePreantert).OnCommonSuccess(catid, 1, 10);
         }
         GridLayoutManager gridLayoutManager1 = new GridLayoutManager(getApplicationContext(), 2);
 
@@ -84,9 +84,9 @@ public class CommonwealClass extends BaseActivity implements ArticleListContreat
         commonwealClassAdapter.OnClick(new CommonwealClassAdapter.OnClickIntrHref() {
             @Override
             public void OnClick(String href) {
-                Intent intent = new Intent(getApplicationContext(),MoreHref.class);
-                intent.putExtra("href_tow",href);
-               startActivity(intent);
+                Intent intent = new Intent(getApplicationContext(), MoreHref.class);
+                intent.putExtra("href_tow", href);
+                startActivity(intent);
             }
         });
         rv.setAdapter(commonwealClassAdapter);

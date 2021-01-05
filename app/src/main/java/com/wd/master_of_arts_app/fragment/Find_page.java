@@ -29,13 +29,13 @@ import java.util.List;
 
 /**
  * @author 时文豪
- * @description: 发现模块
+ * @description: 发现模块  todo   发现照片详情
  * @date :2020/12/3 11:05
  */
 public class Find_page extends BaseFragment implements ArticleListContreater.IView {
 
-    private RecyclerView rec,rv_gre_1,rv_gre_2;
-    private RelativeLayout find_gd,find_mfgd,find_hyh;
+    private RecyclerView rec, rv_gre_1, rv_gre_2;
+    private RelativeLayout find_gd, find_mfgd, find_hyh;
     private int cat_id;
 
     @Override
@@ -54,19 +54,19 @@ public class Find_page extends BaseFragment implements ArticleListContreater.IVi
         rv_gre_1 = view.findViewById(R.id.rv_gre_1);
         rv_gre_2 = view.findViewById(R.id.rv_gre_2);
         find_gd = view.findViewById(R.id.find_gd);
-        find_mfgd=view.findViewById(R.id.find_mfgd);
-        find_hyh=view.findViewById(R.id.find_hyh);
+        find_mfgd = view.findViewById(R.id.find_mfgd);
+        find_hyh = view.findViewById(R.id.find_hyh);
     }
 
     @Override
     protected void initData() {
         BasePreantert basePreantert = getmPreanter();
-        if(basePreantert instanceof ArticleListContreater.IPreanter){
+        if (basePreantert instanceof ArticleListContreater.IPreanter) {
             SharedPreferences token = App.getContext().getSharedPreferences("token", Context.MODE_PRIVATE);
             String token1 = token.getString("token", "");
             ((ArticleListContreater.IPreanter) basePreantert).OnArticleSuccess(token1);
         }
-        GridLayoutManager gridLayoutManager = new GridLayoutManager(getActivity(),2);
+        GridLayoutManager gridLayoutManager = new GridLayoutManager(getActivity(), 2);
         rec.setLayoutManager(gridLayoutManager);
         GridLayoutManager gridLayoutManager1 = new GridLayoutManager(getActivity(), 3);
         rv_gre_1.isNestedScrollingEnabled();
@@ -77,7 +77,7 @@ public class Find_page extends BaseFragment implements ArticleListContreater.IVi
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getActivity(), CommonwealClass.class);
-                intent.putExtra("catid",cat_id);
+                intent.putExtra("catid", cat_id);
                 startActivity(intent);
             }
         });
@@ -85,11 +85,12 @@ public class Find_page extends BaseFragment implements ArticleListContreater.IVi
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getActivity(), CommonwealClass.class);
-                intent.putExtra("catid",cat_id);
+                intent.putExtra("catid", cat_id);
                 startActivity(intent);
             }
         });
     }
+
     //发现列表详情
     @Override
     public void OnArticle(ArticleList articleList) {
@@ -101,8 +102,8 @@ public class Find_page extends BaseFragment implements ArticleListContreater.IVi
         findAdapter.OnClick(new FindAdapter.OnClickHref() {
             @Override
             public void OnClick(String href) {
-                   Intent intent = new Intent(getActivity(), FindHref.class);
-                   intent.putExtra("href",href);
+                Intent intent = new Intent(getActivity(), FindHref.class);
+                intent.putExtra("href", href);
                 startActivity(intent);
 
             }
@@ -115,12 +116,12 @@ public class Find_page extends BaseFragment implements ArticleListContreater.IVi
         rv_gre_1.setAdapter(selectedAdapter);
         //我的视频
         List<ArticleList.DataBean.MyVideoBean> my_video = data.getMy_video();
-        MyVideoAdapter myVideoAdapter = new MyVideoAdapter(getActivity(),my_video);
+        MyVideoAdapter myVideoAdapter = new MyVideoAdapter(getActivity(), my_video);
         myVideoAdapter.OnMyClicked(new MyVideoAdapter.OnMyClick() {
             @Override
             public void Myclick(String href) {
                 Intent intent = new Intent(getActivity(), FindHref.class);
-                intent.putExtra("href",href);
+                intent.putExtra("href", href);
                 startActivity(intent);
             }
         });

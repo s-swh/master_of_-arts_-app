@@ -22,11 +22,11 @@ import com.wd.master_of_arts_app.contreater.ViewLogisticsConreater;
 import com.wd.master_of_arts_app.preanter.BookingPreanter;
 import com.wd.master_of_arts_app.preanter.ViewLogisticsPreanter;
 
-// todo 预约体验
+
 public class Booking_experience extends BaseActivity implements BookingExperienceContreanter.IView {
 
 
-    private EditText et_name,et_phone;
+    private EditText et_name, et_phone;
     private Button bt;
 
     @Override
@@ -42,7 +42,7 @@ public class Booking_experience extends BaseActivity implements BookingExperienc
     @Override
     protected void initView() {
         et_name = findViewById(R.id.book_name);
-        et_phone=findViewById(R.id.book_phone);
+        et_phone = findViewById(R.id.book_phone);
         bt = findViewById(R.id.bt_receive);
     }
 
@@ -54,15 +54,15 @@ public class Booking_experience extends BaseActivity implements BookingExperienc
             public void onClick(View view) {
                 String string = et_name.getText().toString();
                 String string1 = et_phone.getText().toString();
-                if(TextUtils.isEmpty(string)&&TextUtils.isEmpty(string1)){
+                if (TextUtils.isEmpty(string) && TextUtils.isEmpty(string1)) {
                     Toast.makeText(getApplicationContext(), "姓名和手机号不允许为空", Toast.LENGTH_SHORT).show();
-                }else{
+                } else {
                     SharedPreferences token = getSharedPreferences("token", MODE_PRIVATE);
                     String token1 = token.getString("token", "");
                     BasePreantert basePreantert = getmPreantert();
-                    if(basePreantert instanceof BookingExperienceContreanter.IPreanter){
+                    if (basePreantert instanceof BookingExperienceContreanter.IPreanter) {
 
-                        ((BookingExperienceContreanter.IPreanter) basePreantert).OnBookingSuccess(token1,string,string1,2);
+                        ((BookingExperienceContreanter.IPreanter) basePreantert).OnBookingSuccess(token1, string, string1, 2);
                     }
                 }
 
@@ -75,13 +75,13 @@ public class Booking_experience extends BaseActivity implements BookingExperienc
     public void OnBooking(BookingExperience bookingExperience) {
         int code = bookingExperience.getCode();
         String msg = bookingExperience.getMsg();
-        if(code==1){
+        if (code == 1) {
             new AlertDialog.Builder(Booking_experience.this).setTitle("领取成功")
                     .setMessage("我们会尽快安排助教老师与您联系")
                     .setNegativeButton("确定", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialogInterface, int i) {
-                            Toast.makeText(Booking_experience.this, "领取"+msg, Toast.LENGTH_SHORT).show();
+                            Toast.makeText(Booking_experience.this, "领取" + msg, Toast.LENGTH_SHORT).show();
                         }
                     }).show();
         }

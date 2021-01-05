@@ -216,6 +216,7 @@ public class My_page extends BaseFragment implements View.OnClickListener, UserI
 
         EventBus.getDefault().postSticky(new User(nickname, birthday, sex, detail_address));
 
+
     }
 
     @Override

@@ -16,11 +16,13 @@ import java.util.List;
 
 /**
  * @author 时文豪
- * @description:  我的课程详情适配器
+ * @description: 我的课程详情适配器
  * @date :2020/12/29 10:28
  */
 public class MyCourseAdapterData extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
-    Context context;List<MyCourseDetailsBean.DataBean.UnitListBean> beanList;
+    Context context;
+    List<MyCourseDetailsBean.DataBean.UnitListBean> beanList;
+    private OnClickZYe zYe;
 
     public MyCourseAdapterData(Context context, List<MyCourseDetailsBean.DataBean.UnitListBean> beanList) {
         this.context = context;
@@ -40,30 +42,42 @@ public class MyCourseAdapterData extends RecyclerView.Adapter<RecyclerView.ViewH
         String date = unitListBean.getDate();
         int sort_num = unitListBean.getSort_num();
         String unit_name = unitListBean.getUnit_name();
-        ((MyCourseDataViewHorder)holder).tv.setText(date);
-        ((MyCourseDataViewHorder) holder).num.setText("第"+sort_num+"课");
+        ((MyCourseDataViewHorder) holder).tv.setText(date);
+        ((MyCourseDataViewHorder) holder).num.setText("第" + sort_num + "课");
         ((MyCourseDataViewHorder) holder).name.setText(unit_name);
+        int unit_id = unitListBean.getUnit_id();
+        ((MyCourseDataViewHorder) holder).myzu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+              zYe.onClickzy(unit_id);
+            }
+        });
     }
 
     @Override
     public int getItemCount() {
         return beanList.size();
     }
-    //我的作业  todo  我的作业
-    public interface OnClickZYe{
 
+    public void OnClickZYe(OnClickZYe clickZYe){
+        zYe = clickZYe;
     }
+    public interface OnClickZYe {
+        void onClickzy(int id);
+    }
+
     class MyCourseDataViewHorder extends RecyclerView.ViewHolder {
 
-        private final TextView tv,num,name;
-        private RelativeLayout myzu,myhf;
+        private final TextView tv, num, name;
+        private RelativeLayout myzu, myhf;
+
         public MyCourseDataViewHorder(@NonNull View itemView) {
             super(itemView);
             tv = itemView.findViewById(R.id.zrdate);
-            num=    itemView.findViewById(R.id.ort_num);
-             name=   itemView.findViewById(R.id.unit_name);
-            myzu=    itemView.findViewById(R.id.my_zy);
-              myhf=  itemView.findViewById(R.id.myhf);
+            num = itemView.findViewById(R.id.ort_num);
+            name = itemView.findViewById(R.id.unit_name);
+            myzu = itemView.findViewById(R.id.my_zy);
+            myhf = itemView.findViewById(R.id.myhf);
         }
     }
 }

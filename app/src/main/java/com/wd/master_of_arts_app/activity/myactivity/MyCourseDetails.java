@@ -10,11 +10,13 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 import com.bumptech.glide.request.RequestOptions;
 import com.wd.master_of_arts_app.R;
+import com.wd.master_of_arts_app.activity.MyHomeWork;
 import com.wd.master_of_arts_app.activity.OrderComment;
 import com.wd.master_of_arts_app.adapter.MyCourseAdapterData;
 import com.wd.master_of_arts_app.base.BaseActivity;
@@ -112,6 +114,15 @@ public class MyCourseDetails extends BaseActivity implements MyCourseContreater.
         Glide.with(getApplicationContext()).load(data.getIcon()).apply(RequestOptions.bitmapTransform(new RoundedCorners(50))).into(iv);
         List<MyCourseDetailsBean.DataBean.UnitListBean> unit_list = data.getUnit_list();
         MyCourseAdapterData myCourseAdapterData = new MyCourseAdapterData(getApplicationContext(), unit_list);
+        myCourseAdapterData.OnClickZYe(new MyCourseAdapterData.OnClickZYe() {
+            @Override
+            public void onClickzy(int id) {
+                Intent intent = new Intent(getApplicationContext(), MyHomeWork.class);
+                intent.putExtra("myHomeWorkid",id);
+                Toast.makeText(MyCourseDetails.this, id+"", Toast.LENGTH_SHORT).show();
+                startActivity(intent);
+            }
+        });
         rv.setAdapter(myCourseAdapterData);
     }
 

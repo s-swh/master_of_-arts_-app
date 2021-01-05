@@ -21,7 +21,7 @@ public class MoreHref extends AppCompatActivity {
         jz = findViewById(R.id.jzv);
         Intent intent = getIntent();
         String href_tow = intent.getStringExtra("href_tow");
-        jz.setUp(href_tow,"",JzvdStd.SCREEN_WINDOW_NORMAL);
+        jz.setUp(href_tow, "", JzvdStd.SCREEN_WINDOW_NORMAL);
         jz.thumbImageView.setScaleType(ImageView.ScaleType.FIT_XY);//去掉黑框
     }
 

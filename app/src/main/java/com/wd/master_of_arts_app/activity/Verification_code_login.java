@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.CountDownTimer;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -20,8 +21,11 @@ import com.wd.master_of_arts_app.base.RetrievePassword;
 import com.wd.master_of_arts_app.bean.AccountLogin;
 import com.wd.master_of_arts_app.bean.CodeBean;
 import com.wd.master_of_arts_app.bean.SMSLogin;
+import com.wd.master_of_arts_app.bean.UserId;
 import com.wd.master_of_arts_app.contreater.LoginContreater;
 import com.wd.master_of_arts_app.preanter.LoginPreanter;
+
+import org.greenrobot.eventbus.EventBus;
 
 public class Verification_code_login extends BaseActivity implements View.OnClickListener, LoginContreater.IView {
 
@@ -235,6 +239,11 @@ public class Verification_code_login extends BaseActivity implements View.OnClic
             edit1.commit();
             startActivity(new Intent(Verification_code_login.this,MainActivity.class));
             finish();
+            int uid = data.getUid();
+            String user_name = data.getUser_name();
+            String uids= String.valueOf(uid);
+            EventBus.getDefault().postSticky(new UserId(uids,user_name));
+
         }else{
             Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
         }

@@ -4,12 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activity.MoreHref">
+    tools:context=".activity.LiveBroadcast">
 
-    <cn.jzvd.JzvdStd
-        android:id="@+id/jzv"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-    </cn.jzvd.JzvdStd>
 </LinearLayout>

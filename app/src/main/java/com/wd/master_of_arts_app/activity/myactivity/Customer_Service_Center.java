@@ -30,10 +30,12 @@ public class Customer_Service_Center extends BaseActivity {
     protected void initView() {
 
     }
+
     @OnClick(R.id.oncDestruction)
-    public void onDestrution(){
+    public void onDestrution() {
         finish();
     }
+
     @Override
     protected void initData() {
 

@@ -104,15 +104,6 @@
             android:text="在个人中心页查看点评消息"
             android:textColor="#3F0A0707"
             android:textSize="12sp" />
-    </LinearLayout>
-
-
-
-    <com.jcodecraeer.xrecyclerview.XRecyclerView
-        android:id="@+id/works_rv"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/dp_500"
-        android:visibility="gone"/>
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -121,6 +112,7 @@
                 android:id="@+id/photograph"
                 android:layout_width="@dimen/dp_180"
                 android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
                 android:background="@drawable/fillet2"
                 android:gravity="center_vertical">
 
@@ -142,4 +134,50 @@
                     android:textSize="22sp" />
             </LinearLayout>
         </RelativeLayout>
+    </LinearLayout>
+
+
+<LinearLayout
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:id="@+id/lyt"
+    android:visibility="gone"
+    android:layout_height="match_parent">
+
+
+    <com.jcodecraeer.xrecyclerview.XRecyclerView
+        android:id="@+id/works_rv"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_500"
+        />
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal">
+        <LinearLayout
+            android:id="@+id/photograph1"
+            android:layout_width="@dimen/dp_180"
+            android:layout_height="wrap_content"
+            android:background="@drawable/fillet2"
+            android:gravity="center_vertical">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginLeft="@dimen/dp_25"
+                android:background="#fff"
+                android:src="@mipmap/icon_nav_photo_nomal_selected" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginLeft="20dp"
+                android:text="发布作品"
+                android:textColor="#FFFF"
+                android:textSize="22sp" />
+        </LinearLayout>
+    </RelativeLayout>
+</LinearLayout>
 </LinearLayout>
