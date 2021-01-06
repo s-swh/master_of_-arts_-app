@@ -20,6 +20,7 @@ import com.wd.master_of_arts_app.bean.DetailsOfWorksBean;
 import com.wd.master_of_arts_app.bean.EditUserInformation;
 import com.wd.master_of_arts_app.bean.HarvestAddress;
 import com.wd.master_of_arts_app.bean.HomePage;
+import com.wd.master_of_arts_app.bean.HomeWorkBean;
 import com.wd.master_of_arts_app.bean.ListOfWorks;
 import com.wd.master_of_arts_app.bean.LiveBoradCast;
 import com.wd.master_of_arts_app.bean.Logistics;
@@ -257,4 +258,8 @@ public interface Api {
     @POST("wap/Plaso/getLiveRoomUrl")
     @FormUrlEncoded
     Observable<LiveBoradCast>getLiveBorad(@Field("userType")String userType,@Field("meetingType")String meetingType,@Field("mediaType")String mediaType,@Field("meetingId")String meetingId,@Field("userName")String userName,@Field("loginName")String loginName,@Field("topic")String topic);
+    //作业详情 http://test.54artist.com/wap/HomeWork/getMsg
+    @POST("wap/HomeWork/getMsg")
+    @FormUrlEncoded
+    Observable<HomeWorkBean>getHomeBean(@Field("work_id")int work_id);
 }

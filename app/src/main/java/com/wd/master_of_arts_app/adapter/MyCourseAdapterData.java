@@ -46,10 +46,11 @@ public class MyCourseAdapterData extends RecyclerView.Adapter<RecyclerView.ViewH
         ((MyCourseDataViewHorder) holder).num.setText("第" + sort_num + "课");
         ((MyCourseDataViewHorder) holder).name.setText(unit_name);
         int unit_id = unitListBean.getUnit_id();
+        int homework_id = unitListBean.getHomework_id();
         ((MyCourseDataViewHorder) holder).myzu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-              zYe.onClickzy(unit_id);
+              zYe.onClickzy(unit_id,homework_id);
             }
         });
     }
@@ -63,7 +64,7 @@ public class MyCourseAdapterData extends RecyclerView.Adapter<RecyclerView.ViewH
         zYe = clickZYe;
     }
     public interface OnClickZYe {
-        void onClickzy(int id);
+        void onClickzy(int id,int cid);
     }
 
     class MyCourseDataViewHorder extends RecyclerView.ViewHolder {

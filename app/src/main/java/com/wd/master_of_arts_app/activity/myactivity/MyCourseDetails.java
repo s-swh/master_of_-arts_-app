@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -18,6 +19,7 @@ import com.bumptech.glide.request.RequestOptions;
 import com.wd.master_of_arts_app.R;
 import com.wd.master_of_arts_app.activity.MyHomeWork;
 import com.wd.master_of_arts_app.activity.OrderComment;
+import com.wd.master_of_arts_app.activity.WorkPage;
 import com.wd.master_of_arts_app.adapter.MyCourseAdapterData;
 import com.wd.master_of_arts_app.base.BaseActivity;
 import com.wd.master_of_arts_app.base.BasePreantert;
@@ -27,8 +29,14 @@ import com.wd.master_of_arts_app.bean.MyCurse;
 import com.wd.master_of_arts_app.contreater.MyCourseContreater;
 import com.wd.master_of_arts_app.preanter.MyCoursePreanter;
 import com.wd.master_of_arts_app.preanter.MyPreanter;
+import com.wd.master_of_arts_app.utils.NetUtils;
 
 import java.util.List;
+
+import io.reactivex.Observer;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.Disposable;
+import io.reactivex.schedulers.Schedulers;
 
 public class MyCourseDetails extends BaseActivity implements MyCourseContreater.IView {
 
@@ -60,7 +68,7 @@ public class MyCourseDetails extends BaseActivity implements MyCourseContreater.
         ls_iv = findViewById(R.id.ls_iv);
         user_n = findViewById(R.id.user_n);
         qpl = findViewById(R.id.qpl);
-        rv.setLayoutManager(new LinearLayoutManager(this));
+
     }
 
     @Override
@@ -73,7 +81,9 @@ public class MyCourseDetails extends BaseActivity implements MyCourseContreater.
             int icqd = intent.getIntExtra("icqd", 0);
             int order_id = intent.getIntExtra("order_id", 0);
             ((MyCourseContreater.IPreanter) basePreantert).OnCourseDatailsSuccess(token1, order_id, icqd);
+
         }
+        rv.setLayoutManager(new LinearLayoutManager(this));
         vv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -116,11 +126,20 @@ public class MyCourseDetails extends BaseActivity implements MyCourseContreater.
         MyCourseAdapterData myCourseAdapterData = new MyCourseAdapterData(getApplicationContext(), unit_list);
         myCourseAdapterData.OnClickZYe(new MyCourseAdapterData.OnClickZYe() {
             @Override
-            public void onClickzy(int id) {
-                Intent intent = new Intent(getApplicationContext(), MyHomeWork.class);
-                intent.putExtra("myHomeWorkid",id);
-                Toast.makeText(MyCourseDetails.this, id+"", Toast.LENGTH_SHORT).show();
-                startActivity(intent);
+            public void onClickzy(int id,int cid) {
+                if(cid==0){
+                    Intent intent = new Intent(getApplicationContext(), MyHomeWork.class);
+                    intent.putExtra("myHomeWorkid",id);
+                    Toast.makeText(MyCourseDetails.this, id+"", Toast.LENGTH_SHORT).show();
+                    startActivity(intent);
+                }else{
+                    Intent intent = new Intent(getApplicationContext(), WorkPage.class);
+                    intent.putExtra("homework_idcid",cid);
+                    Toast.makeText(MyCourseDetails.this, cid+"", Toast.LENGTH_SHORT).show();
+                    startActivity(intent);
+                }
+
+
             }
         });
         rv.setAdapter(myCourseAdapterData);

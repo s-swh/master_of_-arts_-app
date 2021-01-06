@@ -14,6 +14,7 @@ import com.wd.master_of_arts_app.activity.CoursePreview;
 import com.wd.master_of_arts_app.activity.LiveBroadcast;
 import com.wd.master_of_arts_app.R;
 import com.wd.master_of_arts_app.activity.Booking_experience;
+import com.wd.master_of_arts_app.activity.MyHomeWork;
 import com.wd.master_of_arts_app.base.App;
 import com.wd.master_of_arts_app.base.BaseFragment;
 import com.wd.master_of_arts_app.base.BasePreantert;
@@ -21,12 +22,15 @@ import com.wd.master_of_arts_app.bean.Beanner;
 import com.wd.master_of_arts_app.bean.HomePage;
 import com.wd.master_of_arts_app.contreater.HomePagerCrete;
 import com.wd.master_of_arts_app.preanter.HomePreanter;
+import com.wd.master_of_arts_app.utils.NetUtils;
 
 import org.greenrobot.eventbus.EventBus;
 
 import java.util.List;
 
 import butterknife.BindView;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.schedulers.Schedulers;
 
 /**
  * @author 时文豪
@@ -90,6 +94,7 @@ public class Home_page extends BaseFragment implements HomePagerCrete.IVew, View
             ((HomePagerCrete.IPreanter) basePreantert).OnBeanner(2);
             if(token1!=null){
                 ((HomePagerCrete.IPreanter) basePreantert).OnHomepage(token1);
+
             }else{
                 ((HomePagerCrete.IPreanter) basePreantert).OnHomepage("");
             }
@@ -118,42 +123,38 @@ public class Home_page extends BaseFragment implements HomePagerCrete.IVew, View
     @Override
     public void HomePage(HomePage homePage) {
         HomePage.DataBean data = homePage.getData();
-        int status = data.getStatus();
-        String button = data.getButton();
-        tv.setText(button);
-        int unit_id = data.getUnit_id();
-        String class_id = homePage.getData().getClass_id();
-        String unit_name = homePage.getData().getUnit_name();
-        tv.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
+            int status = data.getStatus();
+            String button = data.getButton();
+            tv.setText(button);
+            int unit_id = data.getUnit_id();
+            String class_id = homePage.getData().getClass_id();
+            String unit_name = homePage.getData().getUnit_name();
+            tv.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
 
-                Intent intent = new Intent(getActivity(), LiveBroadcast.class);
-                intent.putExtra("classid",class_id);
-                intent.putExtra("unit_ssname",unit_name);
-                startActivity(intent);
 
-            /*    if(status==0){
-                    startActivity(new Intent(getActivity(), Booking_experience.class));
-                }else if(status==1){
+                    if (status == 0) {
+                        startActivity(new Intent(getActivity(), Booking_experience.class));
+                    } else if (status == 1) {
 
-                }else if(status==2){
-                    Intent intent = new Intent(getActivity(), CoursePreview.class);
-                    intent.putExtra("unit_id_two",unit_id);
-                    startActivity(intent);
+                    } else if (status == 2) {
+                        Intent intent = new Intent(getActivity(), CoursePreview.class);
+                        intent.putExtra("unit_id_two", unit_id);
+                        startActivity(intent);
 
-                    Toast.makeText(getContext(), "点击", Toast.LENGTH_SHORT).show();
-                }else if(status==3){
-                    Intent intent = new Intent(getActivity(), LiveBroadcast.class);
-                    intent.putExtra("class_id",class_id);
-                    startActivity(intent);
-                }else if(status==4){
+                        Toast.makeText(getContext(), "点击", Toast.LENGTH_SHORT).show();
+                    } else if (status == 3) {
 
-                }else if(status==5){
+                    } else if (status == 4) {
+                        Intent intent = new Intent(getActivity(), MyHomeWork.class);
+                        intent.putExtra("unit_id_two", unit_id);
+                        startActivity(intent);
+                    } else if (status == 5) {
 
-                }*/
-            }
-        });
+                    }
+                }
+            });
 
     }
 

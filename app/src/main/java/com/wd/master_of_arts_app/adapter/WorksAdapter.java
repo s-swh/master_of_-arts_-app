@@ -54,7 +54,16 @@ public class WorksAdapter extends XRecyclerView.Adapter<XRecyclerView.ViewHolder
         ((WorksViewHorder)holder).tt.setText(name);
         ((WorksViewHorder) holder).tv.setText(create_time);
         String imglist = listBean.getImglist();
+        String is_comment = listBean.getIs_comment();
+        if(is_comment.equals("Y")){
+        ((WorksViewHorder) holder).ydp.setVisibility(View.VISIBLE);
+        ((WorksViewHorder) holder).wdp.setVisibility(View.GONE);
 
+        }else if(is_comment.equals("N")){
+            ((WorksViewHorder) holder).wdp.setVisibility(View.VISIBLE);
+            ((WorksViewHorder) holder).ydp.setVisibility(View.GONE);
+
+        }
         Glide.with(context).load("http://qiniu.54artist.com/"+imglist).into(((WorksViewHorder)holder).img);
         ((WorksViewHorder)holder).et.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -77,7 +86,7 @@ public class WorksAdapter extends XRecyclerView.Adapter<XRecyclerView.ViewHolder
     }
     class WorksViewHorder extends RecyclerView.ViewHolder {
 
-        private final ImageView img;
+        private final ImageView img,wdp,ydp;
         private final TextView tv;
         private final TextView tt;
         private final LinearLayout et;
@@ -88,6 +97,9 @@ public class WorksAdapter extends XRecyclerView.Adapter<XRecyclerView.ViewHolder
             tv = itemView.findViewById(R.id.work_data);
             tt = itemView.findViewById(R.id.work_txt);
             et = itemView.findViewById(R.id.Detailsofworks);
+            wdp = itemView.findViewById(R.id.wdp);
+            ydp = itemView.findViewById(R.id.ydp);
+
 
         }
     }

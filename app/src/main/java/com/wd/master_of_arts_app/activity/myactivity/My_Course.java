@@ -86,7 +86,6 @@ public class My_Course extends BaseActivity implements MyCourseContreater.IView 
             @Override
             public void OnCliack(int id,int order_id) {
                 Intent intent = new Intent(getApplicationContext(), MyCourseDetails.class);
-
                 intent.putExtra("icqd",id);
                 intent.putExtra("order_id",order_id);
                 startActivity(intent);

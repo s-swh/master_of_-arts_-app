@@ -1,19 +1,26 @@
 package com.wd.master_of_arts_app.fragment;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.ColorDrawable;
+import android.os.Handler;
+import android.os.Message;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.TextView;
 import android.widget.Toast;
 
 
+import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -55,7 +62,21 @@ public class Task_page extends BaseFragment implements   CourseContreater.IView 
     int j=10;
     private RecyclerView agerv;
     private AgeInterfaceAdapter ageInterfaceAdapter;
-
+    private EditText et_name;
+    @SuppressLint("HandlerLeak")
+    Handler handler = new Handler() {
+        @Override
+        public void handleMessage(@NonNull Message msg) {
+            super.handleMessage(msg);
+            BasePreantert basePreantert = getmPreanter();
+            if (basePreantert instanceof CourseContreater.IPreanter) {
+                String string = et_name.getText().toString();
+                ((CourseContreater.IPreanter) basePreantert).OnCourseSuccess("", "", string, "", 1, j);
+            }
+            LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
+            rv.setLayoutManager(linearLayoutManager);
+        }
+    };
     @Override
     protected int getLayoutId() {
         return R.layout.task;
@@ -70,11 +91,32 @@ public class Task_page extends BaseFragment implements   CourseContreater.IView 
     protected void initView(View view) {
         tv = view.findViewById(R.id.tt_opo);
         rv = view.findViewById(R.id.course_rv);
+        et_name = view.findViewById(R.id.username);
 
     }
 
     @Override
     protected void initData() {
+
+        et_name.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+                handler.removeMessages(0);
+                handler.sendEmptyMessageDelayed(0,1000);
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+
+            }
+        });
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
         rv.setLayoutManager(linearLayoutManager);
         BasePreantert basePreantert = getmPreanter();
@@ -98,10 +140,7 @@ public class Task_page extends BaseFragment implements   CourseContreater.IView 
     //弹框
    @OnClick(R.id.vve)
     public void popwindow(){
-
-
        View view = getLayoutInflater().inflate(R.layout.preview, null);
-
        agerv = view.findViewById(R.id.age_rv);
        LinearLayout deim = view.findViewById(R.id.deim);
        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());

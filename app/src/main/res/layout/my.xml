@@ -22,7 +22,7 @@
             android:layout_height="@dimen/dp_150"
             android:layout_centerHorizontal="true"
             android:scaleType="fitXY"
-            android:src="@mipmap/icon_breack" />
+            android:src="@mipmap/my_background" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -97,7 +97,7 @@
         android:layout_height="@dimen/dp_30"
         android:layout_gravity="center"
         android:id="@+id/my_collection_of_works"
-        android:layout_marginTop="@dimen/dp_5"
+        android:layout_marginTop="@dimen/dp_10"
         android:background="@drawable/fillet"
         android:gravity="center"
         android:orientation="horizontal">
@@ -153,7 +153,7 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/dp_30"
         android:layout_gravity="center"
-        android:layout_marginTop="@dimen/dp_5"
+        android:layout_marginTop="@dimen/dp_10"
         android:id="@+id/my_course"
         android:background="@drawable/fillet"
         android:gravity="center"
@@ -297,7 +297,7 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/dp_30"
         android:layout_gravity="center"
-        android:layout_marginTop="@dimen/dp_5"
+        android:layout_marginTop="@dimen/dp_10"
         android:background="@drawable/fillet"
         android:id="@+id/setup"
         android:gravity="center"
