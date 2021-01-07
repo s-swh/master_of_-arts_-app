@@ -10,6 +10,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import com.jcodecraeer.xrecyclerview.XRecyclerView;
@@ -48,6 +50,8 @@ public class Completed extends BaseFragment implements OrderContreater.IView {
     private OrderList.DataBean data;
     private OrderListAdapter orderListAdapter;
     private int p;
+    private LinearLayout llt;
+    private RelativeLayout rlt;
 
     @Override
     protected int getLayoutId() {
@@ -64,6 +68,8 @@ public class Completed extends BaseFragment implements OrderContreater.IView {
         iv = inflate.findViewById(R.id.cloat);
         us = inflate.findViewById(R.id.username);
         xr = inflate.findViewById(R.id.com_rv);
+        llt = inflate.findViewById(R.id.llt);
+        rlt = inflate.findViewById(R.id.rlt);
         iv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -114,62 +120,68 @@ public class Completed extends BaseFragment implements OrderContreater.IView {
     public void OnOrderList(OrderList orderList) {
         data = orderList.getData();
         List<OrderList.DataBean.ListBean> list = data.getList();
-        orderListAdapter = new OrderListAdapter(getActivity(), list);
-        orderListAdapter.OnClickwl(new OrderListAdapter.Ckwl() {
-            @Override
-            public void OnClick(OrderList.DataBean.ListBean listBean) {
-                Intent intent = new Intent(getActivity(), ViewLogistics.class);
-                String express_number = listBean.getExpress_number();
-                String logistics = listBean.getLogistics();
+        if(list.size()==0){
+            llt.setVisibility(View.GONE);
+            rlt.setVisibility(View.VISIBLE);
+        }else{
+            orderListAdapter = new OrderListAdapter(getActivity(), list);
+            orderListAdapter.OnClickwl(new OrderListAdapter.Ckwl() {
+                @Override
+                public void OnClick(OrderList.DataBean.ListBean listBean) {
+                    Intent intent = new Intent(getActivity(), ViewLogistics.class);
+                    String express_number = listBean.getExpress_number();
+                    String logistics = listBean.getLogistics();
 
-                startActivity(intent);
-                EventBus.getDefault().postSticky(new ViewLogist(logistics,express_number));
-            }
-        });
-        orderListAdapter.OnClick(new OrderListAdapter.idtet() {
-            @Override
-            public void OnClick(int id) {
-                Intent intent = new Intent(getActivity(), OrderDetails.class);
-                intent.putExtra("idddddd",id);
-                Toast.makeText(getActivity(), id+"", Toast.LENGTH_SHORT).show();
-                startActivity(intent);
-            }
-        });
-        xr.setAdapter(orderListAdapter);
-        orderListAdapter.delete(new OrderListAdapter.itdelete() {
-            @Override
-            public void Click(int id) {
+                    startActivity(intent);
+                    EventBus.getDefault().postSticky(new ViewLogist(logistics,express_number));
+                }
+            });
+            orderListAdapter.OnClick(new OrderListAdapter.idtet() {
+                @Override
+                public void OnClick(int id) {
+                    Intent intent = new Intent(getActivity(), OrderDetails.class);
+                    intent.putExtra("idddddd",id);
+                    Toast.makeText(getActivity(), id+"", Toast.LENGTH_SHORT).show();
+                    startActivity(intent);
+                }
+            });
+            xr.setAdapter(orderListAdapter);
+            orderListAdapter.delete(new OrderListAdapter.itdelete() {
+                @Override
+                public void Click(int id) {
 
-                SharedPreferences token = App.getContext().getSharedPreferences("token", Context.MODE_PRIVATE);
-                String token1 = token.getString("token", "");
-                NetUtils.getInstance().getApi().getOrderDelete(token1,id)
-                        .subscribeOn(Schedulers.io())
-                        .observeOn(AndroidSchedulers.mainThread())
-                        .subscribe(new Observer<OrderDelete>() {
-                            @Override
-                            public void onSubscribe(Disposable d) {
+                    SharedPreferences token = App.getContext().getSharedPreferences("token", Context.MODE_PRIVATE);
+                    String token1 = token.getString("token", "");
+                    NetUtils.getInstance().getApi().getOrderDelete(token1,id)
+                            .subscribeOn(Schedulers.io())
+                            .observeOn(AndroidSchedulers.mainThread())
+                            .subscribe(new Observer<OrderDelete>() {
+                                @Override
+                                public void onSubscribe(Disposable d) {
 
-                            }
+                                }
 
-                            @Override
-                            public void onNext(OrderDelete orderDelete) {
+                                @Override
+                                public void onNext(OrderDelete orderDelete) {
 
-                                String msg = orderDelete.getMsg();
-                                Toast.makeText(getActivity(), msg, Toast.LENGTH_SHORT).show();
-                            }
+                                    String msg = orderDelete.getMsg();
+                                    Toast.makeText(getActivity(), msg, Toast.LENGTH_SHORT).show();
+                                }
 
-                            @Override
-                            public void onError(Throwable e) {
+                                @Override
+                                public void onError(Throwable e) {
 
-                            }
+                                }
 
-                            @Override
-                            public void onComplete() {
+                                @Override
+                                public void onComplete() {
 
-                            }
-                        });
-            }
-        });
+                                }
+                            });
+                }
+            });
+        }
+
     }
 
     @Override

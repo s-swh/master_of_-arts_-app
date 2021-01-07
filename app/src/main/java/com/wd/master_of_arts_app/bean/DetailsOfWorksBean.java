@@ -1,7 +1,5 @@
 package com.wd.master_of_arts_app.bean;
 
-import java.util.List;
-
 /**
  * @author 时文豪
  * @description:
@@ -9,10 +7,11 @@ import java.util.List;
  */
 public class DetailsOfWorksBean {
 
+
     /**
      * code : 1
      * msg : 成功
-     * data : {"workMsg":[{"work_id":4,"name":"我的作品","imglist":"['5fdb18cfc54512291.png','5fdb18d55c4854290.png','5fdb18dad012b2906.png']","content":"内容","voice":"['5fdb18dccf57d7522.wav','5fdb18e04fc5f7562.wav']","create_time":"2020-12-23 18:33:48","is_comment":"N","c_content":null,"c_imglist":null,"c_voice":null,"comment_time":null,"t_name":null,"t_avatar":null}]}
+     * data : {"workMsg":{"work_id":44,"name":"富有风采","imglist":"5ff5269baba894471.jpg","content":"垫付学费预防","voice":"5ff5269b9da658737.amr","create_time":"2021-01-06 10:55:31","is_comment":"N","c_content":"","c_imglist":"","c_voice":"","comment_time":"","t_name":"","t_avatar":""}}
      */
 
     private int code;
@@ -44,31 +43,35 @@ public class DetailsOfWorksBean {
     }
 
     public static class DataBean {
-        private List<WorkMsgBean> workMsg;
+        /**
+         * workMsg : {"work_id":44,"name":"富有风采","imglist":"5ff5269baba894471.jpg","content":"垫付学费预防","voice":"5ff5269b9da658737.amr","create_time":"2021-01-06 10:55:31","is_comment":"N","c_content":"","c_imglist":"","c_voice":"","comment_time":"","t_name":"","t_avatar":""}
+         */
 
-        public List<WorkMsgBean> getWorkMsg() {
+        private WorkMsgBean workMsg;
+
+        public WorkMsgBean getWorkMsg() {
             return workMsg;
         }
 
-        public void setWorkMsg(List<WorkMsgBean> workMsg) {
+        public void setWorkMsg(WorkMsgBean workMsg) {
             this.workMsg = workMsg;
         }
 
         public static class WorkMsgBean {
             /**
-             * work_id : 4
-             * name : 我的作品
-             * imglist : ['5fdb18cfc54512291.png','5fdb18d55c4854290.png','5fdb18dad012b2906.png']
-             * content : 内容
-             * voice : ['5fdb18dccf57d7522.wav','5fdb18e04fc5f7562.wav']
-             * create_time : 2020-12-23 18:33:48
+             * work_id : 44
+             * name : 富有风采
+             * imglist : 5ff5269baba894471.jpg
+             * content : 垫付学费预防
+             * voice : 5ff5269b9da658737.amr
+             * create_time : 2021-01-06 10:55:31
              * is_comment : N
-             * c_content : null
-             * c_imglist : null
-             * c_voice : null
-             * comment_time : null
-             * t_name : null
-             * t_avatar : null
+             * c_content :
+             * c_imglist :
+             * c_voice :
+             * comment_time :
+             * t_name :
+             * t_avatar :
              */
 
             private int work_id;
@@ -78,12 +81,12 @@ public class DetailsOfWorksBean {
             private String voice;
             private String create_time;
             private String is_comment;
-            private Object c_content;
-            private Object c_imglist;
-            private Object c_voice;
-            private Object comment_time;
-            private Object t_name;
-            private Object t_avatar;
+            private String c_content;
+            private String c_imglist;
+            private String c_voice;
+            private String comment_time;
+            private String t_name;
+            private String t_avatar;
 
             public int getWork_id() {
                 return work_id;
@@ -141,51 +144,51 @@ public class DetailsOfWorksBean {
                 this.is_comment = is_comment;
             }
 
-            public Object getC_content() {
+            public String getC_content() {
                 return c_content;
             }
 
-            public void setC_content(Object c_content) {
+            public void setC_content(String c_content) {
                 this.c_content = c_content;
             }
 
-            public Object getC_imglist() {
+            public String getC_imglist() {
                 return c_imglist;
             }
 
-            public void setC_imglist(Object c_imglist) {
+            public void setC_imglist(String c_imglist) {
                 this.c_imglist = c_imglist;
             }
 
-            public Object getC_voice() {
+            public String getC_voice() {
                 return c_voice;
             }
 
-            public void setC_voice(Object c_voice) {
+            public void setC_voice(String c_voice) {
                 this.c_voice = c_voice;
             }
 
-            public Object getComment_time() {
+            public String getComment_time() {
                 return comment_time;
             }
 
-            public void setComment_time(Object comment_time) {
+            public void setComment_time(String comment_time) {
                 this.comment_time = comment_time;
             }
 
-            public Object getT_name() {
+            public String getT_name() {
                 return t_name;
             }
 
-            public void setT_name(Object t_name) {
+            public void setT_name(String t_name) {
                 this.t_name = t_name;
             }
 
-            public Object getT_avatar() {
+            public String getT_avatar() {
                 return t_avatar;
             }
 
-            public void setT_avatar(Object t_avatar) {
+            public void setT_avatar(String t_avatar) {
                 this.t_avatar = t_avatar;
             }
         }

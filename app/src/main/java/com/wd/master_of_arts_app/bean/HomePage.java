@@ -11,7 +11,7 @@ public class HomePage {
     /**
      * code : 1
      * msg : 成功
-     * data : {"status":4,"button":"提交作业","unit_id":310,"unit_name":"植物写生（上）","date":"2021-01-05","time":"13:30:00","teacher":"殷老师","avatar":"http://qiniu.54artist.com/5feae941b92875871.jpg","class_id":""}
+     * data : {"status":5,"button":"查看作业","unit_id":310,"unit_name":"植物写生（上）","date":"2021-01-05","time":"16:25:00","teacher":"殷老师","avatar":"http://qiniu.54artist.com/5feae941b92875871.jpg","class_id":"","homework_id":6}
      */
 
     private int code;
@@ -44,15 +44,16 @@ public class HomePage {
 
     public static class DataBean {
         /**
-         * status : 4
-         * button : 提交作业
+         * status : 5
+         * button : 查看作业
          * unit_id : 310
          * unit_name : 植物写生（上）
          * date : 2021-01-05
-         * time : 13:30:00
+         * time : 16:25:00
          * teacher : 殷老师
          * avatar : http://qiniu.54artist.com/5feae941b92875871.jpg
          * class_id :
+         * homework_id : 6
          */
 
         private int status;
@@ -64,6 +65,7 @@ public class HomePage {
         private String teacher;
         private String avatar;
         private String class_id;
+        private int homework_id;
 
         public int getStatus() {
             return status;
@@ -135,6 +137,14 @@ public class HomePage {
 
         public void setClass_id(String class_id) {
             this.class_id = class_id;
+        }
+
+        public int getHomework_id() {
+            return homework_id;
+        }
+
+        public void setHomework_id(int homework_id) {
+            this.homework_id = homework_id;
         }
     }
 }

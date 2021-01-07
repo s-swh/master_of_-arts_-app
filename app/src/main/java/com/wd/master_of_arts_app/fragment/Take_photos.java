@@ -7,6 +7,7 @@ import android.content.pm.PackageManager;
 import android.util.Log;
 import android.view.View;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -36,13 +37,15 @@ import butterknife.OnClick;
  */
 public class Take_photos extends BaseFragment implements worksContreanter.IVew {
     public static final int CAMERA_REQ_CODE = 111;
-    private LinearLayout lt,lyt;
+    private RelativeLayout lyt;
     private XRecyclerView xrv;
+    private LinearLayout lt;
     int i=1;
     int j=10;
     private WorksAdapter worksAdapter;
     private List<ListOfWorks.DataBean.ListBean> list;
     private ListOfWorks.DataBean data;
+    private ListOfWorks.DataBean.ListBean listBean;
 
     @Override
     protected int getLayoutId() {
@@ -131,15 +134,17 @@ public class Take_photos extends BaseFragment implements worksContreanter.IVew {
     @Override
     public void OnWorks(ListOfWorks listOfWorks) {
         data = listOfWorks.getData();
-        list = data.getList();
-        int size = list.size();
+
+      list = data.getList();
+        int size = this.list.size();
         Log.i("xxxx",""+size);
         if(list.size()==0){
+
             lyt.setVisibility(View.GONE);
             lt.setVisibility(View.VISIBLE);
 
         }else{
-            worksAdapter = new WorksAdapter(getActivity(), list);
+            worksAdapter = new WorksAdapter(getActivity(), this.list);
             lt.setVisibility(View.GONE);
             lyt.setVisibility(View.VISIBLE);
             worksAdapter.OnClickWorks(new WorksAdapter.OnClickWorks() {

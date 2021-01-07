@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#F3F3F3"
     android:orientation="vertical">
     <ScrollView
         android:layout_width="match_parent"
@@ -35,7 +36,7 @@
                 android:layout_marginLeft="@dimen/dp_30"
                 android:id="@+id/my_image"
                 android:layout_marginTop="@dimen/dp_80"
-                android:src="@drawable/shape_point_select" />
+                android:src="@mipmap/icon_tx" />
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -48,7 +49,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/dp_10"
                     android:layout_marginTop="@dimen/dp_80"
-                    android:text="正小艺"
+                    android:text=" "
                     android:id="@+id/my_name"
                     android:textColor="#fff" />
 
@@ -57,7 +58,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/dp_10"
                     android:layout_marginTop="@dimen/dp_5"
-                    android:text="来"
+                    android:text=" "
                     android:id="@+id/my_age"
                     android:textColor="#fff" />
             </LinearLayout>

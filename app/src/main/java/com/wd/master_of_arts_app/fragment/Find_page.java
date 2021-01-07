@@ -29,7 +29,7 @@ import java.util.List;
 
 /**
  * @author 时文豪
- * @description: 发现模块  todo   发现照片详情
+ * @description: 发现模块
  * @date :2020/12/3 11:05
  */
 public class Find_page extends BaseFragment implements ArticleListContreater.IView {
@@ -91,11 +91,11 @@ public class Find_page extends BaseFragment implements ArticleListContreater.IVi
         });
     }
 
-    //发现列表详情
+
     @Override
     public void OnArticle(ArticleList articleList) {
         ArticleList.DataBean data = articleList.getData();
-        //免费课程适配器
+
         cat_id = data.getFree_video().get(0).getCat_id();
         List<ArticleList.DataBean.FreeVideoBean> free_video = data.getFree_video();
         FindAdapter findAdapter = new FindAdapter(getActivity(), free_video);
@@ -105,16 +105,9 @@ public class Find_page extends BaseFragment implements ArticleListContreater.IVi
                 Intent intent = new Intent(getActivity(), FindHref.class);
                 intent.putExtra("href", href);
                 startActivity(intent);
-
             }
         });
-
         rec.setAdapter(findAdapter);
-        //精选作品
-        List<ArticleList.DataBean.SelectedWorksBean> selected_works = data.getSelected_works();
-        SelectedAdapter selectedAdapter = new SelectedAdapter(getActivity(), selected_works);
-        rv_gre_1.setAdapter(selectedAdapter);
-        //我的视频
         List<ArticleList.DataBean.MyVideoBean> my_video = data.getMy_video();
         MyVideoAdapter myVideoAdapter = new MyVideoAdapter(getActivity(), my_video);
         myVideoAdapter.OnMyClicked(new MyVideoAdapter.OnMyClick() {
@@ -126,6 +119,11 @@ public class Find_page extends BaseFragment implements ArticleListContreater.IVi
             }
         });
         rv_gre_2.setAdapter(myVideoAdapter);
+        List<ArticleList.DataBean.SelectedWorksBean> selected_works = data.getSelected_works();
+        SelectedAdapter selectedAdapter = new SelectedAdapter(getActivity(), selected_works);
+        rv_gre_1.setAdapter(selectedAdapter);
+
+
     }
 
     @Override

@@ -10,10 +10,15 @@ import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.Bundle;
+import android.text.Html;
+import android.text.Spanned;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
+import android.webkit.WebSettings;
+import android.webkit.WebView;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -22,6 +27,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
+import com.bumptech.glide.request.RequestOptions;
 import com.wd.master_of_arts_app.R;
 import com.wd.master_of_arts_app.adapter.ActivityAdapter;
 import com.wd.master_of_arts_app.adapter.CommentAdapter;
@@ -46,15 +53,15 @@ import java.util.List;
 import butterknife.OnClick;
 
 
-
 public class CourseDetailsActivity extends BaseActivity implements CourseContreater.IView {
 
 
-    private TextView tv, itle, present_price, original_price, attend, ic_name;
+    private TextView tv, itle, present_price, original_price, attend, ic_name, gd_pj;
     private ImageView img;
     private ImageView ic;
     private Button Signupnow;
     private RecyclerView rv_service, rv_service1, rcv;
+    private WebView web;
 
 
     @Override
@@ -81,6 +88,8 @@ public class CourseDetailsActivity extends BaseActivity implements CourseContrea
         ic_name = findViewById(R.id.ic_name);
         rcv = findViewById(R.id.rec_rv);
         Signupnow = findViewById(R.id.Signupnow);
+        web = findViewById(R.id.web);
+        gd_pj = findViewById(R.id.gd_pj);
 
     }
 
@@ -91,6 +100,7 @@ public class CourseDetailsActivity extends BaseActivity implements CourseContrea
 
     @Override
     protected void initData() {
+
         Signupnow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -132,21 +142,35 @@ public class CourseDetailsActivity extends BaseActivity implements CourseContrea
 
         String icon = data.getIcon();
         Glide.with(this).load(icon).into(img);
-        itle.setText(data.getContent());
+        String content = data.getContent();
+
+        web.loadDataWithBaseURL(null, content, "text/html", "UTF-8", null);
+        web.getSettings().setUseWideViewPort(true);
+        web.getSettings().setLoadWithOverviewMode(true);
+
         present_price.setText(data.getPrice() + "￥");
         original_price.setText(data.getOld_price() + "￥");
         String course_name1 = data.getCourse_name();
         String icon1 = data.getIcon();
         String time_detail = data.getTime_detail();
         String first_class_time = data.getFirst_class_time();
-        String de=time_detail+first_class_time;
+        String de = time_detail + first_class_time;
         String price = data.getPrice();
-        EventBus.getDefault().postSticky(new DingdanXiangqing(course_name1,de,price,icon1));
+        EventBus.getDefault().postSticky(new DingdanXiangqing(course_name1, de, price, icon1));
 
 
         int course_id = data.getCourse_id();
+        gd_pj.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(CourseDetailsActivity.this, MoreComments.class);
+                intent.putExtra("course_idzc", course_id);
+
+                startActivity(intent);
+            }
+        });
         int course_time_id = data.getCourse_time_id();
-        EventBus.getDefault().postSticky(new IdNumber(course_id,course_time_id));
+        EventBus.getDefault().postSticky(new IdNumber(course_id, course_time_id));
 
 
         //活动适配器
@@ -181,7 +205,7 @@ public class CourseDetailsActivity extends BaseActivity implements CourseContrea
                 v.setLayoutManager(linearLayoutManager);
                 PopActivityAdapter popActivityAdapter = new PopActivityAdapter(getApplicationContext(), mark);
                 v.setAdapter(popActivityAdapter);
-                TextView xz = view.findViewById(R.id.xz);
+                ImageView xz = view.findViewById(R.id.xz);
                 LinearLayout de = view.findViewById(R.id.dimens);
                 de.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -230,7 +254,7 @@ public class CourseDetailsActivity extends BaseActivity implements CourseContrea
                 popupBigPhoto.setOutsideTouchable(true);
 // 设置PopupWindow是否能响应点击事件
                 popupBigPhoto.setTouchable(true);
-                TextView zx = view.findViewById(R.id.xz);
+                ImageView zx = view.findViewById(R.id.xz);
                 LinearLayout let = view.findViewById(R.id.dimens);
                 RecyclerView rv = view.findViewById(R.id.rec_service);
                 String description = serviceBean.getDescription();
@@ -259,7 +283,7 @@ public class CourseDetailsActivity extends BaseActivity implements CourseContrea
 
 
         attend.setText(data.getTime_detail());
-        Glide.with(this).load(data.getTeacher_avatar()).into(ic);
+        Glide.with(this).load(data.getTeacher_avatar()).apply(RequestOptions.bitmapTransform(new RoundedCorners(100))).into(ic);
         ic_name.setText(data.getTeacher_name());
 
         List<CourseDetails.DataBean.CommentListBean> comment_list = data.getComment_list();

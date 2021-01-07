@@ -6,133 +6,158 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".activity.PersonalDataActivity">
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-            <ImageView
-                android:layout_width="17.4dp"
-                android:src="@mipmap/returnbutton"
-                android:id="@+id/recfh"
-                android:layout_marginLeft="@dimen/dp_15"
-                android:layout_marginTop="@dimen/dp_13"
-                android:layout_height="@dimen/dp_30" />
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="个人资料"
-                android:layout_centerHorizontal="true"
-                android:layout_centerVertical="true"
-                android:textColor="#000000"
-                android:textSize="22sp"
-                />
-        </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/recfh"
+            android:layout_width="17.4dp"
+            android:layout_height="@dimen/dp_30"
+            android:layout_marginLeft="@dimen/dp_15"
+            android:layout_marginTop="@dimen/dp_13"
+            android:src="@mipmap/returnbutton" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:text="个人资料"
+            android:textColor="#000000"
+            android:textSize="22sp" />
+    </RelativeLayout>
+
     <ImageView
-        android:layout_width="@dimen/dp_105"
         android:id="@+id/iv_img"
-            android:src="@drawable/ic_launcher_background"
+        android:layout_width="@dimen/dp_115"
+        android:layout_height="@dimen/dp_115"
         android:layout_gravity="center"
-        android:layout_height="@dimen/dp_105" />
+        android:src="@mipmap/icon_tx" />
+
     <TextView
         android:layout_width="wrap_content"
-        android:text="点击修改头像"
+        android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginTop="2.2dp"
-        android:layout_height="wrap_content" />
+        android:text="点击修改头像" />
+
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_marginTop="@dimen/dp_30"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp_30">
+
         <TextView
             android:layout_width="wrap_content"
-            android:text="姓名:"
+            android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/dp_49"
-            android:layout_height="wrap_content" />
+            android:text="姓名:" />
+
         <EditText
-            android:layout_width="match_parent"
-            android:text="西柚"
             android:id="@+id/up_name"
-            android:background="@android:color/transparent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/dp_5"
-            android:layout_height="wrap_content" />
+            android:background="@android:color/transparent"
+            android:text=" " />
     </LinearLayout>
+
     <View
         android:layout_width="match_parent"
-        android:background="#3f3f3f3f"
-        android:layout_height="@dimen/dp_1"/>
+        android:layout_height="@dimen/dp_1"
+        android:background="#3f3f3f3f" />
+
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_marginTop="@dimen/dp_30"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp_30">
+
         <TextView
             android:layout_width="wrap_content"
-            android:text="性别:"
+            android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/dp_49"
-            android:layout_height="wrap_content" />
+            android:text="性别:" />
+
         <RadioGroup
             android:layout_width="match_parent"
-            android:orientation="horizontal"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
             <RadioButton
-                android:layout_width="wrap_content"
-                android:text="男"
                 android:id="@+id/nan"
-                android:checked="true"
-                android:layout_height="wrap_content" />
-            <RadioButton
                 android:layout_width="wrap_content"
-                android:text="女"
+                android:layout_height="wrap_content"
+                android:checked="true"
+                android:text="男" />
+
+            <RadioButton
                 android:id="@+id/nv"
-                android:layout_height="wrap_content" />
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="女" />
         </RadioGroup>
     </LinearLayout>
+
     <View
         android:layout_width="match_parent"
-        android:background="#3f3f3f3f"
-        android:layout_height="@dimen/dp_1"/>
+        android:layout_height="@dimen/dp_1"
+        android:background="#3f3f3f3f" />
+
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_marginTop="@dimen/dp_30"
         android:id="@+id/date"
-        android:layout_height="wrap_content">
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp_30">
+
         <TextView
             android:layout_width="wrap_content"
-            android:text="生日:"
+            android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/dp_49"
-            android:layout_height="wrap_content" />
-       <TextView
-           android:layout_width="wrap_content"
-           android:text="2020-12-24"
-           android:id="@+id/tt_date"
-           android:layout_height="wrap_content" />
+            android:text="生日:" />
+
+        <TextView
+            android:id="@+id/tt_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="2020-12-24" />
     </LinearLayout>
+
     <View
         android:layout_width="match_parent"
-        android:background="#3f3f3f3f"
-        android:layout_height="@dimen/dp_1"/>
+
+        android:layout_height="@dimen/dp_1"
+        android:background="#3f3f3f3f" />
+
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_marginTop="@dimen/dp_30"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:id="@+id/Address"
+        android:layout_marginTop="@dimen/dp_30">
+
         <TextView
             android:layout_width="wrap_content"
-            android:text="地区:"
+            android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/dp_49"
-            android:layout_height="wrap_content" />
+            android:text="地区:" />
+
         <TextView
+            android:id="@+id/dq"
             android:layout_width="wrap_content"
-            android:text="江苏南京"
-            android:id="@+id/Address"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:text=" " />
     </LinearLayout>
+
     <View
         android:layout_width="match_parent"
-        android:background="#3f3f3f3f"
-        android:layout_height="@dimen/dp_1"/>
+        android:layout_height="@dimen/dp_1"
+        android:background="#3f3f3f3f" />
+
     <Button
-        android:layout_width="@dimen/dp_150"
-        android:text="确认修改"
         android:id="@+id/upde"
+        android:layout_width="@dimen/dp_150"
+        android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginTop="@dimen/dp_69"
-        android:layout_height="wrap_content" />
+        android:text="确认修改" />
 </LinearLayout>

@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.text.Html;
 import android.text.Spanned;
 import android.view.View;
+import android.webkit.WebView;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -24,7 +25,8 @@ public class CoursePreview extends BaseActivity implements PreViewContreater.IVi
 
 
     private ImageView igv;
-    private TextView munit_name,tv_content;
+    private TextView munit_name;
+    private WebView course_web;
 
     @Override
     protected int getLayoutId() {
@@ -40,18 +42,19 @@ public class CoursePreview extends BaseActivity implements PreViewContreater.IVi
     protected void initView() {
         igv = findViewById(R.id.return_fh);
         munit_name = findViewById(R.id.unit_name);
-        tv_content = findViewById(R.id.tv_content);
+
+        course_web = findViewById(R.id.course_web);
     }
 
     @Override
     protected void initData() {
         BasePreantert basePreantert = getmPreantert();
-        if(basePreantert instanceof PreViewContreater.IPreanter){
+        if (basePreantert instanceof PreViewContreater.IPreanter) {
             SharedPreferences token = getSharedPreferences("token", MODE_PRIVATE);
             String token1 = token.getString("token", "");
             Intent intent = getIntent();
             int unit_id = intent.getIntExtra("unit_id_two", 0);
-            ((PreViewContreater.IPreanter) basePreantert).OnPreViewSuccess(token1,unit_id);
+            ((PreViewContreater.IPreanter) basePreantert).OnPreViewSuccess(token1, unit_id);
         }
         igv.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -66,8 +69,9 @@ public class CoursePreview extends BaseActivity implements PreViewContreater.IVi
         Preview.DataBean data = preview.getData();
         String unit_name = data.getUnit_name();
         String pre_content = data.getPre_content();
-
         munit_name.setText(unit_name);
-        tv_content.setText(pre_content);
+        course_web.loadDataWithBaseURL(null, pre_content, "text/html", "UTF-8", null);
+        course_web.getSettings().setUseWideViewPort(true);
+        course_web.getSettings().setLoadWithOverviewMode(true);
     }
 }

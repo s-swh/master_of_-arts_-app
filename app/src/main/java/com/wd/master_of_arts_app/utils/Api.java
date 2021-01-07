@@ -24,6 +24,7 @@ import com.wd.master_of_arts_app.bean.HomeWorkBean;
 import com.wd.master_of_arts_app.bean.ListOfWorks;
 import com.wd.master_of_arts_app.bean.LiveBoradCast;
 import com.wd.master_of_arts_app.bean.Logistics;
+import com.wd.master_of_arts_app.bean.MoreComm;
 import com.wd.master_of_arts_app.bean.MyClassDate;
 import com.wd.master_of_arts_app.bean.MyCourseDetailsBean;
 import com.wd.master_of_arts_app.bean.MyCurse;
@@ -252,14 +253,20 @@ public interface Api {
     //我的作业  http://test.54artist.com/wap/HomeWork/add
     @POST("wap/HomeWork/add")
     @FormUrlEncoded
-    Observable<MyHome>getMyHome(@Field("token")String token,@Field("course_unit_id")int course_unit_id,@Field("name")String name,@Field("content")String content,@Field("imglist")String imglist,@Field("voicelist")String voicelist);
+    Observable<MyHome> getMyHome(@Field("token") String token, @Field("course_unit_id") int course_unit_id, @Field("name") String name, @Field("content") String content, @Field("imglist") String imglist, @Field("voicelist") String voicelist);
 
     //直播  http://test.54artist.com/wap/Plaso/getLiveRoomUrl
     @POST("wap/Plaso/getLiveRoomUrl")
     @FormUrlEncoded
-    Observable<LiveBoradCast>getLiveBorad(@Field("userType")String userType,@Field("meetingType")String meetingType,@Field("mediaType")String mediaType,@Field("meetingId")String meetingId,@Field("userName")String userName,@Field("loginName")String loginName,@Field("topic")String topic);
+    Observable<LiveBoradCast> getLiveBorad(@Field("userType") String userType, @Field("meetingType") String meetingType, @Field("mediaType") String mediaType, @Field("meetingId") String meetingId, @Field("userName") String userName, @Field("loginName") String loginName, @Field("topic") String topic);
+
     //作业详情 http://test.54artist.com/wap/HomeWork/getMsg
     @POST("wap/HomeWork/getMsg")
     @FormUrlEncoded
-    Observable<HomeWorkBean>getHomeBean(@Field("work_id")int work_id);
+    Observable<HomeWorkBean> getHomeBean(@Field("work_id") int work_id);
+
+    //全部评论 http://test.54artist.com/wap/Course/getCommentList
+    @POST("wap/Course/getCommentList")
+    @FormUrlEncoded
+    Observable<MoreComm>getMore(@Field("course_id")int course_id,@Field("p")int p,@Field("per")int per);
 }

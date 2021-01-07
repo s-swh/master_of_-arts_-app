@@ -12,6 +12,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -60,9 +61,9 @@ import okhttp3.RequestBody;
 public class PersonalDataActivity extends BaseActivity implements View.OnClickListener, UserInformationConreater.IView {
 
     private TimePickerView pvTime;
-    private TextView tt_date;
+    private TextView tt_date,dq;
     private ImageView iv;
-    private TextView address;
+    private LinearLayout address;
     private EditText et_name;
     private RadioButton nan, nv;
     private int sex;
@@ -83,6 +84,7 @@ public class PersonalDataActivity extends BaseActivity implements View.OnClickLi
     protected void initView() {
         tt_date = findViewById(R.id.tt_date);
         address = findViewById(R.id.Address);
+        dq = findViewById(R.id.dq);
         et_name = findViewById(R.id.up_name);
         iv = findViewById(R.id.iv_img);
         nan = findViewById(R.id.nan);
@@ -118,15 +120,19 @@ public class PersonalDataActivity extends BaseActivity implements View.OnClickLi
         String date = user.getDate();
         tt_date.setText(date);
         String detail_address = user.getDetail_address();
-        address.setText(detail_address);
+        dq.setText(detail_address);
         String editname = et_name.getText().toString();
         String editdate = tt_date.getText().toString();
-        String editaddress = address.getText().toString();
+        String editaddress = dq.getText().toString();
         EventBus.getDefault().postSticky(new EditUser(editname,editdate,editaddress));
     }
 
     @Override
     protected void initData() {
+        SharedPreferences s1p = getSharedPreferences("address", MODE_PRIVATE);
+        String s1c = s1p.getString("acacsadasd", "");
+        dq.setText(s1c);
+
         bt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -140,7 +146,7 @@ public class PersonalDataActivity extends BaseActivity implements View.OnClickLi
                 }
             }
         });
-        address.setOnClickListener(this);
+       address.setOnClickListener(this);
         iv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -256,6 +262,7 @@ public class PersonalDataActivity extends BaseActivity implements View.OnClickLi
     @Override
     public void onClick(View view) {
         selectAddress();
+
     }
 
     private void selectAddress() {
@@ -325,8 +332,12 @@ public class PersonalDataActivity extends BaseActivity implements View.OnClickLi
                 String code = citySelected[3];
 
                 //为TextView赋值
-
-                address.setText(province.trim() + city.trim() + district.trim());
+                    String sc=province.trim() + city.trim() + district.trim();
+                SharedPreferences sp = getSharedPreferences("address", MODE_PRIVATE);
+                SharedPreferences.Editor edit = sp.edit();
+                edit.putString("acacsadasd", sc);
+                edit.commit();
+               dq.setText(sc);
 
             }
 
@@ -344,6 +355,7 @@ public class PersonalDataActivity extends BaseActivity implements View.OnClickLi
     public void OnEditUser(EditUserInformation editUserInformation) {
         String msg = editUserInformation.getMsg();
         Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
+
         if (editUserInformation.getCode() == 1) {
             finish();
         }

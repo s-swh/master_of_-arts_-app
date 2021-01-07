@@ -32,13 +32,14 @@ import com.wd.master_of_arts_app.preanter.OrderPreanter;
 import org.greenrobot.eventbus.EventBus;
 
 import java.util.List;
-
+// todo  付款功能
 public class OrderDetails extends BaseActivity implements OrderContreater.IView {
 
 
     private TextView tv_pcty, tv_address, tv_namenumber, tv_detailstitle, tv_allprice, tv_create_time, tv_teacher_name, tv_mark, tv_order_num, tv_create, tv_pay_price, tv_allpricec, ckwl, qpj;
-    private RelativeLayout success, fail, shost, fai2;
+    private RelativeLayout success, fail, shost, fai2,shost1;
     private ImageView details_return;
+    private Button ckwl1;
 
     @Override
     protected int getLayoutId() {
@@ -71,10 +72,26 @@ public class OrderDetails extends BaseActivity implements OrderContreater.IView 
         qpj = findViewById(R.id.qpj);
         details_return = findViewById(R.id.details_return);
         fai2 = findViewById(R.id.fai2);
+        shost1 = findViewById(R.id.shost1);
+        ckwl1 = findViewById(R.id.ckwl1);
     }
 
     @Override
     protected void initData() {
+        ckwl1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                BasePreantert basePreantert = getmPreantert();
+                if(basePreantert instanceof OrderContreater.IPreanter){
+                    SharedPreferences token = getSharedPreferences("token", MODE_PRIVATE);
+                    String token1 = token.getString("token", "");
+                    Intent intent = getIntent();
+                    int idddddd = intent.getIntExtra("idddddd", 0);
+                    EventBus.getDefault().postSticky(new CommentId(idddddd));
+                    ((OrderContreater.IPreanter) basePreantert).OnCancelSuccess(token1,idddddd+"");
+                }
+            }
+        });
         BasePreantert basePreantert = getmPreantert();
         if (basePreantert instanceof OrderContreater.IPreanter) {
             SharedPreferences token = getSharedPreferences("token", MODE_PRIVATE);
@@ -131,20 +148,26 @@ public class OrderDetails extends BaseActivity implements OrderContreater.IView 
             success.setVisibility(View.VISIBLE);
             fail.setVisibility(View.GONE);
             fai2.setVisibility(View.GONE);
+            shost1.setVisibility(View.GONE);
             shost.setVisibility(View.VISIBLE);
         } else if (status == 3) {
             success.setVisibility(View.VISIBLE);
             fail.setVisibility(View.GONE);
             fai2.setVisibility(View.GONE);
+            shost1.setVisibility(View.GONE);
             shost.setVisibility(View.VISIBLE);
         } else if (status == 1) {
             fai2.setVisibility(View.VISIBLE);
             fail.setVisibility(View.GONE);
+            shost.setVisibility(View.GONE);
             success.setVisibility(View.GONE);
+            shost1.setVisibility(View.VISIBLE);
         } else {
             success.setVisibility(View.GONE);
             shost.setVisibility(View.GONE);
-            fail.setVisibility(View.VISIBLE);
+            fail.setVisibility(View.GONE);
+            shost1.setVisibility(View.GONE);
+
         }
         String province = orderMsg.getProvince();
         String logistics = orderMsg.getLogistics();

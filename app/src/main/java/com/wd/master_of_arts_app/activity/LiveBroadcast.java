@@ -86,7 +86,7 @@ public class LiveBroadcast extends BaseActivity implements LiveBoradcastContrean
         IResourceProvider resProvider = new IResourceProvider() {
             @Override
             public boolean supportResourceCenter() {
-                // TODO 根据业务是否支持定制化资料中心进行实现
+
                 return true;
             }
 
@@ -103,13 +103,13 @@ public class LiveBroadcast extends BaseActivity implements LiveBoradcastContrean
 
             @Override
             public void getExtFileName(Object extFileId, IResourceCallback callback) {
-                // TODO 根据业务进行实现
+
 
             }
 
             @Override
             public boolean signQuery(Map query, SignCallback cb) {
-                // TODO 对query map中元素按要求进行签名
+
                 // 签名后异步调用 cb.onSignCompleted(signature)
                 return true;
             }
@@ -124,7 +124,7 @@ public class LiveBroadcast extends BaseActivity implements LiveBoradcastContrean
 
             @Override
             public void onExited(int exitCode) {
-                //TODO 课堂退出通知
+
                 Toast.makeText(LiveBroadcast.this, "退出直播", Toast.LENGTH_SHORT).show();
                 finish();
             }

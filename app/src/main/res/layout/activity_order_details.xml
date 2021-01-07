@@ -88,7 +88,7 @@
     </RelativeLayout>
     <LinearLayout
         android:layout_width="464dp"
-        android:layout_marginTop="-15dp"
+        android:layout_marginTop="-50dp"
         android:background="@drawable/backgroundselete"
         android:layout_gravity="center"
         android:orientation="vertical"
@@ -305,6 +305,31 @@
 
             android:layout_marginTop="@dimen/dp_5"
             android:layout_height="@dimen/dp_100" />
-
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_marginTop="@dimen/dp_15"
+        android:id="@+id/shost1"
+        android:visibility="gone"
+        android:layout_height="match_parent">
+        <Button
+            android:layout_width="@dimen/dp_120"
+            android:text="取消订单"
+            android:textSize="@dimen/sp_12"
+            android:background="@drawable/quxiaodingdan"
+            android:id="@+id/ckwl1"
+            android:layout_marginLeft="94.5dp"
+            android:layout_alignParentLeft="true"
+            android:layout_height="@dimen/dp_25" />
+        <Button
+            android:layout_width="@dimen/dp_120"
+            android:text="立即付款"
+            android:background="@drawable/lijifukuan"
+            android:id="@+id/qpj1"
+            android:layout_marginRight="62.5dp"
+            android:textSize="@dimen/sp_12"
+            android:textColor="#FFFFFF"
+            android:layout_alignParentRight="true"
+            android:layout_height="@dimen/dp_25" />
     </RelativeLayout>
 </LinearLayout>

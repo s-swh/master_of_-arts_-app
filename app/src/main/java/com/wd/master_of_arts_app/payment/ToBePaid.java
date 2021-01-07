@@ -29,7 +29,7 @@ import com.wd.master_of_arts_app.preanter.OrderPreanter;
 import org.greenrobot.eventbus.EventBus;
 
 import java.util.List;
-
+// todo  付款功能
 public class ToBePaid extends BaseActivity implements OrderContreater.IView {
     private TextView tv_pcty,tv_address,tv_namenumber,tv_detailstitle,tv_allprice,tv_create_time,tv_teacher_name,tv_mark,tv_order_num,tv_create,tv_pay_price,tv_allpricec;
     private RelativeLayout success,fail,shost;

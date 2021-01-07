@@ -10,6 +10,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import com.jcodecraeer.xrecyclerview.XRecyclerView;
@@ -47,7 +49,8 @@ public class To_be_paid extends BaseFragment implements OrderContreater.IView {
     private int p;
     private int per = 10;
     private OrderList.DataBean data;
-
+    private RelativeLayout rlt;
+    private LinearLayout llt;
     @Override
     protected int getLayoutId() {
         return R.layout.activity_to_be_paid;
@@ -62,6 +65,8 @@ public class To_be_paid extends BaseFragment implements OrderContreater.IView {
     protected void initView(View inflate) {
         iv = inflate.findViewById(R.id.cloat);
         us = inflate.findViewById(R.id.username);
+        llt = inflate.findViewById(R.id.llt);
+        rlt = inflate.findViewById(R.id.rlt);
         xrv = inflate.findViewById(R.id.xrv);
         iv.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -153,19 +158,25 @@ public class To_be_paid extends BaseFragment implements OrderContreater.IView {
     public void OnOrderList(OrderList orderList) {
         data = orderList.getData();
         List<OrderList.DataBean.ListBean> list = data.getList();
-        orderListAdapter = new OrderListAdapter(getActivity(), list);
-        orderListAdapter.OnClick(new OrderListAdapter.idtet() {
-            @Override
-            public void OnClick(int id) {
-                Intent intent = new Intent(getActivity(), ToBePaid.class);
-                intent.putExtra("idddddd", id);
-                Toast.makeText(getActivity(), id + "", Toast.LENGTH_SHORT).show();
-                startActivity(intent);
-            }
-        });
+        if (list.size() == 0) {
+           llt.setVisibility(View.GONE);
+           rlt.setVisibility(View.VISIBLE);
+        } else {
+            orderListAdapter = new OrderListAdapter(getActivity(), list);
+            orderListAdapter.OnClick(new OrderListAdapter.idtet() {
+                @Override
+                public void OnClick(int id) {
+                    Intent intent = new Intent(getActivity(), ToBePaid.class);
+                    intent.putExtra("idddddd", id);
+                    Toast.makeText(getActivity(), id + "", Toast.LENGTH_SHORT).show();
+                    startActivity(intent);
+                }
+            });
 
-        xrv.setAdapter(orderListAdapter);
-        initeet();
+            xrv.setAdapter(orderListAdapter);
+            initeet();
+        }
+
 
     }
 

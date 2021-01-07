@@ -8,18 +8,10 @@
     android:orientation="vertical"
     tools:context=".activity.Flash_page_Activity">
 <ImageView
-    android:layout_width="548dp"
-    android:src="@mipmap/icon_xlr"
-    android:layout_marginTop="@dimen/dp_59"
+    android:layout_width="match_parent"
+    android:src="@mipmap/icon_qdy"
+
      android:layout_gravity="center_horizontal"
-    android:layout_height="540dp" />
-    <TextView
-        android:layout_width="385dp"
-        android:layout_height="49dp"
-        android:layout_marginTop="@dimen/dp_78"
-        android:text="一所属于孩子的艺术大学"
-        android:textColor="#019A92"
-        android:layout_gravity="center"
-        android:textSize="35sp"
-        />
+    android:layout_height="match_parent" />
+
 </LinearLayout>

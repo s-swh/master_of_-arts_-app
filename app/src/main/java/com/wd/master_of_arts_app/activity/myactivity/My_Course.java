@@ -37,7 +37,7 @@ import butterknife.OnClick;
  */
 public class My_Course extends BaseActivity implements MyCourseContreater.IView {
 
-    private RecyclerView xrv;
+    private XRecyclerView xrv;
 
     @Override
     protected int getLayoutId() {
@@ -65,6 +65,8 @@ public class My_Course extends BaseActivity implements MyCourseContreater.IView 
     }
     @Override
     protected void initData() {
+        xrv.setLoadingMoreEnabled(true);
+        xrv.setPullRefreshEnabled(true);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         xrv.setLayoutManager(linearLayoutManager);
         BasePreantert basePreantert = getmPreantert();
@@ -81,17 +83,23 @@ public class My_Course extends BaseActivity implements MyCourseContreater.IView 
 
         MyCurse.DataBean data = myCurse.getData();
         List<MyCurse.DataBean.ListBean> list = data.getList();
-        MyCourseAdapter myCourseAdapter = new MyCourseAdapter(getApplicationContext(), list);
-        myCourseAdapter.setOnClick(new MyCourseAdapter.OnClick() {
-            @Override
-            public void OnCliack(int id,int order_id) {
-                Intent intent = new Intent(getApplicationContext(), MyCourseDetails.class);
-                intent.putExtra("icqd",id);
-                intent.putExtra("order_id",order_id);
-                startActivity(intent);
-            }
-        });
-        xrv.setAdapter(myCourseAdapter);
+        if(list.size()==0){
+
+
+        }else{
+            MyCourseAdapter myCourseAdapter = new MyCourseAdapter(getApplicationContext(), list);
+            myCourseAdapter.setOnClick(new MyCourseAdapter.OnClick() {
+                @Override
+                public void OnCliack(int id,int order_id) {
+                    Intent intent = new Intent(getApplicationContext(), MyCourseDetails.class);
+                    intent.putExtra("icqd",id);
+                    intent.putExtra("order_id",order_id);
+                    startActivity(intent);
+                }
+            });
+            xrv.setAdapter(myCourseAdapter);
+        }
+
     }
 
     @Override

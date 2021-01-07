@@ -59,7 +59,7 @@ public class MyCourseAdapter extends XRecyclerView.Adapter<XRecyclerView.ViewHol
         ((MyCourseViewHorder) holder).te.setText(time_detail);
         ((MyCourseViewHorder) holder).name.setText(teacher_name);
         String avatar = listBean.getAvatar();
-        Glide.with(context).load(avatar).apply(RequestOptions.bitmapTransform(new RoundedCorners(50))).error(R.mipmap.ic_launcher_round).into(((MyCourseViewHorder)holder).iv);
+        Glide.with(context).load(avatar).apply(RequestOptions.bitmapTransform(new RoundedCorners(500))).error(R.mipmap.ic_launcher_round).into(((MyCourseViewHorder)holder).iv);
         ((MyCourseViewHorder) holder).Viewcoursedetails.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

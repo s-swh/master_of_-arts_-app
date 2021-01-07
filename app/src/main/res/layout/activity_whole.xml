@@ -8,6 +8,13 @@
     android:focusable="true"
     android:focusableInTouchMode="true"
     tools:context=".fragment.myorderfragment.To_be_paid">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:id="@+id/llt"
+        android:layout_height="match_parent">
+
+
     <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -69,4 +76,21 @@
             android:layout_height="match_parent">
         </com.jcodecraeer.xrecyclerview.XRecyclerView>
     </LinearLayout>
+    </LinearLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:id="@+id/rlt"
+        android:visibility="gone"
+        android:layout_height="match_parent">
+        <ImageView
+            android:layout_width="wrap_content"
+            android:src="@mipmap/icon_wushuju"
+            android:id="@+id/ic"
+            android:layout_centerInParent="true"
+            android:layout_centerVertical="true"
+            android:layout_centerHorizontal="true"
+            android:layout_gravity="center"
+            android:layout_height="wrap_content" />
+    </RelativeLayout>
 </LinearLayout>

@@ -52,7 +52,7 @@ public class OrderListAdapter extends XRecyclerView.Adapter<XRecyclerView.ViewHo
         notifyDataSetChanged();
     }
     public void Load( List<OrderList.DataBean.ListBean> beanList){
-      beanList.addAll(this.beanList);
+        this.beanList.addAll(beanList);
         notifyDataSetChanged();
     }
 
@@ -107,7 +107,7 @@ public class OrderListAdapter extends XRecyclerView.Adapter<XRecyclerView.ViewHo
             @Override
             public void onClick(View view) {
                 int id = listBean.getId();
-
+                itdelete.Click(id);
             }
         });
 

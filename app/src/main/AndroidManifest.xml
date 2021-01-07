@@ -60,7 +60,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
-        <activity android:name=".activity.WorkPage"></activity>
+        <activity android:name=".activity.MoreComments"></activity>
+        <activity android:name=".activity.WorkPage" />
         <activity android:name=".activity.LiveBroadcast" />
         <activity android:name=".activity.MyHomeWork" />
         <activity

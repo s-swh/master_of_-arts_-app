@@ -6,210 +6,254 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".activity.CourseDetailsActivity">
-<ScrollView
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content">
-<LinearLayout
-    android:layout_width="match_parent"
-    android:orientation="vertical"
-    android:layout_height="wrap_content">
 
-
-    <RelativeLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:orientation="horizontal"
-        android:clipToPadding="true"
-        android:id="@+id/ret"
         android:layout_height="wrap_content">
 
-
-        <ImageView
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="223dp"
-            android:scaleType="fitXY"
-            android:id="@+id/jcrImage"
-           />
-        <ImageView
-            android:layout_width="9.5dp"
-            android:src="@mipmap/returnbutton"
-            android:id="@+id/itreturn"
-            android:layout_marginTop="@dimen/dp_17"
-            android:layout_marginLeft="@dimen/dp_15"
-            android:layout_height="@dimen/dp_17" />
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:id="@+id/ret"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:clipToPadding="true"
+                android:orientation="horizontal">
 
 
-    </RelativeLayout>
-<RelativeLayout
-    android:layout_width="match_parent"
-    android:orientation="horizontal"
-    android:layout_height="wrap_content">
+                <ImageView
+                    android:id="@+id/jcrImage"
+                    android:layout_width="match_parent"
+                    android:layout_height="223dp"
+                    android:scaleType="fitXY" />
+
+                <ImageView
+                    android:id="@+id/itreturn"
+                    android:layout_width="9.5dp"
+                    android:layout_height="@dimen/dp_17"
+                    android:layout_marginLeft="@dimen/dp_15"
+                    android:layout_marginTop="@dimen/dp_17"
+                    android:src="@mipmap/returnbutton" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
 
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:text="125人购买"
-            android:visibility="gone"
-            android:textColor="#989898"
-            android:textSize="@dimen/sp_13"
-            android:layout_marginRight="12.5dp"
-            android:layout_alignParentRight="true"
-            android:layout_height="wrap_content" />
-</RelativeLayout>
-<LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content">
-    <TextView
-        android:layout_width="wrap_content"
-        android:text="￥199.00"
-        android:textColor="#FF5954"
-        android:id="@+id/present_price"
-        android:textSize="@dimen/sp_12"
-        android:layout_marginLeft="15.5dp"
-        android:layout_height="wrap_content" />
-    <com.wd.master_of_arts_app.customview.DrawLineTextView
-        android:layout_width="wrap_content"
-        android:text="￥269.00"
-        android:textColor="#989898"
-        android:id="@+id/original_price"
-        android:textSize="@dimen/sp_13"
-        android:layout_marginLeft="@dimen/dp_12"
-        android:layout_height="wrap_content" />
-</LinearLayout>
-<LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content">
-    <TextView
-        android:layout_width="wrap_content"
-        android:text="活动"
-        android:layout_marginLeft="15.5dp"
-        android:layout_marginTop="@dimen/dp_25"
-        android:textSize="12.94sp"
-        android:layout_height="wrap_content" />
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:orientation="vertical"
-        android:layout_height="wrap_content">
-        <androidx.recyclerview.widget.RecyclerView
-            android:layout_width="match_parent"
-            android:id="@+id/rv_service1"
-            android:layout_height="wrap_content">
-        </androidx.recyclerview.widget.RecyclerView>
-    </LinearLayout>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="12.5dp"
+                    android:text="125人购买"
+                    android:textColor="#989898"
+                    android:textSize="@dimen/sp_13"
+                    android:visibility="gone" />
+            </RelativeLayout>
 
-</LinearLayout>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <TextView
-            android:layout_width="wrap_content"
-            android:text="服务"
-            android:layout_marginLeft="15.5dp"
-            android:layout_marginTop="@dimen/dp_25"
-            android:textSize="12.94sp"
-            android:layout_height="wrap_content" />
-        <androidx.recyclerview.widget.RecyclerView
-            android:layout_width="match_parent"
-            android:id="@+id/rv_service"
-            android:layout_height="wrap_content">
-        </androidx.recyclerview.widget.RecyclerView>
-    </LinearLayout>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <TextView
-            android:layout_width="wrap_content"
-            android:text="选择课程"
-            android:textColor="#999999"
-            android:textSize="@dimen/sp_14"
-            android:layout_marginLeft="@dimen/dp_15"
-            android:layout_marginTop="@dimen/dp_17"
-            android:layout_height="wrap_content" />
-        <TextView
-            android:layout_width="wrap_content"
-            android:text="每周一、二上课"
-            android:textSize="@dimen/sp_14"
-            android:textColor="#00A8A0"
-            android:id="@+id/attend1"
-            android:layout_marginLeft="@dimen/dp_15"
-            android:layout_marginTop="@dimen/dp_17"
-            android:layout_height="wrap_content" />
-    </LinearLayout>
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <TextView
-            android:layout_width="wrap_content"
-            android:text="授课老师"
-            android:layout_marginLeft="@dimen/dp_15"
-            android:textColor="#000000"
-            android:textSize="@dimen/sp_14"
-            android:layout_marginTop="@dimen/dp_15"
-            android:layout_height="wrap_content" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
-    </RelativeLayout>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-<ImageView
-    android:layout_width="33.5dp"
-    android:src="@mipmap/ic_launcher"
-    android:id="@+id/ic"
-    android:layout_marginLeft="15.5dp"
-    android:layout_marginTop="@dimen/dp_10"
-    android:layout_height="32.95dp" />
-        <TextView
-            android:layout_width="wrap_content"
-            android:text="大老师"
-            android:layout_marginLeft="8.5dp"
-            android:textColor="#333333"
-            android:id="@+id/ic_name"
-            android:textSize="@dimen/sp_13"
-            android:layout_marginTop="@dimen/dp_15"
-            android:layout_height="wrap_content" />
-    </LinearLayout>
-    <TextView
-        android:id="@+id/itle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_marginLeft="@dimen/dp_15"
-        android:layout_marginBottom="0dp"
-        android:text="【暑期课】"
-        android:textSize="@dimen/sp_15" />
-    <TextView
-        android:layout_width="wrap_content"
-        android:textSize="@dimen/sp_16"
-        android:text="学友评价"
+                <TextView
+                    android:id="@+id/present_price"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15.5dp"
+                    android:text="￥199.00"
+                    android:textColor="#FF5954"
+                    android:textSize="@dimen/sp_12" />
 
-        android:textColor="#000000"
-        android:layout_marginLeft="15dp"
-        android:layout_marginTop="@dimen/dp_25"
-        android:layout_height="wrap_content" />
-    <androidx.recyclerview.widget.RecyclerView
-        android:layout_width="match_parent"
-        android:id="@+id/rec_rv"
-        android:layout_height="wrap_content">
-    </androidx.recyclerview.widget.RecyclerView>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-            <Button
-                android:layout_width="@dimen/dp_192"
-                android:text="立即报名"
+                <com.wd.master_of_arts_app.customview.DrawLineTextView
+                    android:id="@+id/original_price"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/dp_12"
+                    android:text="￥269.00"
+                    android:textColor="#989898"
+                    android:textSize="@dimen/sp_13" />
+            </LinearLayout>
 
-                android:background="@drawable/upnow"
-                android:textSize="@dimen/sp_12"
-                android:textColor="#ffffff"
-                android:id="@+id/Signupnow"
-                android:layout_alignParentRight="true"
-                android:layout_height="wrap_content" />
-        </RelativeLayout>
-    </LinearLayout>
-</LinearLayout>
-</ScrollView>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15.5dp"
+                    android:layout_marginTop="@dimen/dp_25"
+                    android:text="活动"
+                    android:textSize="12.94sp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/rv_service1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"></androidx.recyclerview.widget.RecyclerView>
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15.5dp"
+                    android:layout_marginTop="@dimen/dp_25"
+                    android:text="服务"
+                    android:textSize="12.94sp" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rv_service"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"></androidx.recyclerview.widget.RecyclerView>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/dp_15"
+                    android:layout_marginTop="@dimen/dp_17"
+                    android:text="选择课程"
+                    android:textColor="#999999"
+                    android:textSize="@dimen/sp_14" />
+
+                <TextView
+                    android:id="@+id/attend1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/dp_15"
+                    android:layout_marginTop="@dimen/dp_17"
+                    android:text="每周一、二上课"
+                    android:textColor="#00A8A0"
+                    android:textSize="@dimen/sp_14" />
+            </LinearLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/dp_15"
+                    android:layout_marginTop="@dimen/dp_15"
+                    android:text="授课老师"
+                    android:textColor="#000000"
+                    android:textSize="@dimen/sp_14" />
+
+            </RelativeLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_5">
+
+                <ImageView
+                    android:id="@+id/ic"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_marginLeft="15.5dp"
+                    android:src="@mipmap/ic_launcher" />
+
+                <TextView
+                    android:id="@+id/ic_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="8.5dp"
+                    android:text="大老师"
+                    android:textColor="#333333"
+                    android:textSize="@dimen/sp_13" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/itle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_marginLeft="@dimen/dp_15"
+                android:layout_marginBottom="0dp"
+                android:text="【暑期课】"
+                android:textSize="@dimen/sp_15"
+                android:visibility="gone" />
+
+            <WebView
+                android:id="@+id/web"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="@dimen/dp_5"
+                tools:ignore="WebViewLayout"></WebView>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
+
+                    android:layout_marginTop="@dimen/dp_25"
+                    android:text="学友评价"
+                    android:textColor="#000000"
+                    android:textSize="@dimen/sp_16" />
+
+                <TextView
+                    android:id="@+id/gd_pj"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginTop="@dimen/dp_25"
+                    android:layout_marginRight="@dimen/dp_15"
+                    android:text="更多"
+                    android:textSize="@dimen/sp_16" />
+            </RelativeLayout>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rec_rv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"></androidx.recyclerview.widget.RecyclerView>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <Button
+                        android:id="@+id/Signupnow"
+                        android:layout_width="@dimen/dp_192"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:background="@drawable/upnow"
+                        android:text="立即报名"
+                        android:textColor="#ffffff"
+                        android:textSize="@dimen/sp_12" />
+                </RelativeLayout>
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
 
 
 </LinearLayout>
