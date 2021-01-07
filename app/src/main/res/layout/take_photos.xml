@@ -20,13 +20,6 @@
             android:src="@mipmap/icon_pzdp" />
     </LinearLayout>
 
-
-    <RelativeLayout
-        android:id="@+id/lyt"
-        android:visibility="gone"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -40,8 +33,23 @@
             android:textColor="#434343"
             android:layout_height="wrap_content" />
     </RelativeLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_5"/>
+    <RelativeLayout
+        android:id="@+id/lyt"
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_5"/>
+
         <com.jcodecraeer.xrecyclerview.XRecyclerView
             android:id="@+id/works_rv"
+
             android:layout_width="match_parent"
             android:layout_height="match_parent"
            />

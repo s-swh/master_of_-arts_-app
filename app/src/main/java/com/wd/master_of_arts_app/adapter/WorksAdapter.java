@@ -52,7 +52,8 @@ public class WorksAdapter extends XRecyclerView.Adapter<XRecyclerView.ViewHolder
         String name = listBean.getName();
         String create_time = listBean.getCreate_time();
         ((WorksViewHorder)holder).tt.setText(name);
-        ((WorksViewHorder) holder).tv.setText(create_time);
+        String substring = create_time.substring(5, 10);
+        ((WorksViewHorder) holder).tv.setText(substring);
         String imglist = listBean.getImglist();
         String is_comment = listBean.getIs_comment();
         if(is_comment.equals("Y")){

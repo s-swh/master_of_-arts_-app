@@ -1,105 +1,117 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
     android:id="@+id/ltv"
-    android:layout_height="wrap_content">
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:background="@drawable/coure"
-        android:orientation="vertical"
+        android:layout_height="wrap_content"
         android:layout_marginLeft="1dp"
-        android:layout_height="wrap_content">
+        android:background="@drawable/coure"
+        android:orientation="vertical">
+
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
+
             <TextView
-                android:layout_width="wrap_content"
-                android:text="亲亲幼子班"
                 android:id="@+id/text_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/dp_45"
                 android:layout_marginTop="@dimen/dp_10"
-                android:layout_height="wrap_content" />
+                android:text="亲亲幼子班" />
+
             <TextView
-                android:layout_width="wrap_content"
-                android:text="48课时"
                 android:id="@+id/classhour"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/dp_5"
                 android:layout_marginTop="@dimen/dp_10"
-                android:textColor="#019A92"
-                android:layout_height="wrap_content" />
+                android:text="48课时"
+                android:textColor="#019A92" />
         </LinearLayout>
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
-        <TextView
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/teacher"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/dp_45"
+                android:layout_marginTop="@dimen/dp_5"
+                android:scrollbarSize="@dimen/sp_12"
+                android:text="任课老师：路老师"
+                android:textColor="#434343"
+                android:textSize="16sp" />
+        </LinearLayout>
+
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="任课老师：路老师"
-            android:id="@+id/teacher"
-            android:layout_marginTop="@dimen/dp_5"
-            android:scrollbarSize="@dimen/sp_12"
             android:layout_marginLeft="@dimen/dp_45"
-            android:textColor="#434343"
-            android:textSize="16sp"
-            />
-    </LinearLayout>
+            android:layout_marginTop="@dimen/dp_20">
 
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_marginTop="@dimen/dp_20"
-            android:layout_marginLeft="@dimen/dp_45"
-            android:layout_height="wrap_content">
-        <LinearLayout
-            android:layout_width="@dimen/dp_50"
-
-            android:background="@drawable/couremoney"
-            android:layout_height="@dimen/dp_10">
-            <TextView
-                android:layout_width="match_parent"
-                android:text="500￥"
-                android:id="@+id/moneyone"
-                android:gravity="center_horizontal"
-                android:scrollbarSize="@dimen/sp_14"
-                android:layout_height="wrap_content" />
-        </LinearLayout>
             <LinearLayout
                 android:layout_width="@dimen/dp_50"
+
+                android:layout_height="@dimen/dp_10"
+                android:background="@drawable/couremoney">
+
+                <TextView
+                    android:id="@+id/moneyone"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:scrollbarSize="@dimen/sp_14"
+                    android:text="500￥" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="@dimen/dp_50"
+                android:layout_height="@dimen/dp_10"
                 android:layout_marginLeft="@dimen/dp_5"
-                android:background="@drawable/couremoney"
-                android:layout_height="@dimen/dp_10">
-               <com.wd.master_of_arts_app.customview.DrawLineTextView
-                   android:layout_width="match_parent"
-                   android:text="500￥"
-                   android:id="@+id/moneytow"
-                   android:gravity="center_horizontal"
-                   android:layout_height="wrap_content" />
+                android:background="@drawable/couremoney">
+
+                <com.wd.master_of_arts_app.customview.DrawLineTextView
+                    android:id="@+id/moneytow"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:text="500￥" />
             </LinearLayout>
 
         </LinearLayout>
+
         <TextView
-            android:layout_width="wrap_content"
-            android:text="每周二、周三、周四09:00上课"
-            android:layout_marginTop="@dimen/dp_10"
             android:id="@+id/attend"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/dp_45"
-            android:layout_height="wrap_content" />
+            android:layout_marginTop="@dimen/dp_10"
+            android:text="每周二、周三、周四09:00上课" />
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_marginTop="-120dp"
+            android:layout_marginTop="-145dp"
             android:layout_height="wrap_content">
             <ImageView
-                android:layout_width="@dimen/dp_50"
+                android:layout_width="@dimen/dp_84"
                 android:id="@+id/imv"
-                android:layout_marginRight="@dimen/dp_25"
+                android:scaleType="centerCrop"
                 android:src="@drawable/ic_launcher_background"
+                android:layout_marginRight="30dp"
                 android:layout_alignParentRight="true"
-                android:layout_height="@dimen/dp_50" />
+                android:layout_height="@dimen/dp_84" />
         </RelativeLayout>
     </LinearLayout>
-<View
-    android:layout_width="match_parent"
-    android:background="#fff"
-    android:layout_height="@dimen/dp_5"/>
+
+    <View
+        android:layout_width="match_parent"
+
+        android:layout_height="@dimen/dp_5" />
 
 </LinearLayout>

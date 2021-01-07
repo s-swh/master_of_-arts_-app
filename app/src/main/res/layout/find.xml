@@ -25,7 +25,8 @@
                 android:layout_height="wrap_content" />
             <TextView
                 android:layout_width="wrap_content"
-                android:text="换一换"
+                android:text="更多"
+
                 android:layout_marginTop="@dimen/dp_5"
                 android:layout_marginRight="@dimen/dp_15"
                 android:layout_alignParentRight="true"
@@ -48,7 +49,7 @@
             android:layout_height="wrap_content">
             <TextView
                 android:layout_width="wrap_content"
-                android:text="公益课程"
+                android:text="录播课程"
                 android:layout_marginTop="@dimen/dp_15"
                 android:textSize="@dimen/dp_15"
                 android:layout_marginLeft="@dimen/dp_29"
@@ -78,7 +79,7 @@
             android:layout_height="wrap_content">
             <TextView
                 android:layout_width="wrap_content"
-                android:text="免费课程"
+                android:text="公益课程"
                 android:layout_marginTop="@dimen/dp_15"
                 android:textSize="@dimen/dp_15"
                 android:layout_marginLeft="@dimen/dp_29"

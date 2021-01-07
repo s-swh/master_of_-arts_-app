@@ -11,6 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.resource.bitmap.CircleCrop;
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 import com.bumptech.glide.request.RequestOptions;
 import com.jcodecraeer.xrecyclerview.XRecyclerView;
@@ -66,7 +67,7 @@ public class CourseAdapter  extends XRecyclerView.Adapter<XRecyclerView.ViewHold
         ((CourseViewHorder) holder).teacher.setText("任课老师："+teacher_name);//任课老师
         ((CourseViewHorder) holder).classhour.setText("课时："+unit_count);//课时
         ((CourseViewHorder) holder).attend.setText(time_detail+"");
-        Glide.with(context).load(teacher_avatar).apply(RequestOptions.bitmapTransform(new RoundedCorners(500))).error(R.mipmap.ic_launcher_round).into(((CourseViewHorder)holder).vv);
+        Glide.with(context).load(teacher_avatar).apply(RequestOptions.bitmapTransform(new CircleCrop())).error(R.mipmap.ic_launcher_round).into(((CourseViewHorder)holder).vv);
         ((CourseViewHorder)holder).ltv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

@@ -27,6 +27,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.resource.bitmap.CircleCrop;
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 import com.bumptech.glide.request.RequestOptions;
 import com.wd.master_of_arts_app.R;
@@ -58,7 +59,7 @@ public class CourseDetailsActivity extends BaseActivity implements CourseContrea
 
     private TextView tv, itle, present_price, original_price, attend, ic_name, gd_pj;
     private ImageView img;
-    private ImageView ic;
+    private ImageView ic,details_iv;
     private Button Signupnow;
     private RecyclerView rv_service, rv_service1, rcv;
     private WebView web;
@@ -90,6 +91,7 @@ public class CourseDetailsActivity extends BaseActivity implements CourseContrea
         Signupnow = findViewById(R.id.Signupnow);
         web = findViewById(R.id.web);
         gd_pj = findViewById(R.id.gd_pj);
+        details_iv = findViewById(R.id.details_iv);
 
     }
 
@@ -100,7 +102,12 @@ public class CourseDetailsActivity extends BaseActivity implements CourseContrea
 
     @Override
     protected void initData() {
-
+        details_iv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
         Signupnow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -283,7 +290,7 @@ public class CourseDetailsActivity extends BaseActivity implements CourseContrea
 
 
         attend.setText(data.getTime_detail());
-        Glide.with(this).load(data.getTeacher_avatar()).apply(RequestOptions.bitmapTransform(new RoundedCorners(100))).into(ic);
+        Glide.with(this).load(data.getTeacher_avatar()).apply(RequestOptions.bitmapTransform(new CircleCrop())).into(ic);
         ic_name.setText(data.getTeacher_name());
 
         List<CourseDetails.DataBean.CommentListBean> comment_list = data.getComment_list();

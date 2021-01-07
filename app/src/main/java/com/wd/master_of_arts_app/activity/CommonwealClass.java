@@ -9,6 +9,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 
 import com.wd.master_of_arts_app.R;
@@ -61,9 +62,8 @@ public class CommonwealClass extends BaseActivity implements ArticleListContreat
         });
         BasePreantert basePreantert = getmPreantert();
         if (basePreantert instanceof ArticleListContreater.IPreanter) {
-            Intent intent = getIntent();
-            int catid = intent.getIntExtra("catid", 0);
-            ((ArticleListContreater.IPreanter) basePreantert).OnCommonSuccess(catid, 1, 10);
+
+            ((ArticleListContreater.IPreanter) basePreantert).OnCommonSuccess(4, 1, 10);
         }
         GridLayoutManager gridLayoutManager1 = new GridLayoutManager(getApplicationContext(), 2);
 

@@ -184,6 +184,6 @@
         android:id="@+id/but_add"
         android:textSize="@dimen/sp_18"
         android:layout_marginTop="@dimen/dp_50"
-        android:background="@drawable/fillet4"
+        android:background="@drawable/shouhuodizhi"
         android:layout_height="@dimen/dp_50" />
 </LinearLayout>

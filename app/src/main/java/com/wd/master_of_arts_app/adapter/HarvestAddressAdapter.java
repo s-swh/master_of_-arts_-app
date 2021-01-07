@@ -3,6 +3,7 @@ package com.wd.master_of_arts_app.adapter;
 import android.content.Context;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -90,7 +91,7 @@ public class HarvestAddressAdapter extends RecyclerView.Adapter<RecyclerView.Vie
     class HarvestViewHorder extends RecyclerView.ViewHolder {
 
         private final TextView tv_name,tv_phone,tv_acce;
-        private final TextView lt;
+        private final ImageView lt;
         private final LinearLayout add;
 
         public HarvestViewHorder(@NonNull View itemView) {

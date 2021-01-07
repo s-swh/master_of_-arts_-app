@@ -46,10 +46,10 @@ import butterknife.OnClick;
  * @description: 选课模块
  * @date :2020/12/3 11:04
  */
-public class Task_page extends BaseFragment implements   CourseContreater.IView {
+public class Task_page extends BaseFragment implements CourseContreater.IView {
 
     private PopupWindow popupBigPhoto;
-    private TextView lt1,lt2,lt3,lt4,lt5,lt6;
+    private TextView lt1, lt2, lt3, lt4, lt5, lt6;
     private TextView tv;
     private XRecyclerView rv;
     private CourseAdapter courseAdapter;
@@ -58,8 +58,8 @@ public class Task_page extends BaseFragment implements   CourseContreater.IView 
     private int id;
     private int start_age;
     private String name1;
-    int i=1;
-    int j=10;
+    int i = 1;
+    int j = 10;
     private RecyclerView agerv;
     private AgeInterfaceAdapter ageInterfaceAdapter;
     private EditText et_name;
@@ -77,6 +77,7 @@ public class Task_page extends BaseFragment implements   CourseContreater.IView 
             rv.setLayoutManager(linearLayoutManager);
         }
     };
+
     @Override
     protected int getLayoutId() {
         return R.layout.task;
@@ -108,7 +109,7 @@ public class Task_page extends BaseFragment implements   CourseContreater.IView 
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
 
                 handler.removeMessages(0);
-                handler.sendEmptyMessageDelayed(0,1000);
+                handler.sendEmptyMessageDelayed(0, 1000);
             }
 
             @Override
@@ -120,8 +121,8 @@ public class Task_page extends BaseFragment implements   CourseContreater.IView 
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
         rv.setLayoutManager(linearLayoutManager);
         BasePreantert basePreantert = getmPreanter();
-        if(basePreantert instanceof CourseContreater.IPreanter){
-            ((CourseContreater.IPreanter) basePreantert).OnCourseSuccess("","","","",i,j);
+        if (basePreantert instanceof CourseContreater.IPreanter) {
+            ((CourseContreater.IPreanter) basePreantert).OnCourseSuccess("", "", "", "", i, j);
         }
         rv.setLoadingListener(new XRecyclerView.LoadingListener() {
             @Override
@@ -137,41 +138,43 @@ public class Task_page extends BaseFragment implements   CourseContreater.IView 
             }
         });
     }
-    //弹框
-   @OnClick(R.id.vve)
-    public void popwindow(){
-       View view = getLayoutInflater().inflate(R.layout.preview, null);
-       agerv = view.findViewById(R.id.age_rv);
-       LinearLayout deim = view.findViewById(R.id.deim);
-       LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
-       agerv.setLayoutManager(linearLayoutManager);
-       if (popupBigPhoto == null) {
-           popupBigPhoto = new PopupWindow(view, ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT, true);
-           popupBigPhoto.setOutsideTouchable(true);
-           popupBigPhoto.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
 
-       }
-       if (popupBigPhoto.isShowing()) {
-           popupBigPhoto.dismiss();
-       } else {
-           popupBigPhoto.showAtLocation(view, Gravity.TOP, 0, 0);
-       }
-       // 设置PopupWindow是否能响应外部点击事件
-       popupBigPhoto.setOutsideTouchable(true);
-// 设置PopupWindow是否能响应点击事件
-       popupBigPhoto.setTouchable(true);
-    deim.setOnClickListener(new View.OnClickListener() {
-        @Override
-        public void onClick(View view) {
-            popupBigPhoto.dismiss();
+    //弹框
+    @OnClick(R.id.vve)
+    public void popwindow() {
+        View view = getLayoutInflater().inflate(R.layout.preview, null);
+        agerv = view.findViewById(R.id.age_rv);
+        LinearLayout deim = view.findViewById(R.id.deim);
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
+        agerv.setLayoutManager(linearLayoutManager);
+        if (popupBigPhoto == null) {
+            popupBigPhoto = new PopupWindow(view, ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT, true);
+            popupBigPhoto.setOutsideTouchable(true);
+            popupBigPhoto.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+
         }
-    });
-       BasePreantert basePreantert = getmPreanter();
-       if(basePreantert instanceof CourseContreater.IPreanter){
-           ((CourseContreater.IPreanter) basePreantert).OnAgeSuccess();
-       }
+        if (popupBigPhoto.isShowing()) {
+            popupBigPhoto.dismiss();
+        } else {
+            popupBigPhoto.showAtLocation(view, Gravity.TOP, 0, 0);
+        }
+        // 设置PopupWindow是否能响应外部点击事件
+        popupBigPhoto.setOutsideTouchable(true);
+// 设置PopupWindow是否能响应点击事件
+        popupBigPhoto.setTouchable(true);
+        deim.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                popupBigPhoto.dismiss();
+            }
+        });
+        BasePreantert basePreantert = getmPreanter();
+        if (basePreantert instanceof CourseContreater.IPreanter) {
+            ((CourseContreater.IPreanter) basePreantert).OnAgeSuccess();
+        }
 
     }
+
     //课程列表
     @Override
     public void OnCourse(CourseList courseList) {
@@ -186,35 +189,37 @@ public class Task_page extends BaseFragment implements   CourseContreater.IView 
             public void onclick(int id) {
 
                 Intent intent = new Intent(getActivity(), CourseDetailsActivity.class);
-                intent.putExtra("id",id);
-                Toast.makeText(getActivity(), id+"", Toast.LENGTH_SHORT).show();
+                intent.putExtra("id", id);
+                Toast.makeText(getActivity(), id + "", Toast.LENGTH_SHORT).show();
                 startActivity(intent);
             }
         });
     }
+
     //年龄
     @Override
     public void onAgeInterface(AgeInterface ageInterface) {
         AgeInterface.DataBean data = ageInterface.getData();
         List<AgeInterface.DataBean.ListBean> list = data.getList();
-        ageInterfaceAdapter = new AgeInterfaceAdapter(getActivity(),list);
+        ageInterfaceAdapter = new AgeInterfaceAdapter(getActivity(), list);
         agerv.setAdapter(ageInterfaceAdapter);
         ageInterfaceAdapter.Coallack(new AgeInterfaceAdapter.Coallack() {
             @Override
             public void setOnClick(AgeInterface.DataBean.ListBean listBean) {
                 String short_name = listBean.getShort_name();
-                tv.setText(short_name+"岁");
+                tv.setText(short_name + "岁");
                 id = listBean.getId();
                 start_age = listBean.getStart_age();
                 name1 = listBean.getName();
                 popupBigPhoto.dismiss();
                 BasePreantert basePreantert = getmPreanter();
-                if(basePreantert instanceof CourseContreater.IPreanter){
-                    ((CourseContreater.IPreanter) basePreantert).OnCourseSuccess(id+"","","",""+start_age,i,j);
+                if (basePreantert instanceof CourseContreater.IPreanter) {
+                    ((CourseContreater.IPreanter) basePreantert).OnCourseSuccess(id + "", "", "", "" + start_age, i, j);
                 }
             }
         });
     }
+
     //课程详情
     @Override
     public void OnCourse(CourseDetails courseDetails) {

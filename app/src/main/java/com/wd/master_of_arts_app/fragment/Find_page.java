@@ -14,6 +14,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.wd.master_of_arts_app.R;
 import com.wd.master_of_arts_app.activity.CommonwealClass;
 import com.wd.master_of_arts_app.activity.FindHref;
+import com.wd.master_of_arts_app.activity.GiveActivity;
+import com.wd.master_of_arts_app.activity.MoreImgActivity;
 import com.wd.master_of_arts_app.adapter.FindAdapter;
 import com.wd.master_of_arts_app.adapter.MyVideoAdapter;
 import com.wd.master_of_arts_app.adapter.SelectedAdapter;
@@ -56,10 +58,27 @@ public class Find_page extends BaseFragment implements ArticleListContreater.IVi
         find_gd = view.findViewById(R.id.find_gd);
         find_mfgd = view.findViewById(R.id.find_mfgd);
         find_hyh = view.findViewById(R.id.find_hyh);
+
     }
 
     @Override
     protected void initData() {
+        find_gd.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity(), GiveActivity.class);
+
+                startActivity(intent);
+            }
+        });
+        find_hyh.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity(), MoreImgActivity.class);
+
+                startActivity(intent);
+            }
+        });
         BasePreantert basePreantert = getmPreanter();
         if (basePreantert instanceof ArticleListContreater.IPreanter) {
             SharedPreferences token = App.getContext().getSharedPreferences("token", Context.MODE_PRIVATE);
@@ -73,22 +92,15 @@ public class Find_page extends BaseFragment implements ArticleListContreater.IVi
         rv_gre_1.setLayoutManager(gridLayoutManager1);
         GridLayoutManager gridLayoutManager2 = new GridLayoutManager(getActivity(), 2);
         rv_gre_2.setLayoutManager(gridLayoutManager2);
-        find_gd.setOnClickListener(new View.OnClickListener() {
+        find_mfgd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getActivity(), CommonwealClass.class);
-                intent.putExtra("catid", cat_id);
+
                 startActivity(intent);
             }
         });
-        rv_gre_2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getActivity(), CommonwealClass.class);
-                intent.putExtra("catid", cat_id);
-                startActivity(intent);
-            }
-        });
+
     }
 
 
