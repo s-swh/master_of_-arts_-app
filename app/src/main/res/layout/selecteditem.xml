@@ -6,13 +6,13 @@
         android:layout_width="@dimen/dp_109"
         android:id="@+id/jc"
         android:src="@mipmap/ic_launcher"
-        android:scaleType="fitXY"
+        android:scaleType="centerCrop"
         android:layout_gravity="center"
         android:layout_height="@dimen/dp_109">
     </ImageView>
     <TextView
         android:layout_width="wrap_content"
-        android:layout_marginTop="@dimen/dp_10"
+        android:layout_marginTop="@dimen/dp_5"
         android:layout_height="wrap_content"
         android:layout_marginLeft="@dimen/dp_11"
         android:text="【免费】色彩入门课"

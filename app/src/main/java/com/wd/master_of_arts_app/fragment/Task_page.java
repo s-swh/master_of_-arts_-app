@@ -122,7 +122,7 @@ public class Task_page extends BaseFragment implements CourseContreater.IView {
         rv.setLayoutManager(linearLayoutManager);
         BasePreantert basePreantert = getmPreanter();
         if (basePreantert instanceof CourseContreater.IPreanter) {
-            ((CourseContreater.IPreanter) basePreantert).OnCourseSuccess("", "", "", "", i, j);
+            ((CourseContreater.IPreanter) basePreantert).OnCourseSuccess("", "", "", "" + id, i, j);
         }
         rv.setLoadingListener(new XRecyclerView.LoadingListener() {
             @Override
@@ -214,7 +214,7 @@ public class Task_page extends BaseFragment implements CourseContreater.IView {
                 popupBigPhoto.dismiss();
                 BasePreantert basePreantert = getmPreanter();
                 if (basePreantert instanceof CourseContreater.IPreanter) {
-                    ((CourseContreater.IPreanter) basePreantert).OnCourseSuccess(id + "", "", "", "" + start_age, i, j);
+                    ((CourseContreater.IPreanter) basePreantert).OnCourseSuccess("", "", "", "" + id, i, j);
                 }
             }
         });

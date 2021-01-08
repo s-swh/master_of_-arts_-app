@@ -107,33 +107,36 @@ public class Find_page extends BaseFragment implements ArticleListContreater.IVi
     @Override
     public void OnArticle(ArticleList articleList) {
         ArticleList.DataBean data = articleList.getData();
+        if(data.getMy_video().size()==0){
+            find_gd.setVisibility(View.GONE);
+        }
 
-        cat_id = data.getFree_video().get(0).getCat_id();
-        List<ArticleList.DataBean.FreeVideoBean> free_video = data.getFree_video();
-        FindAdapter findAdapter = new FindAdapter(getActivity(), free_video);
-        findAdapter.OnClick(new FindAdapter.OnClickHref() {
-            @Override
-            public void OnClick(String href) {
-                Intent intent = new Intent(getActivity(), FindHref.class);
-                intent.putExtra("href", href);
-                startActivity(intent);
-            }
-        });
-        rec.setAdapter(findAdapter);
-        List<ArticleList.DataBean.MyVideoBean> my_video = data.getMy_video();
-        MyVideoAdapter myVideoAdapter = new MyVideoAdapter(getActivity(), my_video);
-        myVideoAdapter.OnMyClicked(new MyVideoAdapter.OnMyClick() {
-            @Override
-            public void Myclick(String href) {
-                Intent intent = new Intent(getActivity(), FindHref.class);
-                intent.putExtra("href", href);
-                startActivity(intent);
-            }
-        });
-        rv_gre_2.setAdapter(myVideoAdapter);
-        List<ArticleList.DataBean.SelectedWorksBean> selected_works = data.getSelected_works();
-        SelectedAdapter selectedAdapter = new SelectedAdapter(getActivity(), selected_works);
-        rv_gre_1.setAdapter(selectedAdapter);
+            cat_id = data.getFree_video().get(0).getCat_id();
+            List<ArticleList.DataBean.FreeVideoBean> free_video = data.getFree_video();
+            FindAdapter findAdapter = new FindAdapter(getActivity(), free_video);
+            findAdapter.OnClick(new FindAdapter.OnClickHref() {
+                @Override
+                public void OnClick(String href) {
+                    Intent intent = new Intent(getActivity(), FindHref.class);
+                    intent.putExtra("href", href);
+                    startActivity(intent);
+                }
+            });
+            rec.setAdapter(findAdapter);
+            List<ArticleList.DataBean.MyVideoBean> my_video = data.getMy_video();
+            MyVideoAdapter myVideoAdapter = new MyVideoAdapter(getActivity(), my_video);
+            myVideoAdapter.OnMyClicked(new MyVideoAdapter.OnMyClick() {
+                @Override
+                public void Myclick(String href) {
+                    Intent intent = new Intent(getActivity(), FindHref.class);
+                    intent.putExtra("href", href);
+                    startActivity(intent);
+                }
+            });
+            rv_gre_2.setAdapter(myVideoAdapter);
+            List<ArticleList.DataBean.SelectedWorksBean> selected_works = data.getSelected_works();
+            SelectedAdapter selectedAdapter = new SelectedAdapter(getActivity(), selected_works);
+            rv_gre_1.setAdapter(selectedAdapter);
 
 
     }

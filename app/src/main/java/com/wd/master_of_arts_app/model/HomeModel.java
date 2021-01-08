@@ -1,5 +1,7 @@
 package com.wd.master_of_arts_app.model;
 
+import android.util.Log;
+
 import com.wd.master_of_arts_app.bean.Beanner;
 import com.wd.master_of_arts_app.bean.HomePage;
 import com.wd.master_of_arts_app.contreater.HomePagerCrete;
@@ -67,7 +69,8 @@ public class HomeModel implements HomePagerCrete.IModel {
 
                     @Override
                     public void onError(Throwable e) {
-
+                        String message = e.getMessage();
+                        Log.i("Homexxx",message);
                     }
 
                     @Override

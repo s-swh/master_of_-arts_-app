@@ -3,12 +3,14 @@
     android:id="@+id/ltv"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:background="#FFFFFF"
     android:orientation="vertical">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="1dp"
+        android:layout_marginLeft="@dimen/dp_5"
+        android:layout_marginRight="@dimen/dp_5"
         android:background="@drawable/coure"
         android:orientation="vertical">
 
@@ -20,15 +22,18 @@
                 android:id="@+id/text_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textSize="@dimen/sp_12"
                 android:layout_marginLeft="@dimen/dp_45"
                 android:layout_marginTop="@dimen/dp_10"
+                android:textColor="#333333"
                 android:text="亲亲幼子班" />
 
             <TextView
                 android:id="@+id/classhour"
+                android:textSize="@dimen/sp_12"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/dp_5"
+                android:layout_marginLeft="@dimen/dp_28"
                 android:layout_marginTop="@dimen/dp_10"
                 android:text="48课时"
                 android:textColor="#019A92" />
@@ -37,16 +42,15 @@
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
-
             <TextView
                 android:id="@+id/teacher"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/dp_45"
-                android:layout_marginTop="@dimen/dp_5"
+                android:layout_marginTop="@dimen/dp_8"
                 android:scrollbarSize="@dimen/sp_12"
                 android:text="任课老师：路老师"
-                android:textColor="#434343"
+                android:textColor="#999999"
                 android:textSize="16sp" />
         </LinearLayout>
 
@@ -54,34 +58,36 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/dp_45"
-            android:layout_marginTop="@dimen/dp_20">
+            android:layout_marginTop="@dimen/dp_7">
 
             <LinearLayout
-                android:layout_width="@dimen/dp_50"
-
-                android:layout_height="@dimen/dp_10"
+                android:layout_width="@dimen/dp_45"
+                android:layout_height="@dimen/dp_16"
                 android:background="@drawable/couremoney">
-
                 <TextView
                     android:id="@+id/moneyone"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
                     android:gravity="center_horizontal"
-                    android:scrollbarSize="@dimen/sp_14"
+                    android:textSize="12sp"
+                    android:textColor="#FF4747"
                     android:text="500￥" />
             </LinearLayout>
 
             <LinearLayout
-                android:layout_width="@dimen/dp_50"
-                android:layout_height="@dimen/dp_10"
-                android:layout_marginLeft="@dimen/dp_5"
-                android:background="@drawable/couremoney">
+                android:layout_width="@dimen/dp_45"
+                android:layout_marginLeft="5dp"
+                android:layout_height="@dimen/dp_16"
 
+                android:background="@drawable/couremoney">
                 <com.wd.master_of_arts_app.customview.DrawLineTextView
                     android:id="@+id/moneytow"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center_horizontal"
+                    android:layout_gravity="center_vertical"
+                    android:textColor="#FF4747"
                     android:text="500￥" />
             </LinearLayout>
 
@@ -90,28 +96,26 @@
         <TextView
             android:id="@+id/attend"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
+            android:layout_marginTop="@dimen/dp_3"
+            android:layout_weight="1"
             android:layout_marginLeft="@dimen/dp_45"
-            android:layout_marginTop="@dimen/dp_10"
             android:text="每周二、周三、周四09:00上课" />
         <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_marginTop="-145dp"
-            android:layout_height="wrap_content">
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="-140dp"
+            >
             <ImageView
-                android:layout_width="@dimen/dp_84"
                 android:id="@+id/imv"
-                android:scaleType="centerCrop"
-                android:src="@drawable/ic_launcher_background"
-                android:layout_marginRight="30dp"
+                android:layout_width="@dimen/dp_85"
+                android:layout_height="@dimen/dp_85"
                 android:layout_alignParentRight="true"
-                android:layout_height="@dimen/dp_84" />
+                android:src="@drawable/ic_launcher_background" />
         </RelativeLayout>
     </LinearLayout>
-
     <View
         android:layout_width="match_parent"
-
         android:layout_height="@dimen/dp_5" />
 
 </LinearLayout>

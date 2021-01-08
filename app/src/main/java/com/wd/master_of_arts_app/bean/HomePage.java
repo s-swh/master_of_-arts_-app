@@ -58,7 +58,7 @@ public class HomePage {
 
         private int status;
         private String button;
-        private int unit_id;
+        private String unit_id;
         private String unit_name;
         private String date;
         private String time;
@@ -83,11 +83,11 @@ public class HomePage {
             this.button = button;
         }
 
-        public int getUnit_id() {
+        public String getUnit_id() {
             return unit_id;
         }
 
-        public void setUnit_id(int unit_id) {
+        public void setUnit_id(String unit_id) {
             this.unit_id = unit_id;
         }
 

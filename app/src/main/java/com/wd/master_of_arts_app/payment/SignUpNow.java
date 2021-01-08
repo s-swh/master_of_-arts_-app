@@ -12,6 +12,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -48,12 +49,13 @@ public class SignUpNow extends BaseActivity implements OrderContreater.IView {
     private int course_time_id;
     private Button bt;
     private TextView dd_title, dd_date, dd_money, dd_zfmoney;
-    private ImageView dd_img;
+    private ImageView dd_img,y,n,c,b;
     private String date;
     private String img;
     private String money;
     private String title;
     private TextView tv;
+    private LinearLayout zhifubaozhifu,weixinzhifu;
 
     @Override
     protected int getLayoutId() {
@@ -78,13 +80,18 @@ public class SignUpNow extends BaseActivity implements OrderContreater.IView {
         dd_img = findViewById(R.id.dd_img);
         dd_zfmoney = findViewById(R.id.dd_zfmoney);
         tv = findViewById(R.id.SelectDelivery);
+        zhifubaozhifu = findViewById(R.id.zhifubaozhifu);
+        weixinzhifu = findViewById(R.id.weixinzhifu);
+        y = findViewById(R.id.y);
+        n = findViewById(R.id.n);
+        c = findViewById(R.id.c);
+        b = findViewById(R.id.b);
 
         tv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), Harvest_Address.class);
                 startActivity(intent);
-
 
             }
 
@@ -99,22 +106,61 @@ public class SignUpNow extends BaseActivity implements OrderContreater.IView {
 
     @Override
     protected void initData() {
+        zhifubaozhifu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                n.setVisibility(View.GONE);
+                y.setVisibility(View.VISIBLE);
+                b.setVisibility(View.GONE);
+                c.setVisibility(View.VISIBLE);
+                bt.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Toast.makeText(SignUpNow.this, "支付宝支付", Toast.LENGTH_SHORT).show();
+                        BasePreantert basePreantert = getmPreantert();
+                        if (basePreantert instanceof OrderContreater.IPreanter) {
+                            SharedPreferences token = getSharedPreferences("token", MODE_PRIVATE);
+                            String token1 = token.getString("token", "");
+                            SharedPreferences addid = getSharedPreferences("addid", MODE_PRIVATE);
+                            int id = addid.getInt("id", 0);
 
+                            ((OrderContreater.IPreanter) basePreantert).OnPruchaseSuccess(token1, course_id, course_time_id, id);
 
+                        }
+                    }
+                });
+            }
+        });
+        weixinzhifu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                b.setVisibility(View.VISIBLE);
+                c.setVisibility(View.GONE);
+                n.setVisibility(View.VISIBLE);
+                y.setVisibility(View.GONE);
+                bt.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Toast.makeText(SignUpNow.this, "微信支付", Toast.LENGTH_SHORT).show();
+                        BasePreantert basePreantert = getmPreantert();
+                        if (basePreantert instanceof OrderContreater.IPreanter) {
+                            SharedPreferences token = getSharedPreferences("token", MODE_PRIVATE);
+                            String token1 = token.getString("token", "");
+                            SharedPreferences addid = getSharedPreferences("addid", MODE_PRIVATE);
+                            int id = addid.getInt("id", 0);
+
+                            ((OrderContreater.IPreanter) basePreantert).OnPruchaseSuccess(token1, course_id, course_time_id, id);
+
+                        }
+                    }
+                });
+            }
+        });
         bt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                BasePreantert basePreantert = getmPreantert();
-                if (basePreantert instanceof OrderContreater.IPreanter) {
-                    SharedPreferences token = getSharedPreferences("token", MODE_PRIVATE);
-                    String token1 = token.getString("token", "");
-                    SharedPreferences addid = getSharedPreferences("addid", MODE_PRIVATE);
-                    int id = addid.getInt("id", 0);
-
-                    ((OrderContreater.IPreanter) basePreantert).OnPruchaseSuccess(token1, course_id, course_time_id, id);
-
-                }
-            }
+                Toast.makeText(SignUpNow.this, "请选择支付宝支付或微信支付", Toast.LENGTH_SHORT).show();
+        }
         });
         dd_title.setText(title);
         dd_date.setText(date);

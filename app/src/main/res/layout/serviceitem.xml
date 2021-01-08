@@ -9,6 +9,6 @@
     android:text="直播授课 • 内部讲义 • 随时退款 • 随时看回放"
     android:id="@+id/ser_txt"
     android:layout_marginLeft="@dimen/dp_12"
-    android:layout_marginTop="@dimen/dp_23"
+
     android:layout_height="wrap_content" />
 </LinearLayout>

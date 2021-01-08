@@ -61,11 +61,11 @@ public class CourseAdapter  extends XRecyclerView.Adapter<XRecyclerView.ViewHold
         int unit_count = dataBean1.getUnit_count();
         Object time_detail = dataBean1.getTime_detail();
         String teacher_avatar = dataBean1.getTeacher_avatar();
-        ((CourseViewHorder)holder).moneyone.setText(price);//现在价格
-        ((CourseViewHorder) holder).moneytow.setText(old_price);//之前价格
+        ((CourseViewHorder)holder).moneyone.setText("￥"+price);//现在价格
+        ((CourseViewHorder) holder).moneytow.setText("￥"+old_price);//之前价格
         ((CourseViewHorder) holder).text_title.setText(course_name);//班
         ((CourseViewHorder) holder).teacher.setText("任课老师："+teacher_name);//任课老师
-        ((CourseViewHorder) holder).classhour.setText("课时："+unit_count);//课时
+        ((CourseViewHorder) holder).classhour.setText(unit_count+"课时");//课时
         ((CourseViewHorder) holder).attend.setText(time_detail+"");
         Glide.with(context).load(teacher_avatar).apply(RequestOptions.bitmapTransform(new CircleCrop())).error(R.mipmap.ic_launcher_round).into(((CourseViewHorder)holder).vv);
         ((CourseViewHorder)holder).ltv.setOnClickListener(new View.OnClickListener() {

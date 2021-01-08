@@ -3,7 +3,9 @@ package com.wd.master_of_arts_app.fragment;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Outline;
 import android.view.View;
+import android.view.ViewOutlineProvider;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -114,6 +116,13 @@ public class Home_page extends BaseFragment implements HomePagerCrete.IVew, View
         Beanner.DataBean data = beanner.getData();
         List<Beanner.DataBean.ListBean> list = data.getList();
         xb.setData(list, null);
+        xb.setOutlineProvider(new ViewOutlineProvider() {
+            @Override
+            public void getOutline(View view, Outline outline) {
+                outline.setRoundRect(0, 0, view.getWidth(), view.getHeight(), 10);
+            }
+        });
+        xb.setClipToOutline(true);
         xb.loadImage(new XBanner.XBannerAdapter() {
             @Override
             public void loadBanner(XBanner banner, Object model, View view, int position) {
@@ -130,7 +139,7 @@ public class Home_page extends BaseFragment implements HomePagerCrete.IVew, View
         int status = data.getStatus();
         String button = data.getButton();
         tv.setText(button);
-        int unit_id = data.getUnit_id();
+        String unit_id = data.getUnit_id();
         String class_id = homePage.getData().getClass_id();
         String unit_name = homePage.getData().getUnit_name();
         int homework_id = homePage.getData().getHomework_id();
@@ -143,6 +152,7 @@ public class Home_page extends BaseFragment implements HomePagerCrete.IVew, View
 
                 } else if (status == 2) {
                     Intent intent = new Intent(getActivity(), CoursePreview.class);
+
                     intent.putExtra("unit_id_two", unit_id);
                     startActivity(intent);
 

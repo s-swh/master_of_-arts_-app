@@ -1,34 +1,23 @@
 package com.wd.master_of_arts_app.activity;
 
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.app.Activity;
 import android.content.Intent;
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
-import android.net.Uri;
-import android.os.Bundle;
-import android.text.Html;
-import android.text.Spanned;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.WindowManager;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.resource.bitmap.CircleCrop;
-import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 import com.bumptech.glide.request.RequestOptions;
 import com.wd.master_of_arts_app.R;
 import com.wd.master_of_arts_app.adapter.ActivityAdapter;
@@ -57,12 +46,13 @@ import butterknife.OnClick;
 public class CourseDetailsActivity extends BaseActivity implements CourseContreater.IView {
 
 
-    private TextView tv, itle, present_price, original_price, attend, ic_name, gd_pj;
+    private TextView tv, itle, present_price, original_price, attend, ic_name, gd_pj,goumairenshu,title_r;
     private ImageView img;
     private ImageView ic,details_iv;
     private Button Signupnow;
     private RecyclerView rv_service, rv_service1, rcv;
     private WebView web;
+    private RelativeLayout rlt_pl;
 
 
     @Override
@@ -92,6 +82,9 @@ public class CourseDetailsActivity extends BaseActivity implements CourseContrea
         web = findViewById(R.id.web);
         gd_pj = findViewById(R.id.gd_pj);
         details_iv = findViewById(R.id.details_iv);
+        goumairenshu = findViewById(R.id.goumairenshu);
+        title_r = findViewById(R.id.title_r);
+        rlt_pl = findViewById(R.id.rlt_pl);
 
     }
 
@@ -145,15 +138,28 @@ public class CourseDetailsActivity extends BaseActivity implements CourseContrea
     @Override
     public void OnCourse(CourseDetails courseDetails) {
         CourseDetails.DataBean data = courseDetails.getData();
-        String course_name = data.getCourse_name();
 
+        int class_sale_count = data.getClass_sale_count();
+        goumairenshu.setText("已购买"+class_sale_count+"人");
         String icon = data.getIcon();
         Glide.with(this).load(icon).into(img);
         String content = data.getContent();
+        title_r.setText(data.getCourse_name());
 
-        web.loadDataWithBaseURL(null, content, "text/html", "UTF-8", null);
         web.getSettings().setUseWideViewPort(true);
+        web.getSettings().setLayoutAlgorithm(WebSettings.LayoutAlgorithm.NARROW_COLUMNS);//适应内容大小
         web.getSettings().setLoadWithOverviewMode(true);
+
+        WebSettings settings = web.getSettings();
+        settings.setJavaScriptEnabled(true);//支持JS
+        String js = "<script type=\"text/javascript\">"+
+                "var imgs = document.getElementsByTagName('img');" + // 找到img标签
+                "for(var i = 0; i<imgs.length; i++){" +  // 逐个改变
+                "imgs[i].style.width = '100%';" +  // 宽度改为100%
+                "imgs[i].style.height = 'auto';" +
+                "}" +
+                "</script>";
+        web.loadDataWithBaseURL(null, content+js, "text/html", "UTF-8", null);
 
         present_price.setText(data.getPrice() + "￥");
         original_price.setText(data.getOld_price() + "￥");
@@ -293,7 +299,11 @@ public class CourseDetailsActivity extends BaseActivity implements CourseContrea
         Glide.with(this).load(data.getTeacher_avatar()).apply(RequestOptions.bitmapTransform(new CircleCrop())).into(ic);
         ic_name.setText(data.getTeacher_name());
 
+
         List<CourseDetails.DataBean.CommentListBean> comment_list = data.getComment_list();
+        if(comment_list.size()==0){
+            rlt_pl.setVisibility(View.GONE);
+        }
         //适配器加载评论列表
         CommentAdapter commentAdapter = new CommentAdapter(this, comment_list);
         rcv.setAdapter(commentAdapter);

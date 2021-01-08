@@ -18,6 +18,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -147,7 +148,7 @@ public class SetUp extends BaseActivity implements View.OnClickListener, MyContr
             e.printStackTrace();
         }
         hc.setText(totalCacheSize);
-        Button bt = findViewById(R.id.cloet);
+        RelativeLayout bt = findViewById(R.id.cloet);
         bt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
