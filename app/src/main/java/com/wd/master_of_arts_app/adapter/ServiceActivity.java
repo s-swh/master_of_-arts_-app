@@ -48,7 +48,7 @@ public class ServiceActivity extends RecyclerView.Adapter<RecyclerView.ViewHolde
         CourseDetails.DataBean.ServiceBean serviceBean = service2.get(position);
         String service3 = serviceBean.getService();
     //    String service = serviceBean.getService();
-        ((ServiceViewHorder)holder).t.setText(service3+" ");
+        ((ServiceViewHorder)holder).t.setText(service3+"");
         ((ServiceViewHorder)holder).ft.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

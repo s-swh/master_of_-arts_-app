@@ -5,6 +5,8 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.ImageView;
 
 import com.jcodecraeer.xrecyclerview.XRecyclerView;
 import com.wd.master_of_arts_app.R;
@@ -21,6 +23,7 @@ public class MoreComments extends BaseActivity implements MoreContreanter.IView 
 
 
     private XRecyclerView xrv;
+    private ImageView iv;
 
     @Override
     protected int getLayoutId() {
@@ -35,10 +38,17 @@ public class MoreComments extends BaseActivity implements MoreContreanter.IView 
     @Override
     protected void initView() {
         xrv = findViewById(R.id.more_xrv);
+        iv = findViewById(R.id.returfan);
     }
 
     @Override
     protected void initData() {
+        iv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
         xrv.setPullRefreshEnabled(true);
         xrv.setLoadingMoreEnabled(true);
         BasePreantert basePreantert = getmPreantert();

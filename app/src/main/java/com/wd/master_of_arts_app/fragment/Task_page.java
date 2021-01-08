@@ -175,7 +175,7 @@ public class Task_page extends BaseFragment implements CourseContreater.IView {
 
     }
 
-    //课程列表
+    // 课程列表
     @Override
     public void OnCourse(CourseList courseList) {
 

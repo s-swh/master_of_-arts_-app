@@ -47,8 +47,8 @@ public class SignUpNow extends BaseActivity implements OrderContreater.IView {
 
     private int course_id;
     private int course_time_id;
-    private Button bt;
-    private TextView dd_title, dd_date, dd_money, dd_zfmoney;
+    private TextView bt;
+    private TextView dd_title, dd_date, dd_money, dd_zfmoney,zhifuMoney;
     private ImageView dd_img,y,n,c,b;
     private String date;
     private String img;
@@ -80,6 +80,7 @@ public class SignUpNow extends BaseActivity implements OrderContreater.IView {
         dd_img = findViewById(R.id.dd_img);
         dd_zfmoney = findViewById(R.id.dd_zfmoney);
         tv = findViewById(R.id.SelectDelivery);
+        zhifuMoney = findViewById(R.id.zhifuMoney);
         zhifubaozhifu = findViewById(R.id.zhifubaozhifu);
         weixinzhifu = findViewById(R.id.weixinzhifu);
         y = findViewById(R.id.y);
@@ -167,7 +168,9 @@ public class SignUpNow extends BaseActivity implements OrderContreater.IView {
         Log.i("xxcz", date);
         dd_money.setText(money);
         Glide.with(getApplicationContext()).load(img).into(dd_img);
-        dd_zfmoney.setText(money);
+        dd_zfmoney.setText("￥"+money);
+        zhifuMoney.setText("￥"+money);
+
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN, sticky = true)

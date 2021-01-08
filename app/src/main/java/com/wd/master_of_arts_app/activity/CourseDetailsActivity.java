@@ -46,10 +46,10 @@ import butterknife.OnClick;
 public class CourseDetailsActivity extends BaseActivity implements CourseContreater.IView {
 
 
-    private TextView tv, itle, present_price, original_price, attend, ic_name, gd_pj,goumairenshu,title_r;
+    private TextView tv, itle, present_price, original_price, attend, ic_name, gd_pj, goumairenshu, title_r, Signupnow;
     private ImageView img;
-    private ImageView ic,details_iv;
-    private Button Signupnow;
+    private ImageView ic, details_iv;
+
     private RecyclerView rv_service, rv_service1, rcv;
     private WebView web;
     private RelativeLayout rlt_pl;
@@ -140,7 +140,7 @@ public class CourseDetailsActivity extends BaseActivity implements CourseContrea
         CourseDetails.DataBean data = courseDetails.getData();
 
         int class_sale_count = data.getClass_sale_count();
-        goumairenshu.setText("已购买"+class_sale_count+"人");
+        goumairenshu.setText("已购买" + class_sale_count + "人");
         String icon = data.getIcon();
         Glide.with(this).load(icon).into(img);
         String content = data.getContent();
@@ -152,17 +152,17 @@ public class CourseDetailsActivity extends BaseActivity implements CourseContrea
 
         WebSettings settings = web.getSettings();
         settings.setJavaScriptEnabled(true);//支持JS
-        String js = "<script type=\"text/javascript\">"+
+        String js = "<script type=\"text/javascript\">" +
                 "var imgs = document.getElementsByTagName('img');" + // 找到img标签
                 "for(var i = 0; i<imgs.length; i++){" +  // 逐个改变
                 "imgs[i].style.width = '100%';" +  // 宽度改为100%
                 "imgs[i].style.height = 'auto';" +
                 "}" +
                 "</script>";
-        web.loadDataWithBaseURL(null, content+js, "text/html", "UTF-8", null);
+        web.loadDataWithBaseURL(null, content + js, "text/html", "UTF-8", null);
 
-        present_price.setText(data.getPrice() + "￥");
-        original_price.setText(data.getOld_price() + "￥");
+        present_price.setText("￥"+data.getPrice() );
+        original_price.setText( "￥"+data.getOld_price());
         String course_name1 = data.getCourse_name();
         String icon1 = data.getIcon();
         String time_detail = data.getTime_detail();
@@ -301,7 +301,7 @@ public class CourseDetailsActivity extends BaseActivity implements CourseContrea
 
 
         List<CourseDetails.DataBean.CommentListBean> comment_list = data.getComment_list();
-        if(comment_list.size()==0){
+        if (comment_list.size() == 0) {
             rlt_pl.setVisibility(View.GONE);
         }
         //适配器加载评论列表

@@ -49,7 +49,7 @@ public class CommentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
 
     @Override
     public int getItemCount() {
-        return beanList.size();
+        return beanList.size()-1;
     }
     class CommentViewHorder extends RecyclerView.ViewHolder {
 

@@ -5,9 +5,11 @@
     android:layout_height="match_parent">
 <TextView
     android:layout_width="wrap_content"
-    android:textColor="#333333"
+    android:textColor="#434343"
+    android:layout_marginTop="@dimen/dp_2"
     android:text="直播授课 • 内部讲义 • 随时退款 • 随时看回放"
     android:id="@+id/ser_txt"
+    android:textSize="16dp"
     android:layout_marginLeft="@dimen/dp_12"
 
     android:layout_height="wrap_content" />
