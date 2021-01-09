@@ -12,16 +12,16 @@
     <uses-permission android:name="android.permission.INTERNET" /> <!-- 网络权限 -->
     <uses-permission android:name="android.permission.CAMERA" /> <!-- 相机权限 -->
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission
         android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS"
         tools:ignore="ProtectedPermissions" />
     <uses-permission android:name="android.permission.RECORD_AUDIO" /> <!-- 录音 -->
-    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" /> <!-- 播音 -->
     <uses-permission android:name="android.permission.WAKE_LOCK" />
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
@@ -49,6 +49,18 @@
     <uses-permission
         android:name="android.permission.READ_PRIVILEGED_PHONE_STATE"
         tools:ignore="ProtectedPermissions" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.NFC" />
+
+    <uses-feature android:name="android.hardware.nfc.hce" />
+    <uses-permission android:name="org.simalliance.openmobileapi.SMARTCARD" />
+
 
     <application
         android:name=".base.App"
@@ -59,8 +71,25 @@
         android:requestLegacyExternalStorage="true"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.AppCompat.Light.NoActionBar">
-        <activity android:name=".activity.ImageActivity"></activity>
+        android:theme="@style/Theme.AppCompat.Light.NoActionBar"
+        tools:replace="android:theme">
+        <uses-library
+            android:name="org.apache.http.legacy"
+            android:required="false" />
+
+        <meta-data
+            android:name="CurrentEnvironment"
+            android:value="PROD"> <!-- PROD or TEST -->
+        </meta-data>
+        <meta-data
+            android:name="PPPaySDK"
+            android:value="true" />
+
+        <uses-library
+            android:name="org.simalliance.openmobileapi"
+            android:required="false" />
+
+        <activity android:name=".activity.ImageActivity" />
         <activity android:name=".activity.GiveActivity" />
         <activity android:name=".activity.MoreImgActivity" />
         <activity android:name=".activity.MoreComments" />
@@ -84,7 +113,18 @@
         <activity android:name=".activity.OrderDetails" />
         <activity android:name=".activity.myactivity.MyCourseDetails" />
         <activity android:name=".activity.DetailsOfWorks" />
-        <activity android:name=".payment.SignUpNow" />
+
+        <activity android:name=".payment.SignUpNow">
+            <intent-filter>
+                <!--action.VIEW和category.DEFAULT必须设置-->
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <!--如果需要浏览器支持打开，则category.BROWSABLE-->
+                <category android:name="android.intent.category.BROWSABLE" />
+                <!--schema的协议类型：可以自行设置，只要按照统一规则，前后端一致就行-->
+                <data android:scheme="qmfpppay" />
+            </intent-filter>
+        </activity>
         <activity android:name=".activity.EditShippingAddress" />
         <activity android:name=".activity.PersonalDataActivity" />
         <activity android:name=".activity.CourseDetailsActivity" />
@@ -123,6 +163,8 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+
+
         </activity> <!-- 首页搜索界面 -->
         <activity android:name=".activity.Search_Activity" /> <!-- 项目主框架 -->
         <activity android:name=".activity.MainActivity" />
