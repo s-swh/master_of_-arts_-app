@@ -14,6 +14,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.resource.bitmap.CircleCrop;
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 import com.bumptech.glide.request.RequestOptions;
 import com.wd.master_of_arts_app.R;
@@ -118,9 +119,9 @@ public class MyCourseDetails extends BaseActivity implements MyCourseContreater.
         String name = data.getName();
         user_n.setText(name);
 
-        unit_num_tv.setText("课程章节" + unit_num);
+        unit_num_tv.setText("课程章节(" + unit_num+"节)");
         String avatar = data.getAvatar();
-        Glide.with(getApplicationContext()).load(avatar).apply(RequestOptions.bitmapTransform(new RoundedCorners(50))).into(ls_iv);
+        Glide.with(getApplicationContext()).load(avatar).apply(RequestOptions.bitmapTransform(new CircleCrop())).into(ls_iv);
         Glide.with(getApplicationContext()).load(data.getIcon()).apply(RequestOptions.bitmapTransform(new RoundedCorners(50))).into(iv);
         List<MyCourseDetailsBean.DataBean.UnitListBean> unit_list = data.getUnit_list();
         MyCourseAdapterData myCourseAdapterData = new MyCourseAdapterData(getApplicationContext(), unit_list);

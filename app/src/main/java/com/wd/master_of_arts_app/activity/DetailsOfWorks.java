@@ -78,8 +78,8 @@ public class DetailsOfWorks extends BaseActivity implements worksContreanter.IVe
         String imglist = workMsg.getImglist();//图片
         String create_time = workMsg.getCreate_time();//时间
 
-        tv_title.setText(name);
-        tv_date.setText(create_time);
+        tv_title.setText("作品名称："+name);
+        tv_date.setText("发布时间："+create_time);
         tv_gu.setText(content);
         String voice = workMsg.getVoice();
         if (voice == null) {

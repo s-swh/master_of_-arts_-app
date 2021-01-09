@@ -9,6 +9,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.resource.bitmap.CircleCrop;
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 import com.bumptech.glide.request.RequestOptions;
 import com.wd.master_of_arts_app.R;
@@ -204,7 +205,7 @@ public class My_page extends BaseFragment implements View.OnClickListener, UserI
 
         UserInformation.DataBean.UserDetailBean user_detail = data.getUser_detail();
         avatar = user_detail.getAvatar();
-        Glide.with(getActivity()).load(avatar).apply(RequestOptions.bitmapTransform(new RoundedCorners(50))).error(R.mipmap.ic_launcher_round).into(iv);
+        Glide.with(getActivity()).load(avatar).apply(RequestOptions.bitmapTransform(new CircleCrop())).error(R.mipmap.ic_launcher_round).into(iv);
         EventBus.getDefault().postSticky(new Image(avatar));
         String nickname = user_detail.getNickname();
         name1.setText(nickname + "");

@@ -15,6 +15,7 @@ import com.wd.master_of_arts_app.R;
 import com.wd.master_of_arts_app.activity.CommonwealClass;
 import com.wd.master_of_arts_app.activity.FindHref;
 import com.wd.master_of_arts_app.activity.GiveActivity;
+import com.wd.master_of_arts_app.activity.ImageActivity;
 import com.wd.master_of_arts_app.activity.MoreImgActivity;
 import com.wd.master_of_arts_app.adapter.FindAdapter;
 import com.wd.master_of_arts_app.adapter.MyVideoAdapter;
@@ -136,6 +137,15 @@ public class Find_page extends BaseFragment implements ArticleListContreater.IVi
             rv_gre_2.setAdapter(myVideoAdapter);
             List<ArticleList.DataBean.SelectedWorksBean> selected_works = data.getSelected_works();
             SelectedAdapter selectedAdapter = new SelectedAdapter(getActivity(), selected_works);
+            selectedAdapter.SetOnClick(new SelectedAdapter.ImageOnClick() {
+                @Override
+                public void OnClickImage(String href) {
+                    Intent intent = new Intent(getActivity(), ImageActivity.class);
+                    intent.putExtra("Stringhref",href);
+                    startActivity(intent);
+                }
+            });
+
             rv_gre_1.setAdapter(selectedAdapter);
 
 

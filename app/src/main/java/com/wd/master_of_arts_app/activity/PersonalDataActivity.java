@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.os.PersistableBundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -65,7 +66,7 @@ public class PersonalDataActivity extends BaseActivity implements View.OnClickLi
     private ImageView iv;
     private LinearLayout address;
     private EditText et_name;
-    private RadioButton nan, nv;
+    private CheckBox nan, nv;
     private int sex;
     private String province, city, district;
     private Button bt;
@@ -113,9 +114,6 @@ public class PersonalDataActivity extends BaseActivity implements View.OnClickLi
             nan.isChecked();
         } else if (sex == 2) {
             nv.isChecked();
-        } else {
-            nan.setChecked(false);
-            nv.setChecked(false);
         }
         String date = user.getDate();
         tt_date.setText(date);

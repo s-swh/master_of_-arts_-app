@@ -115,22 +115,24 @@ public class Home_page extends BaseFragment implements HomePagerCrete.IVew, View
     public void BannerSuccess(Beanner beanner) {
         Beanner.DataBean data = beanner.getData();
         List<Beanner.DataBean.ListBean> list = data.getList();
-        xb.setData(list, null);
-        xb.setOutlineProvider(new ViewOutlineProvider() {
-            @Override
-            public void getOutline(View view, Outline outline) {
-                outline.setRoundRect(0, 0, view.getWidth(), view.getHeight(), 10);
-            }
-        });
-        xb.setClipToOutline(true);
-        xb.loadImage(new XBanner.XBannerAdapter() {
-            @Override
-            public void loadBanner(XBanner banner, Object model, View view, int position) {
-                Beanner.DataBean.ListBean listBean = list.get(position);
-                String img = listBean.getImg();
-                Glide.with(Home_page.this).load(img).into(((ImageView) view));
-            }
-        });
+
+            xb.setData(list, null);
+            xb.setOutlineProvider(new ViewOutlineProvider() {
+                @Override
+                public void getOutline(View view, Outline outline) {
+                    outline.setRoundRect(0, 0, view.getWidth(), view.getHeight(), 10);
+                }
+            });
+            xb.setClipToOutline(true);
+            xb.loadImage(new XBanner.XBannerAdapter() {
+                @Override
+                public void loadBanner(XBanner banner, Object model, View view, int position) {
+                    Beanner.DataBean.ListBean listBean = list.get(position);
+                    String img = listBean.getImg();
+                    Glide.with(Home_page.this).load(img).into(((ImageView) view));
+                }
+            });
+
     }
 
     @Override

@@ -26,6 +26,7 @@ import java.util.List;
 public class SelectedAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     Context context; List<ArticleList.DataBean.SelectedWorksBean> list;
+    private ImageOnClick imageOnClick;
 
     public SelectedAdapter(Context context, List<ArticleList.DataBean.SelectedWorksBean> list) {
         this.context = context;
@@ -46,11 +47,23 @@ public class SelectedAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         Glide.with(context).load(img).into(((SelectedViewHorder)holder).jc);
         String title = selectedWorksBean.getTitle();
         ((SelectedViewHorder)holder).tv.setText(title);
+        ((SelectedViewHorder)holder).jc.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                imageOnClick.OnClickImage(img);
+            }
+        });
     }
 
     @Override
     public int getItemCount() {
         return list.size()-1;
+    }
+    public void SetOnClick(ImageOnClick onClick){
+        imageOnClick = onClick;
+    }
+    public interface ImageOnClick{
+        void OnClickImage(String href);
     }
     class SelectedViewHorder extends RecyclerView.ViewHolder {
         private final ImageView jc;
