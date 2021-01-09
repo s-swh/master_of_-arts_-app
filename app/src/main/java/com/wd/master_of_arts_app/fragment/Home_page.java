@@ -19,12 +19,14 @@ import com.wd.master_of_arts_app.activity.LiveBroadcast;
 import com.wd.master_of_arts_app.R;
 import com.wd.master_of_arts_app.activity.Booking_experience;
 import com.wd.master_of_arts_app.activity.MyHomeWork;
+import com.wd.master_of_arts_app.activity.NoticeActivity;
 import com.wd.master_of_arts_app.activity.WorkPage;
 import com.wd.master_of_arts_app.base.App;
 import com.wd.master_of_arts_app.base.BaseFragment;
 import com.wd.master_of_arts_app.base.BasePreantert;
 import com.wd.master_of_arts_app.bean.Beanner;
 import com.wd.master_of_arts_app.bean.HomePage;
+import com.wd.master_of_arts_app.bean.NoticeNumBer;
 import com.wd.master_of_arts_app.contreater.HomePagerCrete;
 import com.wd.master_of_arts_app.preanter.HomePreanter;
 import com.wd.master_of_arts_app.utils.NetUtils;
@@ -34,7 +36,9 @@ import org.greenrobot.eventbus.EventBus;
 import java.util.List;
 
 import butterknife.BindView;
+import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
 
 /**
@@ -48,7 +52,7 @@ public class Home_page extends BaseFragment implements HomePagerCrete.IVew, View
     XBanner xb;
 
     private TextView tv;
-    private ImageView left,right;
+    private ImageView left,right,notice_iv,icon_tz_y;
 
     @Override
     protected int getLayoutId() {
@@ -68,6 +72,8 @@ public class Home_page extends BaseFragment implements HomePagerCrete.IVew, View
         tv = view.findViewById(R.id.tv_tvv);
         left = view.findViewById(R.id.iv_left);
         right = view.findViewById(R.id.iv_right);
+        notice_iv = view.findViewById(R.id.notice_iv);
+        icon_tz_y = view.findViewById(R.id.icon_tz_y);
         Glide.with(this).load(R.mipmap.icon_left_lf).apply(RequestOptions.bitmapTransform(new RoundedCorners(20))).into(left);
         Glide.with(this).load(R.mipmap.icon_right_ri).apply(RequestOptions.bitmapTransform(new RoundedCorners(20))).into(right);
     }
@@ -94,6 +100,13 @@ public class Home_page extends BaseFragment implements HomePagerCrete.IVew, View
 
     @Override
     protected void initData() {
+        notice_iv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity(), NoticeActivity.class);
+                startActivity(intent);
+            }
+        });
         SharedPreferences token = App.getContext().getSharedPreferences("token", Context.MODE_PRIVATE);
         String token1 = token.getString("token", "");
         BasePreantert basePreantert = getmPreanter();
@@ -107,8 +120,48 @@ public class Home_page extends BaseFragment implements HomePagerCrete.IVew, View
             }
 
         }
+        initMVC();
+    }
 
+    private void initMVC() {
+        SharedPreferences sp = App.getContext().getSharedPreferences("token", Context.MODE_PRIVATE);
+        String token = sp.getString("token", "");
+        NetUtils.getInstance().getApi().getNoticeNumber(token)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Observer<NoticeNumBer>() {
+                    @Override
+                    public void onSubscribe(Disposable d) {
 
+                    }
+
+                    @Override
+                    public void onNext(NoticeNumBer noticeNumBer) {
+                        int code = noticeNumBer.getCode();
+                        int data = noticeNumBer.getData();
+                        if(data>0){
+                            icon_tz_y.setVisibility(View.VISIBLE);
+                            notice_iv.setVisibility(View.GONE);
+                            icon_tz_y.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View view) {
+                                    Intent intent = new Intent(getActivity(), NoticeActivity.class);
+                                    startActivity(intent);
+                                }
+                            });
+                        }
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+
+                    }
+
+                    @Override
+                    public void onComplete() {
+
+                    }
+                });
     }
 
     @Override

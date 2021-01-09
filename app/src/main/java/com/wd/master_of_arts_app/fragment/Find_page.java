@@ -9,6 +9,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.wd.master_of_arts_app.R;
@@ -75,9 +76,9 @@ public class Find_page extends BaseFragment implements ArticleListContreater.IVi
         find_hyh.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getActivity(), MoreImgActivity.class);
+             /*   Intent intent = new Intent(getActivity(), MoreImgActivity.class);
 
-                startActivity(intent);
+                startActivity(intent);*/
             }
         });
         BasePreantert basePreantert = getmPreanter();
@@ -88,9 +89,9 @@ public class Find_page extends BaseFragment implements ArticleListContreater.IVi
         }
         GridLayoutManager gridLayoutManager = new GridLayoutManager(getActivity(), 2);
         rec.setLayoutManager(gridLayoutManager);
-        GridLayoutManager gridLayoutManager1 = new GridLayoutManager(getActivity(), 3);
-        rv_gre_1.isNestedScrollingEnabled();
-        rv_gre_1.setLayoutManager(gridLayoutManager1);
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, true);
+
+        rv_gre_1.setLayoutManager(linearLayoutManager);
         GridLayoutManager gridLayoutManager2 = new GridLayoutManager(getActivity(), 2);
         rv_gre_2.setLayoutManager(gridLayoutManager2);
         find_mfgd.setOnClickListener(new View.OnClickListener() {

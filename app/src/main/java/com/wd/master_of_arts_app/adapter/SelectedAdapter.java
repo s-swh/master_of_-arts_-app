@@ -57,7 +57,7 @@ public class SelectedAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
     @Override
     public int getItemCount() {
-        return list.size()-1;
+        return list.size();
     }
     public void SetOnClick(ImageOnClick onClick){
         imageOnClick = onClick;

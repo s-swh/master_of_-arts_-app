@@ -1,6 +1,8 @@
 package com.wd.master_of_arts_app.model;
 
 import com.wd.master_of_arts_app.bean.NoticeBean;
+import com.wd.master_of_arts_app.bean.NoticeDetailsBean;
+import com.wd.master_of_arts_app.bean.NoticeNumBer;
 import com.wd.master_of_arts_app.contreater.NoticeContreanter;
 import com.wd.master_of_arts_app.utils.NetUtils;
 
@@ -31,6 +33,66 @@ public class MoticeModel implements NoticeContreanter.IModel {
                         if(coallack!=null){
                             coallack.OnNoticeView(noticeBean);
                         }
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+
+                    }
+
+                    @Override
+                    public void onComplete() {
+
+                    }
+                });
+    }
+
+    @Override
+    public void OnNoticeSuccess(String token, int notice_id, NoticeBeanCoallack coallack) {
+        NetUtils.getInstance().getApi().getNoticeBean(token, notice_id)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Observer<NoticeDetailsBean>() {
+                    @Override
+                    public void onSubscribe(Disposable d) {
+
+                    }
+
+                    @Override
+                    public void onNext(NoticeDetailsBean noticeDetailsBean) {
+                    if(coallack!=null){
+                        coallack.OnNoticeBean(noticeDetailsBean);
+                    }
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+
+                    }
+
+                    @Override
+                    public void onComplete() {
+
+                    }
+                });
+    }
+
+    @Override
+    public void OnNoticeNumberSuccess(String token, NoTiceNumberCoallack coallack) {
+        NetUtils.getInstance().getApi().getNoticeNumber(token)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Observer<NoticeNumBer>() {
+                    @Override
+                    public void onSubscribe(Disposable d) {
+
+                    }
+
+                    @Override
+                    public void onNext(NoticeNumBer noticeNumBer) {
+                    if(coallack!=null){
+                        coallack.OnNoticeNumber(noticeNumBer);
+                    }
                     }
 
                     @Override

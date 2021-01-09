@@ -70,7 +70,8 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar"
         tools:replace="android:theme">
-        <activity android:name=".activity.NoticeActivity"></activity>
+        <activity android:name=".activity.NoticeDetails"></activity>
+        <activity android:name=".activity.NoticeActivity" />
 
         <uses-library
             android:name="org.apache.http.legacy"
@@ -112,7 +113,11 @@
         <activity android:name=".activity.OrderDetails" />
         <activity android:name=".activity.myactivity.MyCourseDetails" />
         <activity android:name=".activity.DetailsOfWorks" />
-        <activity android:name=".payment.SignUpNow" android:exported="true" android:launchMode="singleTask" android:taskAffinity="com.wd.master_of_arts_app">
+        <activity
+            android:name=".payment.SignUpNow"
+            android:exported="true"
+            android:launchMode="singleTask"
+            android:taskAffinity="com.wd.master_of_arts_app">
             <intent-filter>
 
                 <!-- action.VIEW和category.DEFAULT必须设置 -->

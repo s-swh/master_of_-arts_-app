@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ffffff"
+    android:id="@+id/notice_time"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+
+        android:layout_height="wrap_content">
+        <ImageView
+            android:layout_width="5dp"
+            android:src="@mipmap/icon_weidu"
+            android:id="@+id/notice_img"
+            android:layout_marginLeft="@dimen/dp_10"
+            android:layout_marginTop="@dimen/dp_18"
+            android:layout_height="5dp" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="上课通知"
+            android:id="@+id/notice_title"
+            android:layout_marginLeft="@dimen/dp_15"
+            android:layout_marginTop="@dimen/dp_15"
+            android:textColor="#434343" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:text="2020-12-12"
+            android:id="@+id/notice_date"
+            android:textColor="#434343"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="@dimen/dp_15"
+            android:layout_marginRight="@dimen/dp_15"
+            android:layout_height="wrap_content" />
+    </RelativeLayout>
+<TextView
+    android:layout_width="match_parent"
+    android:text="亲爱的家长，还有一小时就要上课啦，提醒孩子预习，并再次确认作画工具，准备妥当了喔～"
+    android:layout_marginTop="@dimen/dp_5"
+    android:id="@+id/notice_content"
+    android:layout_marginLeft="@dimen/dp_15"
+    android:textColor="#999999"
+    android:layout_height="wrap_content" />
+    <View
+        android:layout_width="match_parent"
+        android:background="#99999999"
+        android:layout_marginTop="@dimen/dp_15"
+        android:layout_height="1dp"/>
+</LinearLayout>
