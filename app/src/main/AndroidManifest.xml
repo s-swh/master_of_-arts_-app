@@ -12,16 +12,13 @@
     <uses-permission android:name="android.permission.INTERNET" /> <!-- 网络权限 -->
     <uses-permission android:name="android.permission.CAMERA" /> <!-- 相机权限 -->
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission
         android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS"
         tools:ignore="ProtectedPermissions" />
     <uses-permission android:name="android.permission.RECORD_AUDIO" /> <!-- 录音 -->
-
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" /> <!-- 播音 -->
     <uses-permission android:name="android.permission.WAKE_LOCK" />
-
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
@@ -59,8 +56,8 @@
     <uses-permission android:name="android.permission.NFC" />
 
     <uses-feature android:name="android.hardware.nfc.hce" />
-    <uses-permission android:name="org.simalliance.openmobileapi.SMARTCARD" />
 
+    <uses-permission android:name="org.simalliance.openmobileapi.SMARTCARD" />
 
     <application
         android:name=".base.App"
@@ -73,6 +70,8 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar"
         tools:replace="android:theme">
+        <activity android:name=".activity.NoticeActivity"></activity>
+
         <uses-library
             android:name="org.apache.http.legacy"
             android:required="false" />
@@ -113,15 +112,16 @@
         <activity android:name=".activity.OrderDetails" />
         <activity android:name=".activity.myactivity.MyCourseDetails" />
         <activity android:name=".activity.DetailsOfWorks" />
-
-        <activity android:name=".payment.SignUpNow">
+        <activity android:name=".payment.SignUpNow" android:exported="true" android:launchMode="singleTask" android:taskAffinity="com.wd.master_of_arts_app">
             <intent-filter>
-                <!--action.VIEW和category.DEFAULT必须设置-->
+
+                <!-- action.VIEW和category.DEFAULT必须设置 -->
                 <action android:name="android.intent.action.VIEW" />
+
                 <category android:name="android.intent.category.DEFAULT" />
-                <!--如果需要浏览器支持打开，则category.BROWSABLE-->
+                <!-- 如果需要浏览器支持打开，则category.BROWSABLE -->
                 <category android:name="android.intent.category.BROWSABLE" />
-                <!--schema的协议类型：可以自行设置，只要按照统一规则，前后端一致就行-->
+                <!-- schema的协议类型：可以自行设置，只要按照统一规则，前后端一致就行 -->
                 <data android:scheme="qmfpppay" />
             </intent-filter>
         </activity>
@@ -163,8 +163,6 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
-
         </activity> <!-- 首页搜索界面 -->
         <activity android:name=".activity.Search_Activity" /> <!-- 项目主框架 -->
         <activity android:name=".activity.MainActivity" />

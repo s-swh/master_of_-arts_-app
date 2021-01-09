@@ -34,7 +34,7 @@ android {
 
         flatDir {
 
-            dirs'libs'
+            dirs 'libs'
 
         }
 

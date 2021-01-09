@@ -4,12 +4,8 @@ package com.wd.master_of_arts_app.payment;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.os.Bundle;
-import android.os.Handler;
-import android.os.Message;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -20,36 +16,27 @@ import androidx.appcompat.app.AlertDialog;
 import com.bumptech.glide.Glide;
 import com.chinaums.pppay.unify.UnifyPayPlugin;
 import com.chinaums.pppay.unify.UnifyPayRequest;
-import com.google.gson.Gson;
-import com.google.gson.JsonObject;
 import com.wd.master_of_arts_app.R;
 import com.wd.master_of_arts_app.activity.myactivity.Harvest_Address;
 import com.wd.master_of_arts_app.base.BaseActivity;
 import com.wd.master_of_arts_app.base.BasePreantert;
-import com.wd.master_of_arts_app.bean.AgeInterface;
 import com.wd.master_of_arts_app.bean.CancellationOfOrder;
 import com.wd.master_of_arts_app.bean.CommentOrder;
-import com.wd.master_of_arts_app.bean.CourseDetails;
-import com.wd.master_of_arts_app.bean.CourseList;
 import com.wd.master_of_arts_app.bean.CourseOrderBean;
 import com.wd.master_of_arts_app.bean.DingdanXiangqing;
 import com.wd.master_of_arts_app.bean.IdNumber;
 import com.wd.master_of_arts_app.bean.OrderList;
 import com.wd.master_of_arts_app.bean.Purchase;
-import com.wd.master_of_arts_app.contreater.CourseContreater;
 import com.wd.master_of_arts_app.contreater.OrderContreater;
-import com.wd.master_of_arts_app.preanter.CoursePreanter;
 import com.wd.master_of_arts_app.preanter.OrderPreanter;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.HashMap;
-import java.util.Map;
 
 import butterknife.OnClick;
 
@@ -159,9 +146,7 @@ public class SignUpNow extends BaseActivity implements OrderContreater.IView {
                             String token1 = token.getString("token", "");
                             SharedPreferences addid = getSharedPreferences("addid", MODE_PRIVATE);
                             int id = addid.getInt("id", 0);
-
                             ((OrderContreater.IPreanter) basePreantert).OnPruchaseSuccess(token1, course_id, course_time_id, id);
-
                         }
                     }
                 });
@@ -244,7 +229,7 @@ public class SignUpNow extends BaseActivity implements OrderContreater.IView {
                 e.printStackTrace();
             }
             payAliPayMiniPro(array_test.toString());
-
+            payWX(array_test.toString());
         }
 
         if (purchase.getCode() == 1) {
@@ -252,6 +237,22 @@ public class SignUpNow extends BaseActivity implements OrderContreater.IView {
         }
     }
 
+    /**
+     * 微信支付
+     * @param url
+     */
+    private void payWX(String url){
+        UnifyPayRequest msg = new UnifyPayRequest();
+        msg.payChannel = UnifyPayRequest.CHANNEL_WEIXIN;
+        msg.payData = url;
+        Log.d("ddebug","payWX ===> " + msg.payData);
+        UnifyPayPlugin.getInstance(this).sendPayRequest(msg);
+    }
+
+    /**
+     * 支付宝支付
+     * @param url
+     */
     private void payAliPayMiniPro(String url) {
         UnifyPayRequest msg = new UnifyPayRequest();
         msg.payChannel = UnifyPayRequest.CHANNEL_ALIPAY_MINI_PROGRAM;

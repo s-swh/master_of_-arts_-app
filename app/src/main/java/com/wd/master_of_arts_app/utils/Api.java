@@ -29,6 +29,7 @@ import com.wd.master_of_arts_app.bean.MyClassDate;
 import com.wd.master_of_arts_app.bean.MyCourseDetailsBean;
 import com.wd.master_of_arts_app.bean.MyCurse;
 import com.wd.master_of_arts_app.bean.MyHome;
+import com.wd.master_of_arts_app.bean.NoticeBean;
 import com.wd.master_of_arts_app.bean.OrderDelete;
 import com.wd.master_of_arts_app.bean.OrderList;
 import com.wd.master_of_arts_app.bean.Preview;
@@ -270,4 +271,8 @@ public interface Api {
     @FormUrlEncoded
     Observable<MoreComm>getMore(@Field("course_id")int course_id,@Field("p")int p,@Field("per")int per);
 
+    //通知  http://test.54artist.com/wap/notice/getList
+    @POST("wap/notice/getList")
+    @FormUrlEncoded
+    Observable<NoticeBean>getNotice(@Field("token")String token);
 }
