@@ -15,11 +15,13 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bigkoo.pickerview.TimePickerView;
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.resource.bitmap.CircleCrop;
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 import com.bumptech.glide.request.RequestOptions;
 import com.lljjcoder.citypickerview.widget.CityPicker;
@@ -62,14 +64,17 @@ import okhttp3.RequestBody;
 public class PersonalDataActivity extends BaseActivity implements View.OnClickListener, UserInformationConreater.IView {
 
     private TimePickerView pvTime;
-    private TextView tt_date,dq;
+    private TextView tt_date, dq;
     private ImageView iv;
     private LinearLayout address;
     private EditText et_name;
-    private CheckBox nan, nv;
+    private RadioButton nan, nv;
     private int sex;
+    private RadioGroup rp;
     private String province, city, district;
     private Button bt;
+    private String name;
+    private int sex1;
 
     @Override
     protected int getLayoutId() {
@@ -83,6 +88,9 @@ public class PersonalDataActivity extends BaseActivity implements View.OnClickLi
 
     @Override
     protected void initView() {
+        if (!EventBus.getDefault().isRegistered(this)) {
+            EventBus.getDefault().register(this);
+        }
         tt_date = findViewById(R.id.tt_date);
         address = findViewById(R.id.Address);
         dq = findViewById(R.id.dq);
@@ -91,30 +99,51 @@ public class PersonalDataActivity extends BaseActivity implements View.OnClickLi
         nan = findViewById(R.id.nan);
         nv = findViewById(R.id.nv);
         bt = findViewById(R.id.upde);
-        if(!EventBus.getDefault().isRegistered(this)){
-            EventBus.getDefault().register(this);
+        rp = findViewById(R.id.rp);
+        Intent intent = getIntent();
+        sex1 = intent.getIntExtra("sex", 0);
+        if (sex1 == 1) {
+            nan.isChecked();
+        } else if (sex1 == 2) {
+            nv.isChecked();
+        }
+
+        et_name.setText(name);
+
+        nan.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+             sex=1;
+            }
+        });
+        nv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                sex=2;
+            }
+        });
+        if(sex==1){
+            nan.setChecked(true);
+            nv.setChecked(false);
+        }else{
+            nan.setChecked(false);
+            nv.setChecked(true);
         }
     }
+
 
 
     @Subscribe(sticky = true, threadMode = ThreadMode.MAIN)
     public void Image(Image image) {
         String img = image.getImg();
-        Glide.with(getApplicationContext()).load(img).apply(RequestOptions.bitmapTransform(new RoundedCorners(50))).error(R.mipmap.ic_launcher_round).into(iv);
+        Glide.with(getApplicationContext()).load(img).apply(RequestOptions.bitmapTransform(new CircleCrop())).error(R.mipmap.ic_launcher_round).into(iv);
     }
-
 
 
     @Subscribe(threadMode = ThreadMode.MAIN, sticky = true)
     public void se(User user) {
-        String name = user.getName();
-        et_name.setText(name);
-        int sex = user.getSex();
-        if (sex == 1) {
-            nan.isChecked();
-        } else if (sex == 2) {
-            nv.isChecked();
-        }
+        name = user.getName();
+
         String date = user.getDate();
         tt_date.setText(date);
         String detail_address = user.getDetail_address();
@@ -122,7 +151,7 @@ public class PersonalDataActivity extends BaseActivity implements View.OnClickLi
         String editname = et_name.getText().toString();
         String editdate = tt_date.getText().toString();
         String editaddress = dq.getText().toString();
-        EventBus.getDefault().postSticky(new EditUser(editname,editdate,editaddress));
+        EventBus.getDefault().postSticky(new EditUser(editname, editdate, editaddress));
     }
 
     @Override
@@ -144,7 +173,7 @@ public class PersonalDataActivity extends BaseActivity implements View.OnClickLi
                 }
             }
         });
-       address.setOnClickListener(this);
+        address.setOnClickListener(this);
         iv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -153,13 +182,7 @@ public class PersonalDataActivity extends BaseActivity implements View.OnClickLi
                         .selectPicture(true, 200, 200, 1, 1);
             }
         });
-        if (nan.isChecked()) {
-            sex = 1;
-        } else if (nv.isChecked()) {
-            sex = 2;
-        } else {
-            sex = 0;
-        }
+
     }
 
     @OnClick(R.id.date)
@@ -330,12 +353,12 @@ public class PersonalDataActivity extends BaseActivity implements View.OnClickLi
                 String code = citySelected[3];
 
                 //为TextView赋值
-                    String sc=province.trim() + city.trim() + district.trim();
+                String sc = province.trim() + city.trim() + district.trim();
                 SharedPreferences sp = getSharedPreferences("address", MODE_PRIVATE);
                 SharedPreferences.Editor edit = sp.edit();
                 edit.putString("acacsadasd", sc);
                 edit.commit();
-               dq.setText(sc);
+                dq.setText(sc);
 
             }
 

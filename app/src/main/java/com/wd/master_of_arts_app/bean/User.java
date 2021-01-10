@@ -8,7 +8,7 @@ package com.wd.master_of_arts_app.bean;
 public class User {
    public String name;
    public String  date;
-   public int sex;
+
    public String detail_address;
 
     public String getName() {
@@ -27,13 +27,9 @@ public class User {
         this.date = date;
     }
 
-    public int getSex() {
-        return sex;
-    }
 
-    public void setSex(int sex) {
-        this.sex = sex;
-    }
+
+
 
     public String getDetail_address() {
         return detail_address;
@@ -43,10 +39,10 @@ public class User {
         this.detail_address = detail_address;
     }
 
-    public User(String name, String date, int sex, String detail_address) {
+    public User(String name, String date, String detail_address) {
         this.name = name;
         this.date = date;
-        this.sex = sex;
+
         this.detail_address = detail_address;
     }
 }

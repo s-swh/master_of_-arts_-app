@@ -19,6 +19,7 @@ import com.wd.master_of_arts_app.base.BaseActivity;
 import com.wd.master_of_arts_app.base.BasePreantert;
 import com.wd.master_of_arts_app.bean.DeleteHarvestAddress;
 import com.wd.master_of_arts_app.bean.HarvestAddress;
+import com.wd.master_of_arts_app.bean.HarvestID;
 import com.wd.master_of_arts_app.bean.UpdateShipping;
 import com.wd.master_of_arts_app.bean.ViewHarvestAddress;
 import com.wd.master_of_arts_app.contreater.HarvestAddressContreater;
@@ -102,11 +103,8 @@ public class Harvest_Address extends BaseActivity implements HarvestAddressContr
         harvestAddressAdapter.OnId(new HarvestAddressAdapter.OnIdClick() {
             @Override
             public void OnidClick(int id) {
-                SharedPreferences addid = getSharedPreferences("addid", MODE_PRIVATE);
-                SharedPreferences.Editor edit = addid.edit();
-                edit.putInt("id",id);
-                edit.commit();
 
+            EventBus.getDefault().postSticky(new HarvestID(id));
                 finish();
             }
         });

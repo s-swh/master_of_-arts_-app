@@ -67,6 +67,7 @@ public class My_page extends BaseFragment implements View.OnClickListener, UserI
     private ImageView iv;
     private String avatar;
     private TextView name1, aage;
+    private int sex;
 
     @Override
     protected int getLayoutId() {
@@ -178,7 +179,7 @@ public class My_page extends BaseFragment implements View.OnClickListener, UserI
             break;
             case R.id.my_image: {
                 Intent intent = new Intent(getActivity(), PersonalDataActivity.class);
-
+                intent.putExtra("sex",sex);
                 startActivity(intent);
             }
             break;
@@ -212,10 +213,11 @@ public class My_page extends BaseFragment implements View.OnClickListener, UserI
         String birthday = user_detail.getBirthday();
         int age = user_detail.getAge();
         aage.setText(age + "岁");
-        int sex = user_detail.getSex();
+        sex = user_detail.getSex();
         String detail_address = user_detail.getDetail_address();
 
-        EventBus.getDefault().postSticky(new User(nickname, birthday, sex, detail_address));
+        EventBus.getDefault().postSticky(new User(nickname, birthday, detail_address));
+
 
 
     }

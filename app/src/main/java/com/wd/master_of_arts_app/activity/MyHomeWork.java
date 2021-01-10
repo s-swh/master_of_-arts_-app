@@ -352,7 +352,9 @@ public class MyHomeWork extends BaseActivity {
         SharedPreferences sp = getSharedPreferences("key", MODE_PRIVATE);
         String ke = sp.getString("ke", "");
         Log.d("xxxxxxxxx", ke);
-        NetUtils.getInstance().getApi().getMyHome(token1, unit_id_two, string, string1, accc, ke)
+        Intent intent1 = getIntent();
+        String ididididid = intent1.getStringExtra("ididididid");
+        NetUtils.getInstance().getApi().getMyHome(token1, unit_id_two,ididididid, string, string1, accc, ke)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Observer<MyHome>() {

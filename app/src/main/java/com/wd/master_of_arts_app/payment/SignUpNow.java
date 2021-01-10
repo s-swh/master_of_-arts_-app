@@ -24,11 +24,13 @@ import com.wd.master_of_arts_app.bean.CancellationOfOrder;
 import com.wd.master_of_arts_app.bean.CommentOrder;
 import com.wd.master_of_arts_app.bean.CourseOrderBean;
 import com.wd.master_of_arts_app.bean.DingdanXiangqing;
+import com.wd.master_of_arts_app.bean.HarvestID;
 import com.wd.master_of_arts_app.bean.IdNumber;
 import com.wd.master_of_arts_app.bean.OrderList;
 import com.wd.master_of_arts_app.bean.Purchase;
 import com.wd.master_of_arts_app.contreater.OrderContreater;
 import com.wd.master_of_arts_app.preanter.OrderPreanter;
+import com.wd.master_of_arts_app.utils.NetUtils;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -39,6 +41,10 @@ import org.json.JSONObject;
 import java.util.HashMap;
 
 import butterknife.OnClick;
+import io.reactivex.Observer;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.Disposable;
+import io.reactivex.schedulers.Schedulers;
 
 public class SignUpNow extends BaseActivity implements OrderContreater.IView {
 
@@ -54,6 +60,7 @@ public class SignUpNow extends BaseActivity implements OrderContreater.IView {
     private String title;
     private TextView tv;
     private LinearLayout zhifubaozhifu, weixinzhifu;
+    private int harId;
 
     @Override
     protected int getLayoutId() {
@@ -102,7 +109,10 @@ public class SignUpNow extends BaseActivity implements OrderContreater.IView {
     public void String(String string) {
         tv.setText(string);
     }
-
+    @Subscribe(threadMode = ThreadMode.MAIN,sticky = true)
+    public void Id(HarvestID harvestID){
+        harId = harvestID.getHarId();
+    }
     @Override
     protected void initData() {
         zhifubaozhifu.setOnClickListener(new View.OnClickListener() {
@@ -120,15 +130,81 @@ public class SignUpNow extends BaseActivity implements OrderContreater.IView {
                         if (basePreantert instanceof OrderContreater.IPreanter) {
                             SharedPreferences token = getSharedPreferences("token", MODE_PRIVATE);
                             String token1 = token.getString("token", "");
-                            SharedPreferences addid = getSharedPreferences("addid", MODE_PRIVATE);
-                            int id = addid.getInt("id", 0);
-                            ((OrderContreater.IPreanter) basePreantert).OnPruchaseSuccess(token1, course_id, course_time_id, id);
 
+                            ((OrderContreater.IPreanter) basePreantert).OnPruchaseSuccess(token1, course_id, course_time_id, harId);
+                            NetUtils.getInstance().getApi().getPurchase(token1, course_id, course_time_id, harId)
+                                    .subscribeOn(Schedulers.io())
+                                    .observeOn(AndroidSchedulers.mainThread())
+                                    .subscribe(new Observer<Purchase>() {
+                                        @Override
+                                        public void onSubscribe(Disposable d) {
+
+                                        }
+
+                                        @Override
+                                        public void onNext(Purchase purchase) {
+                                            String msg = purchase.getMsg();
+                                            Toast.makeText(getApplicationContext(), msg, Toast.LENGTH_SHORT).show();
+                                            Purchase.DataBean data = purchase.getData();
+                                            if (data != null) {
+                                                String order_id = data.getOrder_id();
+                                                EventBus.getDefault().post(order_id);
+                                                String order_num = data.getOrder_num();
+                                                //String pay_price = data.getPay_price();
+                                                String title = data.getTitle();
+                                                String pay_price = data.getPrice();
+
+                                                Purchase.PayInfoBean payInfo = purchase.getPayInfo();
+                                                Purchase.PayInfoBean.AppPayRequestBean appPayRequest = payInfo.getAppPayRequest();
+                                                String miniuser = appPayRequest.getMiniuser();
+                                                String msgType = appPayRequest.getMsgType();
+                                                String package1 = appPayRequest.getPackage1();
+                                                String minipath = appPayRequest.getMinipath();
+                                                String appScheme = appPayRequest.getAppScheme();
+                                                String sign = appPayRequest.getSign();
+                                                String prepayid = appPayRequest.getPrepayid();
+                                                String noncestr = appPayRequest.getNoncestr();
+                                                String timestamp = appPayRequest.getTimestamp();
+                                                HashMap<String, String> map = new HashMap<>();
+                                                JSONObject array_test = new JSONObject();
+                                                try {
+                                                    array_test.put("miniuser", miniuser);
+                                                    array_test.put("msgType", msgType);
+                                                    array_test.put("package", package1);
+                                                    array_test.put("minipath", minipath);
+                                                    array_test.put("appScheme", appScheme);
+                                                    array_test.put("sign", sign);
+                                                    array_test.put("prepayid", prepayid);
+                                                    array_test.put("noncestr", noncestr);
+                                                    array_test.put("timestamp", timestamp);
+                                                } catch (JSONException e) {
+                                                    e.printStackTrace();
+                                                }
+                                                payAliPayMiniPro(array_test.toString());
+
+                                            }
+
+                                            if (purchase.getCode() == 1) {
+                                                finish();
+                                            }
+                                        }
+
+                                        @Override
+                                        public void onError(Throwable e) {
+
+                                        }
+
+                                        @Override
+                                        public void onComplete() {
+
+                                        }
+                                    });
                         }
                     }
                 });
             }
         });
+
         weixinzhifu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -144,9 +220,76 @@ public class SignUpNow extends BaseActivity implements OrderContreater.IView {
                         if (basePreantert instanceof OrderContreater.IPreanter) {
                             SharedPreferences token = getSharedPreferences("token", MODE_PRIVATE);
                             String token1 = token.getString("token", "");
-                            SharedPreferences addid = getSharedPreferences("addid", MODE_PRIVATE);
-                            int id = addid.getInt("id", 0);
-                            ((OrderContreater.IPreanter) basePreantert).OnPruchaseSuccess(token1, course_id, course_time_id, id);
+
+                            ((OrderContreater.IPreanter) basePreantert).OnPruchaseSuccess(token1, course_id, course_time_id, harId);
+                            NetUtils.getInstance().getApi().getPurchase(token1, course_id, course_time_id, harId)
+                                    .subscribeOn(Schedulers.io())
+                                    .observeOn(AndroidSchedulers.mainThread())
+                                    .subscribe(new Observer<Purchase>() {
+                                        @Override
+                                        public void onSubscribe(Disposable d) {
+
+                                        }
+
+                                        @Override
+                                        public void onNext(Purchase purchase) {
+                                            String msg = purchase.getMsg();
+                                            Toast.makeText(getApplicationContext(), msg, Toast.LENGTH_SHORT).show();
+                                            Purchase.DataBean data = purchase.getData();
+                                            if (data != null) {
+                                                String order_id = data.getOrder_id();
+                                                EventBus.getDefault().post(order_id);
+                                                String order_num = data.getOrder_num();
+                                                //String pay_price = data.getPay_price();
+                                                String title = data.getTitle();
+                                                String pay_price = data.getPrice();
+
+                                                Purchase.PayInfoBean payInfo = purchase.getPayInfo();
+
+                                                Purchase.PayInfoBean.AppPayRequestBean appPayRequest = payInfo.getAppPayRequest();
+                                                String miniuser = appPayRequest.getMiniuser();
+                                                String msgType = appPayRequest.getMsgType();
+                                                String package1 = appPayRequest.getPackage1();
+                                                String minipath = appPayRequest.getMinipath();
+                                                String appScheme = appPayRequest.getAppScheme();
+                                                String sign = appPayRequest.getSign();
+                                                String prepayid = appPayRequest.getPrepayid();
+                                                String noncestr = appPayRequest.getNoncestr();
+                                                String timestamp = appPayRequest.getTimestamp();
+                                                HashMap<String, String> map = new HashMap<>();
+                                                JSONObject array_test = new JSONObject();
+                                                try {
+                                                    array_test.put("miniuser", miniuser);
+                                                    array_test.put("msgType", msgType);
+                                                    array_test.put("package", package1);
+                                                    array_test.put("minipath", minipath);
+                                                    array_test.put("appScheme", appScheme);
+                                                    array_test.put("sign", sign);
+                                                    array_test.put("prepayid", prepayid);
+                                                    array_test.put("noncestr", noncestr);
+                                                    array_test.put("timestamp", timestamp);
+                                                } catch (JSONException e) {
+                                                    e.printStackTrace();
+                                                }
+
+                                                payWX(array_test.toString());
+                                            }
+
+                                            if (purchase.getCode() == 1) {
+                                                finish();
+                                            }
+                                        }
+
+                                        @Override
+                                        public void onError(Throwable e) {
+
+                                        }
+
+                                        @Override
+                                        public void onComplete() {
+
+                                        }
+                                    });
                         }
                     }
                 });
@@ -192,7 +335,7 @@ public class SignUpNow extends BaseActivity implements OrderContreater.IView {
     @Override
     public void OnPurchase(Purchase purchase) {
         String msg = purchase.getMsg();
-        Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
+        Toast.makeText(getApplicationContext(), msg, Toast.LENGTH_SHORT).show();
         Purchase.DataBean data = purchase.getData();
         if (data != null) {
             String order_id = data.getOrder_id();
@@ -201,35 +344,6 @@ public class SignUpNow extends BaseActivity implements OrderContreater.IView {
             //String pay_price = data.getPay_price();
             String title = data.getTitle();
             String pay_price = data.getPrice();
-
-            Purchase.PayInfoBean payInfo = purchase.getPayInfo();
-            Purchase.PayInfoBean.AppPayRequestBean appPayRequest = payInfo.getAppPayRequest();
-            String miniuser = appPayRequest.getMiniuser();
-            String msgType = appPayRequest.getMsgType();
-            String package1 = appPayRequest.getPackage1();
-            String minipath = appPayRequest.getMinipath();
-            String appScheme = appPayRequest.getAppScheme();
-            String sign = appPayRequest.getSign();
-            String prepayid = appPayRequest.getPrepayid();
-            String noncestr = appPayRequest.getNoncestr();
-            String timestamp = appPayRequest.getTimestamp();
-            HashMap<String, String> map = new HashMap<>();
-            JSONObject array_test = new JSONObject();
-            try {
-                array_test.put("miniuser", miniuser);
-                array_test.put("msgType", msgType);
-                array_test.put("package", package1);
-                array_test.put("minipath", minipath);
-                array_test.put("appScheme", appScheme);
-                array_test.put("sign", sign);
-                array_test.put("prepayid", prepayid);
-                array_test.put("noncestr", noncestr);
-                array_test.put("timestamp", timestamp);
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
-            payAliPayMiniPro(array_test.toString());
-            payWX(array_test.toString());
         }
 
         if (purchase.getCode() == 1) {
@@ -239,18 +353,20 @@ public class SignUpNow extends BaseActivity implements OrderContreater.IView {
 
     /**
      * 微信支付
+     *
      * @param url
      */
-    private void payWX(String url){
+    private void payWX(String url) {
         UnifyPayRequest msg = new UnifyPayRequest();
         msg.payChannel = UnifyPayRequest.CHANNEL_WEIXIN;
         msg.payData = url;
-        Log.d("ddebug","payWX ===> " + msg.payData);
+        Log.d("ddebug", "payWX ===> " + msg.payData);
         UnifyPayPlugin.getInstance(this).sendPayRequest(msg);
     }
 
     /**
      * 支付宝支付
+     *
      * @param url
      */
     private void payAliPayMiniPro(String url) {

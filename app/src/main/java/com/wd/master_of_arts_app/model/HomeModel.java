@@ -38,7 +38,8 @@ public class HomeModel implements HomePagerCrete.IModel {
 
                     @Override
                     public void onError(Throwable e) {
-
+                        String message = e.getMessage();
+                        Log.e("Homexxx",message);
                     }
 
                     @Override

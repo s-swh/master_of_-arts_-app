@@ -10,14 +10,21 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
+
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.resource.bitmap.CircleCrop;
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 import com.bumptech.glide.request.RequestOptions;
 import com.stx.xhb.xbanner.XBanner;
+import com.wd.master_of_arts_app.activity.BannerActivity;
 import com.wd.master_of_arts_app.activity.CoursePreview;
+import com.wd.master_of_arts_app.activity.CourseSelection;
 import com.wd.master_of_arts_app.activity.LiveBroadcast;
 import com.wd.master_of_arts_app.R;
 import com.wd.master_of_arts_app.activity.Booking_experience;
+import com.wd.master_of_arts_app.activity.MainActivity;
 import com.wd.master_of_arts_app.activity.MyHomeWork;
 import com.wd.master_of_arts_app.activity.NoticeActivity;
 import com.wd.master_of_arts_app.activity.WorkPage;
@@ -51,8 +58,8 @@ public class Home_page extends BaseFragment implements HomePagerCrete.IVew, View
     @BindView(R.id.xbn)
     XBanner xb;
 
-    private TextView tv;
-    private ImageView left,right,notice_iv,icon_tz_y;
+    private TextView tv,home_tv;
+    private ImageView left, right, notice_iv, icon_tz_y,home_img;
 
     @Override
     protected int getLayoutId() {
@@ -74,6 +81,8 @@ public class Home_page extends BaseFragment implements HomePagerCrete.IVew, View
         right = view.findViewById(R.id.iv_right);
         notice_iv = view.findViewById(R.id.notice_iv);
         icon_tz_y = view.findViewById(R.id.icon_tz_y);
+        home_img = view.findViewById(R.id.home_img);
+        home_tv = view.findViewById(R.id.home_tv);
         Glide.with(this).load(R.mipmap.icon_left_lf).apply(RequestOptions.bitmapTransform(new RoundedCorners(20))).into(left);
         Glide.with(this).load(R.mipmap.icon_right_ri).apply(RequestOptions.bitmapTransform(new RoundedCorners(20))).into(right);
     }
@@ -100,6 +109,7 @@ public class Home_page extends BaseFragment implements HomePagerCrete.IVew, View
 
     @Override
     protected void initData() {
+
         notice_iv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -139,7 +149,7 @@ public class Home_page extends BaseFragment implements HomePagerCrete.IVew, View
                     public void onNext(NoticeNumBer noticeNumBer) {
                         int code = noticeNumBer.getCode();
                         int data = noticeNumBer.getData();
-                        if(data>0){
+                        if (data > 0) {
                             icon_tz_y.setVisibility(View.VISIBLE);
                             notice_iv.setVisibility(View.GONE);
                             icon_tz_y.setOnClickListener(new View.OnClickListener() {
@@ -169,23 +179,34 @@ public class Home_page extends BaseFragment implements HomePagerCrete.IVew, View
         Beanner.DataBean data = beanner.getData();
         List<Beanner.DataBean.ListBean> list = data.getList();
 
-            xb.setData(list, null);
-            xb.setOutlineProvider(new ViewOutlineProvider() {
-                @Override
-                public void getOutline(View view, Outline outline) {
-                    outline.setRoundRect(0, 0, view.getWidth(), view.getHeight(), 10);
+        xb.setData(list, null);
+        xb.setOutlineProvider(new ViewOutlineProvider() {
+            @Override
+            public void getOutline(View view, Outline outline) {
+                outline.setRoundRect(0, 0, view.getWidth(), view.getHeight(), 10);
+            }
+        });
+        xb.setClipToOutline(true);
+        xb.loadImage(new XBanner.XBannerAdapter() {
+            @Override
+            public void loadBanner(XBanner banner, Object model, View view, int position) {
+                Beanner.DataBean.ListBean listBean = list.get(position);
+                String img = listBean.getImg();
+                Glide.with(Home_page.this).load(img).into(((ImageView) view));
+            }
+        });
+        xb.setOnItemClickListener(new XBanner.OnItemClickListener() {
+            @Override
+            public void onItemClick(XBanner banner, Object model, View view, int position) {
+                Beanner.DataBean.ListBean listBean = list.get(position);
+                String href = listBean.getHref();
+                if (href == null || href != null) {
+                    Intent intent = new Intent(getActivity(), BannerActivity.class);
+                    intent.putExtra("hrefweb", href);
+                    startActivity(intent);
                 }
-            });
-            xb.setClipToOutline(true);
-            xb.loadImage(new XBanner.XBannerAdapter() {
-                @Override
-                public void loadBanner(XBanner banner, Object model, View view, int position) {
-                    Beanner.DataBean.ListBean listBean = list.get(position);
-                    String img = listBean.getImg();
-                    Glide.with(Home_page.this).load(img).into(((ImageView) view));
-                }
-            });
-
+            }
+        });
     }
 
     @Override
@@ -194,10 +215,16 @@ public class Home_page extends BaseFragment implements HomePagerCrete.IVew, View
         int status = data.getStatus();
         String button = data.getButton();
         tv.setText(button);
-        String unit_id = data.getUnit_id();
-        String class_id = homePage.getData().getClass_id();
+        int unit_id = data.getUnit_id();
+        int class_id = homePage.getData().getClass_id();
         String unit_name = homePage.getData().getUnit_name();
         int homework_id = homePage.getData().getHomework_id();
+        int id = homePage.getData().getCourse_time_id();
+        String avatar = data.getAvatar();
+        Glide.with(getActivity()).load(avatar).apply(RequestOptions.bitmapTransform(new CircleCrop())).into(home_img);
+        String teacher = data.getTeacher();
+        String course_name = data.getCourse_name();
+        home_tv.setText(course_name+"\n任课老师\n\t"+teacher);
         tv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -205,8 +232,13 @@ public class Home_page extends BaseFragment implements HomePagerCrete.IVew, View
                     startActivity(new Intent(getActivity(), Booking_experience.class));
                 } else if (status == 1) {
 
+                    Intent intent = new Intent(getActivity(), CourseSelection.class);
+                    startActivity(intent);
+
+
+
                 } else if (status == 2) {
-                    Intent intent = new Intent(getActivity(), CoursePreview.class);
+                    Intent intent = new Intent(getContext(), CoursePreview.class);
 
                     intent.putExtra("unit_id_two", unit_id);
                     startActivity(intent);
@@ -220,6 +252,7 @@ public class Home_page extends BaseFragment implements HomePagerCrete.IVew, View
                 } else if (status == 4) {
                     Intent intent = new Intent(getActivity(), MyHomeWork.class);
                     intent.putExtra("unit_id_two", unit_id);
+                    intent.putExtra("ididididid", id);
                     startActivity(intent);
                 } else if (status == 5) {
                     Intent intent = new Intent(getActivity(), WorkPage.class);

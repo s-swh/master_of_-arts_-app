@@ -38,6 +38,10 @@ import com.wd.master_of_arts_app.fragment.My_page;
 import com.wd.master_of_arts_app.fragment.Take_photos;
 import com.wd.master_of_arts_app.fragment.Task_page;
 
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -72,6 +76,7 @@ public class MainActivity extends BaseActivity {
             isExit = false;
         }
     };
+
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if (keyCode == KeyEvent.KEYCODE_BACK) {
@@ -121,7 +126,7 @@ public class MainActivity extends BaseActivity {
     }
 
 
-    NoScrollViewPager vp;
+   public NoScrollViewPager vp;
     CommonTabLayout bottom_navigation;
     private List<Fragment> fragments = new ArrayList<>();
     private ArrayList<CustomTabEntity> customTabEntities = new ArrayList<>();
@@ -139,6 +144,7 @@ public class MainActivity extends BaseActivity {
 
     @Override
     protected void initView() {
+
         vp = findViewById(R.id.one_vp);
         bottom_navigation = findViewById(R.id.bottom_navigation);
         Home_page home_page = new Home_page();
@@ -171,6 +177,7 @@ public class MainActivity extends BaseActivity {
 
     @Override
     protected void initData() {
+
         requestPermission();
         int permission = ActivityCompat.checkSelfPermission(this,
                 Manifest.permission.RECORD_AUDIO);
@@ -189,6 +196,7 @@ public class MainActivity extends BaseActivity {
             public void onTabReselect(int position) {
             }
         });
+
     
     }
     public static final int CAMERA_REQ_CODE = 111;

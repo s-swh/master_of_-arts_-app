@@ -256,7 +256,7 @@ public interface Api {
     //我的作业  http://test.54artist.com/wap/HomeWork/add
     @POST("wap/HomeWork/add")
     @FormUrlEncoded
-    Observable<MyHome> getMyHome(@Field("token") String token, @Field("course_unit_id") int course_unit_id, @Field("name") String name, @Field("content") String content, @Field("imglist") String imglist, @Field("voicelist") String voicelist);
+    Observable<MyHome> getMyHome(@Field("token") String token, @Field("course_unit_id") int course_unit_id,@Field("course_time_id") String course_time_id, @Field("name") String name, @Field("content") String content, @Field("imglist") String imglist, @Field("voicelist") String voicelist);
 
     //直播  http://test.54artist.com/wap/Plaso/getLiveRoomUrl
     @POST("wap/Plaso/getLiveRoomUrl")

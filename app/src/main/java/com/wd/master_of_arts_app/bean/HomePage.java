@@ -7,11 +7,10 @@ package com.wd.master_of_arts_app.bean;
  */
 public class HomePage {
 
-
     /**
      * code : 1
      * msg : 成功
-     * data : {"status":5,"button":"查看作业","unit_id":310,"unit_name":"植物写生（上）","date":"2021-01-05","time":"16:25:00","teacher":"殷老师","avatar":"http://qiniu.54artist.com/5feae941b92875871.jpg","class_id":"","homework_id":6}
+     * data : {"status":1,"button":"去选课","unit_id":0,"unit_name":"","date":"","time":"","teacher":"","avatar":"","class_id":0,"course_name":"","course_time_id":0,"homework_id":0}
      */
 
     private int code;
@@ -44,27 +43,31 @@ public class HomePage {
 
     public static class DataBean {
         /**
-         * status : 5
-         * button : 查看作业
-         * unit_id : 310
-         * unit_name : 植物写生（上）
-         * date : 2021-01-05
-         * time : 16:25:00
-         * teacher : 殷老师
-         * avatar : http://qiniu.54artist.com/5feae941b92875871.jpg
-         * class_id :
-         * homework_id : 6
+         * status : 1
+         * button : 去选课
+         * unit_id : 0
+         * unit_name :
+         * date :
+         * time :
+         * teacher :
+         * avatar :
+         * class_id : 0
+         * course_name :
+         * course_time_id : 0
+         * homework_id : 0
          */
 
         private int status;
         private String button;
-        private String unit_id;
+        private int unit_id;
         private String unit_name;
         private String date;
         private String time;
         private String teacher;
         private String avatar;
-        private String class_id;
+        private int class_id;
+        private String course_name;
+        private int course_time_id;
         private int homework_id;
 
         public int getStatus() {
@@ -83,11 +86,11 @@ public class HomePage {
             this.button = button;
         }
 
-        public String getUnit_id() {
+        public int getUnit_id() {
             return unit_id;
         }
 
-        public void setUnit_id(String unit_id) {
+        public void setUnit_id(int unit_id) {
             this.unit_id = unit_id;
         }
 
@@ -131,12 +134,28 @@ public class HomePage {
             this.avatar = avatar;
         }
 
-        public String getClass_id() {
+        public int getClass_id() {
             return class_id;
         }
 
-        public void setClass_id(String class_id) {
+        public void setClass_id(int class_id) {
             this.class_id = class_id;
+        }
+
+        public String getCourse_name() {
+            return course_name;
+        }
+
+        public void setCourse_name(String course_name) {
+            this.course_name = course_name;
+        }
+
+        public int getCourse_time_id() {
+            return course_time_id;
+        }
+
+        public void setCourse_time_id(int course_time_id) {
+            this.course_time_id = course_time_id;
         }
 
         public int getHomework_id() {
