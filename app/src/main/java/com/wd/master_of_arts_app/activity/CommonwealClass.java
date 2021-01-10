@@ -19,6 +19,7 @@ import com.wd.master_of_arts_app.adapter.SelectedAdapter;
 import com.wd.master_of_arts_app.base.App;
 import com.wd.master_of_arts_app.base.BaseActivity;
 import com.wd.master_of_arts_app.base.BasePreantert;
+import com.wd.master_of_arts_app.bean.ArticleDetails;
 import com.wd.master_of_arts_app.bean.ArticleList;
 import com.wd.master_of_arts_app.bean.CommBean;
 import com.wd.master_of_arts_app.bean.Image;
@@ -90,5 +91,10 @@ public class CommonwealClass extends BaseActivity implements ArticleListContreat
             }
         });
         rv.setAdapter(commonwealClassAdapter);
+    }
+
+    @Override
+    public void OnArti(ArticleDetails articleDetails) {
+
     }
 }

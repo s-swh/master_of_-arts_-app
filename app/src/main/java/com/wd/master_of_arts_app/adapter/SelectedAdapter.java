@@ -50,7 +50,8 @@ public class SelectedAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         ((SelectedViewHorder)holder).jc.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                imageOnClick.OnClickImage(img);
+                int article_id = selectedWorksBean.getArticle_id();
+                imageOnClick.OnClickImage(article_id);
             }
         });
     }
@@ -63,7 +64,7 @@ public class SelectedAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         imageOnClick = onClick;
     }
     public interface ImageOnClick{
-        void OnClickImage(String href);
+        void OnClickImage(int  id);
     }
     class SelectedViewHorder extends RecyclerView.ViewHolder {
         private final ImageView jc;

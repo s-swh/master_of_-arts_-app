@@ -37,7 +37,7 @@ import cn.plaso.upime.UpimeBoard;
 public class LiveBroadcast extends BaseActivity implements LiveBoradcastContreanter.IView {
 
 
-    private String used;
+    private int  used;
     private String name;
 
     @Override
@@ -65,12 +65,12 @@ public class LiveBroadcast extends BaseActivity implements LiveBoradcastContrean
     @Override
     protected void initData() {
         Intent intent = getIntent();
-        String classid = intent.getStringExtra("classid");
+        int classid = intent.getIntExtra("classid",0);
         String unit_ssname = intent.getStringExtra("unit_ssname");
         BasePreantert basePreantert = getmPreantert();
         if (basePreantert instanceof LiveBoradcastContreanter.IPreanter) {
 
-            ((LiveBoradcastContreanter.IPreanter) basePreantert).OnLiveBoradSuccess("listener", "private", "video", classid, name, used, unit_ssname);
+            ((LiveBoradcastContreanter.IPreanter) basePreantert).OnLiveBoradSuccess("listener", "private", "video", ""+classid, name, used+"", unit_ssname);
         }
 
     }
@@ -78,6 +78,8 @@ public class LiveBroadcast extends BaseActivity implements LiveBoradcastContrean
     @Override
     public void OnLiveBorad(LiveBoradCast liveBoradCast) {
         LiveBoradCast.DataBean data = liveBoradCast.getData();
+        int code = liveBoradCast.getCode();
+
         String live_url = data.getLive_url();
         ClassConfig config = new ClassConfig();
         config.classURL = live_url;
@@ -129,7 +131,9 @@ public class LiveBroadcast extends BaseActivity implements LiveBoradcastContrean
                 finish();
             }
         });
-
+        if(code==1){
+            finish();
+        }
     }
 
 

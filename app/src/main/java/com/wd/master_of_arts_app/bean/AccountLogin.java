@@ -11,7 +11,7 @@ public class AccountLogin {
     /**
      * code : 1
      * msg : 登录成功
-     * data : {"uid":54,"user_name":"18803652019","group_id":1,"token":"475fd038a9c1a96a2de10a9f39cf9643"}
+     * data : {"uid":37,"nickname":"小明","group_id":1,"token":"ceab4fbdb610065ab29615badef1cd08"}
      */
 
     private int code;
@@ -44,14 +44,14 @@ public class AccountLogin {
 
     public static class DataBean {
         /**
-         * uid : 54
-         * user_name : 18803652019
+         * uid : 37
+         * nickname : 小明
          * group_id : 1
-         * token : 475fd038a9c1a96a2de10a9f39cf9643
+         * token : ceab4fbdb610065ab29615badef1cd08
          */
 
         private int uid;
-        private String user_name;
+        private String nickname;
         private int group_id;
         private String token;
 
@@ -63,12 +63,12 @@ public class AccountLogin {
             this.uid = uid;
         }
 
-        public String getUser_name() {
-            return user_name;
+        public String getNickname() {
+            return nickname;
         }
 
-        public void setUser_name(String user_name) {
-            this.user_name = user_name;
+        public void setNickname(String nickname) {
+            this.nickname = nickname;
         }
 
         public int getGroup_id() {

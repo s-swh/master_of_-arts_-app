@@ -1,7 +1,6 @@
 package com.wd.master_of_arts_app.activity;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -9,7 +8,6 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
-import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.text.Editable;
@@ -74,7 +72,7 @@ public class CourseSelection extends BaseActivity implements CourseContreater.IV
 
     @Override
     protected int getLayoutId() {
-        return R.layout.activity_course_selection;
+        return R.layout.activity_courction;
     }
 
     @Override

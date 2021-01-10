@@ -13,6 +13,7 @@ import com.wd.master_of_arts_app.R;
 import com.wd.master_of_arts_app.adapter.GiveAdapter;
 import com.wd.master_of_arts_app.base.BaseActivity;
 import com.wd.master_of_arts_app.base.BasePreantert;
+import com.wd.master_of_arts_app.bean.ArticleDetails;
 import com.wd.master_of_arts_app.bean.ArticleList;
 import com.wd.master_of_arts_app.bean.CommBean;
 import com.wd.master_of_arts_app.contreater.ArticleListContreater;
@@ -75,5 +76,10 @@ public class GiveActivity extends BaseActivity implements ArticleListContreater.
             }
         });
         xrv.setAdapter(giveAdapter);
+    }
+
+    @Override
+    public void OnArti(ArticleDetails articleDetails) {
+
     }
 }

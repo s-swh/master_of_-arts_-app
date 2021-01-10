@@ -180,6 +180,7 @@ public class SignUpNow extends BaseActivity implements OrderContreater.IView {
                                                 } catch (JSONException e) {
                                                     e.printStackTrace();
                                                 }
+
                                                 payAliPayMiniPro(array_test.toString());
 
                                             }

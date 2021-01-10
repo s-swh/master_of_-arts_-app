@@ -58,7 +58,7 @@ public class Home_page extends BaseFragment implements HomePagerCrete.IVew, View
     @BindView(R.id.xbn)
     XBanner xb;
 
-    private TextView tv,home_tv;
+    private TextView tv,home_tv,left_title,left_date,left_tv;
     private ImageView left, right, notice_iv, icon_tz_y,home_img;
 
     @Override
@@ -83,6 +83,9 @@ public class Home_page extends BaseFragment implements HomePagerCrete.IVew, View
         icon_tz_y = view.findViewById(R.id.icon_tz_y);
         home_img = view.findViewById(R.id.home_img);
         home_tv = view.findViewById(R.id.home_tv);
+        left_title = view.findViewById(R.id.left_title);
+        left_date = view.findViewById(R.id.left_date);
+        left_tv = view.findViewById(R.id.left_tv);
         Glide.with(this).load(R.mipmap.icon_left_lf).apply(RequestOptions.bitmapTransform(new RoundedCorners(20))).into(left);
         Glide.with(this).load(R.mipmap.icon_right_ri).apply(RequestOptions.bitmapTransform(new RoundedCorners(20))).into(right);
     }
@@ -225,6 +228,12 @@ public class Home_page extends BaseFragment implements HomePagerCrete.IVew, View
         String teacher = data.getTeacher();
         String course_name = data.getCourse_name();
         home_tv.setText(course_name+"\n任课老师\n\t"+teacher);
+        String unit_name1 = data.getUnit_name();
+        String date = data.getDate();
+        String time = data.getTime();
+        left_title.setText(date);
+        left_date.setText(time);
+        left_tv.setText(unit_name1);
         tv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

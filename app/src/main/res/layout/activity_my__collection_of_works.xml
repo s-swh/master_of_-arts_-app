@@ -20,10 +20,13 @@
             android:layout_width="match_parent"
             android:text="我的作品集"
             android:gravity="center"
+            android:textSize="@dimen/sp_12"
+            android:textColor="#434343"
             android:layout_height="@dimen/dp_30" />
     </RelativeLayout>
     <com.jcodecraeer.xrecyclerview.XRecyclerView
         android:layout_width="match_parent"
+        android:id="@+id/my_courserv"
         android:layout_height="match_parent">
     </com.jcodecraeer.xrecyclerview.XRecyclerView>
 </LinearLayout>

@@ -38,6 +38,7 @@ import com.wd.master_of_arts_app.bean.Preview;
 import com.wd.master_of_arts_app.bean.Purchase;
 import com.wd.master_of_arts_app.bean.QiNiuYun;
 import com.wd.master_of_arts_app.bean.SMSLogin;
+import com.wd.master_of_arts_app.bean.SampleReels;
 import com.wd.master_of_arts_app.bean.SignOut;
 import com.wd.master_of_arts_app.bean.TakePhotosAndComment;
 import com.wd.master_of_arts_app.bean.UpdateShipping;
@@ -286,4 +287,10 @@ public interface Api {
     @POST("wap/notice/getNum")
     @FormUrlEncoded
     Observable<NoticeNumBer>getNoticeNumber(@Field("token")String token);
+
+    //作品集   http://test.54artist.com/wap/HomeWork/collection
+    @POST("wap/HomeWork/collection")
+    @FormUrlEncoded
+    Observable<SampleReels>getSamole(@Field("token")String token,@Field("course_time_id")int course_time_id);
+
 }

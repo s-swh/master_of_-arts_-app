@@ -240,9 +240,9 @@ public class Verification_code_login extends BaseActivity implements View.OnClic
             startActivity(new Intent(Verification_code_login.this,MainActivity.class));
             finish();
             int uid = data.getUid();
-            String user_name = data.getUser_name();
-            String uids= String.valueOf(uid);
-            EventBus.getDefault().postSticky(new UserId(uids,user_name));
+            String nickname = data.getNickname();
+
+            EventBus.getDefault().postSticky(new UserId(uid,nickname));
 
         }else{
             Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();

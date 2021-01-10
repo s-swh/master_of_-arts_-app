@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.wd.master_of_arts_app.R;
+import com.wd.master_of_arts_app.activity.ArticleDetailsActivity;
 import com.wd.master_of_arts_app.activity.CommonwealClass;
 import com.wd.master_of_arts_app.activity.FindHref;
 import com.wd.master_of_arts_app.activity.GiveActivity;
@@ -24,6 +25,7 @@ import com.wd.master_of_arts_app.adapter.SelectedAdapter;
 import com.wd.master_of_arts_app.base.App;
 import com.wd.master_of_arts_app.base.BaseFragment;
 import com.wd.master_of_arts_app.base.BasePreantert;
+import com.wd.master_of_arts_app.bean.ArticleDetails;
 import com.wd.master_of_arts_app.bean.ArticleList;
 import com.wd.master_of_arts_app.bean.CommBean;
 import com.wd.master_of_arts_app.contreater.ArticleListContreater;
@@ -140,9 +142,10 @@ public class Find_page extends BaseFragment implements ArticleListContreater.IVi
             SelectedAdapter selectedAdapter = new SelectedAdapter(getActivity(), selected_works);
             selectedAdapter.SetOnClick(new SelectedAdapter.ImageOnClick() {
                 @Override
-                public void OnClickImage(String href) {
-                    Intent intent = new Intent(getActivity(), ImageActivity.class);
-                    intent.putExtra("Stringhref",href);
+                public void OnClickImage(int id) {
+                    Intent intent = new Intent(getActivity(), ArticleDetailsActivity.class);
+                    intent.putExtra("article_id",id);
+                    Toast.makeText(getContext(), id+"", Toast.LENGTH_SHORT).show();
                     startActivity(intent);
                 }
             });
@@ -154,6 +157,11 @@ public class Find_page extends BaseFragment implements ArticleListContreater.IVi
 
     @Override
     public void OnCommon(CommBean commBean) {
+
+    }
+
+    @Override
+    public void OnArti(ArticleDetails articleDetails) {
 
     }
 }

@@ -41,13 +41,13 @@
         android:textSize="24sp"
         android:layout_marginLeft="15dp"
         android:layout_height="wrap_content" />
-    <TextView
-        android:layout_width="wrap_content"
+    <WebView
+        android:layout_width="match_parent"
         android:text="用户注册协议"
         android:layout_marginLeft="15dp"
         android:textSize="12sp"
         android:layout_marginTop="@dimen/dp_5"
-        android:id="@+id/conte"
+        android:id="@+id/web"
         android:layout_height="wrap_content" />
     </LinearLayout>
     </ScrollView>

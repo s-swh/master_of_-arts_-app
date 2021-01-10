@@ -1,5 +1,6 @@
 package com.wd.master_of_arts_app.model;
 
+import com.wd.master_of_arts_app.bean.ArticleDetails;
 import com.wd.master_of_arts_app.bean.ArticleList;
 import com.wd.master_of_arts_app.bean.CommBean;
 import com.wd.master_of_arts_app.contreater.ArticleListContreater;
@@ -63,6 +64,36 @@ public class ArticleModel implements ArticleListContreater.IModel {
                     if(commonCoallack!=null){
                         commonCoallack.OnCommon(commBean);
                     }
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+
+                    }
+
+                    @Override
+                    public void onComplete() {
+
+                    }
+                });
+    }
+
+    @Override
+    public void OnAritSuccess(int article_id, OnAritCoallack aritCoallack) {
+        NetUtils.getInstance().getApi().getArti(article_id)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Observer<ArticleDetails>() {
+                    @Override
+                    public void onSubscribe(Disposable d) {
+
+                    }
+
+                    @Override
+                    public void onNext(ArticleDetails articleDetails) {
+                        if(aritCoallack!=null){
+                            aritCoallack.OnArti(articleDetails);
+                        }
                     }
 
                     @Override

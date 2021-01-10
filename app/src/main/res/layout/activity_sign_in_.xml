@@ -108,7 +108,7 @@
             android:layout_height="1dp"/>
         <Button
             android:layout_width="@dimen/dp_305"
-            android:background="@drawable/fillet4"
+            android:background="@drawable/fillet2"
             android:text="登录"
             android:textColor="#fff"
             android:id="@+id/but_log"
@@ -241,7 +241,7 @@
             android:id="@+id/login_log"
             android:textColor="#fff"
             android:layout_gravity="center"
-            android:background="@drawable/fillet4"
+            android:background="@drawable/fillet2"
             android:layout_height="@dimen/dp_45" />
         <LinearLayout
             android:layout_width="wrap_content"

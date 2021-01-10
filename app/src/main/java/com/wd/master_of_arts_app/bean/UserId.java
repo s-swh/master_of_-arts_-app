@@ -6,14 +6,14 @@ package com.wd.master_of_arts_app.bean;
  * @date :2021/1/5 16:43
  */
 public class UserId {
-    public String used;
+    public int used;
     public String name;
 
-    public String getUsed() {
+    public int getUsed() {
         return used;
     }
 
-    public void setUsed(String used) {
+    public void setUsed(int used) {
         this.used = used;
     }
 
@@ -25,7 +25,7 @@ public class UserId {
         this.name = name;
     }
 
-    public UserId(String used, String name) {
+    public UserId(int used, String name) {
         this.used = used;
         this.name = name;
     }

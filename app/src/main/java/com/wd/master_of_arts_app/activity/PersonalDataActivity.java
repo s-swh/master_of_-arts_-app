@@ -75,6 +75,8 @@ public class PersonalDataActivity extends BaseActivity implements View.OnClickLi
     private Button bt;
     private String name;
     private int sex1;
+    private String date;
+    private String detail_address;
 
     @Override
     protected int getLayoutId() {
@@ -109,28 +111,9 @@ public class PersonalDataActivity extends BaseActivity implements View.OnClickLi
         }
 
         et_name.setText(name);
-
-        nan.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-             sex=1;
-            }
-        });
-        nv.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                sex=2;
-            }
-        });
-        if(sex==1){
-            nan.setChecked(true);
-            nv.setChecked(false);
-        }else{
-            nan.setChecked(false);
-            nv.setChecked(true);
-        }
+        tt_date.setText(date);
+        dq.setText(detail_address);
     }
-
 
 
     @Subscribe(sticky = true, threadMode = ThreadMode.MAIN)
@@ -144,10 +127,10 @@ public class PersonalDataActivity extends BaseActivity implements View.OnClickLi
     public void se(User user) {
         name = user.getName();
 
-        String date = user.getDate();
-        tt_date.setText(date);
-        String detail_address = user.getDetail_address();
-        dq.setText(detail_address);
+        date = user.getDate();
+
+        detail_address = user.getDetail_address();
+
         String editname = et_name.getText().toString();
         String editdate = tt_date.getText().toString();
         String editaddress = dq.getText().toString();
