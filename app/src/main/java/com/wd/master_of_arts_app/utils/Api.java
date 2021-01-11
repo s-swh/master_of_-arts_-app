@@ -39,6 +39,7 @@ import com.wd.master_of_arts_app.bean.Purchase;
 import com.wd.master_of_arts_app.bean.QiNiuYun;
 import com.wd.master_of_arts_app.bean.SMSLogin;
 import com.wd.master_of_arts_app.bean.SampleReels;
+import com.wd.master_of_arts_app.bean.SeleteBean;
 import com.wd.master_of_arts_app.bean.SignOut;
 import com.wd.master_of_arts_app.bean.TakePhotosAndComment;
 import com.wd.master_of_arts_app.bean.UpdateShipping;
@@ -46,6 +47,7 @@ import com.wd.master_of_arts_app.bean.UploadPictures;
 import com.wd.master_of_arts_app.bean.UploadWorks;
 import com.wd.master_of_arts_app.bean.UserInformation;
 import com.wd.master_of_arts_app.bean.ViewHarvestAddress;
+import com.wd.master_of_arts_app.bean.WatchTheReplay;
 
 import io.reactivex.Observable;
 import okhttp3.MultipartBody;
@@ -257,7 +259,7 @@ public interface Api {
     //我的作业  http://test.54artist.com/wap/HomeWork/add
     @POST("wap/HomeWork/add")
     @FormUrlEncoded
-    Observable<MyHome> getMyHome(@Field("token") String token, @Field("course_unit_id") int course_unit_id,@Field("course_time_id") String course_time_id, @Field("name") String name, @Field("content") String content, @Field("imglist") String imglist, @Field("voicelist") String voicelist);
+    Observable<MyHome> getMyHome(@Field("token") String token, @Field("course_unit_id") int course_unit_id, @Field("course_time_id") String course_time_id, @Field("name") String name, @Field("content") String content, @Field("imglist") String imglist, @Field("voicelist") String voicelist);
 
     //直播  http://test.54artist.com/wap/Plaso/getLiveRoomUrl
     @POST("wap/Plaso/getLiveRoomUrl")
@@ -272,25 +274,35 @@ public interface Api {
     //全部评论 http://test.54artist.com/wap/Course/getCommentList
     @POST("wap/Course/getCommentList")
     @FormUrlEncoded
-    Observable<MoreComm>getMore(@Field("course_id")int course_id,@Field("p")int p,@Field("per")int per);
+    Observable<MoreComm> getMore(@Field("course_id") int course_id, @Field("p") int p, @Field("per") int per);
 
     //通知  http://test.54artist.com/wap/notice/getList
     @POST("wap/notice/getList")
     @FormUrlEncoded
-    Observable<NoticeBean>getNotice(@Field("token")String token);
+    Observable<NoticeBean> getNotice(@Field("token") String token);
+
     //通知详情 http://test.54artist.com/wap/notice/getMsg
     @POST("wap/notice/getMsg")
     @FormUrlEncoded
-    Observable<NoticeDetailsBean>getNoticeBean(@Field("token")String token,@Field("notice_id")int notice_id);
+    Observable<NoticeDetailsBean> getNoticeBean(@Field("token") String token, @Field("notice_id") int notice_id);
 
     //通知数量  http://test.54artist.com/wap/notice/getNum
     @POST("wap/notice/getNum")
     @FormUrlEncoded
-    Observable<NoticeNumBer>getNoticeNumber(@Field("token")String token);
+    Observable<NoticeNumBer> getNoticeNumber(@Field("token") String token);
 
     //作品集   http://test.54artist.com/wap/HomeWork/collection
     @POST("wap/HomeWork/collection")
     @FormUrlEncoded
-    Observable<SampleReels>getSamole(@Field("token")String token,@Field("course_time_id")int course_time_id);
+    Observable<SampleReels> getSamole(@Field("token") String token, @Field("course_time_id") int course_time_id);
 
+    //获取默认收获地址   http://test.54artist.com/wap/ConsigneeAddress/getDefault
+    @POST("wap/ConsigneeAddress/getDefault")
+    @FormUrlEncoded
+    Observable<SeleteBean> getSelect(@Field("token") String token);
+
+    //观看重播  http://test.54artist.com/wap/plaso/getHistoryUrl
+    @POST("wap/plaso/getHistoryUrl")
+    @FormUrlEncoded
+    Observable<WatchTheReplay>getWatch(@Field("meetingId")String meetingId,@Field("recordId")String recordId);
 }

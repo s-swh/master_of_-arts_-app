@@ -23,6 +23,7 @@ import com.wd.master_of_arts_app.base.BaseActivity;
 import com.wd.master_of_arts_app.base.BasePreantert;
 import com.wd.master_of_arts_app.bean.DeleteHarvestAddress;
 import com.wd.master_of_arts_app.bean.HarvestAddress;
+import com.wd.master_of_arts_app.bean.SeleteBean;
 import com.wd.master_of_arts_app.bean.UpdateShipping;
 import com.wd.master_of_arts_app.bean.ViewHarvestAddress;
 import com.wd.master_of_arts_app.contreater.HarvestAddressContreater;
@@ -214,6 +215,11 @@ public class Add_Address extends BaseActivity implements View.OnClickListener ,H
     //修改
     @Override
     public void Update(UpdateShipping updateShipping) {
+
+    }
+
+    @Override
+    public void SelectBean(SeleteBean seleteBean) {
 
     }
 }

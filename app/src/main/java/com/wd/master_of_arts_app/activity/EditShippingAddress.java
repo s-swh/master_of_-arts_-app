@@ -22,6 +22,7 @@ import com.wd.master_of_arts_app.base.BaseActivity;
 import com.wd.master_of_arts_app.base.BasePreantert;
 import com.wd.master_of_arts_app.bean.DeleteHarvestAddress;
 import com.wd.master_of_arts_app.bean.HarvestAddress;
+import com.wd.master_of_arts_app.bean.SeleteBean;
 import com.wd.master_of_arts_app.bean.UpdateShipping;
 import com.wd.master_of_arts_app.bean.ViewHarvestAddress;
 import com.wd.master_of_arts_app.contreater.HarvestAddressContreater;
@@ -29,6 +30,7 @@ import com.wd.master_of_arts_app.preanter.HarvestAddressPreanter;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 import butterknife.Unbinder;
 
 public class EditShippingAddress extends BaseActivity implements HarvestAddressContreater.IView {
@@ -261,6 +263,16 @@ public class EditShippingAddress extends BaseActivity implements HarvestAddressC
     public void Update(UpdateShipping updateShipping) {
         String msg = updateShipping.getMsg();
         Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
+        finish();
+    }
+
+    @Override
+    public void SelectBean(SeleteBean seleteBean) {
+
+    }
+
+    @OnClick(R.id.oncDestruction)
+    public void Vie(){
         finish();
     }
 }

@@ -1,10 +1,16 @@
 package com.wd.master_of_arts_app.activity;
 
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.media.MediaPlayer;
+import android.view.Gravity;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.PopupWindow;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
@@ -25,6 +31,7 @@ public class DetailsOfWorks extends BaseActivity implements worksContreanter.IVe
     private ImageView iv;
     private Button bton;
     private ImageView bt;
+    private String imglist;
 
     @Override
     protected int getLayoutId() {
@@ -61,6 +68,41 @@ public class DetailsOfWorks extends BaseActivity implements worksContreanter.IVe
             int work_id = intent.getIntExtra("work_id", 0);
             ((worksContreanter.IPreanter) basePreantert).OnDetailsSuccess(work_id);
         }
+        iv.setOnClickListener(new View.OnClickListener() {
+
+            private PopupWindow popupBigPhoto;
+
+            @Override
+            public void onClick(View view) {
+                View view1 = getLayoutInflater().inflate(R.layout.popimg, null);
+                if (popupBigPhoto == null) {
+                    popupBigPhoto = new PopupWindow(view1, ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT, true);
+                    popupBigPhoto.setOutsideTouchable(true);
+
+                }
+                if (popupBigPhoto.isShowing()) {
+                    popupBigPhoto.dismiss();
+                } else {
+                    popupBigPhoto.showAtLocation(view1, Gravity.TOP, 0, 0);
+                }
+
+                // 设置PopupWindow的背景
+                popupBigPhoto.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+// 设置PopupWindow是否能响应外部点击事件
+                popupBigPhoto.setOutsideTouchable(true);
+// 设置PopupWindow是否能响应点击事件
+                popupBigPhoto.setTouchable(true);
+                LinearLayout llt = view1.findViewById(R.id.dimen);
+                ImageView uiv = view1.findViewById(R.id.pop_image);
+                llt.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        popupBigPhoto.dismiss();
+                    }
+                });
+                Glide.with(getApplicationContext()).load("http://qiniu.54artist.com/" + imglist).into(uiv);
+            }
+        });
     }
 
     @Override
@@ -75,7 +117,8 @@ public class DetailsOfWorks extends BaseActivity implements worksContreanter.IVe
 
         String name = workMsg.getName();//名称
         String content = workMsg.getContent();//内容
-        String imglist = workMsg.getImglist();//图片
+        //图片
+        imglist = workMsg.getImglist();
         String create_time = workMsg.getCreate_time();//时间
 
         tv_title.setText("作品名称："+name);

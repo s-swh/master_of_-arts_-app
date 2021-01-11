@@ -17,6 +17,7 @@ import com.bumptech.glide.Glide;
 import com.chinaums.pppay.unify.UnifyPayPlugin;
 import com.chinaums.pppay.unify.UnifyPayRequest;
 import com.wd.master_of_arts_app.R;
+import com.wd.master_of_arts_app.activity.SeleteHarvest;
 import com.wd.master_of_arts_app.activity.myactivity.Harvest_Address;
 import com.wd.master_of_arts_app.base.BaseActivity;
 import com.wd.master_of_arts_app.base.BasePreantert;
@@ -96,7 +97,7 @@ public class SignUpNow extends BaseActivity implements OrderContreater.IView {
         tv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), Harvest_Address.class);
+                Intent intent = new Intent(getApplicationContext(), SeleteHarvest.class);
                 startActivity(intent);
 
             }

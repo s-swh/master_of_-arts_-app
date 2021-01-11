@@ -52,7 +52,7 @@ public class MyVideoAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
         ((MyViewHorder) holder).jc.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                click1.Myclick(href);
+                click1.Myclick(href,title);
             }
         });
     }
@@ -67,7 +67,7 @@ public class MyVideoAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
     }
 
     public interface OnMyClick {
-        void Myclick(String href);
+        void Myclick(String href,String name);
     }
 
     class MyViewHorder extends RecyclerView.ViewHolder {

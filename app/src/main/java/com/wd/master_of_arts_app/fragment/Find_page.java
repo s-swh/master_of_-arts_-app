@@ -120,9 +120,10 @@ public class Find_page extends BaseFragment implements ArticleListContreater.IVi
             FindAdapter findAdapter = new FindAdapter(getActivity(), free_video);
             findAdapter.OnClick(new FindAdapter.OnClickHref() {
                 @Override
-                public void OnClick(String href) {
+                public void OnClick(String href,String name) {
                     Intent intent = new Intent(getActivity(), FindHref.class);
                     intent.putExtra("href", href);
+                    intent.putExtra("name", name);
                     startActivity(intent);
                 }
             });
@@ -131,9 +132,10 @@ public class Find_page extends BaseFragment implements ArticleListContreater.IVi
             MyVideoAdapter myVideoAdapter = new MyVideoAdapter(getActivity(), my_video);
             myVideoAdapter.OnMyClicked(new MyVideoAdapter.OnMyClick() {
                 @Override
-                public void Myclick(String href) {
+                public void Myclick(String href,String name) {
                     Intent intent = new Intent(getActivity(), FindHref.class);
                     intent.putExtra("href", href);
+                    intent.putExtra("name", name);
                     startActivity(intent);
                 }
             });

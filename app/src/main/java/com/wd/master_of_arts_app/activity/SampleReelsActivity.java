@@ -6,11 +6,18 @@ import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.PopupWindow;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.jcodecraeer.xrecyclerview.XRecyclerView;
 import com.wd.master_of_arts_app.R;
 import com.wd.master_of_arts_app.adapter.SampleReelsAdapter;
@@ -77,7 +84,42 @@ public class SampleReelsActivity extends BaseActivity implements SampleReelsCont
             reels.setVisibility(View.VISIBLE);
         }else{
             SampleReelsAdapter sampleReelsAdapter = new SampleReelsAdapter(getApplicationContext(), list);
+            sampleReelsAdapter.OnItemClick(new SampleReelsAdapter.ItemOnClick() {
 
+                private PopupWindow popupBigPhoto;
+
+                @Override
+                public void OnClick(String href) {
+                    View view1 = getLayoutInflater().inflate(R.layout.popimg, null);
+
+                    if (popupBigPhoto == null) {
+                        popupBigPhoto = new PopupWindow(view1, ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT, true);
+                        popupBigPhoto.setOutsideTouchable(true);
+
+                    }
+                    if (popupBigPhoto.isShowing()) {
+                        popupBigPhoto.dismiss();
+                    } else {
+                        popupBigPhoto.showAtLocation(view1, Gravity.TOP, 0, 0);
+                    }
+
+                    // 设置PopupWindow的背景
+                    popupBigPhoto.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+// 设置PopupWindow是否能响应外部点击事件
+                    popupBigPhoto.setOutsideTouchable(true);
+// 设置PopupWindow是否能响应点击事件
+                    popupBigPhoto.setTouchable(true);
+                    LinearLayout llt = view1.findViewById(R.id.dimen);
+                    ImageView uiv = view1.findViewById(R.id.pop_image);
+                    llt.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            popupBigPhoto.dismiss();
+                        }
+                    });
+                    Glide.with(getApplicationContext()).load(href).into(uiv);
+                }
+            });
             xrv.setAdapter(sampleReelsAdapter);
         }
 

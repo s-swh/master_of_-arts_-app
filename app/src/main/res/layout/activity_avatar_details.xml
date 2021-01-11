@@ -3,33 +3,30 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".activity.FindHref">
+    android:layout_height="match_parent"
+    tools:context=".activity.AvatarDetails">
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <ImageView
             android:layout_width="17.14dp"
             android:src="@mipmap/returnbutton"
-            android:layout_margin="@dimen/dp_15"
-            android:id="@+id/finsun"
-            android:layout_height="16dp"/>
+            android:layout_marginTop="@dimen/dp_15"
+            android:layout_marginLeft="@dimen/dp_15"
+            android:id="@+id/imv"
+            android:layout_height="@dimen/dp_17" />
         <TextView
             android:layout_width="match_parent"
-            android:id="@+id/tname"
-            android:gravity="center"
+            android:text="查看头像"
             android:textSize="@dimen/sp_12"
             android:textColor="#434343"
             android:layout_centerVertical="true"
-            android:text="123"
-
+            android:gravity="center"
             android:layout_height="wrap_content" />
     </RelativeLayout>
-
-<cn.jzvd.JzvdStd
+<ImageView
     android:layout_width="match_parent"
-    android:id="@+id/jz"
-    android:layout_height="match_parent">
-</cn.jzvd.JzvdStd>
+    android:id="@+id/ivc"
+    android:layout_height="@dimen/dp_150" />
 </LinearLayout>

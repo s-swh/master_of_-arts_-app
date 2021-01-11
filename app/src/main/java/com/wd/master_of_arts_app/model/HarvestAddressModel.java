@@ -2,6 +2,7 @@ package com.wd.master_of_arts_app.model;
 
 import com.wd.master_of_arts_app.bean.DeleteHarvestAddress;
 import com.wd.master_of_arts_app.bean.HarvestAddress;
+import com.wd.master_of_arts_app.bean.SeleteBean;
 import com.wd.master_of_arts_app.bean.UpdateShipping;
 import com.wd.master_of_arts_app.bean.ViewHarvestAddress;
 import com.wd.master_of_arts_app.contreater.HarvestAddressContreater;
@@ -125,6 +126,36 @@ public class HarvestAddressModel implements HarvestAddressContreater.IModel {
                         if(updataCoallack!=null){
                             updataCoallack.Update(updateShipping);
                         }
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+
+                    }
+
+                    @Override
+                    public void onComplete() {
+
+                    }
+                });
+    }
+
+    @Override
+    public void OnSelectSucess(String token, OnSelectedCoallack selectedCoallack) {
+        NetUtils.getInstance().getApi().getSelect(token)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Observer<SeleteBean>() {
+                    @Override
+                    public void onSubscribe(Disposable d) {
+
+                    }
+
+                    @Override
+                    public void onNext(SeleteBean seleteBean) {
+                    if(selectedCoallack!=null){
+                        selectedCoallack.SelectBean(seleteBean);
+                    }
                     }
 
                     @Override

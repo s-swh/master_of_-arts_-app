@@ -30,7 +30,7 @@ import java.util.List;
 import butterknife.OnClick;
 
 /**
- * 我的作品集
+ *
  */
 public class My_Collection_of_works extends BaseActivity implements MyCourseContreater.IView {
 

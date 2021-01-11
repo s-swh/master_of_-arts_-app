@@ -22,11 +22,12 @@ import butterknife.OnClick;
 
 /**
  * @author 时文豪
- * @description:  查看收获列表
+ * @description: 查看收获列表
  * @date :2020/12/19 14:35
  */
 public class HarvestAddressAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
-    Context context; List<ViewHarvestAddress.DataBean.ListBean> list;
+    Context context;
+    List<ViewHarvestAddress.DataBean.ListBean> list;
     private OnCliack cliack1;
     private OnIdClick onIdClick1;
 
@@ -51,10 +52,10 @@ public class HarvestAddressAdapter extends RecyclerView.Adapter<RecyclerView.Vie
         int id = list.get(position).getId();
         String detail_address = list.get(position).getDetail_address();
         String contact_number = list.get(position).getContact_number();
-        ((HarvestViewHorder)holder).tv_name.setText(consignee);
+        ((HarvestViewHorder) holder).tv_name.setText(consignee);
         ((HarvestViewHorder) holder).tv_phone.setText(contact_number);
-        ((HarvestViewHorder) holder).tv_acce.setText(province+""+city+""+county+""+detail_address);
-        ((HarvestViewHorder)holder).lt.setOnClickListener(new View.OnClickListener() {
+        ((HarvestViewHorder) holder).tv_acce.setText(province + "" + city + "" + county + "" + detail_address);
+        ((HarvestViewHorder) holder).lt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 cliack1.onclick(list.get(position));
@@ -76,29 +77,34 @@ public class HarvestAddressAdapter extends RecyclerView.Adapter<RecyclerView.Vie
     public int getItemCount() {
         return list.size();
     }
-    public void onclick(OnCliack cliack){
+
+    public void onclick(OnCliack cliack) {
         cliack1 = cliack;
     }
-    public void OnId(OnIdClick onIdClick){
+
+    public void OnId(OnIdClick onIdClick) {
         onIdClick1 = onIdClick;
     }
-    public interface OnCliack{
+
+    public interface OnCliack {
         void onclick(ViewHarvestAddress.DataBean.ListBean listBean);
     }
-    public interface OnIdClick{
+
+    public interface OnIdClick {
         void OnidClick(int id);
     }
+
     class HarvestViewHorder extends RecyclerView.ViewHolder {
 
-        private final TextView tv_name,tv_phone,tv_acce;
+        private final TextView tv_name, tv_phone, tv_acce;
         private final ImageView lt;
         private final LinearLayout add;
 
         public HarvestViewHorder(@NonNull View itemView) {
             super(itemView);
             tv_name = itemView.findViewById(R.id.text_name);
-           tv_phone= itemView.findViewById(R.id.text_phone);
-           tv_acce= itemView.findViewById(R.id.text_acceccte);
+            tv_phone = itemView.findViewById(R.id.text_phone);
+            tv_acce = itemView.findViewById(R.id.text_acceccte);
             lt = itemView.findViewById(R.id.lt);
             add = itemView.findViewById(R.id.addres);
         }

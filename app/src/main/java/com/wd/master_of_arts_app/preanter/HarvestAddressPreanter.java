@@ -4,6 +4,7 @@ import com.wd.master_of_arts_app.base.BasePreantert;
 import com.wd.master_of_arts_app.base.IBaseView;
 import com.wd.master_of_arts_app.bean.DeleteHarvestAddress;
 import com.wd.master_of_arts_app.bean.HarvestAddress;
+import com.wd.master_of_arts_app.bean.SeleteBean;
 import com.wd.master_of_arts_app.bean.UpdateShipping;
 import com.wd.master_of_arts_app.bean.ViewHarvestAddress;
 import com.wd.master_of_arts_app.contreater.HarvestAddressContreater;
@@ -78,6 +79,20 @@ public class HarvestAddressPreanter extends BasePreantert implements HarvestAddr
                 if(iBaseView instanceof HarvestAddressContreater.IView){
                     HarvestAddressContreater.IView view= (HarvestAddressContreater.IView) iBaseView;
                     view.Update(updateShipping);
+                }
+            }
+        });
+    }
+
+    @Override
+    public void OnSelectSucess(String token) {
+        harvestAddressModel.OnSelectSucess(token, new HarvestAddressContreater.IModel.OnSelectedCoallack() {
+            @Override
+            public void SelectBean(SeleteBean seleteBean) {
+                IBaseView iBaseView = getView();
+                if(iBaseView instanceof HarvestAddressContreater.IView){
+                    HarvestAddressContreater.IView view= (HarvestAddressContreater.IView) iBaseView;
+                    view.SelectBean(seleteBean);
                 }
             }
         });

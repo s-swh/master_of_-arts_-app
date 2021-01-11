@@ -3,6 +3,7 @@ package com.wd.master_of_arts_app.contreater;
 import com.wd.master_of_arts_app.base.IBaseView;
 import com.wd.master_of_arts_app.bean.DeleteHarvestAddress;
 import com.wd.master_of_arts_app.bean.HarvestAddress;
+import com.wd.master_of_arts_app.bean.SeleteBean;
 import com.wd.master_of_arts_app.bean.UpdateShipping;
 import com.wd.master_of_arts_app.bean.ViewHarvestAddress;
 
@@ -22,6 +23,8 @@ public interface HarvestAddressContreater {
         void DeleteHarvest(DeleteHarvestAddress deleteHarvestAddress);
         //修改收获地址
         void Update(UpdateShipping updateShipping);
+        //默认收货地址
+        void SelectBean(SeleteBean seleteBean);
     }
     interface IPreanter{
         //添加地址
@@ -32,6 +35,8 @@ public interface HarvestAddressContreater {
         void DeleteHarvestSuccess(String token,String address_id);
         //修改收获地址
         void UpdateSuccess(String token,int address_id,String province,String city,String county,String detail_address,String consignee,String contact_number,String is_default);
+        //默认收获地址
+        void OnSelectSucess(String token);
     }
     interface IModel{
         //添加地址
@@ -53,6 +58,11 @@ public interface HarvestAddressContreater {
         void UpdateSuccess(String token,int address_id,String province,String city,String county,String detail_address,String consignee,String contact_number,String is_default,UpdataCoallack updataCoallack);
         interface UpdataCoallack{
             void Update(UpdateShipping updateShipping);
+        }
+        //默认收货地址
+        void OnSelectSucess(String token,OnSelectedCoallack selectedCoallack);
+        interface OnSelectedCoallack{
+            void SelectBean(SeleteBean seleteBean);
         }
     }
 }

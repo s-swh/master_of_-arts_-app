@@ -4,6 +4,7 @@ import android.content.Context;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -24,6 +25,7 @@ import java.util.List;
 public class SampleReelsAdapter extends XRecyclerView.Adapter<XRecyclerView.ViewHolder> {
     Context context;
     List<SampleReels.DataBean.ListBean> list;
+    private ItemOnClick click1;
 
     public SampleReelsAdapter(Context context, List<SampleReels.DataBean.ListBean> list) {
         this.context = context;
@@ -45,25 +47,40 @@ public class SampleReelsAdapter extends XRecyclerView.Adapter<XRecyclerView.View
         String imglist = listBean.getImglist();
         ((SampleReelsViewHorder) holder).date.setText(comment_time);
         ((SampleReelsViewHorder) holder).name.setText(name);
-        Glide.with(context).load("http://qiniu.54artist.com/" + imglist).error(R.drawable.ic_launcher_background).into(((SampleReelsViewHorder) holder).iv);
+        String url="http://qiniu.54artist.com/" + imglist;
+        Glide.with(context).load(url).error(R.drawable.ic_launcher_background).into(((SampleReelsViewHorder) holder).iv);
+        ((SampleReelsViewHorder) holder).sample_iv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                click1.OnClick(url);
+            }
+        });
     }
 
     @Override
     public int getItemCount() {
         return list.size();
     }
-
+    public void OnItemClick(ItemOnClick click){
+        click1 = click;
+    }
+    public interface ItemOnClick{
+        void OnClick(String href);
+    }
     class SampleReelsViewHorder extends XRecyclerView.ViewHolder {
 
         private final ImageView iv;
         private final TextView name;
         private final TextView date;
+        private final LinearLayout sample_iv;
 
         public SampleReelsViewHorder(@NonNull View itemView) {
             super(itemView);
             iv = itemView.findViewById(R.id.sampl_iv);
             name = itemView.findViewById(R.id.sampl_name);
             date = itemView.findViewById(R.id.sampl_date);
+            sample_iv = itemView.findViewById(R.id.sample_iv);
         }
     }
 }

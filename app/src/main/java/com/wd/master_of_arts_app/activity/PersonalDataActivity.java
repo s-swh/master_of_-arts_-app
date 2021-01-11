@@ -77,6 +77,8 @@ public class PersonalDataActivity extends BaseActivity implements View.OnClickLi
     private int sex1;
     private String date;
     private String detail_address;
+    private LinearLayout llt;
+    private String img;
 
     @Override
     protected int getLayoutId() {
@@ -102,6 +104,7 @@ public class PersonalDataActivity extends BaseActivity implements View.OnClickLi
         nv = findViewById(R.id.nv);
         bt = findViewById(R.id.upde);
         rp = findViewById(R.id.rp);
+        llt = findViewById(R.id.llt);
         Intent intent = getIntent();
         sex1 = intent.getIntExtra("sex", 0);
         if (sex1 == 1) {
@@ -118,7 +121,7 @@ public class PersonalDataActivity extends BaseActivity implements View.OnClickLi
 
     @Subscribe(sticky = true, threadMode = ThreadMode.MAIN)
     public void Image(Image image) {
-        String img = image.getImg();
+        img = image.getImg();
         Glide.with(getApplicationContext()).load(img).apply(RequestOptions.bitmapTransform(new CircleCrop())).error(R.mipmap.ic_launcher_round).into(iv);
     }
 
@@ -139,6 +142,14 @@ public class PersonalDataActivity extends BaseActivity implements View.OnClickLi
 
     @Override
     protected void initData() {
+        llt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(),AvatarDetails.class);
+                intent.putExtra("avarat",img);
+                startActivity(intent);
+            }
+        });
         SharedPreferences s1p = getSharedPreferences("address", MODE_PRIVATE);
         String s1c = s1p.getString("acacsadasd", "");
         dq.setText(s1c);

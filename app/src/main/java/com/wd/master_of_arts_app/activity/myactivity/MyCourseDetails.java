@@ -20,6 +20,7 @@ import com.bumptech.glide.request.RequestOptions;
 import com.wd.master_of_arts_app.R;
 import com.wd.master_of_arts_app.activity.MyHomeWork;
 import com.wd.master_of_arts_app.activity.OrderComment;
+import com.wd.master_of_arts_app.activity.WatchTheReplayActivity;
 import com.wd.master_of_arts_app.activity.WorkPage;
 import com.wd.master_of_arts_app.adapter.MyCourseAdapterData;
 import com.wd.master_of_arts_app.base.BaseActivity;
@@ -84,7 +85,13 @@ public class MyCourseDetails extends BaseActivity implements MyCourseContreater.
             ((MyCourseContreater.IPreanter) basePreantert).OnCourseDatailsSuccess(token1, order_id, icqd);
 
         }
-        rv.setLayoutManager(new LinearLayoutManager(this));
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this,RecyclerView.VERTICAL,false){
+            @Override
+            public boolean canScrollVertically() {
+                return true;
+            }
+        };
+        rv.setLayoutManager(linearLayoutManager);
         vv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -125,6 +132,31 @@ public class MyCourseDetails extends BaseActivity implements MyCourseContreater.
         Glide.with(getApplicationContext()).load(data.getIcon()).apply(RequestOptions.bitmapTransform(new RoundedCorners(50))).into(iv);
         List<MyCourseDetailsBean.DataBean.UnitListBean> unit_list = data.getUnit_list();
         MyCourseAdapterData myCourseAdapterData = new MyCourseAdapterData(getApplicationContext(), unit_list);
+        myCourseAdapterData.OnItemClick(new MyCourseAdapterData.OnHuiFangClick() {
+
+
+
+            @Override
+            public void OnClicked(int meetingId, List<String> list) {
+
+                Intent intent = new Intent(getApplicationContext(), WatchTheReplayActivity.class);
+                intent.putExtra("meetingId",meetingId);
+
+
+                startActivity(intent);
+            }
+        });
+        //查看作业详情
+        myCourseAdapterData.OnClickZSelete(new MyCourseAdapterData.OnClickSelete() {
+            @Override
+            public void onClickzy(int id, int cid) {
+                Intent intent = new Intent(getApplicationContext(), WorkPage.class);
+                intent.putExtra("homework_idcid",cid);
+                Toast.makeText(MyCourseDetails.this, cid+"", Toast.LENGTH_SHORT).show();
+                startActivity(intent);
+            }
+        });
+        //提交作业与查看作业详情
         myCourseAdapterData.OnClickZYe(new MyCourseAdapterData.OnClickZYe() {
             @Override
             public void onClickzy(int id,int cid) {

@@ -50,7 +50,7 @@ public class FindAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         ((FindViewHorder)holder).jc.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                clickHref.OnClick(href);
+                clickHref.OnClick(href,title);
             }
         });
     }
@@ -64,7 +64,7 @@ public class FindAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         clickHref = href;
     }
     public interface OnClickHref{
-        void OnClick(String href);
+        void OnClick(String href,String name);
     }
     class FindViewHorder extends RecyclerView.ViewHolder {
 

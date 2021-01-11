@@ -42,23 +42,44 @@
         android:layout_height="wrap_content" />
     <RelativeLayout
         android:layout_width="match_parent"
+        android:id="@+id/item_one"
+
         android:layout_height="wrap_content">
     <RelativeLayout
         android:layout_width="@dimen/dp_50"
         android:background="@drawable/myzy"
         android:id="@+id/my_zy"
+
         android:layout_alignParentRight="true"
+
         android:layout_marginRight="@dimen/dp_70"
         android:layout_height="@dimen/dp_20">
         <TextView
             android:layout_width="wrap_content"
-            android:text="我的作业"
-
+            android:text="提交作业"
+            android:id="@+id/tjzy"
             android:textColor="#019A92"
             android:layout_centerVertical="true"
             android:layout_centerHorizontal="true"
             android:layout_height="wrap_content" />
     </RelativeLayout>
+        <RelativeLayout
+            android:layout_width="@dimen/dp_50"
+            android:background="@drawable/myzy"
+            android:id="@+id/my_selete"
+
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="@dimen/dp_70"
+            android:layout_height="@dimen/dp_20">
+            <TextView
+                android:layout_width="wrap_content"
+                android:text="查看作业"
+
+                android:textColor="#019A92"
+                android:layout_centerVertical="true"
+                android:layout_centerHorizontal="true"
+                android:layout_height="wrap_content" />
+        </RelativeLayout>
     <RelativeLayout
         android:layout_width="@dimen/dp_50"
         android:layout_alignParentRight="true"

@@ -149,7 +149,7 @@ public class OrderDetails extends BaseActivity implements OrderContreater.IView 
             fail.setVisibility(View.GONE);
             fai2.setVisibility(View.GONE);
             shost1.setVisibility(View.GONE);
-            shost.setVisibility(View.VISIBLE);
+            shost.setVisibility(View.GONE);
         } else if (status == 3) {
             success.setVisibility(View.VISIBLE);
             fail.setVisibility(View.GONE);

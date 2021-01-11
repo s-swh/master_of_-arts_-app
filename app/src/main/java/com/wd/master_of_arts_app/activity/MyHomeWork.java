@@ -353,8 +353,8 @@ public class MyHomeWork extends BaseActivity {
         String ke = sp.getString("ke", "");
         Log.d("xxxxxxxxx", ke);
         Intent intent1 = getIntent();
-        String ididididid = intent1.getStringExtra("ididididid");
-        NetUtils.getInstance().getApi().getMyHome(token1, unit_id_two,ididididid, string, string1, accc, ke)
+        int ididididid = intent1.getIntExtra("ididididid",0);
+        NetUtils.getInstance().getApi().getMyHome(token1, unit_id_two,ididididid+"", string, string1, accc, ke)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Observer<MyHome>() {
@@ -366,11 +366,15 @@ public class MyHomeWork extends BaseActivity {
                     @Override
                     public void onNext(MyHome myHome) {
                         int code = myHome.getCode();
-
+                        SharedPreferences et = getSharedPreferences("et", MODE_PRIVATE);
+                        SharedPreferences.Editor edit = et.edit();
+                        edit.putString("striasdasdasng", "");
+                        edit.commit();
                         String msg = myHome.getMsg();
                         Toast.makeText(MyHomeWork.this, msg, Toast.LENGTH_SHORT).show();
                         if (code == 1) {
                             finish();
+
                         }
                     }
 

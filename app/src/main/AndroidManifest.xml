@@ -103,13 +103,23 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar"
         tools:replace="android:theme">
-        <activity android:name=".activity.ArticleDetailsActivity"></activity>
+        <activity android:name=".activity.WatchThreeReplaceActivity"  android:configChanges="orientation|keyboardHidden|navigation|screenSize"
+            android:hardwareAccelerated="true"></activity>
+        <activity
+            android:name=".activity.WatchTheReplayActivity"
+            android:configChanges="orientation|keyboardHidden|navigation|screenSize"
+            android:hardwareAccelerated="true" />
+        <activity android:name=".activity.SeleteHarvest" />
+        <activity android:name=".activity.AvatarDetails" />
+        <activity android:name=".activity.ArticleDetailsActivity" />
         <activity android:name=".activity.SampleReelsActivity" />
         <activity android:name=".activity.CourseSelection" />
         <activity android:name=".activity.BannerActivity" />
         <activity android:name=".activity.NoticeDetails" />
         <activity android:name=".activity.NoticeActivity" />
-
+        <queries>
+            <package android:name="com.tencent.mm" />
+        </queries>
         <uses-library
             android:name="org.apache.http.legacy"
             android:required="false" />

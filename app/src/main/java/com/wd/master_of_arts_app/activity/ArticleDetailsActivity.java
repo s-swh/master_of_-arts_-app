@@ -3,9 +3,15 @@ package com.wd.master_of_arts_app.activity;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.PopupWindow;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
@@ -21,8 +27,8 @@ import com.wd.master_of_arts_app.preanter.ArticlePreanter;
 public class ArticleDetailsActivity extends BaseActivity implements ArticleListContreater.IView {
 
 
-    private ImageView iv,article_fh;
-    private TextView tv,date;
+    private ImageView iv, article_fh;
+    private TextView tv, date;
 
     @Override
     protected int getLayoutId() {
@@ -51,9 +57,9 @@ public class ArticleDetailsActivity extends BaseActivity implements ArticleListC
     @Override
     protected void initData() {
         Intent intent = getIntent();
-        int article_id = intent.getIntExtra("article_id",0);
+        int article_id = intent.getIntExtra("article_id", 0);
         BasePreantert basePreantert = getmPreantert();
-        if(basePreantert instanceof ArticleListContreater.IPreanter){
+        if (basePreantert instanceof ArticleListContreater.IPreanter) {
             ((ArticleListContreater.IPreanter) basePreantert).OnAritSuccess(article_id);
         }
     }
@@ -78,5 +84,40 @@ public class ArticleDetailsActivity extends BaseActivity implements ArticleListC
         Glide.with(getApplicationContext()).load(img).into(iv);
         tv.setText(title);
         date.setText(pubtime);
+        iv.setOnClickListener(new View.OnClickListener() {
+
+            private PopupWindow popupBigPhoto;
+
+            @Override
+            public void onClick(View view) {
+                View view1 = getLayoutInflater().inflate(R.layout.popimg, null);
+                if (popupBigPhoto == null) {
+                    popupBigPhoto = new PopupWindow(view1, ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT, true);
+                    popupBigPhoto.setOutsideTouchable(true);
+
+                }
+                if (popupBigPhoto.isShowing()) {
+                    popupBigPhoto.dismiss();
+                } else {
+                    popupBigPhoto.showAtLocation(view1, Gravity.TOP, 0, 0);
+                }
+
+                // 设置PopupWindow的背景
+                popupBigPhoto.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+// 设置PopupWindow是否能响应外部点击事件
+                popupBigPhoto.setOutsideTouchable(true);
+// 设置PopupWindow是否能响应点击事件
+                popupBigPhoto.setTouchable(true);
+                LinearLayout llt = view1.findViewById(R.id.dimen);
+                ImageView uiv = view1.findViewById(R.id.pop_image);
+                llt.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        popupBigPhoto.dismiss();
+                    }
+                });
+                Glide.with(getApplicationContext()).load(img).into(uiv);
+            }
+        });
     }
 }

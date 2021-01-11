@@ -1,10 +1,12 @@
-package com.wd.master_of_arts_app.activity.myactivity;
+package com.wd.master_of_arts_app.activity;
 
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -12,8 +14,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.wd.master_of_arts_app.R;
-import com.wd.master_of_arts_app.activity.Add_Address;
-import com.wd.master_of_arts_app.activity.EditShippingAddress;
+import com.wd.master_of_arts_app.activity.myactivity.Harvest_Address;
 import com.wd.master_of_arts_app.adapter.HarvestAddressAdapter;
 import com.wd.master_of_arts_app.base.BaseActivity;
 import com.wd.master_of_arts_app.base.BasePreantert;
@@ -32,11 +33,7 @@ import java.util.List;
 
 import butterknife.OnClick;
 
-/**
- * 收获地址
- */
-public class Harvest_Address extends BaseActivity implements HarvestAddressContreater.IView {
-
+public class SeleteHarvest extends BaseActivity implements HarvestAddressContreater.IView {
 
     private RecyclerView rv;
     private HarvestAddressAdapter harvestAddressAdapter;
@@ -46,7 +43,7 @@ public class Harvest_Address extends BaseActivity implements HarvestAddressContr
 
     @Override
     protected int getLayoutId() {
-        return R.layout.activity_harvest__address;
+        return R.layout.activity_selete_harvest;
     }
 
     @Override
@@ -62,7 +59,6 @@ public class Harvest_Address extends BaseActivity implements HarvestAddressContr
         tv_acce = findViewById(R.id.text_acceccte);
         lt = findViewById(R.id.lt);
         add = findViewById(R.id.addres);
-
     }
 
     @OnClick(R.id.oncDestruction)
@@ -99,7 +95,6 @@ public class Harvest_Address extends BaseActivity implements HarvestAddressContr
             SharedPreferences token = getSharedPreferences("token", MODE_PRIVATE);
             String token1 = token.getString("token", "");
             ((HarvestAddressContreater.IPreanter) basePreantert).ViewHarvestAddressSuccess(token1);
-            ((HarvestAddressContreater.IPreanter) basePreantert).OnSelectSucess(token1);
         }
         //布局管理器
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
@@ -124,7 +119,7 @@ public class Harvest_Address extends BaseActivity implements HarvestAddressContr
             public void OnidClick(int id) {
 
                 EventBus.getDefault().postSticky(new HarvestID(id));
-
+                finish();
             }
         });
         harvestAddressAdapter.onclick(new HarvestAddressAdapter.OnCliack() {
@@ -140,9 +135,9 @@ public class Harvest_Address extends BaseActivity implements HarvestAddressContr
                 String is_default = listBean.getIs_default();
 
 
-                Toast.makeText(Harvest_Address.this, id1c + "", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), id1c + "", Toast.LENGTH_SHORT).show();
 
-                Intent intent = new Intent(Harvest_Address.this, EditShippingAddress.class);
+                Intent intent = new Intent(getApplicationContext(), EditShippingAddress.class);
                 intent.putExtra("idc1", id1c);
                 intent.putExtra("province", province);
                 intent.putExtra("city", city);
@@ -189,7 +184,7 @@ public class Harvest_Address extends BaseActivity implements HarvestAddressContr
             @Override
             public void onClick(View view) {
 
-                Intent intent = new Intent(Harvest_Address.this, EditShippingAddress.class);
+                Intent intent = new Intent(SeleteHarvest.this, EditShippingAddress.class);
                 intent.putExtra("idc1", id1c);
                 intent.putExtra("province", province);
                 intent.putExtra("city", city);

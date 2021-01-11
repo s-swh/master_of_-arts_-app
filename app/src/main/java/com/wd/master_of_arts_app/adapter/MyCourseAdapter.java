@@ -13,6 +13,7 @@ import androidx.annotation.NonNull;
 
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.resource.bitmap.CircleCrop;
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 import com.bumptech.glide.request.RequestOptions;
 import com.jcodecraeer.xrecyclerview.XRecyclerView;
@@ -52,14 +53,15 @@ public class MyCourseAdapter extends XRecyclerView.Adapter<XRecyclerView.ViewHol
     public void onBindViewHolder(@NonNull XRecyclerView.ViewHolder holder, int position) {
         MyCurse.DataBean.ListBean listBean = list.get(position);
         String title = listBean.getTitle();
+        int unit_num = listBean.getUnit_num();
         String time_detail = listBean.getTime_detail();
         String teacher_name = listBean.getTeacher_name();
         ((MyCourseViewHorder) holder).tle.setText(title);
-
+    ((MyCourseViewHorder) holder).sort_num.setText("共"+unit_num+"课");
         ((MyCourseViewHorder) holder).te.setText(time_detail);
         ((MyCourseViewHorder) holder).name.setText(teacher_name);
         String avatar = listBean.getAvatar();
-        Glide.with(context).load(avatar).apply(RequestOptions.bitmapTransform(new RoundedCorners(500))).error(R.mipmap.ic_launcher_round).into(((MyCourseViewHorder)holder).iv);
+        Glide.with(context).load(avatar).apply(RequestOptions.bitmapTransform(new CircleCrop())).error(R.mipmap.ic_launcher_round).into(((MyCourseViewHorder)holder).iv);
         ((MyCourseViewHorder) holder).Viewcoursedetails.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
