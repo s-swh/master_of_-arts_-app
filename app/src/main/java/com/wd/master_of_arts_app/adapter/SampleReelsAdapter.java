@@ -48,10 +48,10 @@ public class SampleReelsAdapter extends XRecyclerView.Adapter<XRecyclerView.View
         ((SampleReelsViewHorder) holder).date.setText(comment_time);
 
         ((SampleReelsViewHorder) holder).name.setText(name);
-        ((SampleReelsViewHorder) holder).name.setHeight(100 + (position % 2) * 50);
+        ((SampleReelsViewHorder) holder).name.setHeight(100 + (position % 6) * 50);
         String url = "http://qiniu.54artist.com/" + imglist;
         Glide.with(context).load(url).error(R.drawable.ic_launcher_background).into(((SampleReelsViewHorder) holder).iv);
-        ((SampleReelsViewHorder) holder).sample_iv.setOnClickListener(new View.OnClickListener() {
+        ((SampleReelsViewHorder) holder).iv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 

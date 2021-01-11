@@ -21,8 +21,8 @@ import io.reactivex.schedulers.Schedulers;
 public class OrderModel implements OrderContreater.IModel {
     //创建订单
     @Override
-    public void OnPruchaseSuccess(String token, int course_id, int course_time_id,int address_id, OnPruchaseCoallack coallack) {
-        NetUtils.getInstance().getApi().getPurchase(token, course_id, course_time_id,address_id)
+    public void OnPruchaseSuccess(String token, int course_id, int course_time_id,int address_id,int pay_method, OnPruchaseCoallack coallack) {
+        NetUtils.getInstance().getApi().getPurchase(token, course_id, course_time_id,address_id, pay_method)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Observer<Purchase>() {

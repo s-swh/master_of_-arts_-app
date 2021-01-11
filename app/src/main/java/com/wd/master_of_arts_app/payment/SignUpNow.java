@@ -110,100 +110,27 @@ public class SignUpNow extends BaseActivity implements OrderContreater.IView {
     public void String(String string) {
         tv.setText(string);
     }
-    @Subscribe(threadMode = ThreadMode.MAIN,sticky = true)
-    public void Id(HarvestID harvestID){
+
+    @Subscribe(threadMode = ThreadMode.MAIN, sticky = true)
+    public void Id(HarvestID harvestID) {
         harId = harvestID.getHarId();
     }
+
+    private int i;
+
     @Override
     protected void initData() {
         zhifubaozhifu.setOnClickListener(new View.OnClickListener() {
+
+
             @Override
             public void onClick(View view) {
                 n.setVisibility(View.GONE);
                 y.setVisibility(View.VISIBLE);
                 b.setVisibility(View.GONE);
                 c.setVisibility(View.VISIBLE);
-                bt.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        Toast.makeText(SignUpNow.this, "支付宝支付", Toast.LENGTH_SHORT).show();
-                        BasePreantert basePreantert = getmPreantert();
-                        if (basePreantert instanceof OrderContreater.IPreanter) {
-                            SharedPreferences token = getSharedPreferences("token", MODE_PRIVATE);
-                            String token1 = token.getString("token", "");
+                i = 2;
 
-                            ((OrderContreater.IPreanter) basePreantert).OnPruchaseSuccess(token1, course_id, course_time_id, harId);
-                            NetUtils.getInstance().getApi().getPurchase(token1, course_id, course_time_id, harId)
-                                    .subscribeOn(Schedulers.io())
-                                    .observeOn(AndroidSchedulers.mainThread())
-                                    .subscribe(new Observer<Purchase>() {
-                                        @Override
-                                        public void onSubscribe(Disposable d) {
-
-                                        }
-
-                                        @Override
-                                        public void onNext(Purchase purchase) {
-                                            String msg = purchase.getMsg();
-                                            Toast.makeText(getApplicationContext(), msg, Toast.LENGTH_SHORT).show();
-                                            Purchase.DataBean data = purchase.getData();
-                                            if (data != null) {
-                                                String order_id = data.getOrder_id();
-                                                EventBus.getDefault().post(order_id);
-                                                String order_num = data.getOrder_num();
-                                                //String pay_price = data.getPay_price();
-                                                String title = data.getTitle();
-                                                String pay_price = data.getPrice();
-
-                                                Purchase.PayInfoBean payInfo = purchase.getPayInfo();
-                                                Purchase.PayInfoBean.AppPayRequestBean appPayRequest = payInfo.getAppPayRequest();
-                                                String miniuser = appPayRequest.getMiniuser();
-                                                String msgType = appPayRequest.getMsgType();
-                                                String package1 = appPayRequest.getPackage1();
-                                                String minipath = appPayRequest.getMinipath();
-                                                String appScheme = appPayRequest.getAppScheme();
-                                                String sign = appPayRequest.getSign();
-                                                String prepayid = appPayRequest.getPrepayid();
-                                                String noncestr = appPayRequest.getNoncestr();
-                                                String timestamp = appPayRequest.getTimestamp();
-                                                HashMap<String, String> map = new HashMap<>();
-                                                JSONObject array_test = new JSONObject();
-                                                try {
-                                                    array_test.put("miniuser", miniuser);
-                                                    array_test.put("msgType", msgType);
-                                                    array_test.put("package", package1);
-                                                    array_test.put("minipath", minipath);
-                                                    array_test.put("appScheme", appScheme);
-                                                    array_test.put("sign", sign);
-                                                    array_test.put("prepayid", prepayid);
-                                                    array_test.put("noncestr", noncestr);
-                                                    array_test.put("timestamp", timestamp);
-                                                } catch (JSONException e) {
-                                                    e.printStackTrace();
-                                                }
-
-                                                payAliPayMiniPro(array_test.toString());
-
-                                            }
-
-                                            if (purchase.getCode() == 1) {
-                                                finish();
-                                            }
-                                        }
-
-                                        @Override
-                                        public void onError(Throwable e) {
-
-                                        }
-
-                                        @Override
-                                        public void onComplete() {
-
-                                        }
-                                    });
-                        }
-                    }
-                });
             }
         });
 
@@ -214,93 +141,79 @@ public class SignUpNow extends BaseActivity implements OrderContreater.IView {
                 c.setVisibility(View.GONE);
                 n.setVisibility(View.VISIBLE);
                 y.setVisibility(View.GONE);
-                bt.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        Toast.makeText(SignUpNow.this, "微信支付", Toast.LENGTH_SHORT).show();
-                        BasePreantert basePreantert = getmPreantert();
-                        if (basePreantert instanceof OrderContreater.IPreanter) {
-                            SharedPreferences token = getSharedPreferences("token", MODE_PRIVATE);
-                            String token1 = token.getString("token", "");
+                i = 1;
 
-                            ((OrderContreater.IPreanter) basePreantert).OnPruchaseSuccess(token1, course_id, course_time_id, harId);
-                            NetUtils.getInstance().getApi().getPurchase(token1, course_id, course_time_id, harId)
-                                    .subscribeOn(Schedulers.io())
-                                    .observeOn(AndroidSchedulers.mainThread())
-                                    .subscribe(new Observer<Purchase>() {
-                                        @Override
-                                        public void onSubscribe(Disposable d) {
-
-                                        }
-
-                                        @Override
-                                        public void onNext(Purchase purchase) {
-                                            String msg = purchase.getMsg();
-                                            Toast.makeText(getApplicationContext(), msg, Toast.LENGTH_SHORT).show();
-                                            Purchase.DataBean data = purchase.getData();
-                                            if (data != null) {
-                                                String order_id = data.getOrder_id();
-                                                EventBus.getDefault().post(order_id);
-                                                String order_num = data.getOrder_num();
-                                                //String pay_price = data.getPay_price();
-                                                String title = data.getTitle();
-                                                String pay_price = data.getPrice();
-
-                                                Purchase.PayInfoBean payInfo = purchase.getPayInfo();
-
-                                                Purchase.PayInfoBean.AppPayRequestBean appPayRequest = payInfo.getAppPayRequest();
-                                                String miniuser = appPayRequest.getMiniuser();
-                                                String msgType = appPayRequest.getMsgType();
-                                                String package1 = appPayRequest.getPackage1();
-                                                String minipath = appPayRequest.getMinipath();
-                                                String appScheme = appPayRequest.getAppScheme();
-                                                String sign = appPayRequest.getSign();
-                                                String prepayid = appPayRequest.getPrepayid();
-                                                String noncestr = appPayRequest.getNoncestr();
-                                                String timestamp = appPayRequest.getTimestamp();
-                                                HashMap<String, String> map = new HashMap<>();
-                                                JSONObject array_test = new JSONObject();
-                                                try {
-                                                    array_test.put("miniuser", miniuser);
-                                                    array_test.put("msgType", msgType);
-                                                    array_test.put("package", package1);
-                                                    array_test.put("minipath", minipath);
-                                                    array_test.put("appScheme", appScheme);
-                                                    array_test.put("sign", sign);
-                                                    array_test.put("prepayid", prepayid);
-                                                    array_test.put("noncestr", noncestr);
-                                                    array_test.put("timestamp", timestamp);
-                                                } catch (JSONException e) {
-                                                    e.printStackTrace();
-                                                }
-
-                                                payWX(array_test.toString());
-                                            }
-
-                                            if (purchase.getCode() == 1) {
-                                                finish();
-                                            }
-                                        }
-
-                                        @Override
-                                        public void onError(Throwable e) {
-
-                                        }
-
-                                        @Override
-                                        public void onComplete() {
-
-                                        }
-                                    });
-                        }
-                    }
-                });
             }
         });
         bt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(SignUpNow.this, "请选择支付宝支付或微信支付", Toast.LENGTH_SHORT).show();
+                BasePreantert basePreantert = getmPreantert();
+                if (basePreantert instanceof OrderContreater.IPreanter) {
+                    SharedPreferences token = getSharedPreferences("token", MODE_PRIVATE);
+                    String token1 = token.getString("token", "");
+                    NetUtils.getInstance().getApi().getPurchase(token1, course_id, course_time_id, harId, i)
+                            .subscribeOn(Schedulers.io())
+                            .observeOn(AndroidSchedulers.mainThread())
+                            .subscribe(new Observer<Purchase>() {
+                                @Override
+                                public void onSubscribe(Disposable d) {
+
+                                }
+
+                                @Override
+                                public void onNext(Purchase purchase) {
+                                    String msg = purchase.getMsg();
+                                    Toast.makeText(getApplicationContext(), msg, Toast.LENGTH_SHORT).show();
+                                    Purchase.DataBean data = purchase.getData();
+                                    if (data != null) {
+                                        String order_id = data.getOrder_id();
+                                        EventBus.getDefault().post(order_id);
+                                        String order_num = data.getOrder_num();
+                                        //String pay_price = data.getPay_price();
+                                        String title = data.getTitle();
+                                        String pay_price = data.getPrice();
+
+                                        Purchase.PayInfoBean payInfo = purchase.getPayInfo();
+
+                                        Purchase.PayInfoBean.AppPayRequestBean appPayRequest = payInfo.getAppPayRequest();
+                                        String miniuser = appPayRequest.getMsgType();
+                                        String qrCode = appPayRequest.getQrCode();
+                                        HashMap<String, String> map = new HashMap<>();
+                                        JSONObject array_test = new JSONObject();
+                                        try {
+                                            array_test.put("miniuser", miniuser);
+                                            array_test.put("qrCode", qrCode);
+
+                                        } catch (JSONException e) {
+                                            e.printStackTrace();
+                                        }
+                                        if(i==1){
+                                            //微信支付
+                                            payWX(array_test.toString());
+                                        }else if(i==2){
+                                            //支付宝支付
+                                            payAliPay(array_test.toString());
+                                        }
+
+                                    }
+
+                                    if (purchase.getCode() == 1) {
+                                        finish();
+                                    }
+                                }
+
+                                @Override
+                                public void onError(Throwable e) {
+
+                                }
+
+                                @Override
+                                public void onComplete() {
+
+                                }
+                            });
+                }
             }
         });
         dd_title.setText(title);
@@ -336,21 +249,7 @@ public class SignUpNow extends BaseActivity implements OrderContreater.IView {
 
     @Override
     public void OnPurchase(Purchase purchase) {
-        String msg = purchase.getMsg();
-        Toast.makeText(getApplicationContext(), msg, Toast.LENGTH_SHORT).show();
-        Purchase.DataBean data = purchase.getData();
-        if (data != null) {
-            String order_id = data.getOrder_id();
-            EventBus.getDefault().post(order_id);
-            String order_num = data.getOrder_num();
-            //String pay_price = data.getPay_price();
-            String title = data.getTitle();
-            String pay_price = data.getPrice();
-        }
 
-        if (purchase.getCode() == 1) {
-            finish();
-        }
     }
 
     /**
@@ -371,12 +270,12 @@ public class SignUpNow extends BaseActivity implements OrderContreater.IView {
      *
      * @param url
      */
-    private void payAliPayMiniPro(String url) {
+
+    private void payAliPay(String url) {
         UnifyPayRequest msg = new UnifyPayRequest();
-        msg.payChannel = UnifyPayRequest.CHANNEL_ALIPAY_MINI_PROGRAM;
+        msg.payChannel = UnifyPayRequest.CHANNEL_ALIPAY;
         msg.payData = url;
         UnifyPayPlugin.getInstance(this).sendPayRequest(msg);
-
     }
 
     @Override

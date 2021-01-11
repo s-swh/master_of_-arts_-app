@@ -13,22 +13,14 @@
     android:visibility="gone"
     android:layout_height="match_parent" />
 
-    <ScrollView
-        android:layout_width="match_parent"
-
-        android:layout_height="match_parent"
-        android:scrollbars="none">
 
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
+
 
 
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/dp_150"
+                android:layout_height="@dimen/dp_120"
                 android:background="@mipmap/icon_zpj"
                 android:orientation="horizontal">
 
@@ -44,6 +36,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
+                    android:id="@+id/weixinfenxiang"
                     android:layout_marginTop="@dimen/dp_10"
                     android:layout_marginRight="@dimen/dp_15"
                     android:src="@mipmap/icon_fx" />
@@ -64,18 +57,19 @@
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/xrev_rv"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent" />
+                android:layout_height="wrap_content" />
 
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="65dp"
+        android:layout_alignParentBottom="true"
+        android:src="@mipmap/icon_ewm" />
+</RelativeLayout>
 
-                <ImageView
-                    android:layout_width="match_parent"
-                    android:layout_height="65dp"
-                    android:layout_alignParentBottom="true"
-                    android:src="@mipmap/icon_ewm" />
-            </RelativeLayout>
-        </LinearLayout>
-    </ScrollView>
+
+
+
 </LinearLayout>

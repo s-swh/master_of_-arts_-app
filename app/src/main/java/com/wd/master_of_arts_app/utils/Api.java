@@ -179,7 +179,7 @@ public interface Api {
     //下单 http://test.54artist.com/wap/CourseOrder/Order
     @POST("wap/CourseOrder/Order")
     @FormUrlEncoded
-    Observable<Purchase> getPurchase(@Field("token") String token, @Field("course_id") int course_id, @Field("course_time_id") int course_time_id, @Field("address_id") int address_id);
+    Observable<Purchase> getPurchase(@Field("token") String token, @Field("course_id") int course_id, @Field("course_time_id") int course_time_id, @Field("address_id") int address_id,@Field("pay_method")int pay_method);
 
     //订单列表  http://test.54artist.com/wap/CourseOrder/getList
     @POST("wap/CourseOrder/getList")

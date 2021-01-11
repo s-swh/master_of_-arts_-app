@@ -61,6 +61,7 @@ public class MyCourseOneAdapter extends XRecyclerView.Adapter<XRecyclerView.View
             public void onClick(View view) {
                 int course_time_id = listBean.getCourse_time_id();
                 int order_id = listBean.getOrder_id();
+                int course_time_id1 = listBean.getCourse_time_id();
                 click1.OnCliack(course_time_id);
             }
         });

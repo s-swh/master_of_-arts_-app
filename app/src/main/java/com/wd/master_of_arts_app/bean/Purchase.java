@@ -1,7 +1,5 @@
 package com.wd.master_of_arts_app.bean;
 
-import com.google.gson.annotations.SerializedName;
-
 /**
  * @author 时文豪
  * @description:
@@ -12,8 +10,8 @@ public class Purchase {
     /**
      * code : 1
      * msg : 成功
-     * data : {"order_id":"108","order_num":"5ff93483ecd72822","title":"童童创想班A","price":"3840.00"}
-     * payInfo : {"totalAmount":1,"msgType":"trade.appPreOrder","responseTimestamp":"2021-01-09 12:43:48","errCode":"SUCCESS","msgSrc":"WWW.TEST.COM","merName":"全渠道","mid":"898310148160568","msgId":"","appPayRequest":{"miniuser":"2019010762862511","msgType":"trade.appPreOrder","package":"Sign=ALI","minipath":"pages/appPay/test/test","appScheme":"iOS:qmfpppay;Android:qmfpppay","sign":"7B24F50825F02617A02FCF6E1ED66676","prepayid":"f0421e192b37402db0953a5dde34ee11","noncestr":"kgzEFwBaeueTNKLRjYtvROlxsbYCkmCy","timestamp":"20210109124348"},"tid":"00000001","merOrderId":"3194201807101655049819","targetSys":"Alipay 2.0","sign":"2879CFEAD02B9F35507C32CB6439E3332049BD360FD933D38CF392A4375AF217"}
+     * data : {"order_id":"241","order_num":"5ffc1b91e1399714","title":"蒙蒙童画班","price":"3840.00"}
+     * payInfo : {"msgType":"trade.precreate","connectSys":"ALIPAY","msgSrc":"WWW.TEST.COM","delegatedFlag":"N","merName":"全渠道","mid":"898310148160568","msgId":"","appPayRequest":{"msgType":"trade.precreate","qrCode":"https://qr.alipay.com/bax09843olenltf2jjnk20dd"},"settleRefId":"00875302381N","tid":"00000001","totalAmount":1,"qrCode":"https://qr.alipay.com/bax09843olenltf2jjnk20dd","targetMid":"2015061000120322","responseTimestamp":"2021-01-11 17:34:10","errCode":"SUCCESS","targetStatus":"10000","seqId":"00875302381N","merOrderId":"3194201807101655048781","status":"NEW_ORDER","targetSys":"Alipay 2.0","sign":"C6C6C9E567C0D67C7218D5ABBD32F71E1A9BCD44BD81B994EE8896933BA8FE5F"}
      */
 
     private int code;
@@ -55,9 +53,9 @@ public class Purchase {
 
     public static class DataBean {
         /**
-         * order_id : 108
-         * order_num : 5ff93483ecd72822
-         * title : 童童创想班A
+         * order_id : 241
+         * order_num : 5ffc1b91e1399714
+         * title : 蒙蒙童画班
          * price : 3840.00
          */
 
@@ -101,42 +99,50 @@ public class Purchase {
 
     public static class PayInfoBean {
         /**
-         * totalAmount : 1
-         * msgType : trade.appPreOrder
-         * responseTimestamp : 2021-01-09 12:43:48
-         * errCode : SUCCESS
+         * msgType : trade.precreate
+         * connectSys : ALIPAY
          * msgSrc : WWW.TEST.COM
+         * delegatedFlag : N
          * merName : 全渠道
          * mid : 898310148160568
          * msgId :
-         * appPayRequest : {"miniuser":"2019010762862511","msgType":"trade.appPreOrder","package":"Sign=ALI","minipath":"pages/appPay/test/test","appScheme":"iOS:qmfpppay;Android:qmfpppay","sign":"7B24F50825F02617A02FCF6E1ED66676","prepayid":"f0421e192b37402db0953a5dde34ee11","noncestr":"kgzEFwBaeueTNKLRjYtvROlxsbYCkmCy","timestamp":"20210109124348"}
+         * appPayRequest : {"msgType":"trade.precreate","qrCode":"https://qr.alipay.com/bax09843olenltf2jjnk20dd"}
+         * settleRefId : 00875302381N
          * tid : 00000001
-         * merOrderId : 3194201807101655049819
+         * totalAmount : 1
+         * qrCode : https://qr.alipay.com/bax09843olenltf2jjnk20dd
+         * targetMid : 2015061000120322
+         * responseTimestamp : 2021-01-11 17:34:10
+         * errCode : SUCCESS
+         * targetStatus : 10000
+         * seqId : 00875302381N
+         * merOrderId : 3194201807101655048781
+         * status : NEW_ORDER
          * targetSys : Alipay 2.0
-         * sign : 2879CFEAD02B9F35507C32CB6439E3332049BD360FD933D38CF392A4375AF217
+         * sign : C6C6C9E567C0D67C7218D5ABBD32F71E1A9BCD44BD81B994EE8896933BA8FE5F
          */
 
-        private int totalAmount;
         private String msgType;
-        private String responseTimestamp;
-        private String errCode;
+        private String connectSys;
         private String msgSrc;
+        private String delegatedFlag;
         private String merName;
         private String mid;
         private String msgId;
         private AppPayRequestBean appPayRequest;
+        private String settleRefId;
         private String tid;
+        private int totalAmount;
+        private String qrCode;
+        private String targetMid;
+        private String responseTimestamp;
+        private String errCode;
+        private String targetStatus;
+        private String seqId;
         private String merOrderId;
+        private String status;
         private String targetSys;
         private String sign;
-
-        public int getTotalAmount() {
-            return totalAmount;
-        }
-
-        public void setTotalAmount(int totalAmount) {
-            this.totalAmount = totalAmount;
-        }
 
         public String getMsgType() {
             return msgType;
@@ -146,20 +152,12 @@ public class Purchase {
             this.msgType = msgType;
         }
 
-        public String getResponseTimestamp() {
-            return responseTimestamp;
+        public String getConnectSys() {
+            return connectSys;
         }
 
-        public void setResponseTimestamp(String responseTimestamp) {
-            this.responseTimestamp = responseTimestamp;
-        }
-
-        public String getErrCode() {
-            return errCode;
-        }
-
-        public void setErrCode(String errCode) {
-            this.errCode = errCode;
+        public void setConnectSys(String connectSys) {
+            this.connectSys = connectSys;
         }
 
         public String getMsgSrc() {
@@ -168,6 +166,14 @@ public class Purchase {
 
         public void setMsgSrc(String msgSrc) {
             this.msgSrc = msgSrc;
+        }
+
+        public String getDelegatedFlag() {
+            return delegatedFlag;
+        }
+
+        public void setDelegatedFlag(String delegatedFlag) {
+            this.delegatedFlag = delegatedFlag;
         }
 
         public String getMerName() {
@@ -202,6 +208,14 @@ public class Purchase {
             this.appPayRequest = appPayRequest;
         }
 
+        public String getSettleRefId() {
+            return settleRefId;
+        }
+
+        public void setSettleRefId(String settleRefId) {
+            this.settleRefId = settleRefId;
+        }
+
         public String getTid() {
             return tid;
         }
@@ -210,12 +224,76 @@ public class Purchase {
             this.tid = tid;
         }
 
+        public int getTotalAmount() {
+            return totalAmount;
+        }
+
+        public void setTotalAmount(int totalAmount) {
+            this.totalAmount = totalAmount;
+        }
+
+        public String getQrCode() {
+            return qrCode;
+        }
+
+        public void setQrCode(String qrCode) {
+            this.qrCode = qrCode;
+        }
+
+        public String getTargetMid() {
+            return targetMid;
+        }
+
+        public void setTargetMid(String targetMid) {
+            this.targetMid = targetMid;
+        }
+
+        public String getResponseTimestamp() {
+            return responseTimestamp;
+        }
+
+        public void setResponseTimestamp(String responseTimestamp) {
+            this.responseTimestamp = responseTimestamp;
+        }
+
+        public String getErrCode() {
+            return errCode;
+        }
+
+        public void setErrCode(String errCode) {
+            this.errCode = errCode;
+        }
+
+        public String getTargetStatus() {
+            return targetStatus;
+        }
+
+        public void setTargetStatus(String targetStatus) {
+            this.targetStatus = targetStatus;
+        }
+
+        public String getSeqId() {
+            return seqId;
+        }
+
+        public void setSeqId(String seqId) {
+            this.seqId = seqId;
+        }
+
         public String getMerOrderId() {
             return merOrderId;
         }
 
         public void setMerOrderId(String merOrderId) {
             this.merOrderId = merOrderId;
+        }
+
+        public String getStatus() {
+            return status;
+        }
+
+        public void setStatus(String status) {
+            this.status = status;
         }
 
         public String getTargetSys() {
@@ -236,47 +314,12 @@ public class Purchase {
 
         public static class AppPayRequestBean {
             /**
-             * miniuser : 2019010762862511
-             * msgType : trade.appPreOrder
-             * package : Sign=ALI
-             * minipath : pages/appPay/test/test
-             * appScheme : iOS:qmfpppay;Android:qmfpppay
-             * sign : 7B24F50825F02617A02FCF6E1ED66676
-             * prepayid : f0421e192b37402db0953a5dde34ee11
-             * noncestr : kgzEFwBaeueTNKLRjYtvROlxsbYCkmCy
-             * timestamp : 20210109124348
+             * msgType : trade.precreate
+             * qrCode : https://qr.alipay.com/bax09843olenltf2jjnk20dd
              */
 
-            private String miniuser;
             private String msgType;
-            private String package1;
-            private String packageX;
-            private String minipath;
-            private String appScheme;
-            private String sign;
-            private String prepayid;
-            private String noncestr;
-            private String timestamp;
-
-            public String getPackage1() {
-                return package1;
-            }
-
-            public void setPackage1(String package1) {
-                this.package1 = package1;
-            }
-
-            public AppPayRequestBean(String package1) {
-                this.package1 = package1;
-            }
-
-            public String getMiniuser() {
-                return miniuser;
-            }
-
-            public void setMiniuser(String miniuser) {
-                this.miniuser = miniuser;
-            }
+            private String qrCode;
 
             public String getMsgType() {
                 return msgType;
@@ -286,60 +329,12 @@ public class Purchase {
                 this.msgType = msgType;
             }
 
-            public String getPackageX() {
-                return packageX;
+            public String getQrCode() {
+                return qrCode;
             }
 
-            public void setPackageX(String packageX) {
-                this.packageX = packageX;
-            }
-
-            public String getMinipath() {
-                return minipath;
-            }
-
-            public void setMinipath(String minipath) {
-                this.minipath = minipath;
-            }
-
-            public String getAppScheme() {
-                return appScheme;
-            }
-
-            public void setAppScheme(String appScheme) {
-                this.appScheme = appScheme;
-            }
-
-            public String getSign() {
-                return sign;
-            }
-
-            public void setSign(String sign) {
-                this.sign = sign;
-            }
-
-            public String getPrepayid() {
-                return prepayid;
-            }
-
-            public void setPrepayid(String prepayid) {
-                this.prepayid = prepayid;
-            }
-
-            public String getNoncestr() {
-                return noncestr;
-            }
-
-            public void setNoncestr(String noncestr) {
-                this.noncestr = noncestr;
-            }
-
-            public String getTimestamp() {
-                return timestamp;
-            }
-
-            public void setTimestamp(String timestamp) {
-                this.timestamp = timestamp;
+            public void setQrCode(String qrCode) {
+                this.qrCode = qrCode;
             }
         }
     }

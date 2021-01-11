@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.widget.Toast;
 
 import com.jcodecraeer.xrecyclerview.XRecyclerView;
 import com.wd.master_of_arts_app.R;
@@ -93,11 +94,12 @@ public class My_Collection_of_works extends BaseActivity implements MyCourseCont
                     for (int i = 0; i < list.size(); i++) {
                         MyCurse.DataBean.ListBean listBean = list.get(i);
                         title = listBean.getTitle();
-                        teacher_name = listBean.getTeacher_name();
+
 
                     }
-                    intent.putExtra("titlet",title);
-                    intent.putExtra("teacher_namea",teacher_name);
+                    intent.putExtra("titlet", title);
+                    intent.putExtra("teacher_namea", teacher_name);
+                    intent.putExtra("course_time_id111", id);
                     startActivity(intent);
                 }
             });

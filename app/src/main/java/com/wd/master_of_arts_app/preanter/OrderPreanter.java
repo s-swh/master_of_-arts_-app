@@ -30,8 +30,8 @@ public class OrderPreanter extends BasePreantert implements OrderContreater.IPre
     }
     //创建订单
     @Override
-    public void OnPruchaseSuccess(String token, int course_id, int course_time_id,int address_id) {
-        orderModel.OnPruchaseSuccess(token, course_id, course_time_id,address_id, new OrderContreater.IModel.OnPruchaseCoallack() {
+    public void OnPruchaseSuccess(String token, int course_id, int course_time_id,int address_id,int pay_method) {
+        orderModel.OnPruchaseSuccess(token, course_id, course_time_id,address_id,pay_method, new OrderContreater.IModel.OnPruchaseCoallack() {
             @Override
             public void OnPurchase(Purchase purchase) {
                 IBaseView iBaseView = getView();

@@ -27,7 +27,7 @@ public interface OrderContreater {
     }
     interface IPreanter{
         //创建订单
-        void OnPruchaseSuccess(String token,int course_id,int course_time_id,int address_id);
+        void OnPruchaseSuccess(String token,int course_id,int course_time_id,int address_id,int pay_method);
         //订单列表
         void OrderSuccess(String token,String status,int p,int per);
         //取消订单
@@ -39,7 +39,7 @@ public interface OrderContreater {
     }
     interface IModel{
         //创建订单
-        void OnPruchaseSuccess(String token,int course_id,int course_time_id,int address_id,OnPruchaseCoallack coallack);
+        void OnPruchaseSuccess(String token,int course_id,int course_time_id,int address_id,int pay_method,OnPruchaseCoallack coallack);
         interface OnPruchaseCoallack{
             void OnPurchase(Purchase purchase);
         }

@@ -29,6 +29,7 @@ android {
         release {
             shrinkResources true        // 开启shrinkResources去除无用资源
             minifyEnabled true  //开启代码混淆
+            buildConfigField "String", "WECHAT_APP_ID", '"wxb7192893995d3c8b"'
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
         arm {
@@ -163,8 +164,10 @@ dependencies {
     implementation 'com.tencent.mm.opensdk:wechat-sdk-android-without-mta:5.5.8'
 
     implementation(name: 'qmf-ppplugin-android-3.1.1', ext: 'aar')
+    //极光推送
     implementation 'cn.jiguang.sdk:jpush:3.8.5'  // 此处以JPush 3.8.5 版本为例。
     implementation 'cn.jiguang.sdk:jcore:2.5.5'  // 此处以JCore 2.5.5 版本为例。
 
-
+    //微信分享
+    api 'com.tencent.mm.opensdk:wechat-sdk-android-without-mta:+'
 }
