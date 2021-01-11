@@ -18,9 +18,11 @@ import com.bumptech.glide.load.resource.bitmap.CircleCrop;
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 import com.bumptech.glide.request.RequestOptions;
 import com.stx.xhb.xbanner.XBanner;
+import com.wd.master_of_arts_app.activity.AboutUs;
 import com.wd.master_of_arts_app.activity.BannerActivity;
 import com.wd.master_of_arts_app.activity.CoursePreview;
 import com.wd.master_of_arts_app.activity.CourseSelection;
+import com.wd.master_of_arts_app.activity.GuideToUse;
 import com.wd.master_of_arts_app.activity.LiveBroadcast;
 import com.wd.master_of_arts_app.R;
 import com.wd.master_of_arts_app.activity.Booking_experience;
@@ -112,7 +114,20 @@ public class Home_page extends BaseFragment implements HomePagerCrete.IVew, View
 
     @Override
     protected void initData() {
-
+        left.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity(), AboutUs.class);
+                startActivity(intent);
+            }
+        });
+        right.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity(), GuideToUse.class);
+                startActivity(intent);
+            }
+        });
         notice_iv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

@@ -122,7 +122,7 @@ public class PersonalDataActivity extends BaseActivity implements View.OnClickLi
     @Subscribe(sticky = true, threadMode = ThreadMode.MAIN)
     public void Image(Image image) {
         img = image.getImg();
-        Glide.with(getApplicationContext()).load(img).apply(RequestOptions.bitmapTransform(new CircleCrop())).error(R.mipmap.ic_launcher_round).into(iv);
+
     }
 
 
@@ -150,6 +150,7 @@ public class PersonalDataActivity extends BaseActivity implements View.OnClickLi
                 startActivity(intent);
             }
         });
+        Glide.with(getApplicationContext()).load(img).apply(RequestOptions.bitmapTransform(new CircleCrop())).error(R.mipmap.ic_launcher_round).into(iv);
         SharedPreferences s1p = getSharedPreferences("address", MODE_PRIVATE);
         String s1c = s1p.getString("acacsadasd", "");
         dq.setText(s1c);
