@@ -65,7 +65,7 @@ public class SampleReelsActivity extends BaseActivity implements SampleReelsCont
         Intent intent = getIntent();
         String titlet = intent.getStringExtra("titlet");
         String teacher_namea = intent.getStringExtra("teacher_namea");
-        title_tv.setText(titlet + "(" + teacher_namea + ")");
+       // title_tv.setText(titlet + "(" + teacher_namea + ")");
         BasePreantert basePreantert = getmPreantert();
         if (basePreantert instanceof SampleReelsContreanter.IPreanter) {
             SharedPreferences sp = getSharedPreferences("token", MODE_PRIVATE);

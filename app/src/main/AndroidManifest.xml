@@ -117,9 +117,7 @@
         <activity android:name=".activity.BannerActivity" />
         <activity android:name=".activity.NoticeDetails" />
         <activity android:name=".activity.NoticeActivity" />
-        <queries>
-            <package android:name="com.tencent.mm" />
-        </queries>
+
         <uses-library
             android:name="org.apache.http.legacy"
             android:required="false" />

@@ -46,8 +46,11 @@ public class SampleReelsAdapter extends XRecyclerView.Adapter<XRecyclerView.View
         String name = listBean.getName();
         String imglist = listBean.getImglist();
         ((SampleReelsViewHorder) holder).date.setText(comment_time);
+        ((SampleReelsViewHorder) holder).date.setText(100 + (position % 3) * 30);
         ((SampleReelsViewHorder) holder).name.setText(name);
-        String url="http://qiniu.54artist.com/" + imglist;
+        ((SampleReelsViewHorder) holder).name.setHeight(100 + (position % 3) * 30);
+        ((SampleReelsViewHorder) holder).iv.setMaxHeight(100 + (position % 2) * 10);
+        String url = "http://qiniu.54artist.com/" + imglist;
         Glide.with(context).load(url).error(R.drawable.ic_launcher_background).into(((SampleReelsViewHorder) holder).iv);
         ((SampleReelsViewHorder) holder).sample_iv.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -62,12 +65,15 @@ public class SampleReelsAdapter extends XRecyclerView.Adapter<XRecyclerView.View
     public int getItemCount() {
         return list.size();
     }
-    public void OnItemClick(ItemOnClick click){
+
+    public void OnItemClick(ItemOnClick click) {
         click1 = click;
     }
-    public interface ItemOnClick{
+
+    public interface ItemOnClick {
         void OnClick(String href);
     }
+
     class SampleReelsViewHorder extends XRecyclerView.ViewHolder {
 
         private final ImageView iv;
