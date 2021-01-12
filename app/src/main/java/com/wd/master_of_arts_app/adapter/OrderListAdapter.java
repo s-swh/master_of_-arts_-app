@@ -42,6 +42,7 @@ public class OrderListAdapter extends XRecyclerView.Adapter<XRecyclerView.ViewHo
     private OrderListAdapter.itdelete itdelete;
     private idtet idtet1;
     private Ckwl ckwl1;
+    private OnClickQZF onClickQZF;
 
     public OrderListAdapter(Context context, List<OrderList.DataBean.ListBean> beanList) {
         this.context = context;
@@ -87,6 +88,16 @@ public class OrderListAdapter extends XRecyclerView.Adapter<XRecyclerView.ViewHo
         int status = listBean.getStatus();
         if(status==1){
             ((OrderListViewHorder) holder).bt_order.setText("去支付");
+            int course_id = listBean.getCourse_id();
+            int course_time_id = listBean.getCourse_time_id();
+            ((OrderListViewHorder) holder).bt_order.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    int id = listBean.getId();
+                    String allprice1 = listBean.getAllprice();
+                    onClickQZF.OnClickQZF(id,allprice1);
+                }
+            });
             //   ((OrderListViewHorder) holder).order_qxdd.setVisibility(View.VISIBLE);
         }else if(status==2){
             ((OrderListViewHorder) holder).bt_order.setText("已付款");
@@ -129,11 +140,19 @@ public class OrderListAdapter extends XRecyclerView.Adapter<XRecyclerView.ViewHo
     public interface idtet{
         void OnClick(int id);
     }
+    //查看物流
     public void OnClickwl(Ckwl ckwl){
         ckwl1 = ckwl;
     }
     public interface Ckwl{
         void OnClick(OrderList.DataBean.ListBean  listBean);
+    }
+    //去支付
+    public void OnCkQzf(OnClickQZF qzf){
+        onClickQZF = qzf;
+    }
+    public interface OnClickQZF{
+        void OnClickQZF(int id,String allprice);
     }
     class OrderListViewHorder extends XRecyclerView.ViewHolder {
 

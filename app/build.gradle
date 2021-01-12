@@ -170,4 +170,6 @@ dependencies {
 
     //微信分享
     api 'com.tencent.mm.opensdk:wechat-sdk-android-without-mta:+'
+
+
 }

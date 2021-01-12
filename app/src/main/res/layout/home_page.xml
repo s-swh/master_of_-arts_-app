@@ -162,7 +162,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:text="2020"
+
                     android:textColor="#FFFFFF"
                     android:textSize="20sp" />
 
@@ -170,7 +170,7 @@
                     android:id="@+id/left_date"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="2020"
+
                     android:textColor="#FFFFFF"
                     android:textSize="16sp" />
 
@@ -180,7 +180,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
 
-                    android:text="2020"
+
                     android:textColor="#FFFFFF"
                     android:textSize="20sp" />
             </LinearLayout>

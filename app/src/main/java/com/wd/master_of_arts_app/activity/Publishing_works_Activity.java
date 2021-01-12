@@ -141,6 +141,7 @@ public class Publishing_works_Activity extends BaseActivity {
         private LayoutInflater inflater;
 
 
+
         public GridAdapter(ArrayList<String> listUrls) {
             this.listUrls = listUrls;
             if (listUrls.size() == 7) {
@@ -183,7 +184,10 @@ public class Publishing_works_Activity extends BaseActivity {
 
             if (path.equals("paizhao")) {
                 holder.image.setImageResource(R.mipmap.find_add_img);
+
+
             } else {
+
                 Glide.with(Publishing_works_Activity.this)
                         .load(path)
                         .placeholder(R.mipmap.default_error)
@@ -191,6 +195,57 @@ public class Publishing_works_Activity extends BaseActivity {
                         .centerCrop()
 
                         .into(holder.image);
+
+                @SuppressLint("HandlerLeak") Handler handler = new Handler() {
+                    @Override
+                    public void handleMessage(@NonNull Message msg) {
+                        super.handleMessage(msg);
+                        RequestBody funName = RequestBody.create(null, "ict_uploadpicture");
+                        RequestBody path1 = RequestBody.create(null, "/uploadNews");
+
+                        String pat = path;
+                        File file = new File(pat);
+                        RequestBody appfile = RequestBody.create(null, pat);
+                        RequestBody requestFile = RequestBody.create(MediaType.parse("image/jpeg"), file);
+                        body = MultipartBody.Part.createFormData("file", pat, requestFile);
+                        NetUtils.getInstance().getApi().getQny(funName, path1, appfile, body)
+                                .subscribeOn(Schedulers.io())
+                                .observeOn(AndroidSchedulers.mainThread())
+                                .subscribe(new Observer<QiNiuYun>() {
+
+
+                                    @Override
+                                    public void onSubscribe(Disposable d) {
+
+                                    }
+
+                                    @Override
+                                    public void onNext(QiNiuYun qiNiuYun) {
+                                        String msg = qiNiuYun.getMsg();
+                                        Toast.makeText(Publishing_works_Activity.this, msg, Toast.LENGTH_SHORT).show();
+                                        QiNiuYun.DataBean data = qiNiuYun.getData();
+                                        String key = data.getKey();
+                                        str = new String[]{key};
+
+                                    }
+
+                                    @Override
+                                    public void onError(Throwable e) {
+                                        String message = e.getMessage();
+                                        Toast.makeText(Publishing_works_Activity.this, message, Toast.LENGTH_SHORT).show();
+                                        Log.e("acacac", message);
+                                    }
+
+                                    @Override
+                                    public void onComplete() {
+
+                                    }
+                                });
+                    }
+                };
+
+                handler.sendEmptyMessageDelayed(1, 10000);
+
             }
             return convertView;
         }
@@ -265,52 +320,7 @@ public class Publishing_works_Activity extends BaseActivity {
         imagePaths.add("paizhao");
         gridAdapter = new GridAdapter(imagePaths);
         gridView.setAdapter(gridAdapter);
-        @SuppressLint("HandlerLeak") Handler handler = new Handler() {
-            @Override
-            public void handleMessage(@NonNull Message msg) {
-                super.handleMessage(msg);
-                RequestBody funName = RequestBody.create(null, "ict_uploadpicture");
-                RequestBody path1 = RequestBody.create(null, "/uploadNews");
-                String pat = path;
-                File file = new File(path);
-                RequestBody appfile = RequestBody.create(null, pat);
-                RequestBody requestFile = RequestBody.create(MediaType.parse("image/jpeg"), file);
-                body = MultipartBody.Part.createFormData("file", pat, requestFile);
-                NetUtils.getInstance().getApi().getQny(funName, path1, appfile, body)
-                        .subscribeOn(Schedulers.io())
-                        .observeOn(AndroidSchedulers.mainThread())
-                        .subscribe(new Observer<QiNiuYun>() {
 
-
-
-                            @Override
-                            public void onSubscribe(Disposable d) {
-
-                            }
-                            @Override
-                            public void onNext(QiNiuYun qiNiuYun) {
-                                String msg = qiNiuYun.getMsg();
-                                Toast.makeText(Publishing_works_Activity.this, msg, Toast.LENGTH_SHORT).show();
-                                QiNiuYun.DataBean data = qiNiuYun.getData();
-                                String key = data.getKey();
-                                str = new String[]{key};
-
-                            }
-                            @Override
-                            public void onError(Throwable e) {
-                                String message = e.getMessage();
-                                Toast.makeText(Publishing_works_Activity.this, message, Toast.LENGTH_SHORT).show();
-                                Log.e("acacac",message);
-                            }
-                            @Override
-                            public void onComplete() {
-
-                            }
-                        });
-            }
-        };
-
-        handler.sendEmptyMessageDelayed(1, 10000);
     }
 
     class MyViewPager extends FragmentPagerAdapter {
@@ -336,56 +346,56 @@ public class Publishing_works_Activity extends BaseActivity {
         }
     }
 
-@OnClick(R.id.bt)
-    public void OnBt(View view){
-    for (int i = 0; i < str.length; i++) {
-        accc = str[i].toString();
-        Toast.makeText(this, accc, Toast.LENGTH_SHORT).show();
-    }
-    SharedPreferences token = getSharedPreferences("token", MODE_PRIVATE);
-    String token1 = token.getString("token", "");
-    String string = et_user.getText().toString();
+    @OnClick(R.id.bt)
+    public void OnBt(View view) {
+        for (int i = 0; i < str.length; i++) {
+            accc = str[i].toString();
+            Toast.makeText(this, accc, Toast.LENGTH_SHORT).show();
+        }
+        SharedPreferences token = getSharedPreferences("token", MODE_PRIVATE);
+        String token1 = token.getString("token", "");
+        String string = et_user.getText().toString();
 
-    SharedPreferences et = getSharedPreferences("et", MODE_PRIVATE);
-    String string1 = et.getString("striasdasdasng", "");
-    SharedPreferences sp = getSharedPreferences("key", MODE_PRIVATE);
-    String ke = sp.getString("ke", "");
-    Log.d("xxxxxxxxx",ke);
-    NetUtils.getInstance().getApi().getTakePhotos(token1,string,string1,accc,ke)
-            .subscribeOn(Schedulers.io())
-            .observeOn(AndroidSchedulers.mainThread())
-            .subscribe(new Observer<TakePhotosAndComment>() {
-                @Override
-                public void onSubscribe(Disposable d) {
-
-                }
-
-                @Override
-                public void onNext(TakePhotosAndComment takePhotosAndComment) {
-                    String msg = takePhotosAndComment.getMsg();
-                    Toast.makeText(Publishing_works_Activity.this, msg, Toast.LENGTH_SHORT).show();
-                    int code = takePhotosAndComment.getCode();
-                    if(code==1){
-                        finish();
+        SharedPreferences et = getSharedPreferences("et", MODE_PRIVATE);
+        String string1 = et.getString("striasdasdasng", "");
+        SharedPreferences sp = getSharedPreferences("key", MODE_PRIVATE);
+        String ke = sp.getString("ke", "");
+        Log.d("xxxxxxxxx", ke);
+        NetUtils.getInstance().getApi().getTakePhotos(token1, string, string1, accc, ke)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Observer<TakePhotosAndComment>() {
+                    @Override
+                    public void onSubscribe(Disposable d) {
 
                     }
-                    SharedPreferences et1 = getSharedPreferences("et", MODE_PRIVATE);
-                    SharedPreferences.Editor edit = et1.edit();
-                    edit.putString("striasdasdasng","");
-                    edit.commit();
-                }
 
-                @Override
-                public void onError(Throwable e) {
+                    @Override
+                    public void onNext(TakePhotosAndComment takePhotosAndComment) {
+                        String msg = takePhotosAndComment.getMsg();
+                        Toast.makeText(Publishing_works_Activity.this, msg, Toast.LENGTH_SHORT).show();
+                        int code = takePhotosAndComment.getCode();
+                        if (code == 1) {
+                            finish();
 
-                }
+                        }
+                        SharedPreferences et1 = getSharedPreferences("et", MODE_PRIVATE);
+                        SharedPreferences.Editor edit = et1.edit();
+                        edit.putString("striasdasdasng", "");
+                        edit.commit();
+                    }
 
-                @Override
-                public void onComplete() {
+                    @Override
+                    public void onError(Throwable e) {
 
-                }
-            });
-}
+                    }
+
+                    @Override
+                    public void onComplete() {
+
+                    }
+                });
+    }
 
 
 }

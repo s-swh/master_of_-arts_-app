@@ -60,8 +60,8 @@ public class Home_page extends BaseFragment implements HomePagerCrete.IVew, View
     @BindView(R.id.xbn)
     XBanner xb;
 
-    private TextView tv,home_tv,left_title,left_date,left_tv;
-    private ImageView left, right, notice_iv, icon_tz_y,home_img;
+    private TextView tv, home_tv, left_title, left_date, left_tv;
+    private ImageView left, right, notice_iv, icon_tz_y, home_img;
 
     @Override
     protected int getLayoutId() {
@@ -242,7 +242,7 @@ public class Home_page extends BaseFragment implements HomePagerCrete.IVew, View
         Glide.with(getActivity()).load(avatar).apply(RequestOptions.bitmapTransform(new CircleCrop())).into(home_img);
         String teacher = data.getTeacher();
         String course_name = data.getCourse_name();
-        home_tv.setText(course_name+"\n任课老师\n\t"+teacher);
+        home_tv.setText(course_name + "\n任课老师\n\t" + teacher);
         String unit_name1 = data.getUnit_name();
         String date = data.getDate();
         String time = data.getTime();
@@ -258,7 +258,6 @@ public class Home_page extends BaseFragment implements HomePagerCrete.IVew, View
 
                     Intent intent = new Intent(getActivity(), CourseSelection.class);
                     startActivity(intent);
-
 
 
                 } else if (status == 2) {

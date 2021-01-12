@@ -37,6 +37,8 @@ import com.wd.master_of_arts_app.bean.OrderList;
 import com.wd.master_of_arts_app.bean.Preview;
 import com.wd.master_of_arts_app.bean.Purchase;
 import com.wd.master_of_arts_app.bean.QiNiuYun;
+import com.wd.master_of_arts_app.bean.QuZhiFu;
+import com.wd.master_of_arts_app.bean.QuZhiFuWeChat;
 import com.wd.master_of_arts_app.bean.SMSLogin;
 import com.wd.master_of_arts_app.bean.SampleReels;
 import com.wd.master_of_arts_app.bean.SeleteBean;
@@ -48,6 +50,7 @@ import com.wd.master_of_arts_app.bean.UploadWorks;
 import com.wd.master_of_arts_app.bean.UserInformation;
 import com.wd.master_of_arts_app.bean.ViewHarvestAddress;
 import com.wd.master_of_arts_app.bean.WatchTheReplay;
+import com.wd.master_of_arts_app.bean.WeixinOrder;
 
 import io.reactivex.Observable;
 import okhttp3.MultipartBody;
@@ -176,10 +179,14 @@ public interface Api {
     @FormUrlEncoded
     Observable<ListOfWorks> getListOf(@Field("token") String token, @Field("is_comment") String is_comment, @Field("p") int p, @Field("per") int per);
 
-    //下单 http://test.54artist.com/wap/CourseOrder/Order
+    //下单 支付宝 http://test.54artist.com/wap/CourseOrder/Order
     @POST("wap/CourseOrder/Order")
     @FormUrlEncoded
     Observable<Purchase> getPurchase(@Field("token") String token, @Field("course_id") int course_id, @Field("course_time_id") int course_time_id, @Field("address_id") int address_id,@Field("pay_method")int pay_method);
+    //下单 微信 http://test.54artist.com/wap/CourseOrder/Order
+    @POST("wap/CourseOrder/Order")
+    @FormUrlEncoded
+    Observable<WeixinOrder> getPurchaseWeiXin(@Field("token") String token, @Field("course_id") int course_id, @Field("course_time_id") int course_time_id, @Field("address_id") int address_id, @Field("pay_method")int pay_method);
 
     //订单列表  http://test.54artist.com/wap/CourseOrder/getList
     @POST("wap/CourseOrder/getList")
@@ -305,4 +312,11 @@ public interface Api {
     @POST("wap/plaso/getHistoryUrl")
     @FormUrlEncoded
     Observable<WatchTheReplay>getWatch(@Field("meetingId")String meetingId,@Field("recordId")String recordId);
+    //去支付  http://test.54artist.com/wap/CourseOrder/getPayForm
+    @POST("wap/CourseOrder/getPayForm")
+    @FormUrlEncoded
+    Observable<QuZhiFu>getquzhifuzhifubao(@Field("token")String token,@Field("order_id")int order_id,@Field("pay_method")int pay_method);
+    @POST("wap/CourseOrder/getPayForm")
+    @FormUrlEncoded
+    Observable<QuZhiFuWeChat>getquzhifuweixin(@Field("token")String token, @Field("order_id")int order_id, @Field("pay_method")int pay_method);
 }

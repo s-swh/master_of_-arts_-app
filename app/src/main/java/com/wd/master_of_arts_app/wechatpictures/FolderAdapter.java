@@ -135,7 +135,7 @@ public class FolderAdapter extends BaseAdapter {
 
         void bindData(Folder data) {
             name.setText(data.name);
-            size.setText(data.images.size() + "张");
+            size.setText(data.images.size()+1 + "张");
             // 显示图片
             Glide.with(mContext)
                     .load(new File(data.cover.path))

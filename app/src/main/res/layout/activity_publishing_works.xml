@@ -72,7 +72,7 @@
             android:layout_centerVertical="true"
 
             android:layout_toRightOf="@+id/hazp"
-            android:text="（最少三张）" />
+            android:text="（最多三张）" />
     </RelativeLayout>
     <GridView
         android:id="@+id/gridView"

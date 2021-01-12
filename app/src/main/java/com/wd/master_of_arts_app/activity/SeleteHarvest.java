@@ -39,7 +39,7 @@ public class SeleteHarvest extends BaseActivity implements HarvestAddressContrea
     private HarvestAddressAdapter harvestAddressAdapter;
     private TextView tv_name, tv_phone, tv_acce;
     private ImageView lt;
-    private LinearLayout add;
+    private LinearLayout add,lllt;
 
     @Override
     protected int getLayoutId() {
@@ -57,6 +57,7 @@ public class SeleteHarvest extends BaseActivity implements HarvestAddressContrea
         tv_name = findViewById(R.id.text_name);
         tv_phone = findViewById(R.id.text_phone);
         tv_acce = findViewById(R.id.text_acceccte);
+        lllt = findViewById(R.id.lllt);
         lt = findViewById(R.id.lt);
         add = findViewById(R.id.addres);
     }
@@ -95,6 +96,7 @@ public class SeleteHarvest extends BaseActivity implements HarvestAddressContrea
             SharedPreferences token = getSharedPreferences("token", MODE_PRIVATE);
             String token1 = token.getString("token", "");
             ((HarvestAddressContreater.IPreanter) basePreantert).ViewHarvestAddressSuccess(token1);
+            ((HarvestAddressContreater.IPreanter) basePreantert).OnSelectSucess(token1);
         }
         //布局管理器
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
@@ -167,6 +169,7 @@ public class SeleteHarvest extends BaseActivity implements HarvestAddressContrea
 
     @Override
     public void SelectBean(SeleteBean seleteBean) {
+
         SeleteBean.DataBean data = seleteBean.getData();
         SeleteBean.DataBean.MsgBean msg = data.getMsg();
         String consignee = msg.getConsignee();
@@ -177,25 +180,45 @@ public class SeleteHarvest extends BaseActivity implements HarvestAddressContrea
         String detail_address = msg.getDetail_address();
         String contact_number = msg.getContact_number();
         String is_default = msg.getIs_default();
-        tv_name.setText(consignee);
-        tv_phone.setText(contact_number);
-        tv_acce.setText(province + "" + city + "" + county + "" + detail_address);
-        lt.setOnClickListener(new View.OnClickListener() {
+
+            tv_name.setText(consignee);
+            tv_phone.setText(contact_number);
+            tv_acce.setText(province + "" + city + "" + county + "" + detail_address);
+        lllt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                int id = msg.getId();
 
-                Intent intent = new Intent(SeleteHarvest.this, EditShippingAddress.class);
-                intent.putExtra("idc1", id1c);
-                intent.putExtra("province", province);
-                intent.putExtra("city", city);
-                intent.putExtra("county", county);
-                intent.putExtra("detail_address", detail_address);
-                intent.putExtra("consignee", consignee);
-                intent.putExtra("contact_number", contact_number);
-                intent.putExtra("is_default", is_default);
+                EventBus.getDefault().postSticky(new HarvestID(id));
+                String sqe = tv_acce.getText().toString();
+                EventBus.getDefault().postSticky(sqe);
+                SharedPreferences pa = getSharedPreferences("post_acce", MODE_PRIVATE);
+                SharedPreferences.Editor edit = pa.edit();
+                edit.putInt("pase",id);
+                edit.putString("access",sqe);
+                edit.commit();
+                finish();
 
-                startActivity(intent);
             }
         });
+            lt.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+
+                    Intent intent = new Intent(SeleteHarvest.this, EditShippingAddress.class);
+                    intent.putExtra("idc1", id1c);
+                    intent.putExtra("province", province);
+                    intent.putExtra("city", city);
+                    intent.putExtra("county", county);
+                    intent.putExtra("detail_address", detail_address);
+                    intent.putExtra("consignee", consignee);
+                    intent.putExtra("contact_number", contact_number);
+                    intent.putExtra("is_default", is_default);
+
+                    startActivity(intent);
+                }
+            });
+
+
     }
 }

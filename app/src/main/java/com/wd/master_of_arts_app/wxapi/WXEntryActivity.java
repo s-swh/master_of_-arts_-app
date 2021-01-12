@@ -1,7 +1,9 @@
 package com.wd.master_of_arts_app.wxapi;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+
 import android.util.Log;
 import android.widget.Button;
 import android.widget.Toast;
@@ -29,7 +31,7 @@ public class WXEntryActivity extends AppCompatActivity implements IWXAPIEventHan
         Log.d(TAG,"WXEntryActivity --- onCreate");
         setContentView(R.layout.activity_wxpay_entry);
         button = (Button) findViewById(R.id.button);
-        api = WXAPIFactory.createWXAPI(this, UnifyPayPlugin.getInstance(this).getAppId());
+        api = WXAPIFactory.createWXAPI(this,UnifyPayPlugin.getInstance(this).getAppId());
 
         api.handleIntent(getIntent(), this);
 

@@ -29,6 +29,7 @@ import com.wd.master_of_arts_app.bean.HarvestID;
 import com.wd.master_of_arts_app.bean.IdNumber;
 import com.wd.master_of_arts_app.bean.OrderList;
 import com.wd.master_of_arts_app.bean.Purchase;
+import com.wd.master_of_arts_app.bean.WeixinOrder;
 import com.wd.master_of_arts_app.contreater.OrderContreater;
 import com.wd.master_of_arts_app.preanter.OrderPreanter;
 import com.wd.master_of_arts_app.utils.NetUtils;
@@ -60,7 +61,7 @@ public class SignUpNow extends BaseActivity implements OrderContreater.IView {
     private String money;
     private String title;
     private TextView tv;
-    private LinearLayout zhifubaozhifu, weixinzhifu;
+    private LinearLayout zhifubaozhifu, weixinzhifu,llte;
     private int harId;
 
     @Override
@@ -89,12 +90,13 @@ public class SignUpNow extends BaseActivity implements OrderContreater.IView {
         zhifuMoney = findViewById(R.id.zhifuMoney);
         zhifubaozhifu = findViewById(R.id.zhifubaozhifu);
         weixinzhifu = findViewById(R.id.weixinzhifu);
+        llte = findViewById(R.id.llte);
         y = findViewById(R.id.y);
         n = findViewById(R.id.n);
         c = findViewById(R.id.c);
         b = findViewById(R.id.b);
 
-        tv.setOnClickListener(new View.OnClickListener() {
+        llte.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), SeleteHarvest.class);
@@ -120,6 +122,11 @@ public class SignUpNow extends BaseActivity implements OrderContreater.IView {
 
     @Override
     protected void initData() {
+        SharedPreferences sp = getSharedPreferences("post_acce", MODE_PRIVATE);
+        int pase = sp.getInt("pase", 0);
+        String access = sp.getString("access", "");
+        tv.setText(access);
+
         zhifubaozhifu.setOnClickListener(new View.OnClickListener() {
 
 
@@ -152,67 +159,124 @@ public class SignUpNow extends BaseActivity implements OrderContreater.IView {
                 if (basePreantert instanceof OrderContreater.IPreanter) {
                     SharedPreferences token = getSharedPreferences("token", MODE_PRIVATE);
                     String token1 = token.getString("token", "");
-                    NetUtils.getInstance().getApi().getPurchase(token1, course_id, course_time_id, harId, i)
-                            .subscribeOn(Schedulers.io())
-                            .observeOn(AndroidSchedulers.mainThread())
-                            .subscribe(new Observer<Purchase>() {
-                                @Override
-                                public void onSubscribe(Disposable d) {
+                    if (i == 2) {
 
-                                }
+                        NetUtils.getInstance().getApi().getPurchase(token1, course_id, course_time_id, pase, i)
+                                .subscribeOn(Schedulers.io())
+                                .observeOn(AndroidSchedulers.mainThread())
+                                .subscribe(new Observer<Purchase>() {
+                                    @Override
+                                    public void onSubscribe(Disposable d) {
 
-                                @Override
-                                public void onNext(Purchase purchase) {
-                                    String msg = purchase.getMsg();
-                                    Toast.makeText(getApplicationContext(), msg, Toast.LENGTH_SHORT).show();
-                                    Purchase.DataBean data = purchase.getData();
-                                    if (data != null) {
-                                        String order_id = data.getOrder_id();
-                                        EventBus.getDefault().post(order_id);
-                                        String order_num = data.getOrder_num();
-                                        //String pay_price = data.getPay_price();
-                                        String title = data.getTitle();
-                                        String pay_price = data.getPrice();
+                                    }
 
-                                        Purchase.PayInfoBean payInfo = purchase.getPayInfo();
+                                    @Override
+                                    public void onNext(Purchase purchase) {
+                                        String msg = purchase.getMsg();
+                                        Toast.makeText(getApplicationContext(), msg, Toast.LENGTH_SHORT).show();
+                                        Purchase.DataBean data = purchase.getData();
+                                        if (data != null) {
+                                            String order_id = data.getOrder_id();
+                                            EventBus.getDefault().post(order_id);
+                                            String order_num = data.getOrder_num();
+                                            //String pay_price = data.getPay_price();
+                                            String title = data.getTitle();
+                                            String pay_price = data.getPrice();
 
-                                        Purchase.PayInfoBean.AppPayRequestBean appPayRequest = payInfo.getAppPayRequest();
-                                        String miniuser = appPayRequest.getMsgType();
-                                        String qrCode = appPayRequest.getQrCode();
-                                        HashMap<String, String> map = new HashMap<>();
-                                        JSONObject array_test = new JSONObject();
+                                            Purchase.PayInfoBean payInfo = purchase.getPayInfo();
+
+                                            Purchase.PayInfoBean.AppPayRequestBean appPayRequest = payInfo.getAppPayRequest();
+                                            String miniuser = appPayRequest.getMsgType();
+                                            String qrCode = appPayRequest.getQrCode();
+                                            JSONObject array_test = new JSONObject();
+                                            try {
+                                                array_test.put("miniuser", miniuser);
+                                                array_test.put("qrCode", qrCode);
+
+                                            } catch (JSONException e) {
+                                                e.printStackTrace();
+                                            }
+
+                                            //支付宝支付
+                                            payAliPay(array_test.toString());
+
+
+                                        }
+
+                                        if (purchase.getCode() == 1) {
+                                            finish();
+                                        }
+                                    }
+
+                                    @Override
+                                    public void onError(Throwable e) {
+
+                                    }
+
+                                    @Override
+                                    public void onComplete() {
+
+                                    }
+                                });
+                    } else if (i == 1) {
+                        NetUtils.getInstance().getApi().getPurchaseWeiXin(token1, course_id, course_time_id, pase, i)
+                                .subscribeOn(Schedulers.io())
+                                .observeOn(AndroidSchedulers.mainThread())
+                                .subscribe(new Observer<WeixinOrder>() {
+                                    @Override
+                                    public void onSubscribe(Disposable d) {
+
+                                    }
+
+                                    @Override
+                                    public void onNext(WeixinOrder weixinOrder) {
+                                        WeixinOrder.DataBean data = weixinOrder.getData();
+                                        WeixinOrder.PayInfoBean payInfo = weixinOrder.getPayInfo();
+                                        WeixinOrder.PayInfoBean.AppPayRequestBean appPayRequest = payInfo.getAppPayRequest();
+                                        String packageX = appPayRequest.getPackageX();
+
+                                        String appid = appPayRequest.getAppid();
+                                        String sign = appPayRequest.getSign();
+                                        String partnerid = appPayRequest.getPartnerid();
+                                        String prepayid = appPayRequest.getPrepayid();
+                                        String noncestr = appPayRequest.getNoncestr();
+                                        String timestamp = appPayRequest.getTimestamp();
+                                        JSONObject jsonObject = new JSONObject();
                                         try {
-                                            array_test.put("miniuser", miniuser);
-                                            array_test.put("qrCode", qrCode);
-
+                                            jsonObject.put("package", packageX);
+                                            jsonObject.put("appid", appid);
+                                            jsonObject.put("sign", sign);
+                                            jsonObject.put("partnerid", partnerid);
+                                            jsonObject.put("prepayid", prepayid);
+                                            jsonObject.put("noncestr", noncestr);
+                                            jsonObject.put("timestamp", timestamp);
                                         } catch (JSONException e) {
                                             e.printStackTrace();
                                         }
-                                        if(i==1){
-                                            //微信支付
-                                            payWX(array_test.toString());
-                                        }else if(i==2){
-                                            //支付宝支付
-                                            payAliPay(array_test.toString());
+
+                                        //微信支付
+                                        payWX(jsonObject.toString());
+
+
+                                        if (weixinOrder.getCode() == 1) {
+                                            finish();
                                         }
+                                    }
+
+                                    @Override
+                                    public void onError(Throwable e) {
 
                                     }
 
-                                    if (purchase.getCode() == 1) {
-                                        finish();
+                                    @Override
+                                    public void onComplete() {
+
                                     }
-                                }
+                                });
+                    } else {
+                        Toast.makeText(SignUpNow.this, "请选择微信支付或支付宝支付", Toast.LENGTH_SHORT).show();
+                    }
 
-                                @Override
-                                public void onError(Throwable e) {
-
-                                }
-
-                                @Override
-                                public void onComplete() {
-
-                                }
-                            });
                 }
             }
         });
@@ -224,6 +288,13 @@ public class SignUpNow extends BaseActivity implements OrderContreater.IView {
         dd_zfmoney.setText("￥" + money);
         zhifuMoney.setText("￥" + money);
 
+    }
+    private void payWX(String url){
+        UnifyPayRequest msg = new UnifyPayRequest();
+        msg.payChannel = UnifyPayRequest.CHANNEL_WEIXIN;
+        msg.payData = url;
+        Log.d("ddebug","payWX ===> " + msg.payData);
+        UnifyPayPlugin.getInstance(this).sendPayRequest(msg);
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN, sticky = true)
@@ -252,18 +323,6 @@ public class SignUpNow extends BaseActivity implements OrderContreater.IView {
 
     }
 
-    /**
-     * 微信支付
-     *
-     * @param url
-     */
-    private void payWX(String url) {
-        UnifyPayRequest msg = new UnifyPayRequest();
-        msg.payChannel = UnifyPayRequest.CHANNEL_WEIXIN;
-        msg.payData = url;
-        Log.d("ddebug", "payWX ===> " + msg.payData);
-        UnifyPayPlugin.getInstance(this).sendPayRequest(msg);
-    }
 
     /**
      * 支付宝支付
