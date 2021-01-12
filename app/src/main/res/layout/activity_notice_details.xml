@@ -46,13 +46,10 @@
             android:layout_marginRight="@dimen/dp_15"
             android:layout_height="wrap_content" />
     </RelativeLayout>
-    <TextView
+    <WebView
         android:layout_width="match_parent"
-        android:text="亲爱的家长，还有一小时就要上课啦，提醒孩子预习，并再次确认作画工具，准备妥当了喔～"
-        android:layout_marginTop="@dimen/dp_5"
-        android:id="@+id/details_content"
-        android:layout_marginLeft="@dimen/dp_15"
-        android:textColor="#999999"
-        android:layout_height="match_parent" />
+        android:id="@+id/web"
+        android:layout_height="match_parent">
+    </WebView>
 
 </LinearLayout>
