@@ -74,8 +74,28 @@
             android:layout_toRightOf="@+id/hazp"
             android:text="（最多三张）" />
     </RelativeLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <ImageView
+            android:layout_width="@dimen/dp_120"
+            android:src="@mipmap/find_add_img"
+            android:id="@+id/imv_ig"
+            android:layout_height="@dimen/dp_120" />
+        <ImageView
+            android:layout_width="@dimen/dp_120"
+            android:id="@+id/imv_one"
+            android:src="@mipmap/find_add_img"
+            android:layout_height="@dimen/dp_120" />
+        <ImageView
+            android:layout_width="@dimen/dp_120"
+            android:id="@+id/imv_tow"
+            android:src="@mipmap/find_add_img"
+            android:layout_height="@dimen/dp_120" />
+    </LinearLayout>
     <GridView
         android:id="@+id/gridView"
+        android:visibility="gone"
         android:layout_width="fill_parent"
         android:layout_height="@dimen/dp_80"
         android:numColumns="3"
@@ -131,11 +151,11 @@
             android:id="@+id/tb"
             android:layout_height="wrap_content">
         </com.google.android.material.tabs.TabLayout>
-        <androidx.viewpager.widget.ViewPager
+        <com.wd.master_of_arts_app.customview.NoScrollViewPager
             android:layout_width="match_parent"
             android:id="@+id/vp"
             android:layout_height="@dimen/dp_180">
-        </androidx.viewpager.widget.ViewPager>
+        </com.wd.master_of_arts_app.customview.NoScrollViewPager>
     </LinearLayout>
 
 </LinearLayout>

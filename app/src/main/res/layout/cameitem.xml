@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:id="@+id/re_com"
+    android:background="#33FFFFFF"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_alignParentBottom="true"
+        android:background="#FFFFFF"
+        android:orientation="vertical"
+        android:layout_height="wrap_content">
+        <View
+            android:layout_width="match_parent"
+            android:background="#9E9E9E"
+            android:layout_height="1dp"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:text="拍照选择"
+            android:id="@+id/pzxz"
+            android:gravity="center"
+            android:textSize="@dimen/sp_18"
+            android:textColor="#434343"
+            android:layout_height="@dimen/dp_50" />
+        <View
+            android:layout_width="match_parent"
+            android:background="#3F3F3F3F"
+            android:layout_height="1dp"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:text="相册选择"
+            android:gravity="center"
+            android:textColor="#434343"
+            android:id="@+id/xcxz"
+            android:textSize="@dimen/sp_18"
+            android:layout_height="@dimen/dp_50" />
+        <View
+            android:layout_width="match_parent"
+            android:background="#3F3F3F3F"
+            android:layout_height="1dp"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:text="取消"
+            android:gravity="center"
+            android:textSize="@dimen/sp_18"
+            android:textColor="#434343"
+            android:layout_height="@dimen/dp_50" />
+    </LinearLayout>
+
+</RelativeLayout>

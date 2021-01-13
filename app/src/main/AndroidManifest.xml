@@ -3,6 +3,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:uses-permissionandroid="http://schemas.android.com/apk/distribution"
     package="com.wd.master_of_arts_app">
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.CAMERA" />
+
     <!-- 在SD卡中创建与删除文件权限 -->
     <!-- Required -->
     <permission
@@ -112,10 +116,12 @@
             android:name=".activity.WatchThreeReplaceActivity"
             android:configChanges="orientation|keyboardHidden|navigation|screenSize"
             android:hardwareAccelerated="true" />
+
         <activity
             android:name=".wxapi.WXEntryActivity"
             android:exported="true"
             android:launchMode="singleTask"
+
             android:taskAffinity="com.wd.master_of_arts_app"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity
@@ -130,6 +136,11 @@
         <activity android:name=".activity.BannerActivity" />
         <activity android:name=".activity.NoticeDetails" />
         <activity android:name=".activity.NoticeActivity" />
+
+
+
+
+
 
         <uses-library
             android:name="org.apache.http.legacy"
@@ -229,6 +240,12 @@
         <activity android:name=".activity.Add_Address" /> <!-- 收获地址 -->
         <activity android:name=".activity.Calendar_Activity" />
         <activity
+            android:name="com.yanzhenjie.album.AlbumActivity"
+            android:label="图库"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"
+            android:windowSoftInputMode="stateAlwaysHidden|stateHidden" />
+        <activity
             android:name=".activity.myactivity.SetUp"
             android:configChanges="orientation|screenSize"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" /> <!-- 设置 -->
@@ -242,6 +259,7 @@
         <activity android:name=".activity.myactivity.My_order" /> <!-- 我的订单 -->
         <activity android:name=".activity.Publishing_works_Activity" /> <!-- 闪屏界面 -->
         <activity android:name=".activity.Flash_page_Activity">
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

@@ -14,6 +14,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.tencent.mm.opensdk.constants.ConstantsAPI;
 import com.tencent.mm.opensdk.openapi.IWXAPI;
 import com.tencent.mm.opensdk.openapi.WXAPIFactory;
+import com.wd.master_of_arts_app.activity.SampleReelsActivity;
 import com.wd.master_of_arts_app.bean.Constants;
 
 

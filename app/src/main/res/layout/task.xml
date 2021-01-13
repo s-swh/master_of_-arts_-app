@@ -43,6 +43,8 @@
                 android:layout_height="34dp"
                 android:textSize="12sp"
                 android:textColorHint="#fff"
+                android:singleLine="true"
+                android:imeOptions="actionDone"
                 android:scrollbarSize="12sp"
                 android:background="@drawable/rounded_edittext"
                 android:hint="搜索年级、课程、训练计划"
