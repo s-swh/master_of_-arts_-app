@@ -9,6 +9,7 @@ import android.os.Bundle;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.multidex.MultiDex;
 
 
 import com.tencent.mm.opensdk.constants.ConstantsAPI;
@@ -30,13 +31,18 @@ public class App extends Application {
 
     private static Context context;
 
-
     @Override
     public void onCreate() {
         super.onCreate();
         context = getApplicationContext();
         JPushInterface.setDebugMode(true);
         JPushInterface.init(this);
+    }
+
+    @Override
+    protected void attachBaseContext(Context base) {
+        super.attachBaseContext(base);
+        MultiDex.install(this);
     }
 
     public static Context getContext() {
