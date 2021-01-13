@@ -1,5 +1,7 @@
 package com.wd.master_of_arts_app.bean;
 
+import java.util.List;
+
 /**
  * @author 时文豪
  * @description:
@@ -7,15 +9,16 @@ package com.wd.master_of_arts_app.bean;
  */
 public class HomePage {
 
+
     /**
      * code : 1
      * msg : 成功
-     * data : {"status":1,"button":"去选课","unit_id":0,"unit_name":"","date":"","time":"","teacher":"","avatar":"","class_id":0,"course_name":"","course_time_id":0,"homework_id":0}
+     * data : [{"status":2,"button":"去预习","unit_id":358,"unit_name":"我爱洗澡澡","date":"2021-01-18","time":"09:00:00","teacher":"艺老师","avatar":"http://qiniu.54artist.com/5ff7c57b2b0109538.jpg","class_id":0,"course_name":"蒙蒙童画班","course_time_id":0,"homework_id":0}]
      */
 
     private int code;
     private String msg;
-    private DataBean data;
+    private List<DataBean> data;
 
     public int getCode() {
         return code;
@@ -33,26 +36,26 @@ public class HomePage {
         this.msg = msg;
     }
 
-    public DataBean getData() {
+    public List<DataBean> getData() {
         return data;
     }
 
-    public void setData(DataBean data) {
+    public void setData(List<DataBean> data) {
         this.data = data;
     }
 
     public static class DataBean {
         /**
-         * status : 1
-         * button : 去选课
-         * unit_id : 0
-         * unit_name :
-         * date :
-         * time :
-         * teacher :
-         * avatar :
+         * status : 2
+         * button : 去预习
+         * unit_id : 358
+         * unit_name : 我爱洗澡澡
+         * date : 2021-01-18
+         * time : 09:00:00
+         * teacher : 艺老师
+         * avatar : http://qiniu.54artist.com/5ff7c57b2b0109538.jpg
          * class_id : 0
-         * course_name :
+         * course_name : 蒙蒙童画班
          * course_time_id : 0
          * homework_id : 0
          */
