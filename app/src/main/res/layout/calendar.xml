@@ -22,6 +22,16 @@
             android:layout_centerVertical="true"
             android:layout_height="wrap_content" />
     </RelativeLayout>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:layout_height="match_parent">
+
 <TextView
     android:layout_width="wrap_content"
     android:layout_gravity="center"
@@ -31,8 +41,16 @@
     <com.haibin.calendarview.CalendarView
         android:layout_width="match_parent"
         android:id="@+id/chart"
+        app:default_status="shrink"
+        android:orientation="vertical"
+        android:background="#FFF"
         android:showWeekNumber="true"
-        android:unfocusedMonthDateColor="#000000"
+        app:selected_text_color="@color/black"
+        app:scheme_text_color="@color/black"
+        app:week_text_color="@color/black"
+        app:current_day_text_color="@color/black"
+        app:year_view_day_text_color="@color/black"
+        android:unfocusedMonthDateColor="#E90202"
         android:shownWeekCount ="3"
         android:layout_height="wrap_content">
     </com.haibin.calendarview.CalendarView>
@@ -60,4 +78,6 @@
     android:layout_height="match_parent">
 </androidx.recyclerview.widget.RecyclerView>
 
+    </LinearLayout>
+    </ScrollView>
 </LinearLayout>

@@ -4,9 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:focusableInTouchMode="true"
     android:focusable="true"
+    android:focusableInTouchMode="true"
+    android:orientation="vertical"
     tools:context=".activity.PersonalDataActivity">
 
     <RelativeLayout
@@ -109,30 +109,65 @@
                 android:textColor="#434343"
                 android:textSize="@dimen/sp_12" />
 
-            <RadioGroup
-                android:id="@+id/rp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_marginLeft="@dimen/dp_15"
+                android:id="@+id/man"
+                android:layout_height="wrap_content">
 
-                <RadioButton
-                    android:id="@+id/nan"
+                <ImageView
+                    android:layout_width="15dp"
+                    android:layout_height="15dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_margin="@dimen/dp_5"
+                    android:id="@+id/many"
+                    android:src="@mipmap/icon_zhifuchenggong" />
+                <ImageView
+                    android:layout_width="15dp"
+                    android:layout_height="15dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_margin="@dimen/dp_5"
+                    android:visibility="gone"
+                    android:id="@+id/mann"
+                    android:src="@mipmap/icon_zhifushibai" />
+                <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/dp_15"
-                    android:checked="true"
-                    android:text="男"
-                    android:textSize="@dimen/sp_12" />
+                    android:layout_gravity="center_vertical"
+                    android:layout_margin="@dimen/dp_5"
+                    android:text="男" />
+            </LinearLayout>
 
-                <RadioButton
-                    android:id="@+id/nv"
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_marginLeft="@dimen/dp_15"
+                android:id="@+id/wuman"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:layout_width="15dp"
+                    android:layout_height="15dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_margin="@dimen/dp_5"
+                    android:visibility="gone"
+                    android:id="@+id/wumany"
+                    android:src="@mipmap/icon_zhifuchenggong" />
+                <ImageView
+                    android:layout_width="15dp"
+                    android:layout_height="15dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_margin="@dimen/dp_5"
+                    android:id="@+id/wumann"
+                    android:src="@mipmap/icon_zhifushibai" />
+
+                <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:checked="true"
-                    android:text="女"
-                    android:textSize="@dimen/sp_12" />
+                    android:layout_gravity="center_vertical"
+                    android:layout_margin="@dimen/dp_5"
+                    android:text="女" />
+            </LinearLayout>
 
-            </RadioGroup>
 
         </LinearLayout>
 
@@ -206,10 +241,10 @@
         android:id="@+id/upde"
         android:layout_width="@dimen/dp_150"
         android:layout_height="wrap_content"
-        android:background="@drawable/fillet2"
         android:layout_gravity="center"
-        android:textSize="@dimen/sp_12"
-        android:textColor="#fff"
         android:layout_marginTop="@dimen/dp_69"
-        android:text="确认修改" />
+        android:background="@drawable/fillet2"
+        android:text="确认修改"
+        android:textColor="#fff"
+        android:textSize="@dimen/sp_12" />
 </LinearLayout>

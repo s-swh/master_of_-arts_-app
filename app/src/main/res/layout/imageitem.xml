@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
-    android:id="@+id/dimen"
-    android:background="#000"
+    android:id="@+id/llt_img"
     android:layout_height="match_parent">
-<com.wd.master_of_arts_app.customview.Img
-    android:layout_width="wrap_content"
-    android:id="@+id/pop_image"
-    android:layout_height="wrap_content" />
+<ImageView
+    android:layout_width="@dimen/dp_50"
+    android:id="@+id/image_item"
+    android:layout_height="@dimen/dp_50" />
 </LinearLayout>

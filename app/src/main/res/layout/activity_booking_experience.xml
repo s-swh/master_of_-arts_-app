@@ -46,6 +46,7 @@
             android:id="@+id/book_name"
             android:layout_marginTop="13dp"
             android:inputType="text"
+            android:layout_marginLeft="@dimen/dp_2"
             android:background="@drawable/editseletect"
             android:layout_gravity="center"
             android:layout_height="@dimen/dp_20" />
@@ -67,8 +68,10 @@
             android:layout_width="420dp"
             android:layout_gravity="center"
             android:id="@+id/book_phone"
+            android:layout_marginLeft="@dimen/dp_2"
             android:background="@drawable/editseletect"
             android:hint="请输入您的手机号"
+            android:maxLength="11"
             android:inputType="phone"
             android:layout_marginTop="13dp"
             android:layout_height="@dimen/dp_20" />
