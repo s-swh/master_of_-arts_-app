@@ -130,7 +130,7 @@
                         android:layout_marginLeft="@dimen/dp_12"
                         android:text="￥269.00"
                         android:textColor="#989898"
-                        android:textSize="@dimen/sp_13" />
+                        android:textSize="@dimen/sp_11" />
                 </LinearLayout>
 
 

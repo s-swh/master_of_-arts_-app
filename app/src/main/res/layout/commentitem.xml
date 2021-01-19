@@ -2,9 +2,25 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <RatingBar
+            android:layout_width="wrap_content"
+            android:numStars="5"
+            style="?android:attr/ratingBarStyleSmall"
+            android:isIndicator="true"
+            android:layout_marginRight="@dimen/dp_15"
+            android:theme="@style/RatingBar"
+            android:id="@+id/ratingbar"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:layout_height="wrap_content" />
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
+
         <ImageView
             android:layout_width="50dp"
             android:layout_marginLeft="15.5dp"
@@ -16,6 +32,7 @@
             android:layout_width="match_parent"
             android:orientation="vertical"
             android:layout_height="wrap_content">
+
             <TextView
                 android:layout_width="wrap_content"
                 android:text="淮南子"
@@ -25,6 +42,7 @@
                 android:layout_marginTop="@dimen/dp_20"
                 android:layout_marginLeft="@dimen/dp_6"
                 android:layout_height="wrap_content" />
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_marginTop="@dimen/dp_7"
@@ -36,6 +54,7 @@
                 android:layout_height="wrap_content" />
         </LinearLayout>
     </LinearLayout>
+    </RelativeLayout>
 <TextView
     android:layout_width="@dimen/dp_300"
     android:layout_marginTop="5dp"
@@ -48,4 +67,5 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="@dimen/dp_10"/>
+
 </LinearLayout>

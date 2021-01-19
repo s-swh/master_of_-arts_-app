@@ -11,7 +11,7 @@ public class DetailsOfWorksBean {
     /**
      * code : 1
      * msg : 成功
-     * data : {"workMsg":{"work_id":44,"name":"富有风采","imglist":"5ff5269baba894471.jpg","content":"垫付学费预防","voice":"5ff5269b9da658737.amr","create_time":"2021-01-06 10:55:31","is_comment":"N","c_content":"","c_imglist":"","c_voice":"","comment_time":"","t_name":"","t_avatar":""}}
+     * data : {"workMsg":{"work_id":119,"name":"古代古城","imglist":"[\"/20210118/6004e8b6cdf7b3446.jpg\",\"/20210118/6004e8b9c69bd2683.jpg\"]","content":"发神经个可根据轨道交通时间发生过的健身房健身房给大家都根据特困地图订房间供电局的感觉","voice":"[\"/20210117/600438312cc6c3562.amr\"]","create_time":"2021-01-18 09:47:44","is_comment":"Y","c_content":"你是谁呢。你们要","c_imglist":"[\"work//20210118/6004e8fd1fcb99526.png\",\"work//20210118/6004e900eb6702059.png\",\"work//20210118/6004e904c1d3b3060.png\"]","c_voice":"[\"work//20210118/6004e8f8269ae1981.wav\"]","comment_time":"2021-01-18 09:48:53","t_name":"谭老师","t_avatar":"http://qiniu.54artist.com/5ff7c56b8f40e6896.jpg"}}
      */
 
     private int code;
@@ -44,7 +44,7 @@ public class DetailsOfWorksBean {
 
     public static class DataBean {
         /**
-         * workMsg : {"work_id":44,"name":"富有风采","imglist":"5ff5269baba894471.jpg","content":"垫付学费预防","voice":"5ff5269b9da658737.amr","create_time":"2021-01-06 10:55:31","is_comment":"N","c_content":"","c_imglist":"","c_voice":"","comment_time":"","t_name":"","t_avatar":""}
+         * workMsg : {"work_id":119,"name":"古代古城","imglist":"[\"/20210118/6004e8b6cdf7b3446.jpg\",\"/20210118/6004e8b9c69bd2683.jpg\"]","content":"发神经个可根据轨道交通时间发生过的健身房健身房给大家都根据特困地图订房间供电局的感觉","voice":"[\"/20210117/600438312cc6c3562.amr\"]","create_time":"2021-01-18 09:47:44","is_comment":"Y","c_content":"你是谁呢。你们要","c_imglist":"[\"work//20210118/6004e8fd1fcb99526.png\",\"work//20210118/6004e900eb6702059.png\",\"work//20210118/6004e904c1d3b3060.png\"]","c_voice":"[\"work//20210118/6004e8f8269ae1981.wav\"]","comment_time":"2021-01-18 09:48:53","t_name":"谭老师","t_avatar":"http://qiniu.54artist.com/5ff7c56b8f40e6896.jpg"}
          */
 
         private WorkMsgBean workMsg;
@@ -59,19 +59,19 @@ public class DetailsOfWorksBean {
 
         public static class WorkMsgBean {
             /**
-             * work_id : 44
-             * name : 富有风采
-             * imglist : 5ff5269baba894471.jpg
-             * content : 垫付学费预防
-             * voice : 5ff5269b9da658737.amr
-             * create_time : 2021-01-06 10:55:31
-             * is_comment : N
-             * c_content :
-             * c_imglist :
-             * c_voice :
-             * comment_time :
-             * t_name :
-             * t_avatar :
+             * work_id : 119
+             * name : 古代古城
+             * imglist : ["/20210118/6004e8b6cdf7b3446.jpg","/20210118/6004e8b9c69bd2683.jpg"]
+             * content : 发神经个可根据轨道交通时间发生过的健身房健身房给大家都根据特困地图订房间供电局的感觉
+             * voice : ["/20210117/600438312cc6c3562.amr"]
+             * create_time : 2021-01-18 09:47:44
+             * is_comment : Y
+             * c_content : 你是谁呢。你们要
+             * c_imglist : ["work//20210118/6004e8fd1fcb99526.png","work//20210118/6004e900eb6702059.png","work//20210118/6004e904c1d3b3060.png"]
+             * c_voice : ["work//20210118/6004e8f8269ae1981.wav"]
+             * comment_time : 2021-01-18 09:48:53
+             * t_name : 谭老师
+             * t_avatar : http://qiniu.54artist.com/5ff7c56b8f40e6896.jpg
              */
 
             private int work_id;

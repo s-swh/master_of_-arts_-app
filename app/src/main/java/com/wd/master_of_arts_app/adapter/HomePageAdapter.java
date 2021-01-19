@@ -52,14 +52,27 @@ public class HomePageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         ((HomePageViewHorder) holder).left_date.setText(time);
         ((HomePageViewHorder) holder).left_tv.setText(unit_name);
         ((HomePageViewHorder) holder).tv_tvv.setText(button);
+        String course_name = dataBean.getCourse_name();
         Glide.with(context).load(avatar).apply(RequestOptions.bitmapTransform(new CircleCrop())).into(((HomePageViewHorder) holder).home_img);
-        ((HomePageViewHorder) holder).home_tv.setText(teacher);
+        if(!course_name.isEmpty()){
+            ((HomePageViewHorder) holder).home_tv.setText("\t———\n"+course_name+"\n-任课老师-\n"+teacher);
+        }else{
+            ((HomePageViewHorder) holder).home_tv.setVisibility(View.GONE);
+        }
+
         ((HomePageViewHorder) holder).tv_tvv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 click.OnClickItem(list.get(position));
             }
         });
+        int sort_num = dataBean.getSort_num();
+        if(sort_num==0){
+          ((HomePageViewHorder) holder).left_sort.setVisibility(View.GONE);
+        }else{
+            ((HomePageViewHorder) holder).left_sort.setText("———\n"+"第"+sort_num+"课");
+        }
+
     }
 
     @Override
@@ -74,7 +87,7 @@ public class HomePageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
     }
     class HomePageViewHorder extends RecyclerView.ViewHolder {
 
-        private final TextView left_title,left_date,left_tv,tv_tvv,home_tv;
+        private final TextView left_title,left_date,left_tv,tv_tvv,home_tv,left_sort;
         private final ImageView home_img;
 
         public HomePageViewHorder(@NonNull View itemView) {
@@ -85,6 +98,7 @@ public class HomePageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
             tv_tvv= itemView.findViewById(R.id.tv_tvv);
             home_img = itemView.findViewById(R.id.home_img);
             home_tv=itemView.findViewById(R.id.home_tv);
+            left_sort=itemView.findViewById(R.id.left_sort);
         }
     }
 }

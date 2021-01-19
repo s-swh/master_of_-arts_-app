@@ -71,20 +71,34 @@
         android:layout_height="match_parent">
     </com.jcodecraeer.xrecyclerview.XRecyclerView>
     </LinearLayout>
-    <RelativeLayout
+    <LinearLayout
         android:layout_width="match_parent"
         android:orientation="vertical"
         android:id="@+id/rlt"
         android:visibility="gone"
+        android:layout_marginTop="@dimen/dp_150"
         android:layout_height="match_parent">
-        <ImageView
-            android:layout_width="wrap_content"
-            android:src="@mipmap/icon_wushuju"
-            android:id="@+id/ic"
-            android:layout_centerInParent="true"
-            android:layout_centerVertical="true"
-            android:layout_centerHorizontal="true"
-            android:layout_gravity="center"
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <ImageView
+                android:layout_width="match_parent"
+                android:src="@mipmap/icon_wushuju"
+                android:id="@+id/ic"
+
+                android:layout_centerInParent="true"
+                android:layout_centerVertical="true"
+                android:layout_centerHorizontal="true"
+                android:layout_gravity="center"
+                android:layout_height="@dimen/dp_150" />
+        </RelativeLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:text="暂无订单"
+            android:textColor="#434343"
+            android:gravity="center"
+            android:textSize="@dimen/sp_12"
             android:layout_height="wrap_content" />
-    </RelativeLayout>
+    </LinearLayout>
 </LinearLayout>

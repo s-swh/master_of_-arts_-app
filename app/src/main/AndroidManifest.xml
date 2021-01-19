@@ -110,13 +110,28 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar"
         tools:replace="android:theme">
+
         <activity android:name=".activity.GuideToUse"></activity>
         <activity android:name=".activity.AboutUs" />
         <activity
             android:name=".activity.WatchThreeReplaceActivity"
             android:configChanges="orientation|keyboardHidden|navigation|screenSize"
             android:hardwareAccelerated="true" />
+        <receiver android:name=".utils.JGBroadcastReceiver" android:exported="false" android:enabled="true">
+            <intent-filter>
+                <action android:name="cn.jpush.android.intent.REGISTRATION" />
+                <action android:name="cn.jpush.android.intent.MESSAGE_RECEIVED" />
+                <action android:name="cn.jpush.android.intent.NOTIFICATION_RECEIVED" />
+                <action android:name="cn.jpush.android.intent.NOTIFICATION_OPENED" />
+                <action android:name="cn.jpush.android.intent.NOTIFICATION_CLICK_ACTION" />
+                <action android:name="cn.jpush.android.intent.CONNECTION" />
+                <category android:name="com.wd.master_of_arts_app" />
 
+            </intent-filter>
+            <intent-filter>
+                <action android:name="com.wd.master_of_arts_app"/>
+            </intent-filter>
+        </receiver>
         <activity
             android:name=".wxapi.WXEntryActivity"
             android:exported="true"
@@ -224,13 +239,7 @@
         <activity android:name=".activity.PersonalDataActivity" />
         <activity android:name=".activity.CourseDetailsActivity" />
         <activity android:name=".activity.ForgetThePassword" />
-        <activity
-            android:name=".wechatpictures.PhotoPickerActivity"
-            android:configChanges="orientation|screenSize"
-            android:theme="@style/PhotoPickerTheme" />
-        <activity
-            android:name=".wechatpictures.PhotoPreviewActivity"
-            android:theme="@style/PhotoPickerTheme" />
+
         <activity android:name=".activity.Login_interface" /> <!-- 选择界面 -->
         <activity android:name=".activity.Verification_code_login" /> <!-- 登录 -->
         <activity android:name=".activity.Privacy_policy" /> <!-- 隐私协议 -->
@@ -267,7 +276,10 @@
             </intent-filter>
         </activity> <!-- 首页搜索界面 -->
         <activity android:name=".activity.Search_Activity" /> <!-- 项目主框架 -->
-        <activity android:name=".activity.MainActivity" />
+
+        <activity android:name=".activity.MainActivity" >
+           <!-- -->
+        </activity>
     </application>
 
 </manifest>

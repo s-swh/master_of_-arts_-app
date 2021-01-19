@@ -8,10 +8,11 @@ import java.util.List;
  * @date :2021/1/9 14:02
  */
 public class NoticeBean {
+
     /**
      * code : 1
      * msg : 成功
-     * data : {"list":{"total":2,"per_page":10,"current_page":1,"last_page":1,"data":[{"id":2,"n_key":1,"n_value":"","title":"上课通知","content":"来","create_time":"2021-01-03 16:15:00","is_read":"N"},{"id":1,"n_key":1,"n_value":"","title":"全体通知","content":"快来上课哦 要迟到了","create_time":"2021-01-03 15:55:52","is_read":"N"}]}}
+     * data : {"list":{"total":2,"per_page":10,"current_page":1,"last_page":1,"data":[{"id":7,"n_key":7,"n_value":"","title":"过年啦","content":"<p>十多个粉丝的房间看对方<\/p>","create_time":"2021-01-16 10:21:49","des":"","is_read":"Y"},{"id":6,"n_key":7,"n_value":"","title":"春节放假","content":"<p><span style=\";font-size:24px;font-family:SimSun;color:rgb(0,0,0)\">关 于 2021 年 春 节 放 假 安 排 的 通 知 <\/span><span style=\";font-size:20px;font-family:SimSun;color:rgb(0,0,7)\">各事业部、各部门： <\/span><span style=\";font-size:20px;font-family:SimSun;color:rgb(0,0,7)\">依据国家有关规定并结合本单位实际情况，集团决定春节放 <\/span><span style=\";font-size:20px;font-family:SimSun;color:rgb(0,0,7)\">假安排如下：2021 年2 月11 日-2021 年2 月17 日为春节七天假 <\/span><span style=\";font-size:20px;font-family:SimSun;color:rgb(0,0,7)\">期，2021 年2 月9 日、2021 年2 月10 日、2021 年2 月18 日三 <\/span><span style=\";font-size:20px;font-family:SimSun;color:rgb(0,0,7)\">天调休，共计 10 天假期，2 月19 日（初八）上班。中高风险地 <\/span><span style=\";font-size:20px;font-family:SimSun;color:rgb(0,0,7)\">区员工无特殊情况尽量不要返乡或出游。如出行，要全程做好个 <\/span><span style=\";font-size:20px;font-family:SimSun;color:rgb(0,0,7)\">人防护工作，返回后主动配合管控要求，按规定隔离、核酸检测合 <\/span><span style=\";font-size:20px;font-family:SimSun;color:rgb(0,0,7)\">格后才能正常上班、外出。特殊工作及值班由各部门自行安排。请大 <\/span><span style=\";font-size:20px;font-family:SimSun;color:rgb(0,0,7)\">家安排好各自工作，并注意节前卫生打扫、防火防盗。 <\/span><span style=\";font-size:20px;font-family:SimSun;color:rgb(0,0,7)\">特此通知，请遵照执行。 <\/span><\/p>","create_time":"2021-01-13 15:54:01","des":"","is_read":"Y"}]}}
      */
 
     private int code;
@@ -44,7 +45,7 @@ public class NoticeBean {
 
     public static class DataBeanX {
         /**
-         * list : {"total":2,"per_page":10,"current_page":1,"last_page":1,"data":[{"id":2,"n_key":1,"n_value":"","title":"上课通知","content":"来","create_time":"2021-01-03 16:15:00","is_read":"N"},{"id":1,"n_key":1,"n_value":"","title":"全体通知","content":"快来上课哦 要迟到了","create_time":"2021-01-03 15:55:52","is_read":"N"}]}
+         * list : {"total":2,"per_page":10,"current_page":1,"last_page":1,"data":[{"id":7,"n_key":7,"n_value":"","title":"过年啦","content":"<p>十多个粉丝的房间看对方<\/p>","create_time":"2021-01-16 10:21:49","des":"","is_read":"Y"},{"id":6,"n_key":7,"n_value":"","title":"春节放假","content":"<p><span style=\";font-size:24px;font-family:SimSun;color:rgb(0,0,0)\">关 于 2021 年 春 节 放 假 安 排 的 通 知 <\/span><span style=\";font-size:20px;font-family:SimSun;color:rgb(0,0,7)\">各事业部、各部门： <\/span><span style=\";font-size:20px;font-family:SimSun;color:rgb(0,0,7)\">依据国家有关规定并结合本单位实际情况，集团决定春节放 <\/span><span style=\";font-size:20px;font-family:SimSun;color:rgb(0,0,7)\">假安排如下：2021 年2 月11 日-2021 年2 月17 日为春节七天假 <\/span><span style=\";font-size:20px;font-family:SimSun;color:rgb(0,0,7)\">期，2021 年2 月9 日、2021 年2 月10 日、2021 年2 月18 日三 <\/span><span style=\";font-size:20px;font-family:SimSun;color:rgb(0,0,7)\">天调休，共计 10 天假期，2 月19 日（初八）上班。中高风险地 <\/span><span style=\";font-size:20px;font-family:SimSun;color:rgb(0,0,7)\">区员工无特殊情况尽量不要返乡或出游。如出行，要全程做好个 <\/span><span style=\";font-size:20px;font-family:SimSun;color:rgb(0,0,7)\">人防护工作，返回后主动配合管控要求，按规定隔离、核酸检测合 <\/span><span style=\";font-size:20px;font-family:SimSun;color:rgb(0,0,7)\">格后才能正常上班、外出。特殊工作及值班由各部门自行安排。请大 <\/span><span style=\";font-size:20px;font-family:SimSun;color:rgb(0,0,7)\">家安排好各自工作，并注意节前卫生打扫、防火防盗。 <\/span><span style=\";font-size:20px;font-family:SimSun;color:rgb(0,0,7)\">特此通知，请遵照执行。 <\/span><\/p>","create_time":"2021-01-13 15:54:01","des":"","is_read":"Y"}]}
          */
 
         private ListBean list;
@@ -63,7 +64,7 @@ public class NoticeBean {
              * per_page : 10
              * current_page : 1
              * last_page : 1
-             * data : [{"id":2,"n_key":1,"n_value":"","title":"上课通知","content":"来","create_time":"2021-01-03 16:15:00","is_read":"N"},{"id":1,"n_key":1,"n_value":"","title":"全体通知","content":"快来上课哦 要迟到了","create_time":"2021-01-03 15:55:52","is_read":"N"}]
+             * data : [{"id":7,"n_key":7,"n_value":"","title":"过年啦","content":"<p>十多个粉丝的房间看对方<\/p>","create_time":"2021-01-16 10:21:49","des":"","is_read":"Y"},{"id":6,"n_key":7,"n_value":"","title":"春节放假","content":"<p><span style=\";font-size:24px;font-family:SimSun;color:rgb(0,0,0)\">关 于 2021 年 春 节 放 假 安 排 的 通 知 <\/span><span style=\";font-size:20px;font-family:SimSun;color:rgb(0,0,7)\">各事业部、各部门： <\/span><span style=\";font-size:20px;font-family:SimSun;color:rgb(0,0,7)\">依据国家有关规定并结合本单位实际情况，集团决定春节放 <\/span><span style=\";font-size:20px;font-family:SimSun;color:rgb(0,0,7)\">假安排如下：2021 年2 月11 日-2021 年2 月17 日为春节七天假 <\/span><span style=\";font-size:20px;font-family:SimSun;color:rgb(0,0,7)\">期，2021 年2 月9 日、2021 年2 月10 日、2021 年2 月18 日三 <\/span><span style=\";font-size:20px;font-family:SimSun;color:rgb(0,0,7)\">天调休，共计 10 天假期，2 月19 日（初八）上班。中高风险地 <\/span><span style=\";font-size:20px;font-family:SimSun;color:rgb(0,0,7)\">区员工无特殊情况尽量不要返乡或出游。如出行，要全程做好个 <\/span><span style=\";font-size:20px;font-family:SimSun;color:rgb(0,0,7)\">人防护工作，返回后主动配合管控要求，按规定隔离、核酸检测合 <\/span><span style=\";font-size:20px;font-family:SimSun;color:rgb(0,0,7)\">格后才能正常上班、外出。特殊工作及值班由各部门自行安排。请大 <\/span><span style=\";font-size:20px;font-family:SimSun;color:rgb(0,0,7)\">家安排好各自工作，并注意节前卫生打扫、防火防盗。 <\/span><span style=\";font-size:20px;font-family:SimSun;color:rgb(0,0,7)\">特此通知，请遵照执行。 <\/span><\/p>","create_time":"2021-01-13 15:54:01","des":"","is_read":"Y"}]
              */
 
             private int total;
@@ -114,13 +115,14 @@ public class NoticeBean {
 
             public static class DataBean {
                 /**
-                 * id : 2
-                 * n_key : 1
+                 * id : 7
+                 * n_key : 7
                  * n_value :
-                 * title : 上课通知
-                 * content : 来
-                 * create_time : 2021-01-03 16:15:00
-                 * is_read : N
+                 * title : 过年啦
+                 * content : <p>十多个粉丝的房间看对方</p>
+                 * create_time : 2021-01-16 10:21:49
+                 * des :
+                 * is_read : Y
                  */
 
                 private int id;
@@ -129,6 +131,7 @@ public class NoticeBean {
                 private String title;
                 private String content;
                 private String create_time;
+                private String des;
                 private String is_read;
 
                 public int getId() {
@@ -177,6 +180,14 @@ public class NoticeBean {
 
                 public void setCreate_time(String create_time) {
                     this.create_time = create_time;
+                }
+
+                public String getDes() {
+                    return des;
+                }
+
+                public void setDes(String des) {
+                    this.des = des;
                 }
 
                 public String getIs_read() {

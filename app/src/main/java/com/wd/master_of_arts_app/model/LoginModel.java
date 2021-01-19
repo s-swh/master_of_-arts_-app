@@ -50,8 +50,8 @@ public class LoginModel implements LoginContreater.IModel {
     }
 
     @Override
-    public void OnLoginSuccess(String phone, String code, OnLoginCoallack onLoginCoallack) {
-    NetUtils.getInstance().getApi().getSmsLogin(phone, code)
+    public void OnLoginSuccess(String phone, String code,String registration_id, OnLoginCoallack onLoginCoallack) {
+    NetUtils.getInstance().getApi().getSmsLogin(phone, code,registration_id)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe(new Observer<SMSLogin>() {
@@ -80,8 +80,8 @@ public class LoginModel implements LoginContreater.IModel {
     }
 
     @Override
-    public void OnAccout(String account, String pwd, OnAccoutCoallack onAccoutCoallack) {
-        NetUtils.getInstance().getApi().getAccount(account, pwd)
+    public void OnAccout(String account, String pwd,String registration_id, OnAccoutCoallack onAccoutCoallack) {
+        NetUtils.getInstance().getApi().getAccount(account, pwd,registration_id)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Observer<AccountLogin>() {

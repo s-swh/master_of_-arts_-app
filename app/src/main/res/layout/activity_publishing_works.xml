@@ -7,6 +7,12 @@
     android:orientation="vertical"
     tools:context=".activity.Publishing_works_Activity">
 
+<ScrollView
+    android:layout_width="match_parent"
+        android:focusableInTouchMode="true"
+    android:focusable="true"
+    android:layout_height="match_parent">
+
 
 <LinearLayout
     android:layout_width="match_parent"
@@ -76,31 +82,27 @@
     </RelativeLayout>
     <LinearLayout
         android:layout_width="match_parent"
-        android:visibility="gone"
+
         android:layout_height="wrap_content">
         <ImageView
             android:layout_width="@dimen/dp_120"
             android:src="@mipmap/find_add_img"
-            android:id="@+id/imv_ig"
+            android:id="@+id/imv_ig1"
             android:layout_height="@dimen/dp_120" />
         <ImageView
             android:layout_width="@dimen/dp_120"
-            android:id="@+id/imv_one"
+            android:id="@+id/imv_ig2"
+            android:visibility="gone"
             android:src="@mipmap/find_add_img"
             android:layout_height="@dimen/dp_120" />
         <ImageView
             android:layout_width="@dimen/dp_120"
-            android:id="@+id/imv_tow"
+            android:id="@+id/imv_ig3"
+            android:visibility="gone"
             android:src="@mipmap/find_add_img"
             android:layout_height="@dimen/dp_120" />
     </LinearLayout>
-    <GridView
-        android:id="@+id/gridView"
 
-        android:layout_width="fill_parent"
-        android:layout_height="@dimen/dp_80"
-        android:numColumns="3"
-        />
 
     <View
         android:layout_width="match_parent"
@@ -117,7 +119,7 @@
     android:layout_height="wrap_content">
     <TextView
         android:layout_width="match_parent"
-        android:text="作者名称"
+        android:text="作品名称"
         android:textColor="#000"
         android:layout_marginTop="@dimen/dp_20"
         android:textSize="@dimen/sp_14"
@@ -131,7 +133,7 @@
         android:background="@drawable/fillet6"
         android:layout_width="@dimen/dp_335"
         android:layout_gravity="center_horizontal"
-        android:hint="请输入作者名称(限12个字)"
+        android:hint="请输入作品名称(限12个字)"
         android:fadingEdgeLength="@dimen/dp_10"
         android:layout_height="@dimen/dp_50" />
 </LinearLayout>
@@ -160,4 +162,5 @@
     </LinearLayout>
 
 </LinearLayout>
+</ScrollView>
 </LinearLayout>

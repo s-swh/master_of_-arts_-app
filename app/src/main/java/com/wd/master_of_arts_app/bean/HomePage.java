@@ -9,11 +9,10 @@ import java.util.List;
  */
 public class HomePage {
 
-
     /**
      * code : 1
      * msg : 成功
-     * data : [{"status":2,"button":"去预习","unit_id":358,"unit_name":"我爱洗澡澡","date":"2021-01-18","time":"09:00:00","teacher":"艺老师","avatar":"http://qiniu.54artist.com/5ff7c57b2b0109538.jpg","class_id":0,"course_name":"蒙蒙童画班","course_time_id":0,"homework_id":0}]
+     * data : [{"status":2,"button":"去预习","unit_id":244,"sort_num":4,"unit_name":"大鲨鱼","date":"2021-01-17","time":"15:00:00","teacher":"谭老师","avatar":"http://qiniu.54artist.com/5ff7c56b8f40e6896.jpg","class_id":0,"course_name":"幼幼亲子班","course_time_id":237,"homework_id":0}]
      */
 
     private int code;
@@ -48,21 +47,23 @@ public class HomePage {
         /**
          * status : 2
          * button : 去预习
-         * unit_id : 358
-         * unit_name : 我爱洗澡澡
-         * date : 2021-01-18
-         * time : 09:00:00
-         * teacher : 艺老师
-         * avatar : http://qiniu.54artist.com/5ff7c57b2b0109538.jpg
+         * unit_id : 244
+         * sort_num : 4
+         * unit_name : 大鲨鱼
+         * date : 2021-01-17
+         * time : 15:00:00
+         * teacher : 谭老师
+         * avatar : http://qiniu.54artist.com/5ff7c56b8f40e6896.jpg
          * class_id : 0
-         * course_name : 蒙蒙童画班
-         * course_time_id : 0
+         * course_name : 幼幼亲子班
+         * course_time_id : 237
          * homework_id : 0
          */
 
         private int status;
         private String button;
         private int unit_id;
+        private int sort_num;
         private String unit_name;
         private String date;
         private String time;
@@ -95,6 +96,14 @@ public class HomePage {
 
         public void setUnit_id(int unit_id) {
             this.unit_id = unit_id;
+        }
+
+        public int getSort_num() {
+            return sort_num;
+        }
+
+        public void setSort_num(int sort_num) {
+            this.sort_num = sort_num;
         }
 
         public String getUnit_name() {

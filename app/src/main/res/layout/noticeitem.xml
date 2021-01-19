@@ -37,7 +37,8 @@
     </RelativeLayout>
 <TextView
     android:layout_width="match_parent"
-    android:text="亲爱的家长，还有一小时就要上课啦，提醒孩子预习，并再次确认作画工具，准备妥当了喔～"
+    android:text=""
+
     android:layout_marginTop="@dimen/dp_5"
     android:id="@+id/notice_content"
     android:layout_marginLeft="@dimen/dp_15"

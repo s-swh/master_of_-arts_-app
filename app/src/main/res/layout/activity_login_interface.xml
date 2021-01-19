@@ -50,8 +50,8 @@
 
                 <ImageView
                     android:id="@+id/iv"
-                    android:layout_width="@dimen/dp_121"
-                    android:layout_height="@dimen/dp_121"
+                    android:layout_width="152dp"
+                    android:layout_height="152dp"
                     android:layout_centerHorizontal="true"
                     android:src="@mipmap/icon_logo" />
             </RelativeLayout>

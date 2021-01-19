@@ -14,5 +14,7 @@
     <style name="RatingBar" parent="Theme.AppCompat">
         <item name="colorControlActivated">@color/red_ed2d32</item>
         <item name="colorControlNormal">@color/red_ed2d32</item>
+
     </style>
+
 </resources>

@@ -7,6 +7,16 @@
     android:layout_height="match_parent"
     android:background="@drawable/backgroundwork"
     tools:context=".activity.WorkPage">
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:layout_height="match_parent">
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:background="#ffffff"
@@ -63,14 +73,28 @@
         android:layout_height="wrap_content" />
     <LinearLayout
         android:layout_width="match_parent"
-         android:orientation="horizontal"
-        android:layout_height="wrap_content">
+        android:layout_height="@dimen/dp_150">
         <ImageView
-            android:layout_width="@dimen/dp_50"
-            android:id="@+id/work_one"
-            android:layout_marginTop="@dimen/dp_15"
+            android:layout_width="@dimen/dp_80"
+
+            android:id="@+id/image_1"
             android:layout_marginLeft="@dimen/dp_15"
-            android:layout_height="@dimen/dp_50" />
+            android:layout_gravity="center_vertical"
+            android:layout_height="@dimen/dp_80" />
+        <ImageView
+            android:layout_width="@dimen/dp_80"
+
+            android:id="@+id/image_2"
+            android:layout_marginLeft="@dimen/dp_15"
+            android:layout_gravity="center_vertical"
+            android:layout_height="@dimen/dp_80" />
+        <ImageView
+            android:layout_width="@dimen/dp_80"
+
+            android:id="@+id/image_3"
+            android:layout_marginLeft="@dimen/dp_15"
+            android:layout_gravity="center_vertical"
+            android:layout_height="@dimen/dp_80" />
     </LinearLayout>
     <TextView
         android:layout_width="wrap_content"
@@ -93,7 +117,21 @@
     <ImageView
         android:layout_width="@dimen/dp_45"
         android:src="@mipmap/icon_yysc"
-        android:id="@+id/iv_voive"
+        android:id="@+id/iv_vove1"
+        android:layout_marginTop="@dimen/dp_15"
+        android:layout_marginLeft="@dimen/dp_15"
+        android:layout_height="@dimen/dp_25" />
+    <ImageView
+        android:layout_width="@dimen/dp_45"
+        android:src="@mipmap/icon_yysc"
+        android:id="@+id/iv_vove2"
+        android:layout_marginTop="@dimen/dp_15"
+        android:layout_marginLeft="@dimen/dp_15"
+        android:layout_height="@dimen/dp_25" />
+    <ImageView
+        android:layout_width="@dimen/dp_45"
+        android:src="@mipmap/icon_yysc"
+        android:id="@+id/iv_vove3"
         android:layout_marginTop="@dimen/dp_15"
         android:layout_marginLeft="@dimen/dp_15"
         android:layout_height="@dimen/dp_25" />
@@ -105,17 +143,36 @@
         android:layout_width="match_parent"
         android:background="#ffffff"
         android:id="@+id/lsdp"
-        android:visibility="gone"
+
         android:orientation="vertical"
         android:layout_marginTop="@dimen/dp_20"
         android:layout_height="wrap_content">
-        <ImageView
-            android:layout_width="150dp"
-            android:id="@+id/work_iv"
-            android:src="@mipmap/icon_wdp"
-            android:layout_marginLeft="@dimen/dp_15"
-            android:layout_marginTop="@dimen/dp_15"
-            android:layout_height="150dp" />
+        <LinearLayout
+            android:layout_width="match_parent"
+
+            android:layout_height="wrap_content">
+            <ImageView
+                android:id="@+id/work_iv1"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:layout_marginLeft="@dimen/dp_15"
+                android:layout_marginTop="@dimen/dp_15"
+                />
+            <ImageView
+                android:id="@+id/work_iv2"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:layout_marginLeft="@dimen/dp_15"
+                android:layout_marginTop="@dimen/dp_15"
+             />
+            <ImageView
+                android:id="@+id/work_iv3"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:layout_marginLeft="@dimen/dp_15"
+                android:layout_marginTop="@dimen/dp_15"
+                />
+        </LinearLayout>
         <TextView
             android:layout_width="wrap_content"
             android:text="点评详情"
@@ -125,14 +182,15 @@
             android:layout_height="wrap_content" />
         <TextView
             android:layout_width="match_parent"
+            android:layout_marginLeft="@dimen/dp_15"
             android:id="@+id/tv_etch_content"
-            android:text="晓晓宝贝今天晚上有点害羞呀，但创作的时候还是很认真的哦，大白鹅的种类还是蛮多的，有肥瘦高低之分，希望你能大胆一点，主动和老师交流你的想法。"
             android:layout_height="wrap_content" />
         <TextView
             android:layout_width="match_parent"
             android:text="点评时间：202012-12 12:30:20"
             android:id="@+id/teacher_time"
             android:textColor="#999999"
+            android:layout_marginLeft="@dimen/dp_15"
             android:layout_marginTop="@dimen/dp_15"
             android:layout_height="wrap_content" />
         <TextView
@@ -143,14 +201,31 @@
             android:layout_marginTop="@dimen/dp_15"
             android:layout_height="wrap_content" />
         <ImageView
-            android:layout_width="@dimen/dp_45"
-            android:src="@mipmap/icon_yysc"
             android:id="@+id/iv_voive1"
-            android:layout_marginTop="@dimen/dp_15"
+            android:layout_width="@dimen/dp_45"
+            android:layout_height="@dimen/dp_15"
             android:layout_marginLeft="@dimen/dp_15"
-            android:layout_height="@dimen/dp_15" />
+            android:layout_marginTop="@dimen/dp_15"
+            android:src="@mipmap/icon_yysc" />
+        <ImageView
+            android:id="@+id/iv_voive2"
+            android:layout_width="@dimen/dp_45"
+            android:layout_height="@dimen/dp_15"
+            android:layout_marginLeft="@dimen/dp_15"
+            android:layout_marginTop="@dimen/dp_15"
+            android:src="@mipmap/icon_yysc" />
+        <ImageView
+            android:id="@+id/iv_voive3"
+            android:layout_width="@dimen/dp_45"
+            android:layout_height="@dimen/dp_15"
+            android:layout_marginLeft="@dimen/dp_15"
+            android:layout_marginTop="@dimen/dp_15"
+            android:src="@mipmap/icon_yysc" />
         <View
             android:layout_width="match_parent"
             android:layout_height="@dimen/dp_15"/>
     </LinearLayout>
+
+    </LinearLayout>
+    </ScrollView>
 </LinearLayout>

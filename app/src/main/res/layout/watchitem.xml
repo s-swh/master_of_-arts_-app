@@ -3,13 +3,27 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:id="@+id/ive"
     android:layout_height="match_parent">
-    <TextView
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:text="回放片段"
-        android:id="@+id/tx_text"
-        android:gravity="center"
-        android:layout_marginTop="@dimen/dp_15"
-        android:textColor="#434343"
-        android:textSize="@dimen/sp_12"
-        android:layout_height="50dp" />
+
+        android:layout_height="wrap_content">
+        <TextView
+            android:layout_width="match_parent"
+            android:text="回放片段"
+            android:id="@+id/tx_text"
+            android:layout_centerVertical="true"
+            android:gravity="center_vertical"
+            android:textColor="#434343"
+            android:layout_marginLeft="@dimen/dp_15"
+            android:textSize="@dimen/sp_12"
+            android:layout_height="50dp" />
+        <ImageView
+            android:layout_width="wrap_content"
+            android:src="@mipmap/rightbut"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="@dimen/dp_15"
+            android:layout_height="wrap_content" />
+    </RelativeLayout>
+
 </LinearLayout>

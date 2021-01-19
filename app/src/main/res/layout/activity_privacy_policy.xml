@@ -20,6 +20,7 @@
             android:layout_width="match_parent"
             android:text="标题"
             android:id="@+id/titbt"
+            android:visibility="gone"
             android:gravity="center"
             android:layout_height="@dimen/dp_30" />
     </RelativeLayout>
@@ -39,6 +40,7 @@
         android:textSize="26sp"
         android:text="隐私"
         android:id="@+id/lable"
+        android:visibility="gone"
         android:layout_marginLeft="@dimen/dp_15"
         android:layout_height="wrap_content" />
     <WebView

@@ -11,7 +11,7 @@ public class HomeWorkBean {
     /**
      * code : 1
      * msg : 成功
-     * data : {"workMsg":{"name":"DHA K咋","imglist":"5ff50a1c06f8d6235.jpg","voice":"5ff50a2f447447556.amr","content":"睡觉啊卡较好的哈哈哈","is_comment":"N","create_time":"2021-01-06 08:54:16","teacher_imglist":null,"teacher_voice":null,"teacher_content":null,"comment_time":null}}
+     * data : {"workMsg":{"name":"洗澡澡","imglist":"[\"/20210118/6004f5816a4758354.jpg\"]","voice":"[\"/20210118/6004f5921deb02138.amr\",\"/20210118/6004f5952b2ce4671.amr\",\"/20210118/6004f598278829617.amr\"]","content":"","is_comment":"Y","create_time":"2021-01-18 10:42:35","teacher_imglist":"[\"work//20210118/6004f60ed5a1f5772.png\"]","teacher_voice":"[\"work//20210118/6004f607228642600.wav\"]","teacher_content":"很好","comment_time":"2021-01-18 10:44:32"}}
      */
 
     private int code;
@@ -44,7 +44,7 @@ public class HomeWorkBean {
 
     public static class DataBean {
         /**
-         * workMsg : {"name":"DHA K咋","imglist":"5ff50a1c06f8d6235.jpg","voice":"5ff50a2f447447556.amr","content":"睡觉啊卡较好的哈哈哈","is_comment":"N","create_time":"2021-01-06 08:54:16","teacher_imglist":null,"teacher_voice":null,"teacher_content":null,"comment_time":null}
+         * workMsg : {"name":"洗澡澡","imglist":"[\"/20210118/6004f5816a4758354.jpg\"]","voice":"[\"/20210118/6004f5921deb02138.amr\",\"/20210118/6004f5952b2ce4671.amr\",\"/20210118/6004f598278829617.amr\"]","content":"","is_comment":"Y","create_time":"2021-01-18 10:42:35","teacher_imglist":"[\"work//20210118/6004f60ed5a1f5772.png\"]","teacher_voice":"[\"work//20210118/6004f607228642600.wav\"]","teacher_content":"很好","comment_time":"2021-01-18 10:44:32"}
          */
 
         private WorkMsgBean workMsg;
@@ -59,16 +59,16 @@ public class HomeWorkBean {
 
         public static class WorkMsgBean {
             /**
-             * name : DHA K咋
-             * imglist : 5ff50a1c06f8d6235.jpg
-             * voice : 5ff50a2f447447556.amr
-             * content : 睡觉啊卡较好的哈哈哈
-             * is_comment : N
-             * create_time : 2021-01-06 08:54:16
-             * teacher_imglist : null
-             * teacher_voice : null
-             * teacher_content : null
-             * comment_time : null
+             * name : 洗澡澡
+             * imglist : ["/20210118/6004f5816a4758354.jpg"]
+             * voice : ["/20210118/6004f5921deb02138.amr","/20210118/6004f5952b2ce4671.amr","/20210118/6004f598278829617.amr"]
+             * content :
+             * is_comment : Y
+             * create_time : 2021-01-18 10:42:35
+             * teacher_imglist : ["work//20210118/6004f60ed5a1f5772.png"]
+             * teacher_voice : ["work//20210118/6004f607228642600.wav"]
+             * teacher_content : 很好
+             * comment_time : 2021-01-18 10:44:32
              */
 
             private String name;

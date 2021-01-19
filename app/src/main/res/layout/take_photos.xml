@@ -5,6 +5,18 @@
     android:orientation="vertical">
 
     <LinearLayout
+        android:layout_width="match_parent"
+        android:id="@+id/wdl"
+
+        android:layout_height="match_parent">
+        <ImageView
+            android:layout_width="match_parent"
+            android:src="@mipmap/icon_pzdp"
+            android:scaleType="centerCrop"
+            android:layout_height="match_parent" />
+    </LinearLayout>
+
+    <LinearLayout
         android:id="@+id/vigono"
 
         android:layout_width="match_parent"
@@ -33,13 +45,23 @@
             android:textSize="@dimen/sp_14"
             android:textColor="#434343"
             android:layout_height="wrap_content" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:text="发布"
+            android:layout_alignParentRight="true"
+            android:id="@+id/photograph1"
+            android:layout_centerVertical="true"
+            android:textSize="@dimen/sp_12"
+            android:textColor="#019A92"
+            android:layout_marginRight="@dimen/dp_15"
+            android:layout_height="wrap_content" />
     </RelativeLayout>
     <View
         android:layout_width="match_parent"
         android:layout_height="@dimen/dp_5"/>
     <RelativeLayout
         android:id="@+id/lyt"
-        android:visibility="gone"
+
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
@@ -63,7 +85,8 @@
             android:gravity="center_horizontal">
 
             <LinearLayout
-                android:id="@+id/photograph1"
+
+                android:visibility="gone"
                 android:layout_width="match_parent"
                 android:layout_height="65dp"
                 android:background="@drawable/buttonselete"

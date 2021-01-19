@@ -64,6 +64,7 @@
             android:text="南京南站南广场MM大厦4都606"
             android:id="@+id/tv_address"
             android:layout_marginTop="@dimen/dp_5"
+            android:textColor="#434343"
             android:layout_marginLeft="@dimen/dp_15"
             android:layout_height="wrap_content" />
         <TextView
@@ -89,12 +90,14 @@
                 android:layout_width="wrap_content"
                 android:text="【暑假课】自由涂鸦训练"
                 android:id="@+id/tv_detailstitle"
+                android:textColor="#434343"
                 android:layout_marginLeft="@dimen/dp_15"
                 android:layout_height="wrap_content" />
             <TextView
                 android:layout_width="wrap_content"
                 android:text="¥199.00"
                 android:id="@+id/tv_allprice"
+                android:textColor="#434343"
                 android:layout_marginRight="@dimen/dp_15"
                 android:layout_alignParentRight="true"
                 android:layout_height="wrap_content" />
@@ -188,6 +191,7 @@
                 android:text="课程总价"
                 android:textSize="@dimen/sp_12"
                 android:layout_margin="@dimen/dp_15"
+                android:textColor="#666666"
                 android:layout_height="wrap_content" />
             <TextView
                 android:layout_width="wrap_content"
@@ -207,6 +211,7 @@
                 android:layout_width="wrap_content"
                 android:text="课程优惠"
                 android:layout_margin="@dimen/dp_15"
+                android:textColor="#666666"
                 android:textSize="@dimen/sp_12"
                 android:layout_height="wrap_content" />
             <TextView
@@ -226,6 +231,7 @@
                 android:layout_width="wrap_content"
                 android:text="实付"
                 android:textSize="@dimen/sp_12"
+                android:textColor="#333333"
                 android:layout_margin="@dimen/dp_15"
                 android:layout_height="wrap_content" />
             <TextView
@@ -250,6 +256,7 @@
             android:textSize="@dimen/sp_12"
             android:background="@drawable/quxiaodingdan"
             android:id="@+id/ckwl"
+            android:textColor="#999999"
            android:layout_marginLeft="94.5dp"
             android:layout_alignParentLeft="true"
             android:layout_height="@dimen/dp_25" />

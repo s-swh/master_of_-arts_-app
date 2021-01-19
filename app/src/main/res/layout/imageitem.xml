@@ -1,10 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
+    android:orientation="horizontal" android:layout_width="match_parent"
     android:id="@+id/llt_img"
     android:layout_height="match_parent">
 <ImageView
     android:layout_width="@dimen/dp_50"
-    android:id="@+id/image_item"
+    android:id="@+id/image_item1"
     android:layout_height="@dimen/dp_50" />
+    <ImageView
+        android:layout_width="@dimen/dp_50"
+        android:id="@+id/image_item2"
+        android:layout_height="@dimen/dp_50" />
+    <ImageView
+        android:layout_width="@dimen/dp_50"
+        android:id="@+id/image_item3"
+        android:layout_height="@dimen/dp_50" />
 </LinearLayout>

@@ -12,7 +12,7 @@ public class CourseOrderBean {
     /**
      * code : 1
      * msg : 成功
-     * data : {"orderMsg":{"province":"上海市","city":"上海市","county":"黄浦区","address":"衣服就就","consignee":"化工好","contact_number":"668877722","logistics":null,"express_number":null,"order_num":"5fe9b8507ebc6367","create_time":"2020-12-28 18:49:52","allprice":"5000.00","pay_price":"0.00","pay_time":null,"title":"童童创想班A","course_time_id":218,"course_id":76,"status":2,"course_detail":{"course_name":"童童创想班A","icon":"http://test.54artist.com/public/upload/http://test.54artist.com/public/upload/course/20201229/e5c8a7149ca9e6fdf82004e07af44706.jpg","is_send":"Y","mark":[{"id":2,"mark":"配套学习资料","description":"根据课程内容配套画材用品、纸质版学习资料，画材用品、纸质版学习资料全国免费邮寄","icon":"http://test.54artist.com/public/upload/course/mark/20200919/6c477e3558925941c7313942ac9f5507.png"}],"service":[{"id":1,"service":"直播授课","description":"直播课上边讲课边进行板书与示范。画板和画材可随时给学生直播技能操作演示，随时互动随时反馈，给学生更好的学习体验。","icon":"http://test.54artist.com/public/upload/course/mark/20200919/23fa0072a22896b1a7d891b935e0a4ff.png"},{"id":2,"service":"小班教学","description":"每班人数不超过六人，自主研发高效绘画课程，高品质小班在线教学，老师与学生面对面直接互动、交流，让孩子爱上绘画。","icon":"http://test.54artist.com/public/upload/course/mark/20200919/d68261dbd18608cea9c89844552f4d87.png"},{"id":3,"service":"配套学习资料","description":"高品质自主研发学习资料，全面配套直播课学习及课堂巩固。","icon":"http://test.54artist.com/public/upload/course/mark/20200919/72e61b6401eb93cf7c4958cdabdb1d1b.png"},{"id":4,"service":"学习报告","description":"直播课学习效果如何？完成作业即可得到老师点评，用大数据全面剖析，给出针对性提升建议。","icon":"http://test.54artist.com/public/upload/course/mark/20200919/54a2ba9a12e8b19273e93f5873cf5758.png"},{"id":5,"service":"随时看回放","description":"每讲直播课程结束后 30 分钟后，即可生成回放，只要课程在有效期内，您就可以通过手机 App 随时多次观看视频回放，课程有效期为课程结束一年内。","icon":"http://test.54artist.com/public/upload/course/mark/20200919/1e8bd7423eef10f863ea98468836d087.png"}],"teacher_name":"艺老师","teacher_avatar":"http://test.54artist.com/public/upload/teacher/20201218/d2473b036d4f0e7d1bde1552e9e29556.jpg","time_detail":"每周一、二上课","first_class_time":"10:00:00","first_class_date":"2020-12-12"}}}
+     * data : {"orderMsg":{"province":"北京市","city":"北京市","county":"东城区","address":"123123","consignee":"123","contact_number":"13612312838","logistics":null,"express_number":null,"order_num":"5fe58bc97b665372","create_time":"2020-12-25 14:50:49","allprice":"5000.00","pay_price":"0.00","pay_time":null,"title":"童童创想班A","course_time_id":213,"course_id":76,"status":1,"pay_method":"","course_detail":{"course_name":"童童创想班A","icon":"http://test.54artist.com/public/upload/http://test.54artist.com/public/upload/course/20201229/e5c8a7149ca9e6fdf82004e07af44706.jpg","is_send":"Y","mark":[{"id":2,"mark":"配套学习资料","description":"根据课程内容配套画材用品、纸质版学习资料，画材用品、纸质版学习资料全国免费邮寄","icon":"http://test.54artist.com/public/upload/course/mark/20200919/6c477e3558925941c7313942ac9f5507.png"}],"service":[{"id":1,"service":"直播授课","description":"直播课上边讲课边进行板书与示范。画板和画材可随时给学生直播技能操作演示，随时互动随时反馈，给学生更好的学习体验。","icon":"http://test.54artist.com/public/upload/course/mark/20200919/23fa0072a22896b1a7d891b935e0a4ff.png"},{"id":2,"service":"小班教学","description":"每班人数不超过六人，自主研发高效绘画课程，高品质小班在线教学，老师与学生面对面直接互动、交流，让孩子爱上绘画。","icon":"http://test.54artist.com/public/upload/course/mark/20200919/d68261dbd18608cea9c89844552f4d87.png"},{"id":3,"service":"配套学习资料","description":"高品质自主研发学习资料，全面配套直播课学习及课堂巩固。","icon":"http://test.54artist.com/public/upload/course/mark/20200919/72e61b6401eb93cf7c4958cdabdb1d1b.png"},{"id":4,"service":"学习报告","description":"直播课学习效果如何？完成作业即可得到老师点评，用大数据全面剖析，给出针对性提升建议。","icon":"http://test.54artist.com/public/upload/course/mark/20200919/54a2ba9a12e8b19273e93f5873cf5758.png"},{"id":5,"service":"随时看回放","description":"每讲直播课程结束后 30 分钟后，即可生成回放，只要课程在有效期内，您就可以通过手机 App 随时多次观看视频回放，课程有效期为课程结束一年内。","icon":"http://test.54artist.com/public/upload/course/mark/20200919/1e8bd7423eef10f863ea98468836d087.png"}],"teacher_name":"谭老师","teacher_avatar":"http://test.54artist.com/public/upload/teacher/20201218/f5a447bc3a2f824516f8e971323f9362.png","time_detail":"每周一、二上课","first_class_time":"20:00:00","first_class_date":"2020-12-05"}}}
      */
 
     private int code;
@@ -45,7 +45,7 @@ public class CourseOrderBean {
 
     public static class DataBean {
         /**
-         * orderMsg : {"province":"上海市","city":"上海市","county":"黄浦区","address":"衣服就就","consignee":"化工好","contact_number":"668877722","logistics":null,"express_number":null,"order_num":"5fe9b8507ebc6367","create_time":"2020-12-28 18:49:52","allprice":"5000.00","pay_price":"0.00","pay_time":null,"title":"童童创想班A","course_time_id":218,"course_id":76,"status":2,"course_detail":{"course_name":"童童创想班A","icon":"http://test.54artist.com/public/upload/http://test.54artist.com/public/upload/course/20201229/e5c8a7149ca9e6fdf82004e07af44706.jpg","is_send":"Y","mark":[{"id":2,"mark":"配套学习资料","description":"根据课程内容配套画材用品、纸质版学习资料，画材用品、纸质版学习资料全国免费邮寄","icon":"http://test.54artist.com/public/upload/course/mark/20200919/6c477e3558925941c7313942ac9f5507.png"}],"service":[{"id":1,"service":"直播授课","description":"直播课上边讲课边进行板书与示范。画板和画材可随时给学生直播技能操作演示，随时互动随时反馈，给学生更好的学习体验。","icon":"http://test.54artist.com/public/upload/course/mark/20200919/23fa0072a22896b1a7d891b935e0a4ff.png"},{"id":2,"service":"小班教学","description":"每班人数不超过六人，自主研发高效绘画课程，高品质小班在线教学，老师与学生面对面直接互动、交流，让孩子爱上绘画。","icon":"http://test.54artist.com/public/upload/course/mark/20200919/d68261dbd18608cea9c89844552f4d87.png"},{"id":3,"service":"配套学习资料","description":"高品质自主研发学习资料，全面配套直播课学习及课堂巩固。","icon":"http://test.54artist.com/public/upload/course/mark/20200919/72e61b6401eb93cf7c4958cdabdb1d1b.png"},{"id":4,"service":"学习报告","description":"直播课学习效果如何？完成作业即可得到老师点评，用大数据全面剖析，给出针对性提升建议。","icon":"http://test.54artist.com/public/upload/course/mark/20200919/54a2ba9a12e8b19273e93f5873cf5758.png"},{"id":5,"service":"随时看回放","description":"每讲直播课程结束后 30 分钟后，即可生成回放，只要课程在有效期内，您就可以通过手机 App 随时多次观看视频回放，课程有效期为课程结束一年内。","icon":"http://test.54artist.com/public/upload/course/mark/20200919/1e8bd7423eef10f863ea98468836d087.png"}],"teacher_name":"艺老师","teacher_avatar":"http://test.54artist.com/public/upload/teacher/20201218/d2473b036d4f0e7d1bde1552e9e29556.jpg","time_detail":"每周一、二上课","first_class_time":"10:00:00","first_class_date":"2020-12-12"}}
+         * orderMsg : {"province":"北京市","city":"北京市","county":"东城区","address":"123123","consignee":"123","contact_number":"13612312838","logistics":null,"express_number":null,"order_num":"5fe58bc97b665372","create_time":"2020-12-25 14:50:49","allprice":"5000.00","pay_price":"0.00","pay_time":null,"title":"童童创想班A","course_time_id":213,"course_id":76,"status":1,"pay_method":"","course_detail":{"course_name":"童童创想班A","icon":"http://test.54artist.com/public/upload/http://test.54artist.com/public/upload/course/20201229/e5c8a7149ca9e6fdf82004e07af44706.jpg","is_send":"Y","mark":[{"id":2,"mark":"配套学习资料","description":"根据课程内容配套画材用品、纸质版学习资料，画材用品、纸质版学习资料全国免费邮寄","icon":"http://test.54artist.com/public/upload/course/mark/20200919/6c477e3558925941c7313942ac9f5507.png"}],"service":[{"id":1,"service":"直播授课","description":"直播课上边讲课边进行板书与示范。画板和画材可随时给学生直播技能操作演示，随时互动随时反馈，给学生更好的学习体验。","icon":"http://test.54artist.com/public/upload/course/mark/20200919/23fa0072a22896b1a7d891b935e0a4ff.png"},{"id":2,"service":"小班教学","description":"每班人数不超过六人，自主研发高效绘画课程，高品质小班在线教学，老师与学生面对面直接互动、交流，让孩子爱上绘画。","icon":"http://test.54artist.com/public/upload/course/mark/20200919/d68261dbd18608cea9c89844552f4d87.png"},{"id":3,"service":"配套学习资料","description":"高品质自主研发学习资料，全面配套直播课学习及课堂巩固。","icon":"http://test.54artist.com/public/upload/course/mark/20200919/72e61b6401eb93cf7c4958cdabdb1d1b.png"},{"id":4,"service":"学习报告","description":"直播课学习效果如何？完成作业即可得到老师点评，用大数据全面剖析，给出针对性提升建议。","icon":"http://test.54artist.com/public/upload/course/mark/20200919/54a2ba9a12e8b19273e93f5873cf5758.png"},{"id":5,"service":"随时看回放","description":"每讲直播课程结束后 30 分钟后，即可生成回放，只要课程在有效期内，您就可以通过手机 App 随时多次观看视频回放，课程有效期为课程结束一年内。","icon":"http://test.54artist.com/public/upload/course/mark/20200919/1e8bd7423eef10f863ea98468836d087.png"}],"teacher_name":"谭老师","teacher_avatar":"http://test.54artist.com/public/upload/teacher/20201218/f5a447bc3a2f824516f8e971323f9362.png","time_detail":"每周一、二上课","first_class_time":"20:00:00","first_class_date":"2020-12-05"}}
          */
 
         private OrderMsgBean orderMsg;
@@ -60,24 +60,25 @@ public class CourseOrderBean {
 
         public static class OrderMsgBean {
             /**
-             * province : 上海市
-             * city : 上海市
-             * county : 黄浦区
-             * address : 衣服就就
-             * consignee : 化工好
-             * contact_number : 668877722
+             * province : 北京市
+             * city : 北京市
+             * county : 东城区
+             * address : 123123
+             * consignee : 123
+             * contact_number : 13612312838
              * logistics : null
              * express_number : null
-             * order_num : 5fe9b8507ebc6367
-             * create_time : 2020-12-28 18:49:52
+             * order_num : 5fe58bc97b665372
+             * create_time : 2020-12-25 14:50:49
              * allprice : 5000.00
              * pay_price : 0.00
              * pay_time : null
              * title : 童童创想班A
-             * course_time_id : 218
+             * course_time_id : 213
              * course_id : 76
-             * status : 2
-             * course_detail : {"course_name":"童童创想班A","icon":"http://test.54artist.com/public/upload/http://test.54artist.com/public/upload/course/20201229/e5c8a7149ca9e6fdf82004e07af44706.jpg","is_send":"Y","mark":[{"id":2,"mark":"配套学习资料","description":"根据课程内容配套画材用品、纸质版学习资料，画材用品、纸质版学习资料全国免费邮寄","icon":"http://test.54artist.com/public/upload/course/mark/20200919/6c477e3558925941c7313942ac9f5507.png"}],"service":[{"id":1,"service":"直播授课","description":"直播课上边讲课边进行板书与示范。画板和画材可随时给学生直播技能操作演示，随时互动随时反馈，给学生更好的学习体验。","icon":"http://test.54artist.com/public/upload/course/mark/20200919/23fa0072a22896b1a7d891b935e0a4ff.png"},{"id":2,"service":"小班教学","description":"每班人数不超过六人，自主研发高效绘画课程，高品质小班在线教学，老师与学生面对面直接互动、交流，让孩子爱上绘画。","icon":"http://test.54artist.com/public/upload/course/mark/20200919/d68261dbd18608cea9c89844552f4d87.png"},{"id":3,"service":"配套学习资料","description":"高品质自主研发学习资料，全面配套直播课学习及课堂巩固。","icon":"http://test.54artist.com/public/upload/course/mark/20200919/72e61b6401eb93cf7c4958cdabdb1d1b.png"},{"id":4,"service":"学习报告","description":"直播课学习效果如何？完成作业即可得到老师点评，用大数据全面剖析，给出针对性提升建议。","icon":"http://test.54artist.com/public/upload/course/mark/20200919/54a2ba9a12e8b19273e93f5873cf5758.png"},{"id":5,"service":"随时看回放","description":"每讲直播课程结束后 30 分钟后，即可生成回放，只要课程在有效期内，您就可以通过手机 App 随时多次观看视频回放，课程有效期为课程结束一年内。","icon":"http://test.54artist.com/public/upload/course/mark/20200919/1e8bd7423eef10f863ea98468836d087.png"}],"teacher_name":"艺老师","teacher_avatar":"http://test.54artist.com/public/upload/teacher/20201218/d2473b036d4f0e7d1bde1552e9e29556.jpg","time_detail":"每周一、二上课","first_class_time":"10:00:00","first_class_date":"2020-12-12"}
+             * status : 1
+             * pay_method : 
+             * course_detail : {"course_name":"童童创想班A","icon":"http://test.54artist.com/public/upload/http://test.54artist.com/public/upload/course/20201229/e5c8a7149ca9e6fdf82004e07af44706.jpg","is_send":"Y","mark":[{"id":2,"mark":"配套学习资料","description":"根据课程内容配套画材用品、纸质版学习资料，画材用品、纸质版学习资料全国免费邮寄","icon":"http://test.54artist.com/public/upload/course/mark/20200919/6c477e3558925941c7313942ac9f5507.png"}],"service":[{"id":1,"service":"直播授课","description":"直播课上边讲课边进行板书与示范。画板和画材可随时给学生直播技能操作演示，随时互动随时反馈，给学生更好的学习体验。","icon":"http://test.54artist.com/public/upload/course/mark/20200919/23fa0072a22896b1a7d891b935e0a4ff.png"},{"id":2,"service":"小班教学","description":"每班人数不超过六人，自主研发高效绘画课程，高品质小班在线教学，老师与学生面对面直接互动、交流，让孩子爱上绘画。","icon":"http://test.54artist.com/public/upload/course/mark/20200919/d68261dbd18608cea9c89844552f4d87.png"},{"id":3,"service":"配套学习资料","description":"高品质自主研发学习资料，全面配套直播课学习及课堂巩固。","icon":"http://test.54artist.com/public/upload/course/mark/20200919/72e61b6401eb93cf7c4958cdabdb1d1b.png"},{"id":4,"service":"学习报告","description":"直播课学习效果如何？完成作业即可得到老师点评，用大数据全面剖析，给出针对性提升建议。","icon":"http://test.54artist.com/public/upload/course/mark/20200919/54a2ba9a12e8b19273e93f5873cf5758.png"},{"id":5,"service":"随时看回放","description":"每讲直播课程结束后 30 分钟后，即可生成回放，只要课程在有效期内，您就可以通过手机 App 随时多次观看视频回放，课程有效期为课程结束一年内。","icon":"http://test.54artist.com/public/upload/course/mark/20200919/1e8bd7423eef10f863ea98468836d087.png"}],"teacher_name":"谭老师","teacher_avatar":"http://test.54artist.com/public/upload/teacher/20201218/f5a447bc3a2f824516f8e971323f9362.png","time_detail":"每周一、二上课","first_class_time":"20:00:00","first_class_date":"2020-12-05"}
              */
 
             private String province;
@@ -97,6 +98,7 @@ public class CourseOrderBean {
             private int course_time_id;
             private int course_id;
             private int status;
+            private String pay_method;
             private CourseDetailBean course_detail;
 
             public String getProvince() {
@@ -235,6 +237,14 @@ public class CourseOrderBean {
                 this.status = status;
             }
 
+            public String getPay_method() {
+                return pay_method;
+            }
+
+            public void setPay_method(String pay_method) {
+                this.pay_method = pay_method;
+            }
+
             public CourseDetailBean getCourse_detail() {
                 return course_detail;
             }
@@ -250,11 +260,11 @@ public class CourseOrderBean {
                  * is_send : Y
                  * mark : [{"id":2,"mark":"配套学习资料","description":"根据课程内容配套画材用品、纸质版学习资料，画材用品、纸质版学习资料全国免费邮寄","icon":"http://test.54artist.com/public/upload/course/mark/20200919/6c477e3558925941c7313942ac9f5507.png"}]
                  * service : [{"id":1,"service":"直播授课","description":"直播课上边讲课边进行板书与示范。画板和画材可随时给学生直播技能操作演示，随时互动随时反馈，给学生更好的学习体验。","icon":"http://test.54artist.com/public/upload/course/mark/20200919/23fa0072a22896b1a7d891b935e0a4ff.png"},{"id":2,"service":"小班教学","description":"每班人数不超过六人，自主研发高效绘画课程，高品质小班在线教学，老师与学生面对面直接互动、交流，让孩子爱上绘画。","icon":"http://test.54artist.com/public/upload/course/mark/20200919/d68261dbd18608cea9c89844552f4d87.png"},{"id":3,"service":"配套学习资料","description":"高品质自主研发学习资料，全面配套直播课学习及课堂巩固。","icon":"http://test.54artist.com/public/upload/course/mark/20200919/72e61b6401eb93cf7c4958cdabdb1d1b.png"},{"id":4,"service":"学习报告","description":"直播课学习效果如何？完成作业即可得到老师点评，用大数据全面剖析，给出针对性提升建议。","icon":"http://test.54artist.com/public/upload/course/mark/20200919/54a2ba9a12e8b19273e93f5873cf5758.png"},{"id":5,"service":"随时看回放","description":"每讲直播课程结束后 30 分钟后，即可生成回放，只要课程在有效期内，您就可以通过手机 App 随时多次观看视频回放，课程有效期为课程结束一年内。","icon":"http://test.54artist.com/public/upload/course/mark/20200919/1e8bd7423eef10f863ea98468836d087.png"}]
-                 * teacher_name : 艺老师
-                 * teacher_avatar : http://test.54artist.com/public/upload/teacher/20201218/d2473b036d4f0e7d1bde1552e9e29556.jpg
+                 * teacher_name : 谭老师
+                 * teacher_avatar : http://test.54artist.com/public/upload/teacher/20201218/f5a447bc3a2f824516f8e971323f9362.png
                  * time_detail : 每周一、二上课
-                 * first_class_time : 10:00:00
-                 * first_class_date : 2020-12-12
+                 * first_class_time : 20:00:00
+                 * first_class_date : 2020-12-05
                  */
 
                 private String course_name;

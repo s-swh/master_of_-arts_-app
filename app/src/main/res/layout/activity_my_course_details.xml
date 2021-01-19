@@ -35,7 +35,8 @@
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="@dimen/dp_500">
+        android:fillViewport="true"
+        android:layout_height="match_parent">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -82,6 +83,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
+                        android:id="@+id/qpl1"
                         android:layout_marginTop="@dimen/dp_25"
                         android:layout_marginRight="@dimen/dp_12"
                         android:text="去评论" />
@@ -151,12 +153,16 @@
                 android:text="课程章节（24节）"
                 android:textColor="#434343"
                 android:textSize="@dimen/sp_12" />
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:descendantFocusability="blocksDescendants"
+    android:layout_height="match_parent">
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/details_rv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+</RelativeLayout>
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/details_rv"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/dp_500"
-                android:layout_marginTop="@dimen/dp_9" />
         </LinearLayout>
     </ScrollView>
 </LinearLayout>

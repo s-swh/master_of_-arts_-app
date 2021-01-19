@@ -1,4 +1,6 @@
+
 apply plugin: 'com.android.application'
+
 android {
     compileSdkVersion 29
     buildToolsVersion "30.0.2"
@@ -19,7 +21,7 @@ android {
         }
         manifestPlaceholders = [
                 JPUSH_PKGNAME: applicationId,
-                JPUSH_APPKEY : "c9321061feb0be19d0a35ed6", //极光开发平台上注册的包名对应的appkey.      5d8915044c641e4cabaaba9a
+                JPUSH_APPKEY : "c9321061feb0be19d0a35ed6", //极光开发平台上注册的包名对应的appkey.      5d8915044c641e4cabaaba9a  c9321061feb0be19d0a35ed6
                 JPUSH_CHANNEL: "developer-default", //暂时填写默认值即可.
         ]
 
@@ -142,7 +144,7 @@ dependencies {
     implementation 'com.android.support:design:23.4.0'
 
     // 头像上传
-    implementation 'com.github.wildma:PictureSelector:1.2.0'
+
     implementation files('libs/android-async-http-1.4.8.jar')
     implementation 'com.github.wildma:PictureSelector:1.1.1'
     implementation 'com.github.maning0303:MNUpdateAPK:V2.0.3'
@@ -177,4 +179,10 @@ dependencies {
     implementation 'com.yanzhenjie:album:1.0.0'
 
     implementation 'com.android.support:multidex:'
+
+    implementation 'com.github.wildma:PictureSelector:1.2.0'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.0.0'
+
+    implementation 'com.arialyy.aria:aria-core:3.4.8'
+    annotationProcessor 'com.arialyy.aria:aria-compiler:3.4.8'
 }

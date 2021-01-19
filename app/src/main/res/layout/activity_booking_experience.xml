@@ -1,15 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@mipmap/icon_yuyuetiyan"
+
     tools:context=".activity.Booking_experience">
     <RelativeLayout
         android:layout_width="match_parent"
-
         android:layout_height="match_parent">
         <ImageView
             android:layout_width="17.16dp"
@@ -18,6 +17,18 @@
             android:src="@mipmap/returnbutton"
             android:id="@+id/imv_retu"
             android:layout_height="@dimen/sp_16" />
+        <TextView
+            android:layout_width="match_parent"
+            android:text="预约体验"
+            android:textColor="#434343"
+            android:layout_marginTop="@dimen/dp_15"
+            android:textSize="@dimen/sp_12"
+            android:gravity="center"
+            android:layout_height="wrap_content" />
+        <ImageView
+            android:layout_width="match_parent"
+            android:src="@mipmap/icon_yuyuetiyan"
+            android:layout_height="wrap_content" />
 <LinearLayout
     android:layout_width="480dp"
     android:orientation="vertical"
@@ -46,6 +57,7 @@
             android:id="@+id/book_name"
             android:layout_marginTop="13dp"
             android:inputType="text"
+            android:maxLength="6"
             android:layout_marginLeft="@dimen/dp_2"
             android:background="@drawable/editseletect"
             android:layout_gravity="center"
@@ -88,4 +100,4 @@
         android:layout_height="wrap_content" />
 </LinearLayout>
     </RelativeLayout>
-</LinearLayout>
+</RelativeLayout>
