@@ -10,27 +10,30 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import butterknife.ButterKnife;
+import butterknife.Unbinder;
 
 /**
  * @author 时文豪
  * @description: fragment 做基类抽取
  * @date :2020/12/3 10:48
  */
-public abstract class BaseFragment <P extends BasePreantert>  extends Fragment implements IBaseView{
+public abstract class BaseFragment<P extends BasePreantert> extends Fragment implements IBaseView {
     P mPreanter;
+    public boolean isChang;
+    Bundle mBundle;
+    private Unbinder bind;
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View inflate = View.inflate(getActivity(), getLayoutId(), null);
-        mPreanter=initPreantert();
+        mPreanter = initPreantert();
+        isChang = true;
         initView(inflate);
         initData();
-        ButterKnife.bind(this,inflate);
+        bind = ButterKnife.bind(this, inflate);
         return inflate;
-
     }
-
-
 
     public P getmPreanter() {
         return mPreanter;
@@ -44,12 +47,16 @@ public abstract class BaseFragment <P extends BasePreantert>  extends Fragment i
 
     protected abstract void initData();
 
+
     @Override
     public void onDestroy() {
         super.onDestroy();
-        if(mPreanter!=null){
+        if (mPreanter != null) {
             mPreanter.datachView();
-            mPreanter=null;
+            mPreanter = null;
         }
+        bind.unbind();
     }
+
+
 }

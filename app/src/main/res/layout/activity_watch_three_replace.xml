@@ -4,10 +4,32 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".activity.WatchThreeReplaceActivity">
-    <WebView
+    <RelativeLayout
         android:layout_width="match_parent"
+        android:background="#848484"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:id="@+id/tuichu"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+
+            android:orientation="horizontal">
+            <ImageView
+                android:layout_width="@dimen/dp_50"
+                android:src="@mipmap/icon_finsh"
+                android:layout_height="@dimen/dp_50" />
+        </LinearLayout>
+    </RelativeLayout>
+
+    <WebView
         android:id="@+id/web"
-        android:layout_height="match_parent">
-    </WebView>
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"/>
+
+
+
 </LinearLayout>

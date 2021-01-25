@@ -30,6 +30,7 @@
     android:layout_width="@dimen/dp_150"
     android:id="@+id/ivc"
     android:layout_gravity="center"
+    android:src="@mipmap/icon_tx"
     android:layout_marginTop="@dimen/dp_15"
     android:layout_height="@dimen/dp_150" />
     <RelativeLayout
@@ -42,9 +43,9 @@
             android:layout_gravity="center"
             android:id="@+id/but_checked"
             android:text="选择文件"
-            android:background="@drawable/fillet2"
+            android:background="@drawable/fillet12"
             android:gravity="center"
-            android:textColor="#FFFFFF"
+            android:textColor="#019A92"
             android:layout_centerVertical="true"
             android:layout_centerHorizontal="true"
             android:textSize="@dimen/sp_12"

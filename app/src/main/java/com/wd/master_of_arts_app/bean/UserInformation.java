@@ -7,10 +7,11 @@ package com.wd.master_of_arts_app.bean;
  */
 public class UserInformation {
 
+
     /**
      * code : 1
      * msg : 成功
-     * data : {"user_msg":{"uid":54,"group_id":1,"group_name":"普通会员","username":null,"phone":"18803652019","email":null,"balance":"0.00","point":0,"exp":0,"expiration_date":"","auth_code":"978256","is_share_vip":"N","is_complete_info":"N","referrer_id":null,"star":0,"r_nickname":""},"user_detail":{"id":54,"user_id":54,"nickname":"西柚过","avatar":"http://test.54artist.com/public/upload/user/avatar/20201224/672afd45124358c6abac0181a127720c.jpg","truename":null,"sex":1,"height":null,"weight":null,"blood":null,"birthday":"2020-12-26","qq":null,"weixin":null,"province":null,"city":null,"county":null,"detail_address":null,"signature":null,"age":0}}
+     * data : {"user_msg":{"uid":27,"group_id":1,"group_name":"普通会员","username":"13921903472","phone":"13921903472","email":" ","balance":"0.00","point":0,"exp":0,"expiration_date":"","auth_code":"271817","is_share_vip":"N","is_complete_info":"N","referrer_id":0,"star":0,"r_nickname":""},"user_detail":{"id":27,"user_id":27,"nickname":"13921903472","avatar":"","truename":"","sex":1,"height":"","weight":" ","blood":0,"birthday":null,"qq":" ","weixin":" ","province":"","city":"","county":"","detail_address":" ","signature":" ","age":0}}
      */
 
     private int code;
@@ -43,8 +44,8 @@ public class UserInformation {
 
     public static class DataBean {
         /**
-         * user_msg : {"uid":54,"group_id":1,"group_name":"普通会员","username":null,"phone":"18803652019","email":null,"balance":"0.00","point":0,"exp":0,"expiration_date":"","auth_code":"978256","is_share_vip":"N","is_complete_info":"N","referrer_id":null,"star":0,"r_nickname":""}
-         * user_detail : {"id":54,"user_id":54,"nickname":"西柚过","avatar":"http://test.54artist.com/public/upload/user/avatar/20201224/672afd45124358c6abac0181a127720c.jpg","truename":null,"sex":1,"height":null,"weight":null,"blood":null,"birthday":"2020-12-26","qq":null,"weixin":null,"province":null,"city":null,"county":null,"detail_address":null,"signature":null,"age":0}
+         * user_msg : {"uid":27,"group_id":1,"group_name":"普通会员","username":"13921903472","phone":"13921903472","email":" ","balance":"0.00","point":0,"exp":0,"expiration_date":"","auth_code":"271817","is_share_vip":"N","is_complete_info":"N","referrer_id":0,"star":0,"r_nickname":""}
+         * user_detail : {"id":27,"user_id":27,"nickname":"13921903472","avatar":"","truename":"","sex":1,"height":"","weight":" ","blood":0,"birthday":null,"qq":" ","weixin":" ","province":"","city":"","county":"","detail_address":" ","signature":" ","age":0}
          */
 
         private UserMsgBean user_msg;
@@ -68,20 +69,20 @@ public class UserInformation {
 
         public static class UserMsgBean {
             /**
-             * uid : 54
+             * uid : 27
              * group_id : 1
              * group_name : 普通会员
-             * username : null
-             * phone : 18803652019
-             * email : null
+             * username : 13921903472
+             * phone : 13921903472
+             * email :
              * balance : 0.00
              * point : 0
              * exp : 0
              * expiration_date :
-             * auth_code : 978256
+             * auth_code : 271817
              * is_share_vip : N
              * is_complete_info : N
-             * referrer_id : null
+             * referrer_id : 0
              * star : 0
              * r_nickname :
              */
@@ -99,7 +100,7 @@ public class UserInformation {
             private String auth_code;
             private String is_share_vip;
             private String is_complete_info;
-            private String referrer_id;
+            private int referrer_id;
             private int star;
             private String r_nickname;
 
@@ -207,11 +208,11 @@ public class UserInformation {
                 this.is_complete_info = is_complete_info;
             }
 
-            public String getReferrer_id() {
+            public int getReferrer_id() {
                 return referrer_id;
             }
 
-            public void setReferrer_id(String referrer_id) {
+            public void setReferrer_id(int referrer_id) {
                 this.referrer_id = referrer_id;
             }
 
@@ -234,23 +235,23 @@ public class UserInformation {
 
         public static class UserDetailBean {
             /**
-             * id : 54
-             * user_id : 54
-             * nickname : 西柚过
-             * avatar : http://test.54artist.com/public/upload/user/avatar/20201224/672afd45124358c6abac0181a127720c.jpg
-             * truename : null
+             * id : 27
+             * user_id : 27
+             * nickname : 13921903472
+             * avatar :
+             * truename :
              * sex : 1
-             * height : null
-             * weight : null
-             * blood : null
-             * birthday : 2020-12-26
-             * qq : null
-             * weixin : null
-             * province : null
-             * city : null
-             * county : null
-             * detail_address : null
-             * signature : null
+             * height :
+             * weight :
+             * blood : 0
+             * birthday : null
+             * qq :
+             * weixin :
+             * province :
+             * city :
+             * county :
+             * detail_address :
+             * signature :
              * age : 0
              */
 
@@ -262,7 +263,7 @@ public class UserInformation {
             private int sex;
             private String height;
             private String weight;
-            private String blood;
+            private int blood;
             private String birthday;
             private String qq;
             private String weixin;
@@ -337,11 +338,11 @@ public class UserInformation {
                 this.weight = weight;
             }
 
-            public String getBlood() {
+            public int getBlood() {
                 return blood;
             }
 
-            public void setBlood(String blood) {
+            public void setBlood(int blood) {
                 this.blood = blood;
             }
 

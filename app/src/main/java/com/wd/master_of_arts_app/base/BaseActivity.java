@@ -1,5 +1,7 @@
 package com.wd.master_of_arts_app.base;
 
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
@@ -45,4 +47,6 @@ public abstract class BaseActivity <P extends BasePreantert> extends AppCompatAc
             mPreantert=null;
         }
     }
+
+
 }

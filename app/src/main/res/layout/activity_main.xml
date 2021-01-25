@@ -20,7 +20,6 @@
     app:tl_iconHeight="22dp"
     app:tl_iconWidth="20dp"
     app:tl_textsize="10sp"
-
     app:tl_textSelectColor="#019A92"
     app:tl_textUnselectColor="#434343"
     android:layout_height="49dp">

@@ -27,9 +27,9 @@
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"
             android:gravity="center_horizontal"
-            android:text="我的"
+            android:text="我的课程详情"
             android:textColor="#434343"
-            android:textSize="@dimen/sp_12" />
+            android:textSize="@dimen/sp_19" />
 
     </RelativeLayout>
 
@@ -48,7 +48,9 @@
                 android:id="@+id/detailsiv"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/dp_180"
-                android:scaleType="centerCrop" />
+                android:scaleType="fitXY"
+                android:adjustViewBounds="true"
+                 />
 
             <LinearLayout
                 android:layout_width="match_parent"

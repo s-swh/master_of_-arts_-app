@@ -49,9 +49,8 @@
         android:layout_width="@dimen/dp_50"
         android:background="@drawable/myzy"
         android:id="@+id/my_zy"
-
         android:layout_alignParentRight="true"
-
+        android:visibility="gone"
         android:layout_marginRight="@dimen/dp_70"
         android:layout_height="@dimen/dp_20">
         <TextView

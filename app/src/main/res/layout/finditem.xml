@@ -3,26 +3,28 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
     <LinearLayout
-        android:background="@drawable/findback"
+        android:background="@drawable/yuanjiao"
         android:layout_width="match_parent"
+        android:layout_margin="@dimen/dp_5"
         android:orientation="vertical"
         android:layout_height="wrap_content">
+        <ImageView
+            android:layout_width="match_parent"
+            android:id="@+id/jc"
+            android:src="@drawable/ic_launcher_background"
+            android:layout_marginLeft="@dimen/dp_5"
+            android:layout_marginRight="@dimen/dp_5"
+            android:layout_height="@dimen/dp_130">
+        </ImageView>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="【免费】色彩入门课"
+            android:layout_gravity="center"
+            android:id="@+id/tv_tit"
+            android:textColor="#434343"
 
-
-<ImageView
-    android:layout_width="match_parent"
-    android:id="@+id/jc"
-    android:layout_height="@dimen/dp_180">
-</ImageView>
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="【免费】色彩入门课"
-        android:layout_gravity="center"
-        android:id="@+id/tv_tit"
-        android:textColor="#434343"
-
-        android:textSize="13sp"
-        />
+            android:textSize="@dimen/sp_12"
+            />
     </LinearLayout>
 </RelativeLayout>

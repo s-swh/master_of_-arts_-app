@@ -80,14 +80,14 @@
                 android:layout_marginLeft="5dp"
                 android:layout_height="@dimen/dp_16"
 
-                android:background="@drawable/couremoney">
+                android:background="@drawable/couremored">
                 <com.wd.master_of_arts_app.customview.DrawLineTextView
                     android:id="@+id/moneytow"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center_horizontal"
                     android:layout_gravity="center_vertical"
-                    android:textColor="#FF4747"
+                    android:textColor="#777373"
                     android:text="500￥" />
             </LinearLayout>
 

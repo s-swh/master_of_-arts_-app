@@ -7,6 +7,12 @@ package com.wd.master_of_arts_app.bean;
  */
 public class HarvestID {
     public int HarId;
+    public String address;
+
+    public HarvestID(int harId, String address) {
+        HarId = harId;
+        this.address = address;
+    }
 
     public int getHarId() {
         return HarId;
@@ -16,7 +22,11 @@ public class HarvestID {
         HarId = harId;
     }
 
-    public HarvestID(int harId) {
-        HarId = harId;
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
     }
 }

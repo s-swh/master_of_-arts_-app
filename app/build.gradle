@@ -5,6 +5,17 @@ android {
     compileSdkVersion 29
     buildToolsVersion "30.0.2"
     defaultConfig {
+        configurations.all {
+            resolutionStrategy.eachDependency { DependencyResolveDetails details ->
+                def requested = details.requested
+                if (requested.group == 'com.android.support') {
+                    if (!requested.name.startsWith("multidex")) {
+                        details.useVersion '27.+'
+                    }
+                }
+            }
+        }
+
        multiDexEnabled true
         resConfigs "zh"  //之开启中文语言
         applicationId "com.wd.master_of_arts_app"
@@ -90,7 +101,7 @@ dependencies {
     implementation 'androidx.recyclerview:recyclerview:1.1.0'
 
     //下面是XRecyclerview依赖
-    implementation 'com.jcodecraeer:xrecyclerview:1.5.8'
+    implementation 'com.jcodecraeer:xrecyclerview:1.6.0'
 
     //ok依赖
     implementation 'com.squareup.okhttp3:okhttp:3.2.0'
@@ -164,7 +175,7 @@ dependencies {
     implementation 'org.jsoup:jsoup:1.10.2'
 
     //微信支付
-    implementation 'com.tencent.mm.opensdk:wechat-sdk-android-without-mta:5.5.8'
+    implementation 'com.tencent.mm.opensdk:wechat-sdk-android-without-mta:6.6.5'
 
     implementation(name: 'qmf-ppplugin-android-3.1.1', ext: 'aar')
     //极光推送
@@ -185,4 +196,37 @@ dependencies {
 
     implementation 'com.arialyy.aria:aria-core:3.4.8'
     annotationProcessor 'com.arialyy.aria:aria-compiler:3.4.8'
+    //  加载动图
+    implementation 'pl.droidsonroids.gif:android-gif-drawable:1.2.17'
+
+    //分页
+    implementation 'androidx.appcompat:appcompat:1.0.0'                 //必须 1.0.0 以上
+
+    implementation  'com.scwang.smart:refresh-layout-kernel:2.0.3'      //核心必须依赖
+    implementation  'com.scwang.smart:refresh-header-classics:2.0.3'    //经典刷新头
+    implementation  'com.scwang.smart:refresh-header-radar:2.0.3'       //雷达刷新头
+    implementation  'com.scwang.smart:refresh-header-falsify:2.0.3'     //虚拟刷新头
+    implementation  'com.scwang.smart:refresh-header-material:2.0.3'    //谷歌刷新头
+    implementation  'com.scwang.smart:refresh-header-two-level:2.0.3'   //二级刷新头
+    implementation  'com.scwang.smart:refresh-footer-ball:2.0.3'        //球脉冲加载
+    implementation  'com.scwang.smart:refresh-footer-classics:2.0.3'    //经典加载
+    //XListView
+    implementation 'com.github.andyoom:xlistview:v1.0.1'
+
+    //热更新
+    implementation 'io.reactivex.rxjava2:rxjava:2.2.2'
+    implementation 'io.reactivex.rxjava2:rxandroid:2.1.0'
+    implementation 'io.reactivex.rxjava2:rxkotlin:2.3.0'
+    implementation 'com.squareup.okhttp3:okhttp:3.11.0'
+    implementation 'com.squareup.okio:okio:2.0.0'
+
+
+    implementation 'com.arialyy.aria:aria-core:3.4.8'
+    annotationProcessor 'com.arialyy.aria:aria-compiler:3.4.8'
+
+
+
+// AndroidX
+
+    implementation 'com.teprinciple:updateapputils:1.2'
 }

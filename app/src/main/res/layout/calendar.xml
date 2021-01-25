@@ -1,84 +1,102 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
+
         <ImageView
-            android:layout_width="@dimen/dp_10"
-            android:layout_marginLeft="@dimen/dp_15"
             android:id="@+id/fanhui"
-            android:src="@mipmap/returnbutton"
-            android:layout_height="@dimen/dp_65" />
+            android:layout_width="@dimen/dp_10"
+            android:layout_height="@dimen/dp_65"
+            android:layout_marginLeft="@dimen/dp_15"
+            android:src="@mipmap/returnbutton" />
+
         <TextView
             android:layout_width="match_parent"
-            android:text="我的课程日历"
-            android:gravity="center"
-            android:textSize="@dimen/sp_12"
-            android:textColor="#434343"
+            android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"
-            android:layout_height="wrap_content" />
+            android:gravity="center"
+            android:text="我的课程日历"
+            android:textColor="#434343"
+            android:textSize="@dimen/sp_19" />
     </RelativeLayout>
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
 
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:orientation="vertical"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-<TextView
-    android:layout_width="wrap_content"
-    android:layout_gravity="center"
-    android:text="当前日期:"
-    android:id="@+id/tv_date"
-    android:layout_height="wrap_content" />
-    <com.haibin.calendarview.CalendarView
-        android:layout_width="match_parent"
-        android:id="@+id/chart"
-        app:default_status="shrink"
-        android:orientation="vertical"
-        android:background="#FFF"
-        android:showWeekNumber="true"
-        app:selected_text_color="@color/black"
-        app:scheme_text_color="@color/black"
-        app:week_text_color="@color/black"
-        app:current_day_text_color="@color/black"
-        app:year_view_day_text_color="@color/black"
-        android:unfocusedMonthDateColor="#E90202"
-        android:shownWeekCount ="3"
-        android:layout_height="wrap_content">
-    </com.haibin.calendarview.CalendarView>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:id="@+id/liv_view"
-        android:layout_marginTop="@dimen/dp_5"
-        android:visibility="gone"
-        android:layout_height="wrap_content">
-        <ImageView
-            android:layout_width="@dimen/dp_17"
-            android:src="@mipmap/iconalarmclock"
-            android:layout_height="@dimen/dp_25" />
         <TextView
+            android:id="@+id/tv_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:textSize="@dimen/sp_12"
+            android:textColor="#434343"
+            android:text="当前日期:" />
+
+        <com.haibin.calendarview.CalendarView
+            android:id="@+id/chart"
             android:layout_width="match_parent"
-            android:text=" "
-            android:id="@+id/tv_alarm"
-            android:layout_marginTop="@dimen/dp_6"
-            android:layout_height="wrap_content" />
-    </LinearLayout>
+            android:layout_height="wrap_content"
+            android:background="#FFF"
+            android:orientation="vertical"
+            android:showWeekNumber="true"
+            android:shownWeekCount="3"
+            android:unfocusedMonthDateColor="#E90202"
+            app:current_day_text_color="@color/black"
+            app:default_status="shrink"
+            app:scheme_text_color="@color/black"
+            app:selected_text_color="@color/black"
+            app:week_text_color="@color/black"
+            app:year_view_day_text_color="@color/black"></com.haibin.calendarview.CalendarView>
 
-<androidx.recyclerview.widget.RecyclerView
-    android:layout_width="match_parent"
-    android:id="@+id/calend_rv"
-    android:layout_height="match_parent">
-</androidx.recyclerview.widget.RecyclerView>
+        <LinearLayout
+            android:id="@+id/liv_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_5"
+            android:visibility="gone">
 
+            <ImageView
+                android:layout_width="@dimen/dp_17"
+                android:layout_height="@dimen/dp_25"
+                android:src="@mipmap/iconalarmclock"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/tv_alarm"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_6"
+                android:text=" "
+                android:visibility="gone" />
+        </LinearLayout>
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:descendantFocusability="blocksDescendants">
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/calend_rv"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="@dimen/dp_5"></androidx.recyclerview.widget.RecyclerView>
+            </RelativeLayout>
+
+
+        </ScrollView>
     </LinearLayout>
-    </ScrollView>
 </LinearLayout>

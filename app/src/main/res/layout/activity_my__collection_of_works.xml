@@ -21,7 +21,7 @@
             android:layout_width="match_parent"
             android:text="我的作品集"
             android:gravity="center"
-            android:textSize="@dimen/sp_12"
+            android:textSize="@dimen/sp_19"
             android:textColor="#434343"
             android:layout_height="@dimen/dp_30" />
     </RelativeLayout>

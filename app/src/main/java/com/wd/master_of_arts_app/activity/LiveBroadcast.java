@@ -42,6 +42,8 @@ public class LiveBroadcast extends BaseActivity implements LiveBoradcastContrean
 
     private int used;
     private String name;
+    private int uid;
+    private String nickname;
 
     @Override
     protected int getLayoutId() {
@@ -55,16 +57,12 @@ public class LiveBroadcast extends BaseActivity implements LiveBoradcastContrean
 
     @Override
     protected void initView() {
-        if (!EventBus.getDefault().isRegistered(this)) {
-            EventBus.getDefault().register(this);
-        }
+        SharedPreferences sp = getSharedPreferences("useridname", MODE_PRIVATE);
+        uid = sp.getInt("uid", 0);
+        nickname = sp.getString("nickname", "");
     }
 
-    @Subscribe(threadMode = ThreadMode.MAIN, sticky = true)
-    public void OnUserName(UserId userId) {
-        used = userId.getUsed();
-        name = userId.getName();
-    }
+
 
     @Override
     protected void initData() {
@@ -74,7 +72,7 @@ public class LiveBroadcast extends BaseActivity implements LiveBoradcastContrean
         BasePreantert basePreantert = getmPreantert();
         if (basePreantert instanceof LiveBoradcastContreanter.IPreanter) {
 
-            ((LiveBoradcastContreanter.IPreanter) basePreantert).OnLiveBoradSuccess("listener", "private", "video", "" + classid, name, used + "", unit_ssname);
+            ((LiveBoradcastContreanter.IPreanter) basePreantert).OnLiveBoradSuccess("listener", "private", "video", "" + classid, nickname, uid + "", unit_ssname);
         }
 
     }
@@ -87,11 +85,6 @@ public class LiveBroadcast extends BaseActivity implements LiveBoradcastContrean
         String live_url = data.getLive_url();
         ClassConfig config = new ClassConfig();
         config.classURL = live_url;
-
-
-
-
-
 
         Log.i("xxxurl", live_url);
         config.features |= (ClassConfig.VIDEO_MARK | ClassConfig.RED_PACKET);

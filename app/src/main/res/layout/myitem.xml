@@ -2,30 +2,30 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-
     android:orientation="vertical">
-<LinearLayout
-    android:layout_width="match_parent"
-    android:orientation="vertical"
-    android:background="@drawable/findback"
-    android:layout_height="wrap_content">
-
-
-    <ImageView
-        android:id="@+id/jc"
+    <LinearLayout
+        android:background="@drawable/yuanjiao"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/dp_180"
-        android:layout_margin="@dimen/dp_5">
-    </ImageView>
+        android:layout_margin="@dimen/dp_5"
+        android:orientation="vertical"
+        android:layout_height="wrap_content">
+        <ImageView
+            android:layout_width="match_parent"
+            android:id="@+id/jc"
+            android:src="@drawable/ic_launcher_background"
+             android:layout_marginLeft="@dimen/dp_5"
+            android:layout_marginRight="@dimen/dp_5"
+            android:layout_height="@dimen/dp_130">
+        </ImageView>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="【免费】色彩入门课"
+            android:layout_gravity="center"
+            android:id="@+id/tv_tit"
+            android:textColor="#434343"
 
-    <TextView
-        android:id="@+id/tv_tit"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginLeft="@dimen/dp_11"
-        android:text="【免费】色彩入门课"
-        android:textColor="#ff333333"
-        android:textSize="13sp" />
-</LinearLayout>
+            android:textSize="@dimen/sp_12"
+            />
+    </LinearLayout>
 </RelativeLayout>

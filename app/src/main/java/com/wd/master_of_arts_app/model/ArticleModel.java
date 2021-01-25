@@ -49,8 +49,8 @@ public class ArticleModel implements ArticleListContreater.IModel {
     }
     //文章列表更多
     @Override
-    public void OnCommonSuccess(int cat_id, int p, int per, OnCommonCoallack commonCoallack) {
-        NetUtils.getInstance().getApi().getCommBean(cat_id, p, per)
+    public void OnCommonSuccess(String token,int cat_id, int p, int per, OnCommonCoallack commonCoallack) {
+        NetUtils.getInstance().getApi().getCommBean(token,cat_id, p, per)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Observer<CommBean>() {

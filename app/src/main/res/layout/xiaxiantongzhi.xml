@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:id="@+id/tzdl"
+    android:layout_height="match_parent">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_marginTop="@dimen/dp_150"
+
+        android:layout_height="wrap_content">
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_centerHorizontal="true"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_width="@dimen/dp_280"
+                android:text="下线通知:\n\t\t您的账号在另一台设备登录。如非本人操作，则密码可能已泄漏，建议立即修改密码"
+                android:textSize="@dimen/sp_12"
+                android:layout_centerVertical="true"
+                android:textColor="#434343"
+                android:layout_height="wrap_content" />
+            <Button
+                android:layout_width="wrap_content"
+                android:text="确定"
+                android:layout_marginLeft="@dimen/dp_200"
+                android:layout_marginTop="@dimen/dp_80"
+                android:id="@+id/queding"
+                android:layout_height="wrap_content" />
+        </RelativeLayout>
+    </RelativeLayout>
+
+
+
+</LinearLayout>

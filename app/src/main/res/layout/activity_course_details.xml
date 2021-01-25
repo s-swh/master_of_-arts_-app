@@ -90,7 +90,16 @@
                         android:text="青苗大师班"
                         android:textColor="#434343"
                         android:textSize="@dimen/sp_12" />
+                    <TextView
+                        android:id="@+id/keshi"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/dp_90"
+                        android:text="青苗大师班"
 
+                        android:layout_centerVertical="true"
+                        android:textColor="#00A8A0"
+                        android:textSize="@dimen/sp_8" />
                     <TextView
                         android:id="@+id/goumairenshu"
                         android:layout_width="wrap_content"

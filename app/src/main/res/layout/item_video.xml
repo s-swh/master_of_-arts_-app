@@ -6,6 +6,9 @@
     android:layout_height="60dp"
     android:layout_marginTop="5dp"
   >
+
+
+
     <ImageView
         android:id="@+id/id_icon"
         android:layout_width="40dp"
@@ -47,5 +50,23 @@
         android:textColor="#E41B1B"
         android:layout_centerVertical="true"
         />
+    <RelativeLayout
+        android:layout_width="@dimen/dp_100"
+        android:layout_centerVertical="true"
+        android:id="@+id/deleteitem"
+        android:layout_alignParentRight="true"
+        android:layout_height="wrap_content">
+        <TextView
+            android:layout_width="match_parent"
+            android:text="删除"
+            android:layout_marginRight="@dimen/dp_15"
+            android:textColor="#F30D0D"
+
+            android:textSize="@dimen/sp_12"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:gravity="center"
+            android:layout_height="wrap_content" />
+    </RelativeLayout>
 
 </RelativeLayout>

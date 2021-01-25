@@ -3,10 +3,22 @@
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:uses-permissionandroid="http://schemas.android.com/apk/distribution"
     package="com.wd.master_of_arts_app">
+    <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW"/>
+    <!-- 写入权限 -->
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.CAMERA" />
-
+    <!--网络权限问题-->
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <!--8.0安装需要的权限-->
+    <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES" />
+    <!--读写权限-->
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
     <!-- 在SD卡中创建与删除文件权限 -->
     <!-- Required -->
     <permission
@@ -110,14 +122,30 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar"
         tools:replace="android:theme">
-
+        <service android:name=".service.DownloadService"/>
         <activity android:name=".activity.GuideToUse"></activity>
         <activity android:name=".activity.AboutUs" />
         <activity
             android:name=".activity.WatchThreeReplaceActivity"
             android:configChanges="orientation|keyboardHidden|navigation|screenSize"
             android:hardwareAccelerated="true" />
-        <receiver android:name=".utils.JGBroadcastReceiver" android:exported="false" android:enabled="true">
+
+        <provider
+
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="${applicationId}.fileprovider"
+            android:exported="false"
+            android:grantUriPermissions="true"
+            tools:replace="android:authorities">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths" />
+        </provider>
+
+        <receiver
+            android:name=".utils.JGBroadcastReceiver"
+            android:enabled="true"
+            android:exported="false">
             <intent-filter>
                 <action android:name="cn.jpush.android.intent.REGISTRATION" />
                 <action android:name="cn.jpush.android.intent.MESSAGE_RECEIVED" />
@@ -125,20 +153,15 @@
                 <action android:name="cn.jpush.android.intent.NOTIFICATION_OPENED" />
                 <action android:name="cn.jpush.android.intent.NOTIFICATION_CLICK_ACTION" />
                 <action android:name="cn.jpush.android.intent.CONNECTION" />
+
                 <category android:name="com.wd.master_of_arts_app" />
 
             </intent-filter>
             <intent-filter>
-                <action android:name="com.wd.master_of_arts_app"/>
+                <action android:name="com.wd.master_of_arts_app" />
             </intent-filter>
         </receiver>
-        <activity
-            android:name=".wxapi.WXEntryActivity"
-            android:exported="true"
-            android:launchMode="singleTask"
 
-            android:taskAffinity="com.wd.master_of_arts_app"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity
             android:name=".activity.WatchTheReplayActivity"
             android:configChanges="orientation|keyboardHidden|navigation|screenSize"
@@ -151,10 +174,6 @@
         <activity android:name=".activity.BannerActivity" />
         <activity android:name=".activity.NoticeDetails" />
         <activity android:name=".activity.NoticeActivity" />
-
-
-
-
 
 
         <uses-library
@@ -183,6 +202,7 @@
                 <category android:name="com.wd.master_of_arts_app" />
             </intent-filter>
         </receiver>
+
 
         <service
             android:name=".utils.XService"
@@ -218,6 +238,8 @@
         <activity android:name=".activity.OrderDetails" />
         <activity android:name=".activity.myactivity.MyCourseDetails" />
         <activity android:name=".activity.DetailsOfWorks" />
+
+
         <activity
             android:name=".payment.SignUpNow"
             android:exported="true"
@@ -250,8 +272,8 @@
         <activity android:name=".activity.Calendar_Activity" />
         <activity
             android:name="com.yanzhenjie.album.AlbumActivity"
-            android:label="图库"
             android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="图库"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar"
             android:windowSoftInputMode="stateAlwaysHidden|stateHidden" />
         <activity
@@ -277,8 +299,8 @@
         </activity> <!-- 首页搜索界面 -->
         <activity android:name=".activity.Search_Activity" /> <!-- 项目主框架 -->
 
-        <activity android:name=".activity.MainActivity" >
-           <!-- -->
+        <activity android:name=".activity.MainActivity">
+            <!-- -->
         </activity>
     </application>
 

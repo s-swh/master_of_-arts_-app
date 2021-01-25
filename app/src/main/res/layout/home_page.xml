@@ -8,7 +8,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/dp_15">
+         >
 
         <ImageView
             android:id="@+id/notice_iv"
@@ -17,6 +17,7 @@
             android:layout_alignParentRight="true"
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"
+            android:visibility="gone"
             android:layout_marginRight="@dimen/dp_15"
             android:src="@mipmap/icon_tongzhi" />
 
@@ -30,17 +31,22 @@
             android:layout_marginRight="@dimen/dp_15"
             android:src="@mipmap/icon_tz_y"
             android:visibility="gone" />
-
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
-            android:layout_marginLeft="@dimen/dp_15"
+            android:layout_marginLeft="@dimen/dp_5"
             android:marqueeRepeatLimit="marquee_forever"
             android:singleLine="true"
             android:text="艺大家桃李"
+            android:textColor="#434343"
             android:textSize="@dimen/sp_12" />
-
+        <RelativeLayout
+            android:layout_width="@dimen/dp_60"
+            android:layout_marginTop="@dimen/dp_15"
+            android:layout_marginLeft="@dimen/dp_5"
+            android:background="@mipmap/icon_bjtm"
+            android:layout_height="@dimen/dp_15"/>
     </RelativeLayout>
 
     <com.stx.xhb.xbanner.XBanner
@@ -96,11 +102,31 @@
 
         </RelativeLayout>
     </LinearLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:id="@+id/rec_gono"
+        android:visibility="gone"
+        android:layout_height="wrap_content">
+        <ImageView
+            android:layout_width="match_parent"
+            android:src="@mipmap/icon_yhx"
+            android:layout_height="match_parent" />
+        <TextView
+            android:id="@+id/tv_tvv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_gravity="center"
+            android:text="预约体验"
+            android:textColor="#FFFFFF"
+            android:textSize="@dimen/sp_16" />
+    </RelativeLayout>
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
+        android:id="@+id/rellt"
         android:layout_marginLeft="@dimen/dp_5"
         android:layout_marginRight="@dimen/dp_5"
         android:orientation="vertical">

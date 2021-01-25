@@ -24,8 +24,9 @@
             android:layout_height="@dimen/dp_30"
             android:gravity="center"
             android:text="收货地址"
+
             android:textColor="#434343"
-            android:textSize="@dimen/sp_12" />
+            android:textSize="@dimen/sp_19" />
 
         <TextView
             android:id="@+id/add_addres"

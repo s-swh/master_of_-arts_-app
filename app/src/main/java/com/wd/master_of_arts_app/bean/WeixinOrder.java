@@ -8,11 +8,12 @@ import com.google.gson.annotations.SerializedName;
  * @date :2021/1/12 10:17
  */
 public class WeixinOrder {
+
     /**
      * code : 1
      * msg : 成功
-     * data : {"order_id":"250","order_num":"5ffd069e51c93479","title":"童童创想班B","price":"3840.00"}
-     * payInfo : {"totalAmount":1,"msgType":"wx.appPreOrder","responseTimestamp":"2021-01-12 10:17:02","errCode":"SUCCESS","msgSrc":"WWW.TEST.COM","merName":"网银个人商户","mid":"898440165133308","msgId":"","appPayRequest":{"package":"Sign=WXPay","appid":"wxb7192893995d3c8b","sign":"D1A553ADBD509A12BC32A31A7B18C693","partnerid":"399477649","prepayid":"10c09baa4d6c4b3ea0c5346329e4356f","noncestr":"rWMgMnADbJsMoKHFLFoyKfBOEFNwudYp","timestamp":"20210112101702"},"tid":"00000001","merOrderId":"3194201807101655041975","targetSys":"WXPay","sign":"D8749E627DFE7DEF5E6FB004CCAF431E652A42EC51DFB1373447A66AA24C5C03"}
+     * data : {"order_id":"371","order_num":"6007a432886f4745","title":"蒙蒙童画班","price":"0.01"}
+     * payInfo : {"totalAmount":1,"msgType":"wx.appPreOrder","responseTimestamp":"2021-01-20 11:32:02","errCode":"SUCCESS","msgSrc":"WWW.NJYIDAJIA.COM","merName":"南京艺大家桃李网络科技有限公司","mid":"898325148161573","msgId":"","appPayRequest":{"miniuser":"gh_744d2ebca056","package":"Sign=WXPay","minipath":"pages/appPay/index","appid":"wxb7192893995d3c8b","sign":"715AFF49826D15B7B8D61179EA744A94","partnerid":"426131619","prepayid":"f6c1a20e80374a12a7de0f9cb661b7e2","noncestr":"JFEjswXuecKpjhDoLRlLiIoUSQylXPOv","timestamp":"20210120113202"},"tid":"A0348396","merOrderId":"11BB16111135223288","targetSys":"WXPay","sign":"5EA0E9DFF623CB75C6BF5B1F31503C3EF15F120AC5AEAEEDC87ED334A1A02A3A"}
      */
 
     private int code;
@@ -54,10 +55,10 @@ public class WeixinOrder {
 
     public static class DataBean {
         /**
-         * order_id : 250
-         * order_num : 5ffd069e51c93479
-         * title : 童童创想班B
-         * price : 3840.00
+         * order_id : 371
+         * order_num : 6007a432886f4745
+         * title : 蒙蒙童画班
+         * price : 0.01
          */
 
         private String order_id;
@@ -102,17 +103,17 @@ public class WeixinOrder {
         /**
          * totalAmount : 1
          * msgType : wx.appPreOrder
-         * responseTimestamp : 2021-01-12 10:17:02
+         * responseTimestamp : 2021-01-20 11:32:02
          * errCode : SUCCESS
-         * msgSrc : WWW.TEST.COM
-         * merName : 网银个人商户
-         * mid : 898440165133308
+         * msgSrc : WWW.NJYIDAJIA.COM
+         * merName : 南京艺大家桃李网络科技有限公司
+         * mid : 898325148161573
          * msgId :
-         * appPayRequest : {"package":"Sign=WXPay","appid":"wxb7192893995d3c8b","sign":"D1A553ADBD509A12BC32A31A7B18C693","partnerid":"399477649","prepayid":"10c09baa4d6c4b3ea0c5346329e4356f","noncestr":"rWMgMnADbJsMoKHFLFoyKfBOEFNwudYp","timestamp":"20210112101702"}
-         * tid : 00000001
-         * merOrderId : 3194201807101655041975
+         * appPayRequest : {"miniuser":"gh_744d2ebca056","package":"Sign=WXPay","minipath":"pages/appPay/index","appid":"wxb7192893995d3c8b","sign":"715AFF49826D15B7B8D61179EA744A94","partnerid":"426131619","prepayid":"f6c1a20e80374a12a7de0f9cb661b7e2","noncestr":"JFEjswXuecKpjhDoLRlLiIoUSQylXPOv","timestamp":"20210120113202"}
+         * tid : A0348396
+         * merOrderId : 11BB16111135223288
          * targetSys : WXPay
-         * sign : D8749E627DFE7DEF5E6FB004CCAF431E652A42EC51DFB1373447A66AA24C5C03
+         * sign : 5EA0E9DFF623CB75C6BF5B1F31503C3EF15F120AC5AEAEEDC87ED334A1A02A3A
          */
 
         private int totalAmount;
@@ -235,17 +236,21 @@ public class WeixinOrder {
 
         public static class AppPayRequestBean {
             /**
+             * miniuser : gh_744d2ebca056
              * package : Sign=WXPay
+             * minipath : pages/appPay/index
              * appid : wxb7192893995d3c8b
-             * sign : D1A553ADBD509A12BC32A31A7B18C693
-             * partnerid : 399477649
-             * prepayid : 10c09baa4d6c4b3ea0c5346329e4356f
-             * noncestr : rWMgMnADbJsMoKHFLFoyKfBOEFNwudYp
-             * timestamp : 20210112101702
+             * sign : 715AFF49826D15B7B8D61179EA744A94
+             * partnerid : 426131619
+             * prepayid : f6c1a20e80374a12a7de0f9cb661b7e2
+             * noncestr : JFEjswXuecKpjhDoLRlLiIoUSQylXPOv
+             * timestamp : 20210120113202
              */
 
+            private String miniuser;
             @SerializedName("package")
             private String packageX;
+            private String minipath;
             private String appid;
             private String sign;
             private String partnerid;
@@ -253,8 +258,13 @@ public class WeixinOrder {
             private String noncestr;
             private String timestamp;
 
+            public String getMiniuser() {
+                return miniuser;
+            }
 
-
+            public void setMiniuser(String miniuser) {
+                this.miniuser = miniuser;
+            }
 
             public String getPackageX() {
                 return packageX;
@@ -262,6 +272,14 @@ public class WeixinOrder {
 
             public void setPackageX(String packageX) {
                 this.packageX = packageX;
+            }
+
+            public String getMinipath() {
+                return minipath;
+            }
+
+            public void setMinipath(String minipath) {
+                this.minipath = minipath;
             }
 
             public String getAppid() {
@@ -311,8 +329,6 @@ public class WeixinOrder {
             public void setTimestamp(String timestamp) {
                 this.timestamp = timestamp;
             }
-
-
         }
     }
 }

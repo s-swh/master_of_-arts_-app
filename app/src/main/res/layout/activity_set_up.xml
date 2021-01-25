@@ -35,6 +35,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/dp_30"
                     android:gravity="center"
+                    android:textColor="#434343"
+                    android:textSize="@dimen/sp_19"
                     android:text="我的资料" />
             </RelativeLayout>
 
