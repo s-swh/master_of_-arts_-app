@@ -84,8 +84,9 @@ public class LiveBroadcast extends BaseActivity implements LiveBoradcastContrean
 
         String live_url = data.getLive_url();
         ClassConfig config = new ClassConfig();
-        config.classURL = live_url;
 
+        config.classURL = live_url;
+        config.setFiles(0);
         Log.i("xxxurl", live_url);
         config.features |= (ClassConfig.VIDEO_MARK | ClassConfig.RED_PACKET);
 
@@ -134,6 +135,8 @@ public class LiveBroadcast extends BaseActivity implements LiveBoradcastContrean
             public void onSkinChanged(int skinId) {
 
             }
+
+
         });
         if (code == 1) {
             finish();

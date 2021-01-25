@@ -10,6 +10,7 @@ import android.content.pm.PackageManager;
 
 import android.graphics.drawable.AnimationDrawable;
 import android.media.MediaPlayer;
+import android.os.CountDownTimer;
 import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
@@ -91,14 +92,22 @@ public class Voice extends BaseFragment {
             }
         }
     }
-
+    private boolean isoncl=true;
     @Override
     protected void initView(View inflate) {
 
         mListView = inflate.findViewById(R.id.id_listview);
 
         mAudioRecorderButton = inflate.findViewById(R.id.id_recorder_button);
-
+        mAudioRecorderButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(isoncl){
+                    //你要运行的方法
+                    isoncl=false; //点击一次后就改成false，这样就实现只点击一次了
+                }
+            }
+        });
         mAudioRecorderButton.setAudioFinishRecorderListener(new AudioRecorderButton.AudioFinishRecorderListener() {
 
             private MultipartBody.Part body;
@@ -110,6 +119,7 @@ public class Voice extends BaseFragment {
 
 
                 if (mDatas.size() < 3) {
+
                     Recorder recorder = new Recorder(seconds, filePath);
                     mDatas.add(recorder);
 
@@ -170,7 +180,8 @@ public class Voice extends BaseFragment {
 
                                 @Override
                                 public void onError(Throwable e) {
-
+                                    String message = e.getMessage();
+                                    Log.i("xxxxme",message);
                                 }
 
                                 @Override

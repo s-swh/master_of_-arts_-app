@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.media.MediaPlayer;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
@@ -120,10 +121,10 @@ public class WorkPage extends BaseActivity implements MyWorkContreanter.IView {
                     iv_vove1.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
+                            Log.i("strings1",strings1[0]+"123");
                             MediaManager.playSound("http://qiniu.54artist.com/" + strings1[0], new MediaPlayer.OnCompletionListener() {
                                 @Override
                                 public void onCompletion(MediaPlayer mediaPlayer) {
-
                                 }
                             });
                         }

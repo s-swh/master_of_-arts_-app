@@ -133,7 +133,7 @@ public class SeleteHarvest extends BaseActivity implements HarvestAddressContrea
                 String is_default = listBean.getIs_default();
                 EventBus.getDefault().postSticky(id1c);
 
-                Toast.makeText(getApplicationContext(), id1c + "", Toast.LENGTH_SHORT).show();
+
 
                 Intent intent = new Intent(getApplicationContext(), EditShippingAddress.class);
                 intent.putExtra("idc1", id1c);

@@ -41,20 +41,25 @@ public class JGBroadcastReceiver extends BroadcastReceiver {
 
     private PopupWindow popupBigPhoto;
     Context context;
+
     @Override
     public void onReceive(Context context, Intent intent) {
         Bundle bundle = intent.getExtras();
         String extra = bundle.getString(JPushInterface.EXTRA_EXTRA);
-        Gson gson = new Gson();
-        Extra extra1 = gson.fromJson(extra, Extra.class);
-        if(extra1!=null){
-            String key = extra1.getKey();
-            if (key.equals("offline")) {
+        if (extra!=null) {
+            Gson gson = new Gson();
+
+            Extra extra1 = gson.fromJson(extra, Extra.class);
+            if (extra1 != null) {
+                String key = extra1.getKey();
+                if (key.equals("offline")) {
                     EventBus.getDefault().postSticky(key);
-                String title = bundle.getString(JPushInterface.EXTRA_NOTIFICATION_TITLE);
-                Toast.makeText(context, title, Toast.LENGTH_SHORT).show();
+                }
             }
         }
+
+        EventBus.getDefault().postSticky(bundle);
+
 
     }
 }

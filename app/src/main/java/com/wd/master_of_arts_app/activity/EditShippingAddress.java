@@ -263,7 +263,15 @@ public class EditShippingAddress extends BaseActivity implements HarvestAddressC
     public void Update(UpdateShipping updateShipping) {
         String msg = updateShipping.getMsg();
         Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
-        finish();
+        int code = updateShipping.getCode();
+        if(code==8){
+
+            Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
+        }else{
+            Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
+            finish();
+        }
+
     }
     private void initt() {
 

@@ -5,13 +5,17 @@
     android:layout_height="wrap_content"
     android:background="#FFFFFF"
     android:orientation="vertical">
-
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:background="@drawable/coure"
+        android:layout_height="wrap_content"
+        >
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="@dimen/dp_5"
         android:layout_marginRight="@dimen/dp_5"
-        android:background="@drawable/coure"
+
         android:orientation="vertical">
 
         <LinearLayout
@@ -101,21 +105,19 @@
             android:layout_weight="1"
             android:layout_marginLeft="@dimen/dp_45"
             android:text="每周二、周三、周四09:00上课" />
-        <RelativeLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="-140dp"
-            >
-            <ImageView
-                android:id="@+id/imv"
-                android:layout_width="@dimen/dp_85"
-                android:layout_height="@dimen/dp_85"
-                android:layout_alignParentRight="true"
-                android:src="@drawable/ic_launcher_background" />
-        </RelativeLayout>
+
     </LinearLayout>
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/dp_5" />
+
+        <ImageView
+            android:id="@+id/imv"
+            android:layout_width="@dimen/dp_100"
+            android:layout_height="@dimen/dp_100"
+
+            android:layout_alignParentRight="true"
+            android:src="@drawable/ic_launcher_background" />
+    </RelativeLayout>
+<View
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/dp_5"/>
 
 </LinearLayout>

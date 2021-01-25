@@ -29,6 +29,7 @@ import com.wd.master_of_arts_app.adapter.ServiceActivity;
 import com.wd.master_of_arts_app.base.BaseActivity;
 import com.wd.master_of_arts_app.base.BasePreantert;
 import com.wd.master_of_arts_app.bean.AgeInterface;
+import com.wd.master_of_arts_app.bean.CommentListBean;
 import com.wd.master_of_arts_app.bean.CourseDetails;
 import com.wd.master_of_arts_app.bean.CourseList;
 import com.wd.master_of_arts_app.bean.DingdanXiangqing;
@@ -343,6 +344,7 @@ public class CourseDetailsActivity extends BaseActivity implements CourseContrea
             rlt_pl.setVisibility(View.GONE);
         }
         //适配器加载评论列表
+
         CommentAdapter commentAdapter = new CommentAdapter(this, comment_list);
         rcv.setAdapter(commentAdapter);
     }

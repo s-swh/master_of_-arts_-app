@@ -2,6 +2,7 @@ package com.wd.master_of_arts_app.voice;
 
 import android.app.Dialog;
 import android.content.Context;
+import android.os.CountDownTimer;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
@@ -24,16 +25,19 @@ public class DialogManager {
     }
  
     public void showRecordingDialog(){
+
+
         mDialog = new Dialog(mContext, R.style.Theme_AudioDialog);
         LayoutInflater inflater = LayoutInflater.from(mContext);
         View view=inflater.inflate(R.layout.dialog,null);
         mDialog.setContentView(view);
- 
+
         mIcon = view.findViewById(R.id.id_recorder_dialog_icon);
         mVoice = view.findViewById(R.id.id_recorder_dialog_voice);
         mLable = view.findViewById(R.id.id_recorder_dialog_label);
- 
+
         mDialog.show();
+
     }
  
     //正在播放时的状态

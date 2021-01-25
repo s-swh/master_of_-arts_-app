@@ -4,13 +4,18 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
+import android.os.Bundle;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.jcodecraeer.xrecyclerview.XRecyclerView;
@@ -76,7 +81,6 @@ public class Take_photos extends BaseFragment implements worksContreanter.IVew {
         lyt = view.findViewById(R.id.lyt);
         wdl = view.findViewById(R.id.wdl);
 
-
     }
 
     //发布作品
@@ -89,32 +93,6 @@ public class Take_photos extends BaseFragment implements worksContreanter.IVew {
 
     }
 
-    @Override
-    public void onRequestPermissionsResult(int requestCode,
-                                           String permissions[], int[] grantResults) {
-        switch (requestCode) {
-            case CAMERA_REQ_CODE: {
-                // 如果请求被拒绝，那么通常grantResults数组为空
-                if (grantResults.length > 0
-                        && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                    // 申请成功，进行相应操作
-                } else {
-                    // 申请失败，可以继续向用户解释。
-
-                    Toast.makeText(getActivity(), "没有相机权限,您可能无法使用相机", Toast.LENGTH_SHORT).show();
-                }
-                return;
-            }
-            default:
-                break;
-        }
-    }
-
-    @Override
-    public void onStart() {
-        super.onStart();
-        initData();
-    }
 
     @Override
     protected void initData() {
@@ -125,8 +103,11 @@ public class Take_photos extends BaseFragment implements worksContreanter.IVew {
             wdl.setVisibility(View.GONE);
             if (basePreantert instanceof worksContreanter.IPreanter) {
                 ((worksContreanter.IPreanter) basePreantert).OnWorksSuccess(token1, "", i, j);
+                if (list != null) {
+                    list.clear();
+                    listBeanList.clear();
+                }
             }
-
             wdl.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -144,41 +125,22 @@ public class Take_photos extends BaseFragment implements worksContreanter.IVew {
                 }
             });
         }
-
-        xrv.setLoadingListener(new XRecyclerView.LoadingListener() {
-            @Override
-            public void onRefresh() {
-                i = 1;
-                worksAdapter.Refresh(data.getList());
-                if (basePreantert instanceof worksContreanter.IPreanter) {
-                    ((worksContreanter.IPreanter) basePreantert).OnWorksSuccess(token1, "", i, j);
-                }
-                LinearLayoutManager linearLayoutManager1 = new LinearLayoutManager(getActivity());
-                xrv.setLayoutManager(linearLayoutManager1);
-            }
-
-            @Override
-            public void onLoadMore() {
-                i++;
-                if (basePreantert instanceof worksContreanter.IPreanter) {
-                    ((worksContreanter.IPreanter) basePreantert).OnWorksSuccess(token1, "", i, j);
-                }
-
-            }
-        });
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
-        xrv.setLayoutManager(linearLayoutManager);
         worksAdapter = new WorksAdapter(getActivity(), listBeanList);
         xrv.setAdapter(worksAdapter);
 
-        worksAdapter.OnClickWorks(new WorksAdapter.OnClickWorks() {
-            @Override
-            public void click(int id) {
-                Intent intent = new Intent(getActivity(), DetailsOfWorks.class);
-                intent.putExtra("work_id", id);
-                startActivity(intent);
-            }
-        });
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+
+        if (list != null) {
+            list.clear();
+            listBeanList.clear();
+            initData();
+        }
+
+
     }
 
 
@@ -194,13 +156,46 @@ public class Take_photos extends BaseFragment implements worksContreanter.IVew {
         if (i == 1 && list.size() == 0) {
             wdl.setVisibility(View.VISIBLE);
         }
+        BasePreantert basePreantert = getmPreanter();
+        SharedPreferences token = getActivity().getSharedPreferences("token", Context.MODE_PRIVATE);
+        String token1 = token.getString("token", "");
+        xrv.setLoadingListener(new XRecyclerView.LoadingListener() {
+            @Override
+            public void onRefresh() {
+                i = 1;
+                worksAdapter.Refresh(data.getList());
+                if (basePreantert instanceof worksContreanter.IPreanter) {
+                    ((worksContreanter.IPreanter) basePreantert).OnWorksSuccess(token1, "", i, j);
+                }
+                LinearLayoutManager linearLayoutManager1 = new LinearLayoutManager(getActivity());
+                xrv.setLayoutManager(linearLayoutManager1);
+                xrv.refreshComplete();
+                worksAdapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onLoadMore() {
+                i++;
+                if (basePreantert instanceof worksContreanter.IPreanter) {
+                    ((worksContreanter.IPreanter) basePreantert).OnWorksSuccess(token1, "", i, j);
+                }
+                xrv.loadMoreComplete();
+                worksAdapter.notifyDataSetChanged();
+            }
+        });
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
+        xrv.setLayoutManager(linearLayoutManager);
 
 
-        xrv.loadMoreComplete();
-        xrv.refreshComplete();
+        worksAdapter.OnClickWorks(new WorksAdapter.OnClickWorks() {
+            @Override
+            public void click(int id) {
+                Intent intent = new Intent(getActivity(), DetailsOfWorks.class);
+                intent.putExtra("work_id", id);
+                startActivity(intent);
+            }
+        });
 
-
-        worksAdapter.notifyDataSetChanged();
     }
 
     @Override

@@ -2,6 +2,7 @@ package com.wd.master_of_arts_app.customview;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.os.CountDownTimer;
 import android.os.Environment;
 import android.os.Handler;
 import android.os.Message;
@@ -9,6 +10,8 @@ import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
+
+import androidx.annotation.NonNull;
 
 import com.wd.master_of_arts_app.R;
 import com.wd.master_of_arts_app.voice.AudioManager;
@@ -18,10 +21,10 @@ import com.wd.master_of_arts_app.voice.DialogManager;
  * 自定义按钮 实现录音等功能
  * Created by Administrator on 2017/11/28.
  */
- 
+
 @SuppressLint("AppCompatCustomView")
 public class AudioRecorderButton extends Button implements AudioManager.AudioStateListener {
- 
+
     //手指滑动 距离
     private static final int DISTANCE_Y_CANCEL = 50;
     //状态
@@ -32,25 +35,25 @@ public class AudioRecorderButton extends Button implements AudioManager.AudioSta
     private int mCurState = STATE_NORMAL;
     //已经开始录音
     private boolean isRecording = false;
- 
+
     private DialogManager mDialogManager;
     private AudioManager mAudioManager;
- 
+
     private float mTime;
     //是否触发onlongclick
     private boolean mReady;
- 
+
     public AudioRecorderButton(Context context) {
         this(context, null);
     }
- 
+
     public AudioRecorderButton(Context context, AttributeSet attrs) {
         super(context, attrs);
         mDialogManager = new DialogManager(getContext());
         //偷个懒，并没有判断 是否存在， 是否可读。
- 
+
         String dir = Environment.getExternalStorageDirectory() + "/recorder_audios";
- 
+
         mAudioManager = new AudioManager(dir);
         mAudioManager.setOnAudioStateListener(this);
         //按钮长按 准备录音 包括start
@@ -63,20 +66,21 @@ public class AudioRecorderButton extends Button implements AudioManager.AudioSta
             }
         });
     }
- 
+
     /**
      * 录音完成后的回调
      */
-    public interface AudioFinishRecorderListener{
+    public interface AudioFinishRecorderListener {
         //时长  和 文件
         void onFinish(float seconds, String filePath);
     }
- 
+
     private AudioFinishRecorderListener mListener;
- 
-    public void setAudioFinishRecorderListener (AudioFinishRecorderListener listener){
+
+    public void setAudioFinishRecorderListener(AudioFinishRecorderListener listener) {
         mListener = listener;
     }
+
     //获取音量大小的Runnable
     private Runnable mGetVoiceLevelRunnable = new Runnable() {
         @Override
@@ -92,38 +96,57 @@ public class AudioRecorderButton extends Button implements AudioManager.AudioSta
             }
         }
     };
- 
+
     private static final int MSG_AUDIO_PREPARED = 0X110;
     private static final int MSG_VOICE_CHANGED = 0X111;
     private static final int MSG_DIALOG_DIMISS = 0X112;
- 
+
+    @SuppressLint("HandlerLeak")
     private Handler mHandler = new Handler() {
         @Override
         public void handleMessage(Message msg) {
             switch (msg.what) {
-                case MSG_AUDIO_PREPARED :
+                case MSG_AUDIO_PREPARED:
+
 
                     mDialogManager.showRecordingDialog();
                     isRecording = true;
- 
+
                     new Thread(mGetVoiceLevelRunnable).start();
+
+                    Handler handler = new Handler() {
+                        @Override
+                        public void handleMessage(@NonNull Message msg) {
+                            super.handleMessage(msg);
+                            if (mCurState == STATE_RECORDING) {//正常录制结束
+
+                                mDialogManager.dimissDialog();
+                                mAudioManager.release();
+                                if (mListener != null) {
+                                    mListener.onFinish(mTime, mAudioManager.getCurrentFilePath());
+                                }
+                            }
+                        }
+
+                    };
+                    handler.sendEmptyMessageDelayed(1, 1000 * 60);
                     break;
-                case MSG_VOICE_CHANGED :
+                case MSG_VOICE_CHANGED:
                     mDialogManager.updateVoiceLevel(mAudioManager.getVoiceLevel(7));
- 
+
                     break;
-                case MSG_DIALOG_DIMISS :
+                case MSG_DIALOG_DIMISS:
                     mDialogManager.dimissDialog();
                     break;
             }
         }
     };
- 
+
     @Override
     public void wellPrepared() {
         mHandler.sendEmptyMessage(MSG_AUDIO_PREPARED);
     }
- 
+
     @Override
     public boolean onTouchEvent(MotionEvent event) {
         int action = event.getAction();
@@ -134,45 +157,52 @@ public class AudioRecorderButton extends Button implements AudioManager.AudioSta
 
                 isRecording = true;
                 changeState(STATE_RECORDING);
- 
+
                 break;
             case MotionEvent.ACTION_MOVE:
- 
+
                 if (isRecording) {
- 
- 
-                //根据想x,y的坐标，判断是否想要取消
-                if (wantToCancel(x, y)) {
- 
-                    changeState(STATE_WANT_TO_CANCEL);
-                } else {
- 
-                    changeState(STATE_RECORDING);
-                }
+
+
+                    //根据想x,y的坐标，判断是否想要取消
+                    if (wantToCancel(x, y)) {
+
+                        changeState(STATE_WANT_TO_CANCEL);
+                    } else {
+
+                        changeState(STATE_RECORDING);
+                    }
                 }
                 break;
             case MotionEvent.ACTION_UP:
+
+
                 //如果longclick 没触发
                 if (!mReady) {
                     reset();
                     return super.onTouchEvent(event);
                 }
+
+
+
+
                 //触发了onlongclick 没准备好，但是已经prepared 已经start
                 //所以消除文件夹
-                if(!isRecording||mTime<0.6f){
+                if (!isRecording || mTime < 0.6f) {
                     mDialogManager.tooShort();
                     mAudioManager.cancel();
                     mHandler.sendEmptyMessageDelayed(MSG_DIALOG_DIMISS, 1300);
-                }else if(mCurState==STATE_RECORDING){//正常录制结束
- 
+                } else if (mCurState == STATE_RECORDING) {//正常录制结束
+
                     mDialogManager.dimissDialog();
                     mAudioManager.release();
                     if (mListener != null) {
-                        mListener.onFinish(mTime,mAudioManager.getCurrentFilePath());
+                        mListener.onFinish(mTime, mAudioManager.getCurrentFilePath());
                     }
- 
-                }else if (mCurState == STATE_RECORDING) {
- 
+
+
+                } else if (mCurState == STATE_RECORDING) {
+
                     mDialogManager.dimissDialog();
                     //release
                     //callbacktoAct
@@ -181,15 +211,15 @@ public class AudioRecorderButton extends Button implements AudioManager.AudioSta
                     mAudioManager.cancel();
                     //cancel
                 }
- 
+
                 reset();
- 
+
                 break;
- 
+
         }
         return super.onTouchEvent(event);
     }
- 
+
     /**
      * 恢复状态 标志位
      */
@@ -198,9 +228,9 @@ public class AudioRecorderButton extends Button implements AudioManager.AudioSta
         mReady = false;
         changeState(STATE_NORMAL);
         mTime = 0;
- 
+
     }
- 
+
     private boolean wantToCancel(int x, int y) {
         //如果左右滑出 button
         if (x < 0 || x > getWidth()) {
@@ -212,7 +242,7 @@ public class AudioRecorderButton extends Button implements AudioManager.AudioSta
         }
         return false;
     }
- 
+
     //改变状态
     private void changeState(int state) {
         if (mCurState != state) {
@@ -225,7 +255,7 @@ public class AudioRecorderButton extends Button implements AudioManager.AudioSta
                 case STATE_RECORDING:
                     setBackgroundResource(R.mipmap.icon_lvyin);
 
- 
+
                     if (isRecording) {
                         mDialogManager.recording();
                     }
@@ -238,6 +268,6 @@ public class AudioRecorderButton extends Button implements AudioManager.AudioSta
             }
         }
     }
- 
- 
+
+
 }

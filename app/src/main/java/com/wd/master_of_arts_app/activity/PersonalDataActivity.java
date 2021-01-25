@@ -62,22 +62,28 @@ public class PersonalDataActivity extends BaseActivity implements View.OnClickLi
     private LinearLayout address;
     private EditText et_name;
 
-    private int sex=1;
+    private int sex = 1;
 
-    private String province, city, district;
+
     private Button bt;
     private String name;
 
     private String avatar;
     private String date;
-    private String detail_address;
+
     private LinearLayout llt;
     private String img;
     private LinearLayout lt_man;
     private LinearLayout lt_wuman;
     private ImageView many, wumany;
     private ImageView mann, wumann;
+    private String detail_address;
+    private String detail_address2;
+    private String detail_address1;
 
+    private String district;
+    private String city;
+    private String province;
     @Override
     protected int getLayoutId() {
         return R.layout.activity_personal_data;
@@ -97,9 +103,9 @@ public class PersonalDataActivity extends BaseActivity implements View.OnClickLi
 
     @Override
     protected void initView() {
-                if(EventBus.getDefault().isRegistered(this)) {
-                    EventBus.getDefault().register(this);
-                }
+        if (EventBus.getDefault().isRegistered(this)) {
+            EventBus.getDefault().register(this);
+        }
         tt_date = findViewById(R.id.tt_date);
         address = findViewById(R.id.Address);
         dq = findViewById(R.id.dq);
@@ -195,7 +201,8 @@ public class PersonalDataActivity extends BaseActivity implements View.OnClickLi
                 .subscribe(new Observer<UserInformation>() {
 
 
-                    private String detail_address;
+                    private String city;
+
 
                     @Override
                     public void onSubscribe(Disposable d) {
@@ -213,14 +220,21 @@ public class PersonalDataActivity extends BaseActivity implements View.OnClickLi
                         et_name.setText(nickname);
                         tt_date.setText(birthday);
                         detail_address = user_detail.getProvince();
-                     String   detail_address1 = user_detail.getCity();
-                        String  detail_address2 = user_detail.getCounty();
-                        String add=detail_address+detail_address1+detail_address2;
-                        if(!add.isEmpty()){
+                        detail_address1 = user_detail.getCity();
+                        detail_address2 = user_detail.getCounty();
+                        SharedPreferences sp = getSharedPreferences("tocode", MODE_PRIVATE);
+                        String province = sp.getString("province", "");
+                        String city = sp.getString("city", "");
+                        String district = sp.getString("district", "");
+                        String add = province + city + district;
+                        if (add != null) {
+
+
                             dq.setText(add);
-                        }else{
-                            dq.setText("");
+
+
                         }
+
 
                     }
 
@@ -246,7 +260,7 @@ public class PersonalDataActivity extends BaseActivity implements View.OnClickLi
 
             }
         });
-      //  Glide.with(getApplicationContext()).load(img).apply(RequestOptions.bitmapTransform(new CircleCrop())).error(R.mipmap.icon_tx).into(iv);
+
         SharedPreferences s1p = getSharedPreferences("address", MODE_PRIVATE);
         String s1c = s1p.getString("acacsadasd", "");
 
@@ -263,7 +277,12 @@ public class PersonalDataActivity extends BaseActivity implements View.OnClickLi
                     String token1 = token.getString("token", "");
                     String name = et_name.getText().toString();
                     String date = tt_date.getText().toString();
-                    ((UserInformationConreater.IPreanter) basePreantert).EditUserSuccess(token1, name, sex, date, province, city, district);
+                    SharedPreferences sp = getSharedPreferences("tocode", MODE_PRIVATE);
+                    String province = sp.getString("province", "");
+                    String city = sp.getString("city", "");
+                    String district = sp.getString("district", "");
+                    ((UserInformationConreater.IPreanter) basePreantert).EditUserSuccess(token1, name, sex, date, province,city,district);
+
                 }
             }
         });
@@ -299,11 +318,11 @@ public class PersonalDataActivity extends BaseActivity implements View.OnClickLi
         String format = df1.format(new Date());
         String format1 = df2.format(new Date());
         String format2 = df3.format(new Date());
-        int year= Integer.parseInt(format);
-        int mm= Integer.parseInt(format1);
-        int dd= Integer.parseInt(format2);
+        int year = Integer.parseInt(format);
+        int mm = Integer.parseInt(format1);
+        int dd = Integer.parseInt(format2);
         Calendar endDate = Calendar.getInstance();
-        endDate.set(year, mm-1, dd);//结束时间
+        endDate.set(year, mm - 1, dd);//结束时间
         pvTime = new TimePickerView.Builder(PersonalDataActivity.this,
                 new TimePickerView.OnTimeSelectListener() {
                     @Override
@@ -388,6 +407,7 @@ public class PersonalDataActivity extends BaseActivity implements View.OnClickLi
         cityPicker.setOnCityItemClickListener(new CityPicker.OnCityItemClickListener() {
 
 
+
             @Override
 
             public void onSelected(String... citySelected) {
@@ -410,13 +430,19 @@ public class PersonalDataActivity extends BaseActivity implements View.OnClickLi
                 String code = citySelected[3];
 
                 //为TextView赋值
-               String sc = province.trim() + city.trim() + district.trim();
-                 SharedPreferences sp = getSharedPreferences("address", MODE_PRIVATE);
+                String sc = province.trim() + city.trim() + district.trim();
+                SharedPreferences sp = getSharedPreferences("address", MODE_PRIVATE);
                 SharedPreferences.Editor edit = sp.edit();
                 edit.putString("acacsadasd", sc);
                 edit.commit();
 
-                    dq.setText(sc);
+                SharedPreferences s = getSharedPreferences("tocode", MODE_PRIVATE);
+                SharedPreferences.Editor edit1 = s.edit();
+                edit1.putString("province",province);
+                edit1.putString("city",city);
+                edit1.putString("district",district);
+                edit1.commit();
+                dq.setText(sc);
 
 
             }

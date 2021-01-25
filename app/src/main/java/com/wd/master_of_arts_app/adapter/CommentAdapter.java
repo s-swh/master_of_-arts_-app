@@ -15,6 +15,7 @@ import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 import com.bumptech.glide.request.RequestOptions;
 import com.wd.master_of_arts_app.R;
 import com.wd.master_of_arts_app.activity.CourseDetailsActivity;
+import com.wd.master_of_arts_app.bean.CommentListBean;
 import com.wd.master_of_arts_app.bean.CourseDetails;
 
 import java.util.List;
@@ -25,7 +26,8 @@ import java.util.List;
  * @date :2020/12/23 9:22
  */
 public class CommentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
-    Context context; List<CourseDetails.DataBean.CommentListBean> beanList;
+
+     Context context; List<CourseDetails.DataBean.CommentListBean> beanList;
 
     public CommentAdapter(Context context, List<CourseDetails.DataBean.CommentListBean> beanList) {
         this.context = context;
@@ -41,8 +43,9 @@ public class CommentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
 
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
-        CourseDetails.DataBean.CommentListBean commentListBean = beanList.get(position);
-        ((CommentViewHorder)holder).it_date.setText(commentListBean.getComment_time());
+
+          CourseDetails.DataBean.CommentListBean commentListBean = beanList.get(position);
+      ((CommentViewHorder)holder).it_date.setText(commentListBean.getComment_time());
         ((CommentViewHorder) holder).it_txt.setText(commentListBean.getContent());
         ((CommentViewHorder) holder).it_title.setText(commentListBean.getUser_nickname());
         Glide.with(context).load(commentListBean.getUser_avatar()).apply(RequestOptions.bitmapTransform(new RoundedCorners(200))).error(R.mipmap.ic_launcher_round).into(((CommentViewHorder)holder).it_img);
@@ -53,7 +56,7 @@ public class CommentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
     @Override
     public int getItemCount() {
 
-        return beanList.size()-1;
+        return beanList.size();
 
 
     }

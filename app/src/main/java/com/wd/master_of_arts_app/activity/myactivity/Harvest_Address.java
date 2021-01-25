@@ -6,10 +6,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.view.View;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.TextView;
-import android.widget.Toast;
+
 
 import com.wd.master_of_arts_app.R;
 import com.wd.master_of_arts_app.activity.Add_Address;
@@ -132,7 +129,7 @@ public class Harvest_Address extends BaseActivity implements HarvestAddressContr
                 String is_default = listBean.getIs_default();
 
 
-                Toast.makeText(Harvest_Address.this, id1c + "", Toast.LENGTH_SHORT).show();
+
 
                 Intent intent = new Intent(Harvest_Address.this, EditShippingAddress.class);
                 intent.putExtra("idc1", id1c);
