@@ -110,10 +110,97 @@ public class WorkPage extends BaseActivity implements MyWorkContreanter.IView {
         }else{
             zpgs.setVisibility(View.GONE);
         }
-        if(voice!=null){
+        if(!voice.isEmpty()){
             yyjs.setVisibility(View.VISIBLE);
-        }else{
-            yyjs.setVisibility(View.GONE);
+            if(!voice.isEmpty()){
+                Gson gson1 = new Gson();
+                String[] strings1 = gson1.fromJson(voice, String[].class);
+                if (strings1.length == 1) {
+
+                    iv_vove1.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            MediaManager.playSound("http://qiniu.54artist.com/" + strings1[0], new MediaPlayer.OnCompletionListener() {
+                                @Override
+                                public void onCompletion(MediaPlayer mediaPlayer) {
+
+                                }
+                            });
+                        }
+                    });
+                    iv_vove2.setVisibility(View.GONE);
+                    iv_vove3.setVisibility(View.GONE);
+                } else if (strings1.length == 2) {
+
+                    iv_vove1.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            MediaManager.playSound("http://qiniu.54artist.com/" + strings1[0], new MediaPlayer.OnCompletionListener() {
+                                @Override
+                                public void onCompletion(MediaPlayer mediaPlayer) {
+
+                                }
+                            });
+                        }
+                    });
+
+                    iv_vove2.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            MediaManager.playSound("http://qiniu.54artist.com/" + strings1[1], new MediaPlayer.OnCompletionListener() {
+                                @Override
+                                public void onCompletion(MediaPlayer mediaPlayer) {
+
+                                }
+                            });
+                        }
+                    });
+                    iv_vove3.setVisibility(View.GONE);
+
+                } else if (strings1.length == 3) {
+                    iv_vove1.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            MediaManager.playSound("http://qiniu.54artist.com/" + strings1[0], new MediaPlayer.OnCompletionListener() {
+                                @Override
+                                public void onCompletion(MediaPlayer mediaPlayer) {
+
+                                }
+                            });
+                        }
+                    });
+
+                    iv_vove2.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            MediaManager.playSound("http://qiniu.54artist.com/" + strings1[1], new MediaPlayer.OnCompletionListener() {
+                                @Override
+                                public void onCompletion(MediaPlayer mediaPlayer) {
+
+                                }
+                            });
+                        }
+                    });
+
+                    iv_vove3.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            MediaManager.playSound("http://qiniu.54artist.com/" + strings1[2], new MediaPlayer.OnCompletionListener() {
+                                @Override
+                                public void onCompletion(MediaPlayer mediaPlayer) {
+
+                                }
+                            });
+                        }
+                    });
+                }
+            }
+
+            iv_voive1.setVisibility(View.GONE);
+            iv_voive2.setVisibility(View.GONE);
+            iv_voive3.setVisibility(View.GONE);
+
+
         }
         String[] strings = gson.fromJson(imglist, String[].class);
         if (strings.length == 1) {
@@ -386,6 +473,8 @@ public class WorkPage extends BaseActivity implements MyWorkContreanter.IView {
         if (is_comment.equals("N")) {
             tv_no.setText("未评论");
             lsdp.setVisibility(View.GONE);
+
+
         } else if (is_comment.equals("Y")) {
             tv_no.setText("已评论");
             lsdp.setVisibility(View.VISIBLE);
@@ -765,7 +854,7 @@ public class WorkPage extends BaseActivity implements MyWorkContreanter.IView {
 
 
 
-    if(voice!=null){
+    if(!voice.isEmpty()){
             Gson gson1 = new Gson();
             String[] strings1 = gson1.fromJson(voice, String[].class);
             if (strings1.length == 1) {
