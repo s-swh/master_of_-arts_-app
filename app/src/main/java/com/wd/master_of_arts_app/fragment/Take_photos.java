@@ -57,6 +57,7 @@ public class Take_photos extends BaseFragment implements worksContreanter.IVew {
     private ListOfWorks.DataBean.ListBean listBean;
     private List<ListOfWorks.DataBean.ListBean> listBeanList = new ArrayList<>();
 
+
     @Override
     protected int getLayoutId() {
         return R.layout.take_photos;
@@ -109,18 +110,20 @@ public class Take_photos extends BaseFragment implements worksContreanter.IVew {
         }
     }
 
-
+    @Override
+    public void onStart() {
+        super.onStart();
+        initData();
+    }
 
     @Override
     protected void initData() {
-
-
         BasePreantert basePreantert = getmPreanter();
         SharedPreferences token = getActivity().getSharedPreferences("token", Context.MODE_PRIVATE);
         String token1 = token.getString("token", "");
         if (!token1.isEmpty()) {
             wdl.setVisibility(View.GONE);
-            if(basePreantert instanceof worksContreanter.IPreanter){
+            if (basePreantert instanceof worksContreanter.IPreanter) {
                 ((worksContreanter.IPreanter) basePreantert).OnWorksSuccess(token1, "", i, j);
             }
 
@@ -141,12 +144,13 @@ public class Take_photos extends BaseFragment implements worksContreanter.IVew {
                 }
             });
         }
+
         xrv.setLoadingListener(new XRecyclerView.LoadingListener() {
             @Override
             public void onRefresh() {
                 i = 1;
                 worksAdapter.Refresh(data.getList());
-                if(basePreantert instanceof worksContreanter.IPreanter){
+                if (basePreantert instanceof worksContreanter.IPreanter) {
                     ((worksContreanter.IPreanter) basePreantert).OnWorksSuccess(token1, "", i, j);
                 }
                 LinearLayoutManager linearLayoutManager1 = new LinearLayoutManager(getActivity());
@@ -156,7 +160,7 @@ public class Take_photos extends BaseFragment implements worksContreanter.IVew {
             @Override
             public void onLoadMore() {
                 i++;
-                if(basePreantert instanceof worksContreanter.IPreanter){
+                if (basePreantert instanceof worksContreanter.IPreanter) {
                     ((worksContreanter.IPreanter) basePreantert).OnWorksSuccess(token1, "", i, j);
                 }
 
@@ -167,8 +171,14 @@ public class Take_photos extends BaseFragment implements worksContreanter.IVew {
         worksAdapter = new WorksAdapter(getActivity(), listBeanList);
         xrv.setAdapter(worksAdapter);
 
-
-
+        worksAdapter.OnClickWorks(new WorksAdapter.OnClickWorks() {
+            @Override
+            public void click(int id) {
+                Intent intent = new Intent(getActivity(), DetailsOfWorks.class);
+                intent.putExtra("work_id", id);
+                startActivity(intent);
+            }
+        });
     }
 
 
@@ -186,18 +196,11 @@ public class Take_photos extends BaseFragment implements worksContreanter.IVew {
         }
 
 
-
         xrv.loadMoreComplete();
         xrv.refreshComplete();
+
+
         worksAdapter.notifyDataSetChanged();
-        worksAdapter.OnClickWorks(new WorksAdapter.OnClickWorks() {
-            @Override
-            public void click(int id) {
-                Intent intent = new Intent(getActivity(), DetailsOfWorks.class);
-                intent.putExtra("work_id", id);
-                startActivity(intent);
-            }
-        });
     }
 
     @Override

@@ -309,8 +309,7 @@ public class MainActivity extends BaseActivity {
         bottom_navigation.setTabData(customTabEntities);
         MyViewPager myViewPager = new MyViewPager(getSupportFragmentManager());
         vp.setAdapter(myViewPager);
-
-
+        vp.setOffscreenPageLimit(4);
     }
 
 

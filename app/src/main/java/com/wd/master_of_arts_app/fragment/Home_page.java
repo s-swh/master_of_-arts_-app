@@ -162,7 +162,7 @@ public class Home_page extends BaseFragment implements HomePagerCrete.IVew, View
 
     }
 
-    @Subscribe(threadMode = ThreadMode.MAIN, sticky = true)
+    @Subscribe(threadMode = ThreadMode.MAIN)
     public void postEvent(Bundle bundle) {
         String extra = bundle.getString(JPushInterface.EXTRA_EXTRA);
         initData();

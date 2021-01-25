@@ -110,7 +110,7 @@ public class WorkPage extends BaseActivity implements MyWorkContreanter.IView {
         }else{
             zpgs.setVisibility(View.GONE);
         }
-        if(!voice.isEmpty()){
+        if(voice!=null){
             yyjs.setVisibility(View.VISIBLE);
         }else{
             yyjs.setVisibility(View.GONE);
@@ -765,7 +765,7 @@ public class WorkPage extends BaseActivity implements MyWorkContreanter.IView {
 
 
 
-    if(!voice.isEmpty()){
+    if(voice!=null){
             Gson gson1 = new Gson();
             String[] strings1 = gson1.fromJson(voice, String[].class);
             if (strings1.length == 1) {

@@ -10,6 +10,8 @@ import android.content.pm.PackageManager;
 
 import android.graphics.drawable.AnimationDrawable;
 import android.media.MediaPlayer;
+import android.os.Handler;
+import android.os.Message;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
@@ -177,57 +179,6 @@ public class Voice extends BaseFragment {
                                 }
                             });
 
-                   /* RequestBody funName = RequestBody.create(null, "ict_uploadpicture");
-                    RequestBody path1 = RequestBody.create(null, "/uploadNews");
-                    String pat = filePath1;
-                    File file = new File(filePath1);
-                    RequestBody appfile = RequestBody.create(null, pat);
-                    RequestBody wav = RequestBody.create(MediaType.parse("audio/*"), file);
-                    body = MultipartBody.Part.createFormData("file", pat, wav);
-                    NetUtils.getInstance().getApi().getQny(funName, path1, appfile, body)
-                            .subscribeOn(Schedulers.io())
-                            .observeOn(AndroidSchedulers.mainThread())
-                            .subscribe(new Observer<QiNiuYun>() {
-
-                                private String[] ke;
-
-                                @Override
-                                public void onSubscribe(Disposable d) {
-
-                                }
-
-                                @Override
-                                public void onNext(QiNiuYun qiNiuYun) {
-                                    String msg = qiNiuYun.getMsg();
-                                    Toast.makeText(getContext(), msg, Toast.LENGTH_SHORT).show();
-                                    QiNiuYun.DataBean data = qiNiuYun.getData();
-                                    list.add(data.getKey());
-                                    String accc = "[\"";
-
-                                    for (int i = 0; i < list.size(); i++) {
-                                        Log.i("xxxxkeys", list.get(i));
-                                        accc += list.get(i) + "\",\"";
-                                    }
-                                    String url = accc.substring(0, accc.length() - 2) + "]";
-                                    SharedPreferences sp = App.getContext().getSharedPreferences("key", Context.MODE_PRIVATE);
-                                    SharedPreferences.Editor edit = sp.edit();
-                                    Log.i("xxxxx",data.getKey().toString());
-                                    edit.putString("ke", url);
-                                    edit.commit();
-                                    EventBus.getDefault().postSticky(url);
-                                }
-
-                                @Override
-                                public void onError(Throwable e) {
-                                    String message = e.getMessage();
-                                    Toast.makeText(getContext(), message, Toast.LENGTH_SHORT).show();
-                                }
-
-                                @Override
-                                public void onComplete() {
-
-                                }
-                            });*/
                 }
 
             }

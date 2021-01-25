@@ -27,7 +27,7 @@
             android:src="@mipmap/returnbutton"
             android:layout_marginLeft="@dimen/dp_15"
             android:id="@+id/tv_return"
-            android:layout_marginTop="@dimen/dp_15"
+            android:layout_centerVertical="true"
             android:layout_height="@dimen/dp_30" />
         <TextView
             android:layout_width="match_parent"

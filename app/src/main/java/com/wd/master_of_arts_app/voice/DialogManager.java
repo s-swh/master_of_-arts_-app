@@ -43,7 +43,7 @@ public class DialogManager {
             mVoice.setVisibility(View.VISIBLE);
             mLable.setVisibility(View.VISIBLE);
  
-            mIcon.setImageResource(R.drawable.ic_launcher_background);
+            mIcon.setImageResource(R.mipmap.qxfs);
             mLable.setText("手指上划，取消发送");
         }
     }
@@ -54,7 +54,7 @@ public class DialogManager {
             mVoice.setVisibility(View.GONE);
             mLable.setVisibility(View.VISIBLE);
  
-            mIcon.setImageResource(R.drawable.ic_launcher_background);
+            mIcon.setImageResource(R.mipmap.qxfs);
             mLable.setText("松开手指，取消发送");
         }
     }

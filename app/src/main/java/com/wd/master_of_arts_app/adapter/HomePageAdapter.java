@@ -4,6 +4,7 @@ import android.content.Context;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -66,7 +67,7 @@ public class HomePageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
             ((HomePageViewHorder) holder).rlh.setVisibility(View.GONE);
         }
 
-        ((HomePageViewHorder) holder).tv_tvv.setOnClickListener(new View.OnClickListener() {
+        ((HomePageViewHorder) holder).tz.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 click.OnClickItem(list.get(position));
@@ -102,6 +103,7 @@ public class HomePageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         private final ImageView home_img;
         private final View lh;
         private final View rlh;
+        private final LinearLayout tz;
 
         public HomePageViewHorder(@NonNull View itemView) {
             super(itemView);
@@ -114,6 +116,7 @@ public class HomePageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
             left_sort = itemView.findViewById(R.id.left_sort);
             lh = itemView.findViewById(R.id.lh);
             rlh = itemView.findViewById(R.id.rlh);
+            tz = itemView.findViewById(R.id.tz);
         }
     }
 }
