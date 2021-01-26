@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.view.View;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import com.jcodecraeer.xrecyclerview.XRecyclerView;
 import com.wd.master_of_arts_app.R;
@@ -19,6 +20,7 @@ import com.wd.master_of_arts_app.bean.MyCurse;
 import com.wd.master_of_arts_app.contreater.MyCourseContreater;
 import com.wd.master_of_arts_app.preanter.MyCoursePreanter;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.OnClick;
@@ -33,7 +35,10 @@ public class My_Collection_of_works extends BaseActivity implements MyCourseCont
     private LinearLayout llt;
     private MyCourseOneAdapter myCourseOneAdapter;
     private MyCurse.DataBean data;
-
+    List<MyCurse.DataBean.ListBean> listBean=new ArrayList<>();
+    private List<MyCurse.DataBean.ListBean> list;
+    private int i=1;
+    private int j=10;
     @Override
     protected int getLayoutId() {
         return R.layout.activity_my__collection_of_works;
@@ -65,19 +70,53 @@ public class My_Collection_of_works extends BaseActivity implements MyCourseCont
         if (basePreantert instanceof MyCourseContreater.IPreanter) {
             SharedPreferences token = getSharedPreferences("token", MODE_PRIVATE);
             String token1 = token.getString("token", "");
-            ((MyCourseContreater.IPreanter) basePreantert).OnMyCourseSuccess(token1, 1, 10);
+            ((MyCourseContreater.IPreanter) basePreantert).OnMyCourseSuccess(token1, i, 10);
         }
         xrv.setLoadingListener(new XRecyclerView.LoadingListener() {
             @Override
             public void onRefresh() {
-
-                xrv.refreshComplete();
+                i=1;
+                myCourseOneAdapter.ShuaXin(data.getList());
+                if (basePreantert instanceof MyCourseContreater.IPreanter) {
+                    SharedPreferences token = getSharedPreferences("token", MODE_PRIVATE);
+                    String token1 = token.getString("token", "");
+                    ((MyCourseContreater.IPreanter) basePreantert).OnMyCourseSuccess(token1, i, 10);
+                }
+                LinearLayoutManager linearLayoutManager1 = new LinearLayoutManager(getApplicationContext());
+                xrv.setLayoutManager(linearLayoutManager1);
             }
 
             @Override
             public void onLoadMore() {
-                myCourseOneAdapter.JiaZai(data.getList());
-                xrv.loadMoreComplete();
+                i++;
+                if (basePreantert instanceof MyCourseContreater.IPreanter) {
+                    SharedPreferences token = getSharedPreferences("token", MODE_PRIVATE);
+                    String token1 = token.getString("token", "");
+                    ((MyCourseContreater.IPreanter) basePreantert).OnMyCourseSuccess(token1, i, 10);
+                }
+
+            }
+        });
+        myCourseOneAdapter = new MyCourseOneAdapter(getApplicationContext(), listBean);
+        xrv.setAdapter(myCourseOneAdapter);
+        myCourseOneAdapter.setOnClick(new MyCourseOneAdapter.OnClick() {
+
+            private String teacher_name;
+            private String title;
+
+            @Override
+            public void OnCliack(int id) {
+                Intent intent = new Intent(getApplicationContext(), SampleReelsActivity.class);
+                for (int i = 0; i < list.size(); i++) {
+                    MyCurse.DataBean.ListBean listBean = list.get(i);
+                    title = listBean.getTitle();
+
+
+                }
+                intent.putExtra("titlet", title);
+                intent.putExtra("teacher_namea", teacher_name);
+                intent.putExtra("course_time_id111", id);
+                startActivity(intent);
             }
         });
     }
@@ -87,36 +126,22 @@ public class My_Collection_of_works extends BaseActivity implements MyCourseCont
     public void OnCourse(MyCurse myCurse) {
 
         data = myCurse.getData();
-        List<MyCurse.DataBean.ListBean> list = data.getList();
-        if (list.size() == 0) {
+        list = data.getList();
+        listBean= list;
+        myCourseOneAdapter.JiaZai(listBean);
+        if(listBean.size()==0){
+            Toast.makeText(this, "没用更多数据", Toast.LENGTH_SHORT).show();
+        }
+        if (i==1&&list.size()==0) {
             llt.setVisibility(View.VISIBLE);
             xrv.setVisibility(View.GONE);
         } else {
             llt.setVisibility(View.GONE);
             xrv.setVisibility(View.VISIBLE);
-            myCourseOneAdapter = new MyCourseOneAdapter(getApplicationContext(), list);
-            myCourseOneAdapter.setOnClick(new MyCourseOneAdapter.OnClick() {
-
-                private String teacher_name;
-                private String title;
-
-                @Override
-                public void OnCliack(int id) {
-                    Intent intent = new Intent(getApplicationContext(), SampleReelsActivity.class);
-                    for (int i = 0; i < list.size(); i++) {
-                        MyCurse.DataBean.ListBean listBean = list.get(i);
-                        title = listBean.getTitle();
-
-
-                    }
-                    intent.putExtra("titlet", title);
-                    intent.putExtra("teacher_namea", teacher_name);
-                    intent.putExtra("course_time_id111", id);
-                    startActivity(intent);
-                }
-            });
-            xrv.setAdapter(myCourseOneAdapter);
         }
+        xrv.refreshComplete();
+        xrv.loadMoreComplete();
+        myCourseOneAdapter.notifyDataSetChanged();
     }
 
     @Override

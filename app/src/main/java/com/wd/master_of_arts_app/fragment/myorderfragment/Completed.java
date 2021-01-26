@@ -54,6 +54,8 @@ public class Completed extends BaseFragment implements OrderContreater.IView {
     private LinearLayout llt;
     private LinearLayout rlt;
     private   List<OrderList.DataBean.ListBean> listBeans=new ArrayList<>();
+    private List<OrderList.DataBean.ListBean> list;
+
     @Override
     protected int getLayoutId() {
         return R.layout.activity_completed;
@@ -83,6 +85,16 @@ public class Completed extends BaseFragment implements OrderContreater.IView {
     }
 
     @Override
+    public void onResume() {
+        super.onResume();
+        if(list!=null){
+            list.clear();
+            listBeans.clear();
+            initData();
+        }
+    }
+
+    @Override
     protected void initData() {
         SharedPreferences token = App.getContext().getSharedPreferences("token", Context.MODE_PRIVATE);
         String token1 = token.getString("token", "");
@@ -94,6 +106,10 @@ public class Completed extends BaseFragment implements OrderContreater.IView {
 
 
             ((OrderContreater.IPreanter) basePreantert).OrderSuccess(token1, i, p, per);
+                if(list!=null){
+                    list.clear();
+                    listBeans.clear();
+                }
         }
         xr.setLoadingListener(new XRecyclerView.LoadingListener() {
             @Override
@@ -126,7 +142,7 @@ public class Completed extends BaseFragment implements OrderContreater.IView {
     @Override
     public void OnOrderList(OrderList orderList) {
         data = orderList.getData();
-        List<OrderList.DataBean.ListBean> list = data.getList();
+        list = data.getList();
         orderListAdapter.Load(data.getList());
         xr.loadMoreComplete();
         xr.refreshComplete();
@@ -134,7 +150,7 @@ public class Completed extends BaseFragment implements OrderContreater.IView {
             llt.setVisibility(View.GONE);
             rlt.setVisibility(View.VISIBLE);
         }else{
-            listBeans=list;
+            listBeans= list;
             if(listBeans.size()==0){
                 Toast.makeText(getContext(), "到底了", Toast.LENGTH_SHORT).show();
             }

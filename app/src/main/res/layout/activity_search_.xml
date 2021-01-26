@@ -22,7 +22,7 @@
                 android:id="@+id/username"
                 android:layout_width="287dp"
                 android:layout_height="34dp"
-
+                android:singleLine="true"
                 android:textSize="12sp"
                 android:textColorHint="#fff"
                 android:scrollbarSize="12sp"

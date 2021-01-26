@@ -36,7 +36,7 @@ public class MyCourseOneAdapter extends XRecyclerView.Adapter<XRecyclerView.View
     }
     public void ShuaXin( List<MyCurse.DataBean.ListBean> list){
         this.list.clear();
-        this.list.addAll(list);
+
     }
     public void JiaZai( List<MyCurse.DataBean.ListBean> list){
         this.list.addAll(list);

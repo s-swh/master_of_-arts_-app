@@ -85,6 +85,7 @@
                 android:id="@+id/up_name"
                 android:layout_width="match_parent"
                 android:maxLength="6"
+                android:singleLine="true"
                 android:layout_height="match_parent"
                 android:layout_marginLeft="@dimen/dp_5"
                 android:background="@android:color/transparent"

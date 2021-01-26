@@ -99,6 +99,16 @@ public class To_be_paid extends BaseFragment implements OrderContreater.IView {
     }
 
     @Override
+    public void onResume() {
+        super.onResume();
+        if(list!=null){
+            list.clear();
+            listBeans.clear();
+            initData();
+        }
+    }
+
+    @Override
     protected void initData() {
         BasePreantert basePreantert = getmPreanter();
         SharedPreferences token = App.getContext().getSharedPreferences("token", Context.MODE_PRIVATE);
@@ -106,6 +116,10 @@ public class To_be_paid extends BaseFragment implements OrderContreater.IView {
         String i = "1";
         if(basePreantert instanceof OrderContreater.IPreanter){
             ((OrderContreater.IPreanter) basePreantert).OrderSuccess(token1, i, p, per);
+            if(list!=null){
+                list.clear();
+                listBeans.clear();
+            }
         }
 
 

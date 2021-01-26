@@ -43,7 +43,7 @@ public class MyCourseAdapter extends XRecyclerView.Adapter<XRecyclerView.ViewHol
     }
     public void Refresh(  List<MyCurse.DataBean.ListBean> liss){   //下拉刷新
         this.list.clear();
-        this.list.addAll(liss);
+
     }
     public void LoadMore(List<MyCurse.DataBean.ListBean>  list){  //上拉加载
         this.list.addAll(list);

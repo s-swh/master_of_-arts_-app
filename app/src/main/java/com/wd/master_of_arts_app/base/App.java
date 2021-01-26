@@ -8,6 +8,7 @@ import android.content.IntentFilter;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.text.TextUtils;
 import android.util.Log;
 
 import androidx.annotation.Nullable;
@@ -15,9 +16,13 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.multidex.MultiDex;
 
 
-
+import com.tencent.bugly.crashreport.CrashReport;
 
 import org.greenrobot.eventbus.EventBus;
+
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
 
 import cn.jpush.android.api.JPushInterface;
 
@@ -32,7 +37,7 @@ public class App extends Application {
 
 
     private static Context context;
-
+    private boolean isDebug;
 
     @Override
     public void onCreate() {
@@ -41,9 +46,8 @@ public class App extends Application {
         JPushInterface.setDebugMode(true);
         JPushInterface.init(this);
 
-
-
     }
+
 
     @Override
     protected void attachBaseContext(Context base) {

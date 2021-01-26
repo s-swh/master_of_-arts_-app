@@ -29,6 +29,7 @@ import com.wd.master_of_arts_app.contreater.MyCourseContreater;
 import com.wd.master_of_arts_app.preanter.MyCoursePreanter;
 import com.wd.master_of_arts_app.preanter.MyPreanter;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.OnClick;
@@ -41,10 +42,11 @@ public class My_Course extends BaseActivity implements MyCourseContreater.IView 
     private XRecyclerView xrv;
     private int i=1;
     private int j=10;
-    private List<MyCurse.DataBean.ListBean> list;
+  List<MyCurse.DataBean.ListBean> list;
     private MyCourseAdapter myCourseAdapter;
     private MyCurse.DataBean data;
     private LinearLayout wushuju;
+ List<MyCurse.DataBean.ListBean> listBeans=new ArrayList<>();
 
 
     @Override
@@ -72,6 +74,17 @@ public class My_Course extends BaseActivity implements MyCourseContreater.IView 
         Intent intent = new Intent(getApplicationContext(), Calendar_Activity.class);
         startActivity(intent);
     }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if(list!=null){
+            list.clear();
+            listBeans.clear();
+            initData();
+        }
+    }
+
     @Override
     protected void initData() {
         BasePreantert basePreantert = getmPreantert();
@@ -82,52 +95,68 @@ public class My_Course extends BaseActivity implements MyCourseContreater.IView 
             SharedPreferences token = getSharedPreferences("token", MODE_PRIVATE);
             String token1 = token.getString("token", "");
             ((MyCourseContreater.IPreanter) basePreantert).OnMyCourseSuccess(token1,i,j);
+            if(list!=null){
+                list.clear();
+                listBeans.clear();
+            }
         }
        xrv.setLoadingListener(new XRecyclerView.LoadingListener() {
            @Override
            public void onRefresh() {
-               xrv.refreshComplete();
+               i=1;
+               myCourseAdapter.Refresh(data.getList());
+               if(basePreantert instanceof MyCourseContreater.IPreanter){
+                   SharedPreferences token = getSharedPreferences("token", MODE_PRIVATE);
+                   String token1 = token.getString("token", "");
+                   ((MyCourseContreater.IPreanter) basePreantert).OnMyCourseSuccess(token1,i,j);
+               }
+               LinearLayoutManager linearLayoutManager1 = new LinearLayoutManager(getApplicationContext());
+               xrv.setLayoutManager(linearLayoutManager1);
            }
 
            @Override
            public void onLoadMore() {
-                myCourseAdapter.LoadMore(data.getList());
-                xrv.loadMoreComplete();
+
+
                 i++;
                if(basePreantert instanceof MyCourseContreater.IPreanter){
                    SharedPreferences token = getSharedPreferences("token", MODE_PRIVATE);
                    String token1 = token.getString("token", "");
                    ((MyCourseContreater.IPreanter) basePreantert).OnMyCourseSuccess(token1,i,j);
                }
+
            }
        });
 
-
+        myCourseAdapter = new MyCourseAdapter(getApplicationContext(), listBeans);
+        myCourseAdapter.setOnClick(new MyCourseAdapter.OnClick() {
+            @Override
+            public void OnCliack(int id,int order_id) {
+                Intent intent = new Intent(getApplicationContext(), MyCourseDetails.class);
+                intent.putExtra("icqd",id);
+                intent.putExtra("order_id",order_id);
+                startActivity(intent);
+            }
+        });
+        xrv.setAdapter(myCourseAdapter);
     }
+
 
     @Override
     public void OnCourse(MyCurse myCurse) {
 
         data = myCurse.getData();
 
-        List<MyCurse.DataBean.ListBean> list = data.getList();
-
-        if(list.size()==0){
+        list = data.getList();
+        listBeans = list;
+        myCourseAdapter.LoadMore(listBeans);
+        if (i == 0 && list.size() == 0) {
             wushuju.setVisibility(View.VISIBLE);
-
-        }else{
-            myCourseAdapter = new MyCourseAdapter(getApplicationContext(), list);
-            myCourseAdapter.setOnClick(new MyCourseAdapter.OnClick() {
-                @Override
-                public void OnCliack(int id,int order_id) {
-                    Intent intent = new Intent(getApplicationContext(), MyCourseDetails.class);
-                    intent.putExtra("icqd",id);
-                    intent.putExtra("order_id",order_id);
-                    startActivity(intent);
-                }
-            });
-            xrv.setAdapter(myCourseAdapter);
         }
+
+            xrv.loadMoreComplete();
+            xrv.refreshComplete();
+            myCourseAdapter.notifyDataSetChanged();
 
     }
 

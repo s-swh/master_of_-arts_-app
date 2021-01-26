@@ -101,6 +101,15 @@ public class Whole extends BaseFragment implements OrderContreater.IView {
 
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        if(list!=null){
+            list.clear();
+            listBeans.clear();
+            initData();
+        }
+    }
 
     @Override
     protected void initData() {
@@ -111,6 +120,11 @@ public class Whole extends BaseFragment implements OrderContreater.IView {
 
         if (basePreantert instanceof OrderContreater.IPreanter) {
             ((OrderContreater.IPreanter) basePreantert).OrderSuccess(token1, "", p, per);
+            if(list!=null){
+                list.clear();
+                listBeans.clear();
+
+            }
         }
         xrv.setLoadingListener(new XRecyclerView.LoadingListener() {
             @Override

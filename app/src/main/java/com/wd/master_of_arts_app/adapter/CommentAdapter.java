@@ -55,8 +55,12 @@ public class CommentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
 
     @Override
     public int getItemCount() {
+        if(beanList.size()!=0){
+            return (beanList.size()-beanList.size())+1;
 
-        return beanList.size();
+        }else{
+            return 0;
+        }
 
 
     }
