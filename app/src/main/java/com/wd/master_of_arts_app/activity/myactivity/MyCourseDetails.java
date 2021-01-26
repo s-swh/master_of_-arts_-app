@@ -126,7 +126,8 @@ public class MyCourseDetails extends BaseActivity implements MyCourseContreater.
         int unit_num = data.getUnit_num();
         num.setText(unit_num + "课时");
         String name = data.getName();
-        user_n.setText(name+"\n");
+        String job_num = data.getJob_num();
+        user_n.setText(name+"\n"+job_num);
         int order_id = data.getOrder_id();
         qpl1.setOnClickListener(new View.OnClickListener() {
             @Override
